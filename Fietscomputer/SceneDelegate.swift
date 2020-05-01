@@ -18,14 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
 
-        let service = (UIApplication.shared.delegate as! AppDelegate).service
-        let rideService = (UIApplication.shared.delegate as! AppDelegate).rideService
-
         let sharedMapView = MKMapView()
         let contentView = ContentView(
-            mapViewModel: MapViewModel(service: service),
-            speedViewModel: SpeedViewModel(service: service),
-            durationViewModel: DurationViewModel(service: rideService)
+            mapViewModel: MapViewModel(),
+            speedViewModel: SpeedViewModel(),
+            durationViewModel: DurationViewModel()
         ).environment(\.mkMapView, sharedMapView)
 
         // Use a UIHostingController as window root view controller.

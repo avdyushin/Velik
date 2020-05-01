@@ -23,12 +23,11 @@ class DurationViewModel: ObservableObject {
 
     @Published var elapsedTime = "00:00:00"
 
-    private let service: RideService
+    @Injected private var service: RideService
     private var cancellables = Set<AnyCancellable>()
 
-    init(service: RideService) {
-        self.service = service
-        self.service.elapsed.sink { value in
+    init() {
+        service.elapsed.sink { value in
             self.elapsedTime = Formatters.elaspedFormatter.string(from: value)!
         }.store(in: &cancellables)
     }

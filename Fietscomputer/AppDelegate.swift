@@ -13,11 +13,20 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var cancellables = Set<AnyCancellable>()
-    var service = LocationService()
-    var rideService = RideService()
+    private var cancellables = Set<AnyCancellable>()
+
+    private let dependencies = Dependencies {
+        Module { LocationService() }
+        Module { RideService() }
+    }
+
+    @Injected var service: LocationService
+    @Injected var rideService: RideService
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        dependencies.build()
+
         // Override point for customization after application launch.
         let p = LocationPermissions()
         p.status.flatMap { status -> AnyPublisher<LocationPermissions.Status, Never> in
@@ -32,14 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         .receive(on: DispatchQueue.main)
         .removeDuplicates()
-        .sink { [service, rideService] status in
+        .sink { [dependencies] status in
 
             debugPrint("has status", status.rawValue)
 
             switch status {
             case .authorizedAlways, .authorizedWhenInUse:
-                service.start()
-                rideService.start()
+                dependencies.forEach {
+                    $0.start()
+                }
             default:
                 debugPrint("Can't start location service")
             }

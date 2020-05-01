@@ -16,19 +16,17 @@ class MapViewModel: ObservableObject {
     @Published var isServiceRunning = false
     @Published var isTracking = false
 
-    private let service: LocationService
+    @Injected private var service: LocationService
     private var cancellebles = Set<AnyCancellable>()
 
-    init(service: LocationService) {
-        self.service = service
-
-        self.service.track
+    init() {
+        service.track
             .sink {
                 self.lines.append($0)
             }
             .store(in: &cancellebles)
 
-        self.service.started
+        service.started
             .assign(to: \.isServiceRunning, on: self)
             .store(in: &cancellebles)
     }

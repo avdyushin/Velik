@@ -38,13 +38,11 @@ class SpeedViewModel: ObservableObject {
     @Published var speedText = "0.0"
     @Published var speedUnit = ""
 
-    private let service: LocationService
+    @Injected private var service: LocationService
     private var cancellables = Set<AnyCancellable>()
 
-    init(service: LocationService) {
-        debugPrint("have service")
-        self.service = service
-        self.service.speed
+    init() {
+        service.speed
             .map { $0 < 0 ? 0 : $0 } // filter out negative values
             .sink { value in
                 // m/s
@@ -90,6 +88,6 @@ struct SpeedView: View {
 struct ContentView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SpeedView(viewModel: SpeedViewModel(service: LocationService()))
+        SpeedView(viewModel: SpeedViewModel())
     }
 }
