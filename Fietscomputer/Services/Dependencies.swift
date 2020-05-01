@@ -8,6 +8,11 @@
 
 import Foundation
 
+protocol Service {
+    func start()
+    func stop()
+}
+
 struct Module {
     let service: Service
     let name: String

@@ -10,11 +10,6 @@ import MapKit
 import Combine
 import CoreLocation
 
-protocol Service {
-    func start()
-    func stop()
-}
-
 class LocationService: NSObject, Service {
 
     private let manager: CLLocationManager

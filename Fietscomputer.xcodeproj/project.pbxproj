@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B58B61A245C9FA700B62914 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B619245C9FA700B62914 /* BluetoothService.swift */; };
+		4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */; };
 		4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9AF245C067500BD5DD3 /* ContentView.swift */; };
 		4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B1245C29CB00BD5DD3 /* RideService.swift */; };
 		4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B58B619245C9FA700B62914 /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
+		4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissions.swift; sourceTree = "<group>"; };
 		4B88C9AF245C067500BD5DD3 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B88C9B1245C29CB00BD5DD3 /* RideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
 		4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationViewModel.swift; sourceTree = "<group>"; };
@@ -84,9 +88,11 @@
 			isa = PBXGroup;
 			children = (
 				4B88C9B5245C3DCD00BD5DD3 /* Dependencies.swift */,
-				4BAB77E5245B3A1000F011A0 /* LocationService.swift */,
 				4BAB77E3245B300200F011A0 /* Permissions.swift */,
+				4BAB77E5245B3A1000F011A0 /* LocationService.swift */,
+				4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */,
 				4B88C9B1245C29CB00BD5DD3 /* RideService.swift */,
+				4B58B619245C9FA700B62914 /* BluetoothService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -285,10 +291,12 @@
 				4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */,
 				4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */,
 				4BAB77E4245B300200F011A0 /* Permissions.swift in Sources */,
+				4B58B61A245C9FA700B62914 /* BluetoothService.swift in Sources */,
 				4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */,
 				4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */,
 				4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */,
 				4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */,
+				4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */,
 				4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */,
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
 				4BAB77C6245B2FE000F011A0 /* SpeedView.swift in Sources */,

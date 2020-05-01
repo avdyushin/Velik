@@ -69,8 +69,8 @@ struct ContentView: View {
                     .padding(12)
                     .frame(minWidth: 0, maxWidth: .infinity)
             }
-
             .background(Color.green)
+            .edgesIgnoringSafeArea(.bottom)
         }
     }
 }
