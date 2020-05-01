@@ -21,8 +21,8 @@ struct ContentView: View {
             MapView(viewModel: mapViewModel).frame(minHeight: 0, maxHeight: .infinity)
             SpeedView(viewModel: speedViewModel).frame(minHeight: 0, maxHeight: .infinity)
             HStack {
-                DurationView(viewModel: durationViewModel).frame(minWidth: 0, maxWidth: .infinity)
-                DistanceView(viewModel: distanceViewModel).frame(minWidth: 0, maxWidth: .infinity)
+                GaugeView(viewModel: durationViewModel).frame(minWidth: 0, maxWidth: .infinity)
+                GaugeView(viewModel: distanceViewModel).frame(minWidth: 0, maxWidth: .infinity)
             }.padding(20)
         }
     }

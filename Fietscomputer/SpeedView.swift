@@ -33,29 +33,22 @@ struct Formatters {
     }
 }
 
-class SpeedViewModel: ObservableObject {
+class SpeedViewModel: GaugeViewModel {
 
-    @Published var speedText = "0.0"
-    @Published var speedUnit = ""
+    override init() {
+        super.init()
 
-    @Injected private var service: LocationService
-    private var cancellables = Set<AnyCancellable>()
-
-    init() {
-        service.speed
+        fontSize = 100
+        locationService.speed
             .map { $0 < 0 ? 0 : $0 } // filter out negative values
-            .sink { value in
-                // m/s
+            .sink { value in // m/s
                 let mps = Measurement(value: value, unit: UnitSpeed.metersPerSecond)
                 debugPrint(mps)
                 let kph = mps.converted(to: UnitSpeed.kilometersPerHour)
                 let formatted = Formatters.formatted(from: kph)
-                self.speedText = formatted.value
-                self.speedUnit = formatted.units.uppercased()
-//                return Formatters.speedMeasurement.string(from: kph)
+                self.value = formatted.value
+                self.units = formatted.units.uppercased()
             }
-//            .replaceError(with: speedText)
-//            .assign(to: \.speedText, on: self)
             .store(in: &cancellables)
     }
 }
@@ -70,11 +63,10 @@ struct SpeedView: View {
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            Text(viewModel.speedText)
-                .font(.custom("DIN Alternate", size: 100))
+            GaugeView(viewModel: viewModel)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             HStack {
-                Text(viewModel.speedUnit)
+                Text(viewModel.units)
                     .font(.caption).bold()
                     .background(Color.white)
                     .padding(4)

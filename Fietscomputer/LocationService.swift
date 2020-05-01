@@ -11,6 +11,7 @@ import Combine
 import CoreLocation
 
 protocol Service {
+    var started: AnyPublisher<Bool, Never> { get set }
     func start()
     func stop()
 }
@@ -34,7 +35,7 @@ class LocationService: NSObject, Service {
     private let locationPublisher = PassthroughSubject<CLLocation, Never>()
 
     private let startedPublisher = PassthroughSubject<Bool, Never>()
-    private(set) var started: AnyPublisher<Bool, Never>
+    var started: AnyPublisher<Bool, Never>
 
     init(manager: CLLocationManager = CLLocationManager()) {
         self.manager = manager

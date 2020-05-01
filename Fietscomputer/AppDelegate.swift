@@ -27,13 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         dependencies.build()
 
-        // Override point for customization after application launch.
-        let p = LocationPermissions()
-        p.status.flatMap { status -> AnyPublisher<LocationPermissions.Status, Never> in
+        let permissions = LocationPermissions()
+        permissions.status.flatMap { status -> AnyPublisher<LocationPermissions.Status, Never> in
             switch status {
             case .notDetermined, .restricted:
                 debugPrint("will request")
-                return p.request().replaceError(with: .denied).eraseToAnyPublisher()
+                return permissions.request().replaceError(with: .denied).eraseToAnyPublisher()
             default:
                 debugPrint("no need to request")
                 return Just(status).eraseToAnyPublisher()
@@ -42,9 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         .receive(on: DispatchQueue.main)
         .removeDuplicates()
         .sink { [dependencies] status in
-
             debugPrint("has status", status.rawValue)
-
             switch status {
             case .authorizedAlways, .authorizedWhenInUse:
                 dependencies.forEach {

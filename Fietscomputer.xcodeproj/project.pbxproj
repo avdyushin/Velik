@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9AF245C067500BD5DD3 /* ContentView.swift */; };
 		4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B1245C29CB00BD5DD3 /* RideService.swift */; };
-		4B88C9B4245C2BBC00BD5DD3 /* DurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B3245C2BBC00BD5DD3 /* DurationView.swift */; };
+		4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */; };
 		4B88C9B6245C3DCD00BD5DD3 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B5245C3DCD00BD5DD3 /* Dependencies.swift */; };
-		4B88C9B8245C64C800BD5DD3 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B7245C64C800BD5DD3 /* DistanceView.swift */; };
+		4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */; };
+		4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */; };
+		4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */; };
 		4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */; };
 		4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */; };
 		4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */; };
@@ -38,9 +40,11 @@
 /* Begin PBXFileReference section */
 		4B88C9AF245C067500BD5DD3 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B88C9B1245C29CB00BD5DD3 /* RideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
-		4B88C9B3245C2BBC00BD5DD3 /* DurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationView.swift; sourceTree = "<group>"; };
+		4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationViewModel.swift; sourceTree = "<group>"; };
 		4B88C9B5245C3DCD00BD5DD3 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
-		4B88C9B7245C64C800BD5DD3 /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
+		4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewModel.swift; sourceTree = "<group>"; };
+		4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeView.swift; sourceTree = "<group>"; };
+		4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeViewModel.swift; sourceTree = "<group>"; };
 		4BAB77BB245B2FE000F011A0 /* Fietscomputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fietscomputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,8 +110,10 @@
 				4B88C9AF245C067500BD5DD3 /* ContentView.swift */,
 				4BAB77C5245B2FE000F011A0 /* SpeedView.swift */,
 				4BAB77E7245B4E1E00F011A0 /* MapView.swift */,
-				4B88C9B3245C2BBC00BD5DD3 /* DurationView.swift */,
-				4B88C9B7245C64C800BD5DD3 /* DistanceView.swift */,
+				4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */,
+				4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */,
+				4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */,
+				4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */,
 				4BAB77C7245B2FE200F011A0 /* Assets.xcassets */,
 				4BAB77CC245B2FE200F011A0 /* LaunchScreen.storyboard */,
 				4BAB77CF245B2FE200F011A0 /* Info.plist */,
@@ -237,12 +243,14 @@
 			files = (
 				4BAB77E8245B4E1E00F011A0 /* MapView.swift in Sources */,
 				4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */,
-				4B88C9B4245C2BBC00BD5DD3 /* DurationView.swift in Sources */,
+				4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */,
 				4BAB77E4245B300200F011A0 /* Permissions.swift in Sources */,
+				4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */,
 				4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */,
 				4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */,
 				4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */,
-				4B88C9B8245C64C800BD5DD3 /* DistanceView.swift in Sources */,
+				4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */,
+				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
 				4BAB77C6245B2FE000F011A0 /* SpeedView.swift in Sources */,
 				4BAB77E6245B3A1000F011A0 /* LocationService.swift in Sources */,
 				4B88C9B6245C3DCD00BD5DD3 /* Dependencies.swift in Sources */,

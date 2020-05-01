@@ -21,29 +21,17 @@ extension Formatters {
     }()
 }
 
-class DistanceViewModel: ObservableObject {
+class DistanceViewModel: GaugeViewModel {
 
-    @Published var distance = "0"
+    override init() {
+        super.init()
 
-    @Injected private var service: LocationService
-    private var cancellables = Set<AnyCancellable>()
-
-    init() {
-        service.distance
+        locationService.distance
             .sink { value in
                 let km = Measurement(value: value, unit: UnitLength.meters).converted(to: .kilometers)
-                self.distance = Formatters.distanceFormatter.string(from: km)
+                self.value = Formatters.distanceFormatter.string(from: km)
             }
             .store(in: &cancellables)
     }
 
-}
-struct DistanceView: View {
-
-    @ObservedObject var viewModel: DistanceViewModel
-
-    var body: some View {
-        Text(viewModel.distance)
-            .font(.custom("DIN Alternate", size: 30))
-    }
 }

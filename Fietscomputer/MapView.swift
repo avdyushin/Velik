@@ -16,23 +16,31 @@ class MapViewModel: ObservableObject {
     @Published var isServiceRunning = false
     @Published var isTracking = false
     @Published var distance: CLLocationDistance = 0
+    @Published var isRideStarted = false
 
-    @Injected private var service: LocationService
-    private var cancellebles = Set<AnyCancellable>()
+    @Injected private var locationService: LocationService
+    private var cancellables = Set<AnyCancellable>()
 
     init() {
-        service.track
+//        super.init()
+
+        locationService.track
             .removeDuplicates()
             .assign(to: \.polyline, on: self)
-            .store(in: &cancellebles)
+            .store(in: &cancellables)
 
-        service.started
+        locationService.started
+            .print("location started here")
             .assign(to: \.isServiceRunning, on: self)
-            .store(in: &cancellebles)
+            .store(in: &cancellables)
 
-        service.distance
+        locationService.distance
             .assign(to: \.distance, on: self)
-            .store(in: &cancellebles)
+            .store(in: &cancellables)
+
+//        rideService.started
+//            .assign(to: \.isRideStarted, on: self)
+//            .store(in: &cancellables)
     }
 }
 
@@ -76,12 +84,15 @@ struct MapView2: UIViewRepresentable {
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
+        debugPrint("update ui")
         if viewModel.isTracking == false && viewModel.isServiceRunning {
             debugPrint("start tracking")
             viewModel.isTracking = true
             view.userTrackingMode = .followWithHeading
         }
-        view.addOverlay(viewModel.polyline)
+        if viewModel.isRideStarted {
+            view.addOverlay(viewModel.polyline)
+        }
     }
 
     class Coordinator: NSObject, MKMapViewDelegate {
