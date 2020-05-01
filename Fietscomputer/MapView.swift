@@ -12,22 +12,26 @@ import Combine
 
 class MapViewModel: ObservableObject {
 
-    @Published var lines: [MKPolyline] = []
+    @Published var polyline = MKPolyline()
     @Published var isServiceRunning = false
     @Published var isTracking = false
+    @Published var distance: CLLocationDistance = 0
 
     @Injected private var service: LocationService
     private var cancellebles = Set<AnyCancellable>()
 
     init() {
         service.track
-            .sink {
-                self.lines.append($0)
-            }
+            .removeDuplicates()
+            .assign(to: \.polyline, on: self)
             .store(in: &cancellebles)
 
         service.started
             .assign(to: \.isServiceRunning, on: self)
+            .store(in: &cancellebles)
+
+        service.distance
+            .assign(to: \.distance, on: self)
             .store(in: &cancellebles)
     }
 }
@@ -77,9 +81,7 @@ struct MapView2: UIViewRepresentable {
             viewModel.isTracking = true
             view.userTrackingMode = .followWithHeading
         }
-        if let last = viewModel.lines.last {
-            view.addOverlay(last)
-        }
+        view.addOverlay(viewModel.polyline)
     }
 
     class Coordinator: NSObject, MKMapViewDelegate {
@@ -100,17 +102,16 @@ struct MapView2: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         }
 
-//        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-//            if let polyline = overlay as? MKPolyline {
-//                let renderer = MKPolylineRenderer(polyline: polyline)
-//                polyline.title = "foo"
-//                renderer.strokeColor = .black
-//                renderer.lineWidth = 3
-//                return renderer
-//            } else {
-//                return MKOverlayRenderer()
-//            }
-//        }
+        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+            if let polyline = overlay as? MKPolyline {
+                let renderer = MKPolylineRenderer(polyline: polyline)
+                renderer.strokeColor = .green
+                renderer.lineWidth = 5
+                return renderer
+            } else {
+                return MKOverlayRenderer()
+            }
+        }
     }
 }
 

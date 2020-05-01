@@ -20,7 +20,7 @@ struct Module {
 @dynamicMemberLookup
 class Dependencies: Sequence {
 
-    static private(set) var main = Dependencies()
+    static private(set) var shared = Dependencies()
 
     fileprivate var modules = [String: Module]()
 
@@ -39,7 +39,7 @@ class Dependencies: Sequence {
     }
 
     func build() {
-        Self.main = self
+        Self.shared = self
     }
 
     func resolve<T: Service>() -> T {
@@ -68,7 +68,7 @@ struct Injected<Dependency: Service> {
     var wrappedValue: Dependency {
         mutating get {
             if dependency == nil {
-                let deps: Dependency = Dependencies.main.resolve()
+                let deps: Dependency = Dependencies.shared.resolve()
                 self.dependency = deps
             }
             return dependency

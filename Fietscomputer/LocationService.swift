@@ -19,12 +19,19 @@ class LocationService: NSObject, Service {
 
     private let manager: CLLocationManager
     private var cancellables = Set<AnyCancellable>()
+    private var locations = [CLLocation]()
+    private var totalDistance: CLLocationDistance = 0
 
     private let speedPublisher = CurrentValueSubject<CLLocationSpeed, Never>(0)
     private(set) var speed: AnyPublisher<CLLocationSpeed, Never>
 
     private let trackPublisher = PassthroughSubject<MKPolyline, Never>()
     private(set) var track: AnyPublisher<MKPolyline, Never>
+
+    private let distancePublisher = CurrentValueSubject<CLLocationDistance, Never>(0)
+    private(set) var distance: AnyPublisher<CLLocationDistance, Never>
+
+    private let locationPublisher = PassthroughSubject<CLLocation, Never>()
 
     private let startedPublisher = PassthroughSubject<Bool, Never>()
     private(set) var started: AnyPublisher<Bool, Never>
@@ -35,8 +42,21 @@ class LocationService: NSObject, Service {
         self.speed = speedPublisher.eraseToAnyPublisher()
         self.track = trackPublisher.eraseToAnyPublisher()
         self.started = startedPublisher.eraseToAnyPublisher()
+        self.distance = distancePublisher.eraseToAnyPublisher()
         super.init()
         self.manager.delegate = self
+        self.locationPublisher.sink { location in
+            self.locations.append(location)
+            if self.locations.count >= 2 {
+                let locationA = self.locations[self.locations.count - 2]
+                let locationB = self.locations[self.locations.count - 1]
+                var coordinates = [locationA, locationB].map { $0.coordinate }
+                self.trackPublisher.send(MKPolyline(coordinates: &coordinates, count: 2))
+                let delta = locationA.distance(from: locationB)
+                self.totalDistance += delta
+                self.distancePublisher.send(self.totalDistance)
+            }
+        }.store(in: &cancellables)
     }
 
     func start() {
@@ -63,12 +83,12 @@ extension LocationService: CLLocationManagerDelegate {
             return
         }
         speedPublisher.send(last.speed)
-        var coordinates = locations.map { $0.coordinate }
-        let polyline = MKPolyline(coordinates: &coordinates, count: coordinates.count)
-        trackPublisher.send(polyline)
+        locations.forEach {
+            locationPublisher.send($0)
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        debugPrint("error | \(error)")
+        debugPrint(error)
     }
 }

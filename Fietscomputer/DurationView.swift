@@ -27,9 +27,11 @@ class DurationViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     init() {
-        service.elapsed.sink { value in
-            self.elapsedTime = Formatters.elaspedFormatter.string(from: value)!
-        }.store(in: &cancellables)
+        service.elapsed
+            .sink { value in
+                self.elapsedTime = Formatters.elaspedFormatter.string(from: value)!
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -39,5 +41,6 @@ struct DurationView: View {
 
     var body: some View {
         Text(viewModel.elapsedTime)
+            .font(.custom("DIN Alternate", size: 30))
     }
 }

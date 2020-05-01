@@ -14,12 +14,16 @@ struct ContentView: View {
     @ObservedObject var mapViewModel: MapViewModel
     @ObservedObject var speedViewModel: SpeedViewModel
     @ObservedObject var durationViewModel: DurationViewModel
+    @ObservedObject var distanceViewModel: DistanceViewModel
 
     var body: some View {
         VStack {
             MapView(viewModel: mapViewModel).frame(minHeight: 0, maxHeight: .infinity)
             SpeedView(viewModel: speedViewModel).frame(minHeight: 0, maxHeight: .infinity)
-            DurationView(viewModel: durationViewModel).padding(20)
+            HStack {
+                DurationView(viewModel: durationViewModel).frame(minWidth: 0, maxWidth: .infinity)
+                DistanceView(viewModel: distanceViewModel).frame(minWidth: 0, maxWidth: .infinity)
+            }.padding(20)
         }
     }
 }

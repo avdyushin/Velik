@@ -22,7 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let contentView = ContentView(
             mapViewModel: MapViewModel(),
             speedViewModel: SpeedViewModel(),
-            durationViewModel: DurationViewModel()
+            durationViewModel: DurationViewModel(),
+            distanceViewModel: DistanceViewModel()
         ).environment(\.mkMapView, sharedMapView)
 
         // Use a UIHostingController as window root view controller.
