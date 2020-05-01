@@ -80,6 +80,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B88C9BD245C97FF00BD5DD3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4B88C9B5245C3DCD00BD5DD3 /* Dependencies.swift */,
+				4BAB77E5245B3A1000F011A0 /* LocationService.swift */,
+				4BAB77E3245B300200F011A0 /* Permissions.swift */,
+				4B88C9B1245C29CB00BD5DD3 /* RideService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4B88C9BE245C982E00BD5DD3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4B88C9AF245C067500BD5DD3 /* ContentView.swift */,
+				4BAB77E7245B4E1E00F011A0 /* MapView.swift */,
+				4BAB77C5245B2FE000F011A0 /* SpeedView.swift */,
+				4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4B88C9BF245C984A00BD5DD3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */,
+				4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */,
+				4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4B88C9C0245C985500BD5DD3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4B88C9C1245C985D00BD5DD3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4BAB77C7245B2FE200F011A0 /* Assets.xcassets */,
+				4BAB77CC245B2FE200F011A0 /* LaunchScreen.storyboard */,
+				4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4BAB77B2245B2FE000F011A0 = {
 			isa = PBXGroup;
 			children = (
@@ -101,23 +150,14 @@
 		4BAB77BD245B2FE000F011A0 /* Fietscomputer */ = {
 			isa = PBXGroup;
 			children = (
-				4B88C9B5245C3DCD00BD5DD3 /* Dependencies.swift */,
-				4BAB77E3245B300200F011A0 /* Permissions.swift */,
-				4BAB77E5245B3A1000F011A0 /* LocationService.swift */,
-				4B88C9B1245C29CB00BD5DD3 /* RideService.swift */,
+				4B88C9C0245C985500BD5DD3 /* Models */,
+				4B88C9BF245C984A00BD5DD3 /* ViewModels */,
+				4B88C9BE245C982E00BD5DD3 /* Views */,
+				4B88C9BD245C97FF00BD5DD3 /* Services */,
+				4B88C9C1245C985D00BD5DD3 /* Resources */,
 				4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */,
 				4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */,
-				4B88C9AF245C067500BD5DD3 /* ContentView.swift */,
-				4BAB77E7245B4E1E00F011A0 /* MapView.swift */,
-				4BAB77C5245B2FE000F011A0 /* SpeedView.swift */,
-				4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */,
-				4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */,
-				4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */,
-				4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */,
-				4BAB77C7245B2FE200F011A0 /* Assets.xcassets */,
-				4BAB77CC245B2FE200F011A0 /* LaunchScreen.storyboard */,
 				4BAB77CF245B2FE200F011A0 /* Info.plist */,
-				4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */,
 				4BAB77C9245B2FE200F011A0 /* Preview Content */,
 			);
 			path = Fietscomputer;

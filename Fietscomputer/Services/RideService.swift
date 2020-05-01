@@ -29,6 +29,13 @@ class Timer2 {
 
 class RideService: Service {
 
+    enum State {
+        case idle
+        case running
+        case paused(Bool)
+        case stopped
+    }
+
     @Injected var locationService: LocationService
 
     private var locations = [CLLocation]()
@@ -40,9 +47,9 @@ class RideService: Service {
     private let distancePublisher = CurrentValueSubject<CLLocationDistance, Never>(0)
     private(set) var distance: AnyPublisher<CLLocationDistance, Never>
 
-    var startDate = Date()
-    var stopDate: Date?
-    var timer = Timer2()
+    private var startDate = Date()
+    private var stopDate: Date?
+    private var timer = Timer2()
 
     private let elapsedTimePublisher = CurrentValueSubject<TimeInterval, Never>(0)
     private(set) var elapsed: AnyPublisher<TimeInterval, Never>
