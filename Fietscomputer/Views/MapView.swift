@@ -14,7 +14,7 @@ class MapViewModel: ViewModel, ObservableObject {
 
     @Published var polyline = MKPolyline()
     @Published var isLocationStarted = false
-    @Published var isRideStarted = false
+    @Published var rideState = RideService.State.idle
     @Published var isTracking = false
 
     override init() {
@@ -25,9 +25,9 @@ class MapViewModel: ViewModel, ObservableObject {
             .assign(to: \.isLocationStarted, on: self)
             .store(in: &cancellables)
 
-        rideService.started
+        rideService.state
             .print("ride started here")
-            .assign(to: \.isRideStarted, on: self)
+            .assign(to: \.rideState, on: self)
             .store(in: &cancellables)
 
         rideService.track
@@ -81,8 +81,11 @@ struct MapView2: UIViewRepresentable {
             viewModel.isTracking = true
             view.userTrackingMode = .followWithHeading
         }
-        if viewModel.isRideStarted {
+        switch viewModel.rideState {
+        case .running, .paused:
             view.addOverlay(viewModel.polyline)
+        default:
+            ()
         }
     }
 

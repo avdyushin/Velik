@@ -47,33 +47,35 @@ class RideService: Service {
     private let distancePublisher = CurrentValueSubject<CLLocationDistance, Never>(0)
     private(set) var distance: AnyPublisher<CLLocationDistance, Never>
 
-    private var startDate = Date()
-    private var stopDate: Date?
+    private var startDate: TimeInterval = 0
+    private var pausedDate: TimeInterval = 0
+    private var stopDate: TimeInterval = 0
     private var timer = Timer2()
+    private var timerCancellable: AnyCancellable?
 
     private let elapsedTimePublisher = CurrentValueSubject<TimeInterval, Never>(0)
     private(set) var elapsed: AnyPublisher<TimeInterval, Never>
 
-    private let startedPublisher = PassthroughSubject<Bool, Never>()
-    var started: AnyPublisher<Bool, Never>
+    private let statePublisher = PassthroughSubject<State, Never>()
+    var state: AnyPublisher<State, Never>
+    var currentState: State = .idle
 
     private var cancellables = Set<AnyCancellable>()
 
     init() {
         self.elapsed = elapsedTimePublisher.eraseToAnyPublisher()
-        self.started = startedPublisher.eraseToAnyPublisher()
+        self.state = statePublisher.eraseToAnyPublisher()
         self.track = trackPublisher.eraseToAnyPublisher()
         self.distance = distancePublisher.eraseToAnyPublisher()
+
+        state
+            .assign(to: \.currentState, on: self)
+            .store(in: &cancellables)
     }
 
     func start() {
-        startDate = Date()
-        startedPublisher.send(true)
-        timer.timer.map { [startDate] currentDate in
-            currentDate.timeIntervalSince1970 - startDate.timeIntervalSince1970
-        }.sink { [elapsedTimePublisher] elapsed in
-            elapsedTimePublisher.send(elapsed)
-        }.store(in: &cancellables)
+        startDate = Date.timeIntervalSinceReferenceDate
+        statePublisher.send(.running)
 
         locationService.location.sink { location in
             self.locations.append(location)
@@ -87,10 +89,33 @@ class RideService: Service {
                 self.distancePublisher.send(self.totalDistance)
             }
         }.store(in: &cancellables)
+
+        run()
+    }
+
+    func pause(automatic: Bool = false) {
+        pausedDate = Date.timeIntervalSinceReferenceDate
+        timerCancellable?.cancel()
+        statePublisher.send(.paused(automatic))
+    }
+
+    func resume() {
+        startDate += (Date.timeIntervalSinceReferenceDate - pausedDate)
+        statePublisher.send(.running)
+        run()
     }
 
     func stop() {
-        stopDate = Date()
-        startedPublisher.send(false)
+        stopDate = Date.timeIntervalSinceReferenceDate
+        statePublisher.send(.stopped)
+    }
+
+    private func run() {
+        timer = Timer2()
+        timerCancellable = timer.timer.map { [startDate] currentDate in
+            Date.timeIntervalSinceReferenceDate - startDate
+        }.sink { [elapsedTimePublisher] elapsed in
+            elapsedTimePublisher.send(elapsed)
+        }//.store(in: &cancellables)
     }
 }

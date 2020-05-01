@@ -11,7 +11,6 @@ import Combine
 import CoreLocation
 
 protocol Service {
-    var started: AnyPublisher<Bool, Never> { get set }
     func start()
     func stop()
 }

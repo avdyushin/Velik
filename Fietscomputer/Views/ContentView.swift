@@ -9,12 +9,14 @@
 import SwiftUI
 import Combine
 
-class ContentViewModel: ObservableObject {
+class ContentViewModel: ViewModel, ObservableObject {
 
     @ObservedObject var mapViewModel: MapViewModel
     @ObservedObject var speedViewModel: SpeedViewModel
     @ObservedObject var durationViewModel: DurationViewModel
     @ObservedObject var distanceViewModel: DistanceViewModel
+
+    @Published var buttonTitle = "Start"
 
     init(mapViewModel: MapViewModel, speedViewModel: SpeedViewModel, durationViewModel: DurationViewModel,
          distanceViewModel: DistanceViewModel) {
@@ -22,10 +24,29 @@ class ContentViewModel: ObservableObject {
         self.speedViewModel = speedViewModel
         self.durationViewModel = durationViewModel
         self.distanceViewModel = distanceViewModel
+
+        super.init()
+        rideService.state.sink {
+            switch $0 {
+            case .idle, .stopped:
+                self.buttonTitle = "Start"
+            case .paused:
+                self.buttonTitle = "Continue"
+            case .running:
+                self.buttonTitle = "Pause"
+            }
+        }.store(in: &cancellables)
     }
 
-    func startRide() {
-        speedViewModel.rideService.start()
+    func startPauseRide() {
+        switch rideService.currentState {
+        case .paused:
+            speedViewModel.rideService.resume()
+        case .running:
+            speedViewModel.rideService.pause()
+        case .idle, .stopped:
+            speedViewModel.rideService.start()
+        }
     }
 }
 
@@ -41,8 +62,8 @@ struct ContentView: View {
                 GaugeView(viewModel: viewModel.durationViewModel).frame(minWidth: 0, maxWidth: .infinity)
                 GaugeView(viewModel: viewModel.distanceViewModel).frame(minWidth: 0, maxWidth: .infinity)
             }.padding(20)
-            Button(action: viewModel.startRide) {
-                Text("Start")
+            Button(action: viewModel.startPauseRide) {
+                Text(viewModel.buttonTitle)
                     .font(.system(.title))
                     .foregroundColor(Color.white)
                     .padding(12)
