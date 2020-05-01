@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9AF245C067500BD5DD3 /* ContentView.swift */; };
+		4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B1245C29CB00BD5DD3 /* RideService.swift */; };
+		4B88C9B4245C2BBC00BD5DD3 /* DurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B3245C2BBC00BD5DD3 /* DurationView.swift */; };
 		4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */; };
 		4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */; };
 		4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */; };
-		4BAB77C6245B2FE000F011A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C5245B2FE000F011A0 /* ContentView.swift */; };
+		4BAB77C6245B2FE000F011A0 /* SpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C5245B2FE000F011A0 /* SpeedView.swift */; };
 		4BAB77C8245B2FE200F011A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BAB77C7245B2FE200F011A0 /* Assets.xcassets */; };
 		4BAB77CB245B2FE200F011A0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BAB77CA245B2FE200F011A0 /* Preview Assets.xcassets */; };
 		4BAB77CE245B2FE200F011A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BAB77CC245B2FE200F011A0 /* LaunchScreen.storyboard */; };
 		4BAB77D9245B2FE200F011A0 /* FietscomputerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77D8245B2FE200F011A0 /* FietscomputerTests.swift */; };
+		4BAB77E4245B300200F011A0 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77E3245B300200F011A0 /* Permissions.swift */; };
+		4BAB77E6245B3A1000F011A0 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77E5245B3A1000F011A0 /* LocationService.swift */; };
+		4BAB77E8245B4E1E00F011A0 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77E7245B4E1E00F011A0 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,11 +34,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B88C9AF245C067500BD5DD3 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4B88C9B1245C29CB00BD5DD3 /* RideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
+		4B88C9B3245C2BBC00BD5DD3 /* DurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationView.swift; sourceTree = "<group>"; };
 		4BAB77BB245B2FE000F011A0 /* Fietscomputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fietscomputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4BAB77C3245B2FE000F011A0 /* Fietscomputer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fietscomputer.xcdatamodel; sourceTree = "<group>"; };
-		4BAB77C5245B2FE000F011A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4BAB77C5245B2FE000F011A0 /* SpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedView.swift; sourceTree = "<group>"; };
 		4BAB77C7245B2FE200F011A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BAB77CA245B2FE200F011A0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4BAB77CD245B2FE200F011A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +49,9 @@
 		4BAB77D4245B2FE200F011A0 /* FietscomputerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FietscomputerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BAB77D8245B2FE200F011A0 /* FietscomputerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FietscomputerTests.swift; sourceTree = "<group>"; };
 		4BAB77DA245B2FE200F011A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BAB77E3245B300200F011A0 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		4BAB77E5245B3A1000F011A0 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		4BAB77E7245B4E1E00F011A0 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,9 +93,15 @@
 		4BAB77BD245B2FE000F011A0 /* Fietscomputer */ = {
 			isa = PBXGroup;
 			children = (
+				4BAB77E3245B300200F011A0 /* Permissions.swift */,
+				4BAB77E5245B3A1000F011A0 /* LocationService.swift */,
+				4B88C9B1245C29CB00BD5DD3 /* RideService.swift */,
 				4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */,
 				4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */,
-				4BAB77C5245B2FE000F011A0 /* ContentView.swift */,
+				4B88C9AF245C067500BD5DD3 /* ContentView.swift */,
+				4BAB77C5245B2FE000F011A0 /* SpeedView.swift */,
+				4BAB77E7245B4E1E00F011A0 /* MapView.swift */,
+				4B88C9B3245C2BBC00BD5DD3 /* DurationView.swift */,
 				4BAB77C7245B2FE200F011A0 /* Assets.xcassets */,
 				4BAB77CC245B2FE200F011A0 /* LaunchScreen.storyboard */,
 				4BAB77CF245B2FE200F011A0 /* Info.plist */,
@@ -211,9 +229,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BAB77E8245B4E1E00F011A0 /* MapView.swift in Sources */,
+				4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */,
+				4B88C9B4245C2BBC00BD5DD3 /* DurationView.swift in Sources */,
+				4BAB77E4245B300200F011A0 /* Permissions.swift in Sources */,
+				4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */,
 				4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */,
 				4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */,
-				4BAB77C6245B2FE000F011A0 /* ContentView.swift in Sources */,
+				4BAB77C6245B2FE000F011A0 /* SpeedView.swift in Sources */,
+				4BAB77E6245B3A1000F011A0 /* LocationService.swift in Sources */,
 				4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

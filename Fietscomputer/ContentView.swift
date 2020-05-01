@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  SpeedView.swift
 //  Fietscomputer
 //
 //  Created by Grigory Avdyushin on 30/04/2020.
@@ -7,15 +7,19 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, World!")
-    }
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    @ObservedObject var mapViewModel: MapViewModel
+    @ObservedObject var speedViewModel: SpeedViewModel
+    @ObservedObject var durationViewModel: DurationViewModel
+
+    var body: some View {
+        VStack {
+            MapView(viewModel: mapViewModel).frame(minHeight: 0, maxHeight: .infinity)
+            SpeedView(viewModel: speedViewModel).frame(minHeight: 0, maxHeight: .infinity)
+            DurationView(viewModel: durationViewModel).padding(20)
+        }
     }
 }
