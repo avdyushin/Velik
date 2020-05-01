@@ -20,9 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Module { RideService() }
     }
 
-    @Injected var service: LocationService
-    @Injected var rideService: RideService
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         dependencies.build()
@@ -44,9 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             debugPrint("has status", status.rawValue)
             switch status {
             case .authorizedAlways, .authorizedWhenInUse:
-                dependencies.forEach {
-                    $0.start()
-                }
+                //dependencies.forEach {
+                //    $0.start()
+                //}
+                dependencies.locationService.start()
             default:
                 debugPrint("Can't start location service")
             }

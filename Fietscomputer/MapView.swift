@@ -10,37 +10,30 @@ import MapKit
 import SwiftUI
 import Combine
 
-class MapViewModel: ObservableObject {
+class MapViewModel: ViewModel, ObservableObject {
 
     @Published var polyline = MKPolyline()
-    @Published var isServiceRunning = false
-    @Published var isTracking = false
-    @Published var distance: CLLocationDistance = 0
+    @Published var isLocationStarted = false
     @Published var isRideStarted = false
+    @Published var isTracking = false
 
-    @Injected private var locationService: LocationService
-    private var cancellables = Set<AnyCancellable>()
-
-    init() {
-//        super.init()
-
-        locationService.track
-            .removeDuplicates()
-            .assign(to: \.polyline, on: self)
-            .store(in: &cancellables)
+    override init() {
+        super.init()
 
         locationService.started
             .print("location started here")
-            .assign(to: \.isServiceRunning, on: self)
+            .assign(to: \.isLocationStarted, on: self)
             .store(in: &cancellables)
 
-        locationService.distance
-            .assign(to: \.distance, on: self)
+        rideService.started
+            .print("ride started here")
+            .assign(to: \.isRideStarted, on: self)
             .store(in: &cancellables)
 
-//        rideService.started
-//            .assign(to: \.isRideStarted, on: self)
-//            .store(in: &cancellables)
+        rideService.track
+            .removeDuplicates()
+            .assign(to: \.polyline, on: self)
+            .store(in: &cancellables)
     }
 }
 
@@ -52,9 +45,7 @@ struct UserTrackingButton: UIViewRepresentable {
         MKUserTrackingButton(mapView: context.environment.mkMapView)
     }
 
-    func updateUIView(_ view: MKUserTrackingButton, context: Context) {
-
-    }
+    func updateUIView(_ view: MKUserTrackingButton, context: Context) { }
 }
 
 struct MapView2: UIViewRepresentable {
@@ -74,18 +65,18 @@ struct MapView2: UIViewRepresentable {
         view.mapType = .standard
         view.isZoomEnabled = true
         view.userTrackingMode = .none
-        view.tintColor = UIColor.green
+        view.tintColor = UIColor.systemGreen
         view.delegate = context.coordinator
         return view
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        Coordinator()
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
         debugPrint("update ui")
-        if viewModel.isTracking == false && viewModel.isServiceRunning {
+        if viewModel.isTracking == false && viewModel.isLocationStarted {
             debugPrint("start tracking")
             viewModel.isTracking = true
             view.userTrackingMode = .followWithHeading
@@ -96,28 +87,11 @@ struct MapView2: UIViewRepresentable {
     }
 
     class Coordinator: NSObject, MKMapViewDelegate {
-
-        private let parent: MapView2
-        private var cancellables = Set<AnyCancellable>()
-
-        init(_ parent: MapView2) {
-            self.parent = parent
-        }
-
-        func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        }
-
-        func mapViewWillStartLocatingUser(_ mapView: MKMapView) {
-        }
-
-        func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        }
-
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-            if let polyline = overlay as? MKPolyline {
-                let renderer = MKPolylineRenderer(polyline: polyline)
-                renderer.strokeColor = .green
-                renderer.lineWidth = 5
+            if overlay is MKPolyline {
+                let renderer = MKPolylineRenderer(overlay: overlay)
+                renderer.strokeColor = .systemGreen
+                renderer.lineWidth = 10
                 return renderer
             } else {
                 return MKOverlayRenderer()
@@ -147,8 +121,8 @@ struct MapView: View {
         ZStack(alignment: .bottomTrailing) {
             MapView2(viewModel: viewModel)
             ZStack {
-                Rectangle().fill(Color.white).cornerRadius(4).shadow(radius: 2)
-                UserTrackingButton().accentColor(Color.green).fixedSize()//.padding(4)
+                Rectangle().fill(Color(.systemBackground)).cornerRadius(4).shadow(radius: 2)
+                UserTrackingButton().accentColor(Color.green).fixedSize()
             }.fixedSize().padding(EdgeInsets(top: 0, leading: 0, bottom: 32, trailing: 16))
         }
     }

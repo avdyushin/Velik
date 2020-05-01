@@ -19,12 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
 
         let sharedMapView = MKMapView()
-        let contentView = ContentView(
+        let contentView = ContentView(viewModel: ContentViewModel(
             mapViewModel: MapViewModel(),
             speedViewModel: SpeedViewModel(),
             durationViewModel: DurationViewModel(),
             distanceViewModel: DistanceViewModel()
-        ).environment(\.mkMapView, sharedMapView)
+        )).environment(\.mkMapView, sharedMapView)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

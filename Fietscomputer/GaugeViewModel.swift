@@ -8,14 +8,16 @@
 
 import Combine
 
-class GaugeViewModel: ObservableObject {
-
-    @Published var value = ""
-    @Published var units = ""
-    @Published var fontSize = 20
-
+class ViewModel {
     @Injected var rideService: RideService
     @Injected var locationService: LocationService
 
     var cancellables = Set<AnyCancellable>()
+}
+
+class GaugeViewModel: ViewModel, ObservableObject {
+
+    @Published var value = ""
+    @Published var units = ""
+    @Published var fontSize = 24
 }

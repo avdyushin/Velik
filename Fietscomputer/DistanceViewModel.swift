@@ -26,7 +26,7 @@ class DistanceViewModel: GaugeViewModel {
     override init() {
         super.init()
 
-        locationService.distance
+        rideService.distance
             .sink { value in
                 let km = Measurement(value: value, unit: UnitLength.meters).converted(to: .kilometers)
                 self.value = Formatters.distanceFormatter.string(from: km)

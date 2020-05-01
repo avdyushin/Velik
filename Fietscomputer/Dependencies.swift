@@ -51,7 +51,8 @@ class Dependencies: Sequence {
     }
 
     subscript(dynamicMember module: String) -> Service! {
-        return modules[module.capitalized]!.service
+        let name = module.prefix(1).capitalized + module.dropFirst()
+        return modules[name]!.service
     }
 
     func makeIterator() -> AnyIterator<Service> {

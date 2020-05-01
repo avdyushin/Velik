@@ -67,8 +67,8 @@ struct SpeedView: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             HStack {
                 Text(viewModel.units)
+                    .foregroundColor(.secondary)
                     .font(.caption).bold()
-                    .background(Color.white)
                     .padding(4)
                     .cornerRadius(8)
             }.fixedSize()
