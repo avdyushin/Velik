@@ -55,22 +55,24 @@ struct ContentView: View {
     @ObservedObject var viewModel: ContentViewModel
 
     var body: some View {
-        VStack {
-            MapView(viewModel: viewModel.mapViewModel).frame(minHeight: 0, maxHeight: .infinity)
-            SpeedView(viewModel: viewModel.speedViewModel).frame(minHeight: 0, maxHeight: .infinity)
-            HStack {
-                GaugeView(viewModel: viewModel.durationViewModel).frame(minWidth: 0, maxWidth: .infinity)
-                GaugeView(viewModel: viewModel.distanceViewModel).frame(minWidth: 0, maxWidth: .infinity)
-            }.padding(20)
-            Button(action: viewModel.startPauseRide) {
-                Text(viewModel.buttonTitle)
-                    .font(.system(.title))
-                    .foregroundColor(Color.white)
-                    .padding(12)
-                    .frame(minWidth: 0, maxWidth: .infinity)
+        GeometryReader { [viewModel] geometry in
+            VStack {
+                MapView(viewModel: viewModel.mapViewModel).frame(minHeight: 0, maxHeight: .infinity)
+                SpeedView(viewModel: viewModel.speedViewModel).frame(minHeight: 0, maxHeight: .infinity)
+                HStack {
+                    GaugeView(viewModel: viewModel.durationViewModel).frame(minWidth: 0, maxWidth: .infinity)
+                    GaugeView(viewModel: viewModel.distanceViewModel).frame(minWidth: 0, maxWidth: .infinity)
+                }.padding(20)
+                Button(action: viewModel.startPauseRide) {
+                    Text(viewModel.buttonTitle)
+                        .font(.system(.title))
+                        .foregroundColor(Color.white)
+                        .padding(12)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                }
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: geometry.safeAreaInsets.bottom, trailing: 0))
+                .background(Color.green)
             }
-            .background(Color.green)
-            .edgesIgnoringSafeArea(.bottom)
-        }
+        }.edgesIgnoringSafeArea(.bottom)
     }
 }

@@ -1,63 +1,40 @@
 //
-//  BluetoothService.swift
+//  BluetoothScanner.swift
 //  Fietscomputer
 //
 //  Created by Grigory Avdyushin on 01/05/2020.
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
+import Combine
 import Foundation
 import CoreBluetooth
 
-extension Array {
-    func chunked(size: Int) -> [[Element]] {
-        stride(from: 0, to: count, by: size).map {
-            Array(self[$0 ..< Swift.min($0+size, count)])
-        }
-    }
-}
-
-extension Data {
-    var hexString: String {
-        let string = self
-            .map { String(format: "%02x", $0) }
-            .chunked(size: 4)
-            .map { $0.reduce("") { acc, value in acc.appending(value) }}
-            .joined(separator: " ")
-        return "<\(string)> length=\(count)"
-    }
-
-    var rawHexString: String {
-        self.map { String(format: "%02x", $0) }.joined()
-    }
-
-    var uuidString: String {
-        self.enumerated()
-            .map { i, b in String(format: "%02x%@", b, [3, 5, 7, 9].contains(i) ? "-" : "") }
-            .joined()
-    }
-}
-
-protocol BluetoothScanner: Service, CBCentralManagerDelegate {
+class BluetoothScanner: NSObject, Service {
 
     typealias RSSIData = NSNumber
     typealias Payload = (advertisementData: AdvertisementData, RSSI: RSSIData)
     typealias AdvertisementData = [String: Any]
 
-}
-
-class HeartRateScanner: NSObject, BluetoothScanner {
-
-    private let queue = DispatchQueue(label: String(describing: HeartRateScanner.self), qos: .utility)
+    private let queue = DispatchQueue(label: String(describing: BluetoothScanner.self), qos: .utility)
     private lazy var manager = CBCentralManager(delegate: self, queue: queue)
-    private var connected: CBPeripheral?
+    private var listQueue = DispatchQueue(label: String(describing: BluetoothScanner.self), qos: .utility)
+    private var connectedPublisher = CurrentValueSubject<[CBPeripheral], Never>([])
+    var connectedList: AnyPublisher<[CBPeripheral], Never>
+    private var connected = [UUID:CBPeripheral]()
+
+    override init() {
+        connectedList = connectedPublisher.eraseToAnyPublisher()
+    }
 
     func start() {
+        debugPrint("Started \(Self.self)")
         guard manager.state == .poweredOn, manager.isScanning == false else {
             debugPrint("You can start only powered on bluetooth and if not already in scanning state")
             return
         }
 
+//        let hrService = CBUUID(string: "180D")
         manager.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
     }
 
@@ -66,7 +43,7 @@ class HeartRateScanner: NSObject, BluetoothScanner {
     }
 }
 
-extension HeartRateScanner {
+extension BluetoothScanner: CBCentralManagerDelegate{
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         debugPrint("State -> \(central.state.rawValue)")
@@ -84,61 +61,69 @@ extension HeartRateScanner {
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         guard let name = peripheral.name else {
-//            debugPrint("Skipping unnamed peripheral")
             return
         }
 
         guard name.hasPrefix("MI") else {
-//            debugPrint("Skipping \"\(name)\" service")
             return
         }
 
-        debugPrint("connecting to \(name)")
-        if peripheral.state != .connected || peripheral.state != .connecting {
-            connected = peripheral
+        if !connected.keys.contains(peripheral.identifier) {
+            debugPrint("connecting to \(name)...")
+            connected[peripheral.identifier] = peripheral
             central.connect(peripheral, options: nil)
         }
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        debugPrint("did connect to \(peripheral)")
+        connectedPublisher.send(Array(connected.values))
         peripheral.delegate = self
         peripheral.discoverServices(nil)
     }
 
-    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String: Any]) {
-        // Get list of peripherals we were connected to or was trying to connect to before app was terminated
-        guard let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] else {
-            return
-        }
-        debugPrint("Restore \(peripherals)")
-    }
-
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        debugPrint("Can't connect to \(peripheral)")
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        debugPrint("Disconnected \(peripheral)")
+        listQueue.sync {
+            connected[peripheral.identifier] = nil
+        }
+        connectedPublisher.send(Array(connected.values))
+        central.connect(peripheral, options: nil)
     }
+
+//    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String: Any]) {
+//        // Get list of peripherals we were connected to or was trying to connect to before app was terminated
+//        guard let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] else {
+//            return
+//        }
+//        debugPrint("Restore \(peripherals)")
+//    }
 }
 
-extension HeartRateScanner: CBPeripheralDelegate {
+extension BluetoothScanner: CBPeripheralDelegate {
+
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         peripheral.services?.forEach {
-            debugPrint("found \($0)")
             peripheral.discoverCharacteristics(nil, for: $0)
         }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        service.characteristics?.forEach {
-            debugPrint("char \($0)")
-            peripheral.setNotifyValue(true, for: $0)
-            // todo set notify
+        service.characteristics?.forEach { ch in
+            if ch.uuid == CBUUID(string: "2A37") {
+                debugPrint("Monitor HR found")
+            }
+            if ch.uuid == CBUUID(string: "2A39") {
+                debugPrint("Control HR found")
+            }
         }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("New value for: \(characteristic)")
+        print("New value for: \(characteristic) e: \(error)")
         guard let value = characteristic.value else {
             return
         }
@@ -147,16 +132,11 @@ extension HeartRateScanner: CBPeripheralDelegate {
         if characteristic.uuid == CBUUID(string: "2A37") {
             debugPrint("Heart Rate: \(String(format: "%d", value[1])) BPM")
         }
-        if let string = String(data: value, encoding: .ascii) {
-            debugPrint("Decoded string \(string)")
-        }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        debugPrint("didWrite")
     }
 
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
-        debugPrint("didReadRSSI \(RSSI)")
     }
 }

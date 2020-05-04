@@ -11,6 +11,7 @@ import Combine
 class ViewModel {
     @Injected var rideService: RideService
     @Injected var locationService: LocationService
+    @Injected var bluetoothService: BluetoothScanner
 
     var cancellables = Set<AnyCancellable>()
 }

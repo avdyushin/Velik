@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let dependencies = Dependencies {
         Module { LocationService() }
         Module { RideService() }
-        Module { HeartRateScanner() }
+        Module { HeartRateService() }
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //    $0.start()
                 //}
                 dependencies.locationService.start()
-                dependencies.heartRateScanner.start()
+                //dependencies.heartRateService.start()
             default:
                 debugPrint("Can't start location service")
             }

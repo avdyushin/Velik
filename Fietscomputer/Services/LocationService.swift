@@ -26,15 +26,20 @@ class LocationService: NSObject, Service {
 
     init(manager: CLLocationManager = CLLocationManager()) {
         self.manager = manager
-        self.manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.speed = speedPublisher.eraseToAnyPublisher()
         self.started = startedPublisher.eraseToAnyPublisher()
         self.location = locationPublisher.eraseToAnyPublisher()
         super.init()
-        self.manager.delegate = self
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        manager.distanceFilter = 1
+        manager.showsBackgroundLocationIndicator = true
+        manager.allowsBackgroundLocationUpdates = true
+        manager.pausesLocationUpdatesAutomatically = true
     }
 
     func start() {
+        manager.startMonitoringSignificantLocationChanges()
         manager.startUpdatingLocation()
         manager.startUpdatingHeading()
         startedPublisher.send(true)
@@ -42,6 +47,7 @@ class LocationService: NSObject, Service {
     }
 
     func stop() {
+        manager.stopMonitoringSignificantLocationChanges()
         manager.stopUpdatingLocation()
         manager.stopUpdatingHeading()
         startedPublisher.send(false)
@@ -49,9 +55,6 @@ class LocationService: NSObject, Service {
 }
 
 extension LocationService: CLLocationManagerDelegate {
-
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-    }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let last = locations.last else {

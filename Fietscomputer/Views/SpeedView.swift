@@ -43,7 +43,6 @@ class SpeedViewModel: GaugeViewModel {
             .map { $0 < 0 ? 0 : $0 } // filter out negative values
             .sink { value in // m/s
                 let mps = Measurement(value: value, unit: UnitSpeed.metersPerSecond)
-                debugPrint(mps)
                 let kph = mps.converted(to: UnitSpeed.kilometersPerHour)
                 let formatted = Formatters.formatted(from: kph)
                 self.value = formatted.value
