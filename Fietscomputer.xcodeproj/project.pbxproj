@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31822461D9AA00726271 /* AppDelegate.swift */; };
+		4B2B31852461D9AA00726271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31842461D9AA00726271 /* ContentView.swift */; };
+		4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31862461D9AB00726271 /* Assets.xcassets */; };
+		4B2B318A2461D9AB00726271 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31892461D9AB00726271 /* Preview Assets.xcassets */; };
+		4B2B318D2461D9AB00726271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B318B2461D9AB00726271 /* Main.storyboard */; };
+		4B2B31932461D9BB00726271 /* BluetoothScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B619245C9FA700B62914 /* BluetoothScanner.swift */; };
+		4B2B31942461D9DE00726271 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B5245C3DCD00BD5DD3 /* Dependencies.swift */; };
+		4B2B31952461D9E700726271 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63324608A8400B62914 /* Data+Extension.swift */; };
+		4B2B31962461D9E700726271 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63524608A9800B62914 /* Array+Extension.swift */; };
+		4B2B31972461F98300726271 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63924608EE400B62914 /* HeartRateService.swift */; };
 		4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B619245C9FA700B62914 /* BluetoothScanner.swift */; };
 		4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */; };
 		4B58B631246089CB00B62914 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
@@ -21,6 +31,7 @@
 		4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */; };
 		4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */; };
 		4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */; };
+		4BA041202462F6AD002E4D81 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
 		4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */; };
 		4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */; };
 		4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */; };
@@ -45,6 +56,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B2B31802461D9AA00726271 /* DebugBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B2B31822461D9AA00726271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4B2B31842461D9AA00726271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4B2B31862461D9AB00726271 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4B2B31892461D9AB00726271 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4B2B318C2461D9AB00726271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4B2B318E2461D9AB00726271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B2B318F2461D9AB00726271 /* DebugBluetooth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DebugBluetooth.entitlements; sourceTree = "<group>"; };
 		4B58B619245C9FA700B62914 /* BluetoothScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothScanner.swift; sourceTree = "<group>"; };
 		4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissions.swift; sourceTree = "<group>"; };
 		4B58B630246089CB00B62914 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
@@ -77,6 +96,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4B2B317D2461D9AA00726271 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4BAB77B8245B2FE000F011A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -94,6 +120,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B2B31812461D9AA00726271 /* DebugBluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				4B2B31822461D9AA00726271 /* AppDelegate.swift */,
+				4B2B31842461D9AA00726271 /* ContentView.swift */,
+				4B2B31862461D9AB00726271 /* Assets.xcassets */,
+				4B2B318B2461D9AB00726271 /* Main.storyboard */,
+				4B2B318E2461D9AB00726271 /* Info.plist */,
+				4B2B318F2461D9AB00726271 /* DebugBluetooth.entitlements */,
+				4B2B31882461D9AB00726271 /* Preview Content */,
+			);
+			path = DebugBluetooth;
+			sourceTree = "<group>";
+		};
+		4B2B31882461D9AB00726271 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4B2B31892461D9AB00726271 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		4B58B62F246089BE00B62914 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +217,7 @@
 			children = (
 				4BAB77BD245B2FE000F011A0 /* Fietscomputer */,
 				4BAB77D7245B2FE200F011A0 /* FietscomputerTests */,
+				4B2B31812461D9AA00726271 /* DebugBluetooth */,
 				4BAB77BC245B2FE000F011A0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -178,6 +227,7 @@
 			children = (
 				4BAB77BB245B2FE000F011A0 /* Fietscomputer.app */,
 				4BAB77D4245B2FE200F011A0 /* FietscomputerTests.xctest */,
+				4B2B31802461D9AA00726271 /* DebugBluetooth.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,6 +270,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4B2B317F2461D9AA00726271 /* DebugBluetooth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B2B31922461D9AB00726271 /* Build configuration list for PBXNativeTarget "DebugBluetooth" */;
+			buildPhases = (
+				4B2B317C2461D9AA00726271 /* Sources */,
+				4B2B317D2461D9AA00726271 /* Frameworks */,
+				4B2B317E2461D9AA00726271 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DebugBluetooth;
+			productName = DebugBluetooth;
+			productReference = 4B2B31802461D9AA00726271 /* DebugBluetooth.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4BAB77BA245B2FE000F011A0 /* Fietscomputer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BAB77DD245B2FE200F011A0 /* Build configuration list for PBXNativeTarget "Fietscomputer" */;
@@ -265,6 +332,9 @@
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Grigory Avdyushin";
 				TargetAttributes = {
+					4B2B317F2461D9AA00726271 = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
 					4BAB77BA245B2FE000F011A0 = {
 						CreatedOnToolsVersion = 11.4.1;
 					};
@@ -289,11 +359,22 @@
 			targets = (
 				4BAB77BA245B2FE000F011A0 /* Fietscomputer */,
 				4BAB77D3245B2FE200F011A0 /* FietscomputerTests */,
+				4B2B317F2461D9AA00726271 /* DebugBluetooth */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4B2B317E2461D9AA00726271 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B2B318D2461D9AB00726271 /* Main.storyboard in Resources */,
+				4B2B318A2461D9AB00726271 /* Preview Assets.xcassets in Resources */,
+				4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4BAB77B9245B2FE000F011A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -314,6 +395,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4B2B317C2461D9AA00726271 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B2B31942461D9DE00726271 /* Dependencies.swift in Sources */,
+				4B2B31932461D9BB00726271 /* BluetoothScanner.swift in Sources */,
+				4B2B31952461D9E700726271 /* Data+Extension.swift in Sources */,
+				4B2B31972461F98300726271 /* HeartRateService.swift in Sources */,
+				4B2B31962461D9E700726271 /* Array+Extension.swift in Sources */,
+				4BA041202462F6AD002E4D81 /* AES.swift in Sources */,
+				4B2B31852461D9AA00726271 /* ContentView.swift in Sources */,
+				4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4BAB77B7245B2FE000F011A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -361,6 +457,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4B2B318B2461D9AB00726271 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B2B318C2461D9AB00726271 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		4BAB77CC245B2FE200F011A0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -372,6 +476,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4B2B31902461D9AB00726271 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DebugBluetooth/DebugBluetooth.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"DebugBluetooth/Preview Content\"";
+				DEVELOPMENT_TEAM = Q4HEW2JVA9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DebugBluetooth/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.avdyushin.DebugBluetooth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4B2B31912461D9AB00726271 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DebugBluetooth/DebugBluetooth.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"DebugBluetooth/Preview Content\"";
+				DEVELOPMENT_TEAM = Q4HEW2JVA9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DebugBluetooth/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.avdyushin.DebugBluetooth;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		4BAB77DB245B2FE200F011A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -573,6 +725,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4B2B31922461D9AB00726271 /* Build configuration list for PBXNativeTarget "DebugBluetooth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B2B31902461D9AB00726271 /* Debug */,
+				4B2B31912461D9AB00726271 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4BAB77B6245B2FE000F011A0 /* Build configuration list for PBXProject "Fietscomputer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
