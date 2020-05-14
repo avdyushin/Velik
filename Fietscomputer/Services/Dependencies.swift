@@ -14,11 +14,17 @@ protocol Service {
 }
 
 struct Module {
-    let service: Service
     let name: String
-    init<T: Service>(_ resolve: @escaping () -> T) {
-        self.service = resolve()
+    private let resolveBlock: () -> Service
+    private(set) var service: Service!
+
+    init<T: Service>(_ resolveBlock: @escaping () -> T) {
         self.name = String(describing: T.self)
+        self.resolveBlock = resolveBlock
+    }
+
+    mutating func resolve() {
+        service = resolveBlock()
     }
 }
 
@@ -44,6 +50,7 @@ class Dependencies: Sequence {
     }
 
     func build() {
+        modules.keys.forEach { modules[$0]?.resolve() }
         Self.shared = self
     }
 

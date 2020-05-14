@@ -8,29 +8,23 @@
 
 import SwiftUI
 
-struct ScaledFont: ViewModifier {
-    @Environment(\.sizeCategory) var sizeCategory
-    var name: String
-    var size: CGFloat
-
-    func body(content: Content) -> some View {
-        let scaledSize = UIFontMetrics.default.scaledValue(for: size)
-        return content.font(.custom(name, size: scaledSize))
-    }
-}
-
-extension View {
-    func scaledFont(name: String, size: CGFloat) -> some View {
-        self.modifier(ScaledFont(name: name, size: size))
-    }
-}
-
 struct GaugeView<ViewModel: GaugeViewModel>: View {
 
     @ObservedObject var viewModel: ViewModel
+    @State var offset = CGSize.zero
 
     var body: some View {
         Text(viewModel.value)
             .scaledFont(name: "DIN Alternate", size: CGFloat(viewModel.fontSize))
+//            .offset(self.offset)
+//            .gesture(
+//                DragGesture()
+//                    .onChanged { gesture in
+//                        self.offset = gesture.translation
+//                }
+//                .onEnded { gesture in
+//                    self.offset = .zero
+//                }
+//        )
     }
 }

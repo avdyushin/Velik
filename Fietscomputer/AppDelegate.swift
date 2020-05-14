@@ -15,15 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private var cancellables = Set<AnyCancellable>()
 
-    private let dependencies = Dependencies {
+    let dependencies = Dependencies {
         Module { LocationService() }
-        Module { RideService() }
-        Module { HeartRateService() }
+//        Module { RideService() }
+//        Module { HeartRateService() }
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        dependencies.build()
 
         let permissions = LocationPermissions()
         permissions.status.flatMap { status -> AnyPublisher<LocationPermissions.Status, Never> in

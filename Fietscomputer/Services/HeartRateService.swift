@@ -20,6 +20,7 @@ class HeartRateService: Service {
     private var auth = PassthroughSubject<BluetoothScanner.Characteristics, Error>()
     private var ready = CurrentValueSubject<Bool, Error>(false)
     private var hr = PassthroughSubject<BluetoothScanner.Characteristics, Error>()
+    private let key: [UInt8] = [0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39,0x40,0x41,0x42,0x43,0x44,0x45]
 
     func start() {
 
@@ -50,13 +51,13 @@ class HeartRateService: Service {
             .store(in: &cancellables)
 
         auth
-            .flatMap { (c: BluetoothScanner.Characteristics) in c.writeValue(Data([0x02, 0x08])) }
+            .flatMap { $0.writeValue(Data([0x02, 0x08])) }
             .filter { $0.characteristic.value?.prefix(3) == Data([0x10, 0x02, 0x01]) }
-            .tryMap { (c: BluetoothScanner.Characteristics) -> AnyPublisher<BluetoothScanner.Characteristics, Error> in
+            .tryMap { [key] (c: BluetoothScanner.Characteristics) -> AnyPublisher<BluetoothScanner.Characteristics, Error> in
                 guard let value = c.characteristic.value else {
                     throw HRError.auth
                 }
-                let key: [UInt8] = [0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39,0x40,0x41,0x42,0x43,0x44,0x45]
+
                 guard let enc = AES(key: Data(key)).encrypt(data: value.dropFirst(3)) else {
                     throw HRError.auth
                 }

@@ -268,55 +268,8 @@ extension BluetoothScanner: CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        debugPrint("Disconnected \(peripheral)")
         listQueue.sync {
             connected[peripheral.identifier] = nil
         }
-    }
-
-//    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String: Any]) {
-//        // Get list of peripherals we were connected to or was trying to connect to before app was terminated
-//        guard let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] else {
-//            return
-//        }
-//        debugPrint("Restore \(peripherals)")
-//    }
-}
-
-extension BluetoothScanner: CBPeripheralDelegate {
-
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        peripheral.services?.forEach {
-            peripheral.discoverCharacteristics(nil, for: $0)
-        }
-    }
-
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        service.characteristics?.forEach { ch in
-            if ch.uuid == CBUUID(string: "2A37") {
-                debugPrint("Monitor HR found")
-            }
-            if ch.uuid == CBUUID(string: "2A39") {
-                debugPrint("Control HR found")
-            }
-        }
-    }
-
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("New value for: \(characteristic) e: \(error)")
-        guard let value = characteristic.value else {
-            return
-        }
-        debugPrint("value = \(value.hexString)")
-
-        if characteristic.uuid == CBUUID(string: "2A37") {
-            debugPrint("Heart Rate: \(String(format: "%d", value[1])) BPM")
-        }
-    }
-
-    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-    }
-
-    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
     }
 }

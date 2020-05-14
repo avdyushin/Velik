@@ -18,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
 
+        (UIApplication.shared.delegate as? AppDelegate)?.dependencies.build()
+
         let sharedMapView = MKMapView()
         let contentView = ContentView(viewModel: ContentViewModel(
             mapViewModel: MapViewModel(),
