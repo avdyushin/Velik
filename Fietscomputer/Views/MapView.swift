@@ -75,9 +75,7 @@ struct MapView2: UIViewRepresentable {
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
-        debugPrint("update ui")
         if viewModel.isTracking == false && viewModel.isLocationStarted {
-            debugPrint("start tracking")
             viewModel.isTracking = true
             view.userTrackingMode = .followWithHeading
         }
@@ -93,7 +91,19 @@ struct MapView2: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if overlay is MKPolyline {
                 let renderer = MKPolylineRenderer(overlay: overlay)
-                renderer.strokeColor = .systemGreen
+                if let speed /* m/s */ = mapView.userLocation.location?.speed {
+                    // 14 m/s ~ 50 km/h
+                    switch CGFloat(speed) {
+                    case 0..<5:
+                        renderer.strokeColor = UIColor(red: CGFloat(speed / 5.0), green: 1.0, blue: 0, alpha: 1.0)
+                    case 5...10:
+                        renderer.strokeColor = UIColor(red: 1.0, green: 1 - CGFloat((speed - 5.0) / 5.0), blue: 0, alpha: 1.0)
+                    default:
+                        renderer.strokeColor = .red
+                    }
+                } else {
+                    renderer.strokeColor = .systemGreen
+                }
                 renderer.lineWidth = 10
                 return renderer
             } else {

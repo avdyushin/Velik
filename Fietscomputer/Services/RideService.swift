@@ -56,9 +56,8 @@ class RideService: Service {
     private let elapsedTimePublisher = CurrentValueSubject<TimeInterval, Never>(0)
     private(set) var elapsed: AnyPublisher<TimeInterval, Never>
 
-    private let statePublisher = PassthroughSubject<State, Never>()
+    private let statePublisher = CurrentValueSubject<State, Never>(.idle)
     var state: AnyPublisher<State, Never>
-    var currentState: State = .idle
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -67,10 +66,6 @@ class RideService: Service {
         self.state = statePublisher.eraseToAnyPublisher()
         self.track = trackPublisher.eraseToAnyPublisher()
         self.distance = distancePublisher.eraseToAnyPublisher()
-
-        state
-            .assign(to: \.currentState, on: self)
-            .store(in: &cancellables)
     }
 
     func start() {
@@ -108,6 +103,17 @@ class RideService: Service {
     func stop() {
         stopDate = Date.timeIntervalSinceReferenceDate
         statePublisher.send(.stopped)
+    }
+
+    func toggle() {
+        switch statePublisher.value {
+        case .paused:
+            resume()
+        case .running:
+            pause()
+        case .idle, .stopped:
+            start()
+        }
     }
 
     private func run() {

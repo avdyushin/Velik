@@ -26,27 +26,37 @@ class ContentViewModel: ViewModel, ObservableObject {
         self.distanceViewModel = distanceViewModel
 
         super.init()
-        rideService.state.sink {
-            switch $0 {
-            case .idle, .stopped:
-                self.buttonTitle = "Start"
-            case .paused:
-                self.buttonTitle = "Continue"
-            case .running:
-                self.buttonTitle = "Pause"
+
+        rideService.state
+            .map {
+                switch $0 {
+                case .idle, .stopped: return "Start"
+                case .paused: return "Continue"
+                case .running: return "Pause"
+                }
             }
-        }.store(in: &cancellables)
+            .assign(to: \.buttonTitle, on: self)
+            .store(in: &cancellables)
     }
 
     func startPauseRide() {
-        switch rideService.currentState {
-        case .paused:
-            speedViewModel.rideService.resume()
-        case .running:
-            speedViewModel.rideService.pause()
-        case .idle, .stopped:
-            speedViewModel.rideService.start()
-        }
+        rideService.toggle()
+        debugPrint(buttonTitle)
+    }
+}
+
+struct ActionButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.system(.headline))
+            .foregroundColor(Color.white)
+            .padding(12)
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .background(
+                Rectangle()
+                    .fill()
+                    .opacity(configuration.isPressed ? 0.8 : 1.0)
+        )
     }
 }
 
@@ -55,24 +65,35 @@ struct ContentView: View {
     @ObservedObject var viewModel: ContentViewModel
 
     var body: some View {
-        GeometryReader { [viewModel] geometry in
+        GeometryReader { geometry in
             VStack {
-                MapView(viewModel: viewModel.mapViewModel).frame(minHeight: 0, maxHeight: .infinity)
-                SpeedView(viewModel: viewModel.speedViewModel).frame(minHeight: 0, maxHeight: .infinity)
+                MapView(viewModel: self.viewModel.mapViewModel).frame(minHeight: 0, maxHeight: .infinity)
+                SpeedView(viewModel: self.viewModel.speedViewModel).frame(minHeight: 0, maxHeight: .infinity)
                 HStack {
-                    GaugeView(viewModel: viewModel.durationViewModel).frame(minWidth: 0, maxWidth: .infinity)
-                    GaugeView(viewModel: viewModel.distanceViewModel).frame(minWidth: 0, maxWidth: .infinity)
+                    GaugeView(viewModel: self.viewModel.durationViewModel).frame(minWidth: 0, maxWidth: .infinity)
+                    GaugeView(viewModel: self.viewModel.distanceViewModel).frame(minWidth: 0, maxWidth: .infinity)
                 }.padding(20)
-                Button(action: viewModel.startPauseRide) {
-                    Text(viewModel.buttonTitle)
-                        .font(.system(.title))
-                        .foregroundColor(Color.white)
-                        .padding(12)
-                        .frame(minWidth: 0, maxWidth: .infinity)
+                Button(action: self.viewModel.startPauseRide) {
+                    Text(self.viewModel.buttonTitle)
                 }
+                .foregroundColor(.green)
+                .buttonStyle(ActionButtonStyle())
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: geometry.safeAreaInsets.bottom, trailing: 0))
-                .background(Color.green)
             }
         }.edgesIgnoringSafeArea(.bottom)
+    }
+}
+
+struct ActionButton_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            Text("OK")
+            Button(action: {}) {
+                Text("Start")
+            }
+            .foregroundColor(Color.yellow)
+            .buttonStyle(ActionButtonStyle())
+            Text("OK")
+        }
     }
 }
