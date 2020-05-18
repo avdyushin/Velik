@@ -22,7 +22,6 @@
 		4B58B631246089CB00B62914 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
 		4B58B63424608A8400B62914 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63324608A8400B62914 /* Data+Extension.swift */; };
 		4B58B63624608A9800B62914 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63524608A9800B62914 /* Array+Extension.swift */; };
-		4B58B63824608E4D00B62914 /* DevicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63724608E4D00B62914 /* DevicesViewModel.swift */; };
 		4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63924608EE400B62914 /* HeartRateService.swift */; };
 		4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9AF245C067500BD5DD3 /* ContentView.swift */; };
 		4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B1245C29CB00BD5DD3 /* RideService.swift */; };
@@ -32,6 +31,16 @@
 		4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */; };
 		4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */; };
 		4BA041202462F6AD002E4D81 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
+		4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */; };
+		4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B102472F6AB0002D88A /* Formatters.swift */; };
+		4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B122472F6C50002D88A /* SpeedViewModel.swift */; };
+		4BA41B152472F6ED0002D88A /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B142472F6ED0002D88A /* MapViewModel.swift */; };
+		4BA41B172472F7080002D88A /* UserTrackingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B162472F7080002D88A /* UserTrackingButton.swift */; };
+		4BA41B192472F7310002D88A /* MapView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B182472F7310002D88A /* MapView2.swift */; };
+		4BA41B1B2472F7550002D88A /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1A2472F7550002D88A /* ContentViewModel.swift */; };
+		4BA41B1D2472F7830002D88A /* EnvironmentMKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */; };
+		4BA41B1F2472F7F30002D88A /* Timer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1E2472F7F30002D88A /* Timer2.swift */; };
+		4BA41B212472F9010002D88A /* PullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B202472F9010002D88A /* PullView.swift */; };
 		4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */; };
 		4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */; };
 		4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */; };
@@ -72,7 +81,6 @@
 		4B58B630246089CB00B62914 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		4B58B63324608A8400B62914 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		4B58B63524608A9800B62914 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
-		4B58B63724608E4D00B62914 /* DevicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesViewModel.swift; sourceTree = "<group>"; };
 		4B58B63924608EE400B62914 /* HeartRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateService.swift; sourceTree = "<group>"; };
 		4B88C9AF245C067500BD5DD3 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B88C9B1245C29CB00BD5DD3 /* RideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
@@ -81,6 +89,16 @@
 		4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewModel.swift; sourceTree = "<group>"; };
 		4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeView.swift; sourceTree = "<group>"; };
 		4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeViewModel.swift; sourceTree = "<group>"; };
+		4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonStyle.swift; sourceTree = "<group>"; };
+		4BA41B102472F6AB0002D88A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		4BA41B122472F6C50002D88A /* SpeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedViewModel.swift; sourceTree = "<group>"; };
+		4BA41B142472F6ED0002D88A /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		4BA41B162472F7080002D88A /* UserTrackingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTrackingButton.swift; sourceTree = "<group>"; };
+		4BA41B182472F7310002D88A /* MapView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView2.swift; sourceTree = "<group>"; };
+		4BA41B1A2472F7550002D88A /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentMKMapView.swift; sourceTree = "<group>"; };
+		4BA41B1E2472F7F30002D88A /* Timer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer2.swift; sourceTree = "<group>"; };
+		4BA41B202472F9010002D88A /* PullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullView.swift; sourceTree = "<group>"; };
 		4BAB77BB245B2FE000F011A0 /* Fietscomputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fietscomputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +171,8 @@
 			children = (
 				4B58B630246089CB00B62914 /* AES.swift */,
 				4BBB4B94246D617700CA710F /* ScaledFont.swift */,
+				4BA41B102472F6AB0002D88A /* Formatters.swift */,
+				4BA41B1E2472F7F30002D88A /* Timer2.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -187,8 +207,11 @@
 			children = (
 				4B88C9AF245C067500BD5DD3 /* ContentView.swift */,
 				4BAB77E7245B4E1E00F011A0 /* MapView.swift */,
+				4BA41B182472F7310002D88A /* MapView2.swift */,
 				4BAB77C5245B2FE000F011A0 /* SpeedView.swift */,
 				4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */,
+				4BA41B162472F7080002D88A /* UserTrackingButton.swift */,
+				4BA41B202472F9010002D88A /* PullView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,7 +222,9 @@
 				4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */,
 				4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */,
 				4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */,
-				4B58B63724608E4D00B62914 /* DevicesViewModel.swift */,
+				4BA41B122472F6C50002D88A /* SpeedViewModel.swift */,
+				4BA41B142472F6ED0002D88A /* MapViewModel.swift */,
+				4BA41B1A2472F7550002D88A /* ContentViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -207,6 +232,7 @@
 		4B88C9C0245C985500BD5DD3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -219,6 +245,14 @@
 				4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4BA41B0D2472F6710002D88A /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */,
+			);
+			path = Styles;
 			sourceTree = "<group>";
 		};
 		4BAB77B2245B2FE000F011A0 = {
@@ -250,6 +284,7 @@
 				4B88C9BF245C984A00BD5DD3 /* ViewModels */,
 				4B88C9BE245C982E00BD5DD3 /* Views */,
 				4B88C9BD245C97FF00BD5DD3 /* Services */,
+				4BA41B0D2472F6710002D88A /* Styles */,
 				4B88C9C1245C985D00BD5DD3 /* Resources */,
 				4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */,
 				4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */,
@@ -425,28 +460,37 @@
 			files = (
 				4BAB77E8245B4E1E00F011A0 /* MapView.swift in Sources */,
 				4BBB4B992470624900CA710F /* Color+Extension.swift in Sources */,
+				4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */,
 				4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */,
+				4BA41B1F2472F7F30002D88A /* Timer2.swift in Sources */,
 				4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */,
 				4BAB77E4245B300200F011A0 /* Permissions.swift in Sources */,
+				4BA41B212472F9010002D88A /* PullView.swift in Sources */,
 				4BBB4B95246D617700CA710F /* ScaledFont.swift in Sources */,
 				4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */,
 				4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */,
 				4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */,
 				4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */,
+				4BA41B152472F6ED0002D88A /* MapViewModel.swift in Sources */,
 				4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */,
 				4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */,
 				4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */,
+				4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */,
 				4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */,
 				4B58B63624608A9800B62914 /* Array+Extension.swift in Sources */,
+				4BA41B192472F7310002D88A /* MapView2.swift in Sources */,
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
 				4BAB77C6245B2FE000F011A0 /* SpeedView.swift in Sources */,
 				4BAB77E6245B3A1000F011A0 /* LocationService.swift in Sources */,
 				4B58B631246089CB00B62914 /* AES.swift in Sources */,
-				4B58B63824608E4D00B62914 /* DevicesViewModel.swift in Sources */,
+				4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */,
+				4BA41B1B2472F7550002D88A /* ContentViewModel.swift in Sources */,
 				4B88C9B6245C3DCD00BD5DD3 /* Dependencies.swift in Sources */,
+				4BA41B1D2472F7830002D88A /* EnvironmentMKMapView.swift in Sources */,
 				4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */,
 				4B58B63424608A8400B62914 /* Data+Extension.swift in Sources */,
 				4BBB4B97246D619400CA710F /* View+Extension.swift in Sources */,
+				4BA41B172472F7080002D88A /* UserTrackingButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

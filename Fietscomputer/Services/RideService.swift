@@ -11,22 +11,6 @@ import Combine
 import Foundation
 import CoreLocation
 
-class Timer2 {
-
-    let timer = Timer.TimerPublisher(interval: 1.0, runLoop: .main, mode: .default)
-    private var cancellables = Set<AnyCancellable>()
-
-    init() {
-        timer
-            .connect()
-            .store(in: &cancellables)
-    }
-
-    deinit {
-        cancellables.forEach { $0.cancel() }
-    }
-}
-
 class RideService: Service {
 
     enum State {
@@ -36,7 +20,7 @@ class RideService: Service {
         case stopped
     }
 
-    @Injected var locationService: LocationService
+    @Injected private var locationService: LocationService
 
     private var locations = [CLLocation]()
     private var totalDistance: CLLocationDistance = 0
@@ -57,7 +41,7 @@ class RideService: Service {
     private(set) var elapsed: AnyPublisher<TimeInterval, Never>
 
     private let statePublisher = CurrentValueSubject<State, Never>(.idle)
-    var state: AnyPublisher<State, Never>
+    private(set) var state: AnyPublisher<State, Never>
 
     private var cancellables = Set<AnyCancellable>()
 

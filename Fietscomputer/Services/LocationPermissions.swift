@@ -13,9 +13,8 @@ class LocationPermissions: NSObject, Permissions {
 
     typealias Status = CLAuthorizationStatus
 
-    let manager: CLLocationManager
-
-    var cancellables = Set<AnyCancellable>()
+    private let manager: CLLocationManager
+    private var cancellables = Set<AnyCancellable>()
     private let statusPublisher = PassthroughSubject<CLAuthorizationStatus, Never>()
     private(set) var status: AnyPublisher<CLAuthorizationStatus, Never>
 
