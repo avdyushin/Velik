@@ -40,7 +40,7 @@
 		4BA41B1B2472F7550002D88A /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1A2472F7550002D88A /* ContentViewModel.swift */; };
 		4BA41B1D2472F7830002D88A /* EnvironmentMKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */; };
 		4BA41B1F2472F7F30002D88A /* Timer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1E2472F7F30002D88A /* Timer2.swift */; };
-		4BA41B212472F9010002D88A /* PullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B202472F9010002D88A /* PullView.swift */; };
+		4BA41B212472F9010002D88A /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B202472F9010002D88A /* SliderView.swift */; };
 		4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */; };
 		4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */; };
 		4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */; };
@@ -98,7 +98,7 @@
 		4BA41B1A2472F7550002D88A /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentMKMapView.swift; sourceTree = "<group>"; };
 		4BA41B1E2472F7F30002D88A /* Timer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer2.swift; sourceTree = "<group>"; };
-		4BA41B202472F9010002D88A /* PullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullView.swift; sourceTree = "<group>"; };
+		4BA41B202472F9010002D88A /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		4BAB77BB245B2FE000F011A0 /* Fietscomputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fietscomputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 				4BAB77C5245B2FE000F011A0 /* SpeedView.swift */,
 				4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */,
 				4BA41B162472F7080002D88A /* UserTrackingButton.swift */,
-				4BA41B202472F9010002D88A /* PullView.swift */,
+				4BA41B202472F9010002D88A /* SliderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -465,7 +465,7 @@
 				4BA41B1F2472F7F30002D88A /* Timer2.swift in Sources */,
 				4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */,
 				4BAB77E4245B300200F011A0 /* Permissions.swift in Sources */,
-				4BA41B212472F9010002D88A /* PullView.swift in Sources */,
+				4BA41B212472F9010002D88A /* SliderView.swift in Sources */,
 				4BBB4B95246D617700CA710F /* ScaledFont.swift in Sources */,
 				4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */,
 				4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */,
