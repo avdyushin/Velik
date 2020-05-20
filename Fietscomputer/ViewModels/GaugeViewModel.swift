@@ -20,5 +20,6 @@ class GaugeViewModel: ViewModel, ObservableObject {
 
     @Published var value = ""
     @Published var units = ""
-    @Published var fontSize = 24
+    @Published var fontName = "DIN Alternate"
+    @Published var fontSize = 28
 }

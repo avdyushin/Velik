@@ -15,16 +15,7 @@ struct GaugeView<ViewModel: GaugeViewModel>: View {
 
     var body: some View {
         Text(viewModel.value)
-            .scaledFont(name: "DIN Alternate", size: CGFloat(viewModel.fontSize))
-//            .offset(self.offset)
-//            .gesture(
-//                DragGesture()
-//                    .onChanged { gesture in
-//                        self.offset = gesture.translation
-//                }
-//                .onEnded { gesture in
-//                    self.offset = .zero
-//                }
-//        )
+            .minimumScaleFactor(0.4)
+            .scaledFont(name: viewModel.fontName, size: CGFloat(viewModel.fontSize))
     }
 }

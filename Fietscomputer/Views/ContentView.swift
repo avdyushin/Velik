@@ -25,7 +25,7 @@ struct ContentView: View {
                             HStack {
                                 GaugeView(viewModel: self.viewModel.durationViewModel).frame(minWidth: 0, maxWidth: .infinity)
                                 GaugeView(viewModel: self.viewModel.distanceViewModel).frame(minWidth: 0, maxWidth: .infinity)
-                            }.padding(20)
+                            }.padding(EdgeInsets(top: 0, leading: 0, bottom: 18, trailing: 0))
                             Button(action: self.viewModel.startPauseRide) {
                                 Text(self.viewModel.buttonTitle)
                             }

@@ -22,7 +22,7 @@ struct SliderView<Content: View>: View {
     let content: () -> Content
 
     var body: some View {
-        VStack {
+        Group {
             content()
         }
         .offset(y: position.value)
