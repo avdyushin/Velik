@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SplitView",
+        "repositoryURL": "https://github.com/avdyushin/SplitView",
+        "state": {
+          "branch": null,
+          "revision": "9062efc63924897f14fee79b76d13f694699ba6d",
+          "version": "1.0.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

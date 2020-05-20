@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.dependencies.build()
 
         let sharedMapView = MKMapView()
-        let contentView = ContentView(viewModel: ContentViewModel(
+        let contentView = ContentView(contentViewModel: ContentViewModel(
             mapViewModel: MapViewModel(),
             speedViewModel: SpeedViewModel(),
             durationViewModel: DurationViewModel(),
