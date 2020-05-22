@@ -19,17 +19,13 @@ struct ContentView: View {
             SplitView(
                 viewModel: self.sliderViewModel,
                 controlView: {
-                    Group {
-                        Rectangle()
-                            .foregroundColor(Color(UIColor.systemBackground))
-                            .frame(minWidth:0, maxWidth: .infinity, minHeight: 6, maxHeight: 6)
-                            .shadow(color: Color.black.opacity(0.05), radius: 1, x: 0, y: -5)
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill()
-                            .frame(width: 48, height: 3)
-                    }
-                    .foregroundColor(Color(UIColor.separator))
-                    .background(Color.clear)
+                    Rectangle()
+                        .foregroundColor(Color(UIColor.systemBackground))
+                        .frame(minWidth:0, maxWidth: .infinity, minHeight: 6, maxHeight: 6)
+                        .shadow(color: Color.black.opacity(0.05), radius: 1, x: 0, y: -5)
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(Color(UIColor.separator))
+                        .frame(width: 48, height: 3)
                 },
                 topView: { MapView(viewModel: self.contentViewModel.mapViewModel) },
                 bottomView: {

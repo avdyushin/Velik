@@ -839,7 +839,7 @@
 			repositoryURL = "https://github.com/avdyushin/SplitView";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				minimumVersion = 1.0.3;
 			};
 		};
 		4BA41B28247841720002D88A /* XCRemoteSwiftPackageReference "CoreDataStorage" */ = {
