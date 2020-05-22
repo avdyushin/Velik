@@ -41,6 +41,8 @@
 		4BA41B1D2472F7830002D88A /* EnvironmentMKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */; };
 		4BA41B1F2472F7F30002D88A /* Timer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1E2472F7F30002D88A /* Timer2.swift */; };
 		4BA41B272475A7E70002D88A /* SplitView in Frameworks */ = {isa = PBXBuildFile; productRef = 4BA41B262475A7E70002D88A /* SplitView */; };
+		4BA41B2A247841720002D88A /* CoreDataStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4BA41B29247841720002D88A /* CoreDataStorage */; };
+		4BA41B2C247841830002D88A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B2B247841830002D88A /* Storage.swift */; };
 		4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */; };
 		4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */; };
 		4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */; };
@@ -98,6 +100,7 @@
 		4BA41B1A2472F7550002D88A /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentMKMapView.swift; sourceTree = "<group>"; };
 		4BA41B1E2472F7F30002D88A /* Timer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer2.swift; sourceTree = "<group>"; };
+		4BA41B2B247841830002D88A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4BAB77BB245B2FE000F011A0 /* Fietscomputer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fietscomputer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BA41B272475A7E70002D88A /* SplitView in Frameworks */,
+				4BA41B2A247841720002D88A /* CoreDataStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +202,7 @@
 				4B88C9B1245C29CB00BD5DD3 /* RideService.swift */,
 				4B58B619245C9FA700B62914 /* BluetoothScanner.swift */,
 				4B58B63924608EE400B62914 /* HeartRateService.swift */,
+				4BA41B2B247841830002D88A /* Storage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 			name = Fietscomputer;
 			packageProductDependencies = (
 				4BA41B262475A7E70002D88A /* SplitView */,
+				4BA41B29247841720002D88A /* CoreDataStorage */,
 			);
 			productName = Fietscomputer;
 			productReference = 4BAB77BB245B2FE000F011A0 /* Fietscomputer.app */;
@@ -401,6 +407,7 @@
 			mainGroup = 4BAB77B2245B2FE000F011A0;
 			packageReferences = (
 				4BA41B252475A7E70002D88A /* XCRemoteSwiftPackageReference "SplitView" */,
+				4BA41B28247841720002D88A /* XCRemoteSwiftPackageReference "CoreDataStorage" */,
 			);
 			productRefGroup = 4BAB77BC245B2FE000F011A0 /* Products */;
 			projectDirPath = "";
@@ -486,6 +493,7 @@
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
 				4BAB77C6245B2FE000F011A0 /* SpeedView.swift in Sources */,
 				4BAB77E6245B3A1000F011A0 /* LocationService.swift in Sources */,
+				4BA41B2C247841830002D88A /* Storage.swift in Sources */,
 				4B58B631246089CB00B62914 /* AES.swift in Sources */,
 				4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */,
 				4BA41B1B2472F7550002D88A /* ContentViewModel.swift in Sources */,
@@ -834,6 +842,14 @@
 				minimumVersion = 1.0.2;
 			};
 		};
+		4BA41B28247841720002D88A /* XCRemoteSwiftPackageReference "CoreDataStorage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/avdyushin/CoreDataStorage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -841,6 +857,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4BA41B252475A7E70002D88A /* XCRemoteSwiftPackageReference "SplitView" */;
 			productName = SplitView;
+		};
+		4BA41B29247841720002D88A /* CoreDataStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4BA41B28247841720002D88A /* XCRemoteSwiftPackageReference "CoreDataStorage" */;
+			productName = CoreDataStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 

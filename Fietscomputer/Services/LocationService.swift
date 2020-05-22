@@ -21,6 +21,7 @@ class LocationService: NSObject, Service {
     private let locationPublisher = PassthroughSubject<CLLocation, Never>()
     private(set) var location: AnyPublisher<CLLocation, Never>
 
+    // TODO: Convert to State
     private let startedPublisher = PassthroughSubject<Bool, Never>()
     var started: AnyPublisher<Bool, Never>
 
@@ -32,7 +33,7 @@ class LocationService: NSObject, Service {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        manager.distanceFilter = 1
+        manager.distanceFilter = 5
         manager.showsBackgroundLocationIndicator = true
         manager.allowsBackgroundLocationUpdates = true
         manager.pausesLocationUpdatesAutomatically = true
@@ -43,7 +44,6 @@ class LocationService: NSObject, Service {
         manager.startUpdatingLocation()
         manager.startUpdatingHeading()
         startedPublisher.send(true)
-        debugPrint("\(self) started")
     }
 
     func stop() {

@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "CoreDataStorage",
+        "repositoryURL": "https://github.com/avdyushin/CoreDataStorage",
+        "state": {
+          "branch": null,
+          "revision": "cc73dae39ae86ca3bd5eac7653ad83e8d10a3c14",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "SplitView",
         "repositoryURL": "https://github.com/avdyushin/SplitView",
         "state": {

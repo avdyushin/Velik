@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var cancellables = Set<AnyCancellable>()
 
     let dependencies = Dependencies {
+        Module { StorageService() }
         Module { LocationService() }
         Module { RideService() }
         Module { HeartRateService() }
@@ -43,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //dependencies.forEach {
                 //    $0.start()
                 //}
+                dependencies.storageService.start()
                 dependencies.locationService.start()
                 //dependencies.heartRateService.start()
             default:
