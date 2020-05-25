@@ -43,6 +43,7 @@
 		4BA41B272475A7E70002D88A /* SplitView in Frameworks */ = {isa = PBXBuildFile; productRef = 4BA41B262475A7E70002D88A /* SplitView */; };
 		4BA41B2A247841720002D88A /* CoreDataStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4BA41B29247841720002D88A /* CoreDataStorage */; };
 		4BA41B2C247841830002D88A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B2B247841830002D88A /* Storage.swift */; };
+		4BA41B35247C42050002D88A /* PageView in Frameworks */ = {isa = PBXBuildFile; productRef = 4BA41B34247C42050002D88A /* PageView */; };
 		4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */; };
 		4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */; };
 		4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */; };
@@ -134,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BA41B272475A7E70002D88A /* SplitView in Frameworks */,
+				4BA41B35247C42050002D88A /* PageView in Frameworks */,
 				4BA41B2A247841720002D88A /* CoreDataStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +353,7 @@
 			packageProductDependencies = (
 				4BA41B262475A7E70002D88A /* SplitView */,
 				4BA41B29247841720002D88A /* CoreDataStorage */,
+				4BA41B34247C42050002D88A /* PageView */,
 			);
 			productName = Fietscomputer;
 			productReference = 4BAB77BB245B2FE000F011A0 /* Fietscomputer.app */;
@@ -408,6 +411,7 @@
 			packageReferences = (
 				4BA41B252475A7E70002D88A /* XCRemoteSwiftPackageReference "SplitView" */,
 				4BA41B28247841720002D88A /* XCRemoteSwiftPackageReference "CoreDataStorage" */,
+				4BA41B33247C42050002D88A /* XCRemoteSwiftPackageReference "PageView" */,
 			);
 			productRefGroup = 4BAB77BC245B2FE000F011A0 /* Products */;
 			projectDirPath = "";
@@ -850,6 +854,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		4BA41B33247C42050002D88A /* XCRemoteSwiftPackageReference "PageView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/avdyushin/PageView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -862,6 +874,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4BA41B28247841720002D88A /* XCRemoteSwiftPackageReference "CoreDataStorage" */;
 			productName = CoreDataStorage;
+		};
+		4BA41B34247C42050002D88A /* PageView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4BA41B33247C42050002D88A /* XCRemoteSwiftPackageReference "PageView" */;
+			productName = PageView;
 		};
 /* End XCSwiftPackageProductDependency section */
 
