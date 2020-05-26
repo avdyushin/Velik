@@ -12,13 +12,13 @@ struct ActionButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(.title))
-            .foregroundColor(Color.white)
+            .foregroundColor(configuration.isPressed ? Color.white.opacity(0.8) : Color.white)
             .padding(12)
             .frame(minWidth: 0, maxWidth: .infinity)
             .background(
                 Rectangle()
                     .fill()
-                    .opacity(configuration.isPressed ? 0.8 : 1.0)
+                    // .opacity(configuration.isPressed ? 0.8 : 1.0)
         )
     }
 }
