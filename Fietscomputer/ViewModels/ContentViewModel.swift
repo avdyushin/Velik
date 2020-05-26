@@ -16,6 +16,7 @@ class ContentViewModel: ViewModel, ObservableObject {
     @ObservedObject var distanceViewModel: DistanceViewModel
 
     @Published var buttonTitle = "Start"
+    var numberOfPages = 4
 
     init(mapViewModel: MapViewModel, speedViewModel: SpeedViewModel, durationViewModel: DurationViewModel,
          distanceViewModel: DistanceViewModel) {
