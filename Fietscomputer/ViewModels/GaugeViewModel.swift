@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Injected
 
 class ViewModel {
     @Injected var rideService: RideService

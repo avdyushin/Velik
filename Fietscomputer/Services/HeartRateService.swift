@@ -15,6 +15,8 @@ class HeartRateService: Service {
 
     enum HRError: Error { case auth }
 
+    let shouldAutostart = false
+
     private let scanner = BluetoothScanner()
     private var cancellables = Set<AnyCancellable>()
     private var auth = PassthroughSubject<BluetoothScanner.Characteristics, Error>()

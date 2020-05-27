@@ -12,6 +12,8 @@ import CoreLocation
 
 class LocationService: NSObject, Service {
 
+    let shouldAutostart = true
+
     private let manager: CLLocationManager
     private var cancellables = Set<AnyCancellable>()
 

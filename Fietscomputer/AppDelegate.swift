@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 import CoreData
+import Injected
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var cancellables = Set<AnyCancellable>()
 
     let dependencies = Dependencies {
-        Module { StorageService() }
-        Module { LocationService() }
-        Module { RideService() }
-        Module { HeartRateService() }
+        Dependency { StorageService() }
+        Dependency { LocationService() }
+        Dependency { RideService() }
+        Dependency { HeartRateService() }
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -41,12 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             debugPrint("has status", status.rawValue)
             switch status {
             case .authorizedAlways, .authorizedWhenInUse:
-                //dependencies.forEach {
-                //    $0.start()
-                //}
-                dependencies.storageService.start()
-                dependencies.locationService.start()
-                //dependencies.heartRateService.start()
+                dependencies
+                    .compactMap { $0 as? Service }
+                    .filter { $0.shouldAutostart }
+                    .forEach { $0.start() }
             default:
                 debugPrint("Can't start location service")
             }

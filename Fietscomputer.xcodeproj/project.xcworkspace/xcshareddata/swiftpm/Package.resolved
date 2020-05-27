@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "Injected",
+        "repositoryURL": "https://github.com/avdyushin/Injected",
+        "state": {
+          "branch": null,
+          "revision": "b58d7b8216610dc8c3bb971394437c998f13625e",
+          "version": "1.0.1"
+        }
+      },
+      {
         "package": "PageView",
         "repositoryURL": "https://github.com/avdyushin/PageView",
         "state": {

@@ -175,6 +175,8 @@ class BluetoothScanner: NSObject, Service {
         }
     }
 
+    let shouldAutostart = false
+
     let queue = DispatchQueue(label: String(describing: BluetoothScanner.self), qos: .utility)
 
     private lazy var manager = CBCentralManager(delegate: self, queue: queue)

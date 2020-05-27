@@ -12,6 +12,8 @@ import CoreDataStorage
 
 class StorageService: Service {
 
+    let shouldAutostart = true
+
     private let storage = CoreDataStorage(container: NSPersistentContainer(name: "Fietscomputer"))
 
     func start() {

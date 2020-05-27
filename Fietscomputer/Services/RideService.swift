@@ -8,6 +8,7 @@
 
 import MapKit
 import Combine
+import Injected
 import Foundation
 import CoreLocation
 
@@ -21,6 +22,8 @@ class RideService: Service {
     }
 
     @Injected private var locationService: LocationService
+
+    let shouldAutostart = false
 
     private var locations = [CLLocation]()
     private var totalDistance: CLLocationDistance = 0
