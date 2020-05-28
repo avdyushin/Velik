@@ -23,7 +23,6 @@ class LocationService: NSObject, Service {
     private let locationPublisher = PassthroughSubject<CLLocation, Never>()
     private(set) var location: AnyPublisher<CLLocation, Never>
 
-    // TODO: Convert to State
     private let startedPublisher = PassthroughSubject<Bool, Never>()
     var started: AnyPublisher<Bool, Never>
 

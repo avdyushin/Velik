@@ -105,7 +105,7 @@ class RideService: Service {
 
     private func run() {
         timer = Timer2()
-        timerCancellable = timer.timer.map { [startDate] currentDate in
+        timerCancellable = timer.timer.map { [startDate] _ in
             Date.timeIntervalSinceReferenceDate - startDate
         }.sink { [elapsedTimePublisher] elapsed in
             elapsedTimePublisher.send(elapsed)

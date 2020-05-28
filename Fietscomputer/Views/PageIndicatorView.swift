@@ -22,7 +22,7 @@ struct PageIndicatorView: View {
         }
     }
     var body: some View {
-        Button(action: { withAnimation { self.action() } }) {
+        Button(action: { withAnimation { self.action() } }, label: {
             ZStack {
 //                Rectangle()
 //                    .foregroundColor(.clear)
@@ -31,7 +31,7 @@ struct PageIndicatorView: View {
                     .resizable()
                     .frame(width: 24, height: 24)
             }
-        }
+        })
     }
 }
 

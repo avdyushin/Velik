@@ -28,8 +28,8 @@ class DistanceViewModel: GaugeViewModel {
 
         rideService.distance
             .sink { value in
-                let km = Measurement(value: value, unit: UnitLength.meters).converted(to: .kilometers)
-                self.value = Formatters.distanceFormatter.string(from: km)
+                let kilometers = Measurement(value: value, unit: UnitLength.meters).converted(to: .kilometers)
+                self.value = Formatters.distanceFormatter.string(from: kilometers)
             }
             .store(in: &cancellables)
     }

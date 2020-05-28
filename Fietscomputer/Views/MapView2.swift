@@ -56,11 +56,17 @@ struct MapView2: UIViewRepresentable {
                     // 14 m/s ~ 50 km/h
                     switch CGFloat(speed) {
                     case 0..<5:
-                        renderer.strokeColor = UIColor(red: CGFloat(speed / 5.0), green: 1.0, blue: 0, alpha: 1.0)
+                        renderer.strokeColor = UIColor(
+                            red: CGFloat(speed / 5), green: 1, blue: 0, alpha: 1
+                        )
                     case 5...10:
-                        renderer.strokeColor = UIColor(red: 1.0, green: 1 - CGFloat((speed - 5.0) / 5.0), blue: 0, alpha: 1.0)
+                        renderer.strokeColor = UIColor(
+                            red: 1, green: 1 - CGFloat((speed - 5) / 5), blue: 0, alpha: 1
+                        )
                     default:
-                        renderer.strokeColor = .red
+                        renderer.strokeColor = UIColor(
+                            red: 1, green: 0, blue: 0, alpha: 1
+                        )
                     }
                 } else {
                     renderer.strokeColor = .systemGreen

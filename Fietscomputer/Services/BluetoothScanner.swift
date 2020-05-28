@@ -90,7 +90,8 @@ class BluetoothScanner: NSObject, Service {
             return discoverServicesPublisher.eraseToAnyPublisher()
         }
 
-        func discoverCharacteristics(characteristicUUIDs: [CBUUID]? = nil, for service: CBService) -> AnyPublisher<Characteristics, Error> {
+        func discoverCharacteristics(characteristicUUIDs: [CBUUID]? = nil,
+                                     for service: CBService) -> AnyPublisher<Characteristics, Error> {
             discoverCharacteristicsPublisher = PassthroughSubject<Characteristics, Error>()
             peripheral.discoverCharacteristics(characteristicUUIDs, for: service)
             return discoverCharacteristicsPublisher.eraseToAnyPublisher()
@@ -117,11 +118,15 @@ class BluetoothScanner: NSObject, Service {
 
             service.characteristics?.forEach {
                 // debugPrint("s", service.uuid.uuidString, "c", $0.uuid.uuidString)
-                discoverCharacteristicsPublisher.send(Characteristics(peripheral: self, service: service, characteristic: $0))
+                discoverCharacteristicsPublisher.send(
+                    Characteristics(peripheral: self, service: service, characteristic: $0)
+                )
             }
         }
 
-        func writeValue(data: Data, for characteristic: CBCharacteristic, type: CBCharacteristicWriteType) -> Future<CBCharacteristic, Error> {
+        func writeValue(data: Data,
+                        for characteristic: CBCharacteristic,
+                        type: CBCharacteristicWriteType) -> Future<CBCharacteristic, Error> {
             Future<CBCharacteristic, Error> { [unowned self] promise in
 
                 func doWrite() {
@@ -155,7 +160,9 @@ class BluetoothScanner: NSObject, Service {
             }
         }
 
-        func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+        func peripheral(_ peripheral: CBPeripheral,
+                        didUpdateNotificationStateFor characteristic: CBCharacteristic,
+                        error: Error?) {
             debugPrint(#function)
             guard error == nil else {
                 notifyingPublishers[characteristic.uuid]?.send(completion: .failure(error!))
@@ -220,9 +227,9 @@ class BluetoothScanner: NSObject, Service {
                 case .finished:
                     ()
                 }
-            }) { value in
+            }, receiveValue: { value in
                 promise(.success(Peripheral(peripheral: value, scanner: self)))
-            }.store(in: &self.cancellables)
+            }).store(in: &self.cancellables)
 
             self.listQueue.sync {
                 self.connected[peripheral.identifier] = peripheral
@@ -252,7 +259,9 @@ extension BluetoothScanner: CBCentralManagerDelegate {
         }
     }
 
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager,
+                        didDiscover peripheral: CBPeripheral,
+                        advertisementData: [String: Any], rssi RSSI: NSNumber) {
         discoveredPublisher.send(Peripheral(peripheral: peripheral, scanner: self))
     }
 

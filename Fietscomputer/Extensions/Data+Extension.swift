@@ -24,7 +24,7 @@ extension Data {
 
     var uuidString: String {
         self.enumerated()
-            .map { i, b in String(format: "%02x%@", b, [3, 5, 7, 9].contains(i) ? "-" : "") }
+            .map { index, byte in String(format: "%02x%@", byte, [3, 5, 7, 9].contains(index) ? "-" : "") }
             .joined()
     }
 }

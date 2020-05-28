@@ -47,41 +47,38 @@ extension UIColor {
             green = ((hex & 0x0f0) >> 4) << 4 + ((hex & 0x0f0) >> 4)
             blue  = ((hex & 0x00f) >> 0) << 4 + ((hex & 0x00f) >> 0)
             alpha = 255
-            break;
         case .RGBA:
             red   = ((hex & 0xf000) >> 12) << 4 + ((hex & 0xf000) >> 12)
             green = ((hex & 0x0f00) >>  8) << 4 + ((hex & 0x0f00) >>  8)
             blue  = ((hex & 0x00f0) >>  4) << 4 + ((hex & 0x00f0) >>  4)
             alpha = ((hex & 0x000f) >>  0) << 4 + ((hex & 0x000f) >>  4)
-            break;
         case .RRGGBB:
             red   = ((hex & 0xff0000) >> 16)
             green = ((hex & 0x00ff00) >>  8)
             blue  = ((hex & 0x0000ff) >>  0)
             alpha = 255
-            break;
         }
 
         self.init(
-            red: CGFloat(red)/255.0,
-            green: CGFloat(green)/255.0,
-            blue: CGFloat(blue)/255.0,
-            alpha: CGFloat(alpha)/255.0
+            red: CGFloat(red) / 255.0,
+            green: CGFloat(green) / 255.0,
+            blue: CGFloat(blue) / 255.0,
+            alpha: CGFloat(alpha) / 255.0
         )
     }
 
     /// Returns integer color representation
     var asInt: Int {
-        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
 
-        getRed(&r, green: &g, blue: &b, alpha: &a)
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 
-        return (Int)(r * 255) << 16 | (Int)(g * 255) << 8  | (Int)(b * 255)  << 0
+        return (Int)(red * 255) << 16 | (Int)(green * 255) << 8  | (Int)(blue * 255)  << 0
     }
 
     /// Returns hex string color representation
     var asHexString: String {
-        return String(format:"#%06x", asInt)
+        return String(format: "#%06x", asInt)
     }
 }
 
@@ -120,39 +117,39 @@ extension UIColor {
 
 // Dutch Palette
 extension UIColor {
-    // Yellow / Red
-    static let fd_Sunflower = UIColor(hex: 0xFFC312)
-    static let fd_RadianYellow = UIColor(hex: 0xF79F1F)
-    static let fd_PuffinsBull = UIColor(hex: 0xEE5A24)
-    static let fd_RedPigment = UIColor(hex: 0xEA2027)
+    // Yellow / Rd
+    static let fdSunflower = UIColor(hex: 0xFFC312)
+    static let fdRadianYellow = UIColor(hex: 0xF79F1F)
+    static let fdPuffinsBull = UIColor(hex: 0xEE5A24)
+    static let fdRedPigment = UIColor(hex: 0xEA2027)
 
     // Green
-    static let fd_Energos = UIColor(hex: 0xC4E538)
-    static let fd_AndroidGreen = UIColor(hex: 0xA3CB38)
-    static let fd_PixelatedGrass = UIColor(hex: 0x009432)
-    static let fd_TurkishAqua = UIColor(hex: 0x006266)
+    static let fdEnergos = UIColor(hex: 0xC4E538)
+    static let fdAndroidGreen = UIColor(hex: 0xA3CB38)
+    static let fdPixelatedGrass = UIColor(hex: 0x009432)
+    static let fdTurkishAqua = UIColor(hex: 0x006266)
 
     // Blue
-    static let fd_BlueMartina = UIColor(hex: 0x12CBC4)
-    static let fd_MediterraneanSea = UIColor(hex: 0x1289A7)
-    static let fd_MerchantMarineBlue = UIColor(hex: 0x0652DD)
-    static let fd_20000LeaguasUnderTheSea = UIColor(hex: 0x1B1464)
+    static let fdBlueMartina = UIColor(hex: 0x12CBC4)
+    static let fdMediterraneanSea = UIColor(hex: 0x1289A7)
+    static let fdMerchantMarineBlue = UIColor(hex: 0x0652DD)
+    static let fd20000LeaguasUnderTheSea = UIColor(hex: 0x1B1464)
 
     // Rose / Purpule
-    static let fd_LavenderRose = UIColor(hex: 0xFDA7DF)
-    static let fd_LavenderTea = UIColor(hex: 0xD980FA)
-    static let fd_ForgottenPurple = UIColor(hex: 0x9980FA)
-    static let fd_CircumorbitalRing = UIColor(hex: 0x5758BB)
+    static let fdLavenderRose = UIColor(hex: 0xFDA7DF)
+    static let fdLavenderTea = UIColor(hex: 0xD980FA)
+    static let fdForgottenPurple = UIColor(hex: 0x9980FA)
+    static let fdCircumorbitalRing = UIColor(hex: 0x5758BB)
 
     // Rose / Red
-    static let fd_BaraRed = UIColor(hex: 0xED4C67)
-    static let fd_VeryBerry = UIColor(hex: 0xB53471)
-    static let fd_Hollyhock = UIColor(hex: 0x833471)
-    static let fd_MargentaPurple = UIColor(hex: 0x6F1E51)
+    static let fdBaraRed = UIColor(hex: 0xED4C67)
+    static let fdVeryBerry = UIColor(hex: 0xB53471)
+    static let fdHollyhock = UIColor(hex: 0x833471)
+    static let fdMargentaPurple = UIColor(hex: 0x6F1E51)
 }
 
 extension UIColor {
-    static let tn_DarkPurple = UIColor(hex: 0x372F57)
-    static let tn_Yellow = UIColor(hex: 0xF5C86A)
-    static let tn_Gray = UIColor(hex: 0x6B7778)
+    static let tnDarkPurple = UIColor(hex: 0x372F57)
+    static let tnYellow = UIColor(hex: 0xF5C86A)
+    static let tnGray = UIColor(hex: 0x6B7778)
 }
