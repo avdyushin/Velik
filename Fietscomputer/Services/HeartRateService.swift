@@ -39,7 +39,8 @@ class HeartRateService: Service {
         scanner
             .discovered
             .filter { $0.peripheral.name?.hasPrefix("MI") == true }
-            .first { $0.peripheral.identifier == UUID(uuidString: "12199EBB-F68D-4B30-90D8-AC3374BA150D")! }
+            .print()
+            //.first { $0.peripheral.identifier == UUID(uuidString: "12199EBB-F68D-4B30-90D8-AC3374BA150D")! }
             .flatMap { $0.connect() }
             .retry(3)
             .flatMap { $0.discoverServices() }

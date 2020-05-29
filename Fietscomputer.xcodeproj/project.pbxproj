@@ -905,7 +905,7 @@
 			repositoryURL = "https://github.com/avdyushin/PageView";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				minimumVersion = 1.0.3;
 			};
 		};
 		4BA41B3E247ED02E0002D88A /* XCRemoteSwiftPackageReference "Injected" */ = {

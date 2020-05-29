@@ -197,23 +197,49 @@ class BluetoothScanner: NSObject, Service {
     private(set) var connectedPublishers = [UUID: PassthroughSubject<CBPeripheral, Error>]()
     private var cancellables = Set<AnyCancellable>()
 
+    private(set) lazy var state = CurrentValueSubject<CBManagerState, Never>(manager.state)
+    private var statePublisher: AnyCancellable?
+
     override init() {
         discovered = discoveredPublisher.eraseToAnyPublisher()
+        super.init()
+        state
+            .print()
+            .sink { [unowned self] state in
+                debugPrint("State -> \(state.rawValue)")
+                if state == .poweredOff {
+                    self.stop()
+                }
+            }
+            .store(in: &cancellables)
     }
 
     func start() {
-        debugPrint("Started \(Self.self)")
-        guard manager.state == .poweredOn, manager.isScanning == false else {
+        debugPrint("Starting \(Self.self)...")
+        guard manager.isScanning == false else {
             debugPrint("You can start only powered on bluetooth and if not already in scanning state")
             return
         }
 
-//        let hrService = CBUUID(string: "180D")
-        manager.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
+        func scan() {
+            debugPrint("Scanning...")
+            manager.scanForPeripherals(
+                withServices: nil,
+                options: [CBCentralManagerScanOptionAllowDuplicatesKey: true]
+            )
+        }
+
+        statePublisher = state
+            .eraseToAnyPublisher()
+            .filter { $0 == .poweredOn }
+            .sink { _ in scan() }
     }
 
     func stop() {
+        debugPrint("Stopping \(Self.self)...")
         manager.stopScan()
+        statePublisher?.cancel()
+        statePublisher = nil
     }
 
     func connect(to peripheral: CBPeripheral) -> Future<Peripheral, Error> {
@@ -246,17 +272,7 @@ class BluetoothScanner: NSObject, Service {
 extension BluetoothScanner: CBCentralManagerDelegate {
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        debugPrint("State -> \(central.state.rawValue)")
-        switch central.state {
-        case .poweredOn:
-            debugPrint("Starting...")
-            start()
-        case .poweredOff:
-            debugPrint("Stopping...")
-            stop()
-        default:
-            debugPrint("Not handled state")
-        }
+        state.send(central.state)
     }
 
     func centralManager(_ central: CBCentralManager,
