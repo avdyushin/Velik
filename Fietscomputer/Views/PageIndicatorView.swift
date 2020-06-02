@@ -24,12 +24,15 @@ struct PageIndicatorView: View {
     var body: some View {
         Button(action: { withAnimation { self.action() } }, label: {
             ZStack {
-//                Rectangle()
-//                    .foregroundColor(.clear)
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 16, height: 16)
+                Rectangle()
+                    .fill()
+                    .frame(width: 8, height: 8)
+//                Image(systemName: imageName)
+//                    .resizable()
 //                    .frame(width: 24, height: 24)
-                Image(systemName: imageName)
-                    .resizable()
-                    .frame(width: 24, height: 24)
             }
         })
     }

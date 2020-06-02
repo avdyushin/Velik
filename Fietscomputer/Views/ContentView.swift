@@ -23,7 +23,14 @@ struct ContentView: View {
                 bottomView: {
                     VStack(spacing: 0) {
                         GaugesWithIndicatorView(viewModel: self.contentViewModel)
-                        ActionButton(viewModel: self.contentViewModel)
+                        ActionButton(viewModel: self.contentViewModel.buttonViewModel) { index in
+                            switch index {
+                            case .right:
+                                self.contentViewModel.startPauseRide()
+                            case .left:
+                                self.contentViewModel.stopRide()
+                            }
+                        }
                         Rectangle()
                             .frame(height: geometry.safeAreaInsets.bottom)
                             .foregroundColor(.green)

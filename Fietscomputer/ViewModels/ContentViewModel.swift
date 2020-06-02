@@ -14,32 +14,27 @@ class ContentViewModel: ViewModel, ObservableObject {
     @ObservedObject var speedViewModel: SpeedViewModel
     @ObservedObject var durationViewModel: DurationViewModel
     @ObservedObject var distanceViewModel: DistanceViewModel
+    @ObservedObject var buttonViewModel: ActionButtonViewModel
 
-    @Published var buttonTitle = "Start"
     var numberOfPages = 4
 
-    init(mapViewModel: MapViewModel, speedViewModel: SpeedViewModel, durationViewModel: DurationViewModel,
+    init(mapViewModel: MapViewModel,
+         speedViewModel: SpeedViewModel,
+         durationViewModel: DurationViewModel,
          distanceViewModel: DistanceViewModel) {
         self.mapViewModel = mapViewModel
         self.speedViewModel = speedViewModel
         self.durationViewModel = durationViewModel
         self.distanceViewModel = distanceViewModel
-
+        self.buttonViewModel = ActionButtonViewModel()
         super.init()
-
-        rideService.state
-            .map {
-                switch $0 {
-                case .idle, .stopped: return "Start"
-                case .paused: return "Continue"
-                case .running: return "Pause"
-                }
-        }
-        .assign(to: \.buttonTitle, on: self)
-        .store(in: &cancellables)
     }
 
     func startPauseRide() {
         rideService.toggle()
+    }
+
+    func stopRide() {
+        rideService.stop()
     }
 }

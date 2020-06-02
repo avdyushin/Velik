@@ -19,7 +19,13 @@ class MapViewModel: ViewModel, ObservableObject {
     override init() {
         super.init()
 
-        locationService.started
+        locationService.state
+            .map {
+                switch $0 {
+                case .idle: return false
+                case .monitoring: return true
+                }
+            }
             .print("location started here")
             .assign(to: \.isLocationStarted, on: self)
             .store(in: &cancellables)

@@ -53,6 +53,14 @@ class RideService: Service {
         self.state = statePublisher.eraseToAnyPublisher()
         self.track = trackPublisher.eraseToAnyPublisher()
         self.distance = distancePublisher.eraseToAnyPublisher()
+        reset()
+    }
+
+    func reset() {
+        startDate = 0
+        pausedDate = 0
+        stopDate = 0
+        totalDistance = 0
     }
 
     func start() {
@@ -75,6 +83,11 @@ class RideService: Service {
         run()
     }
 
+    func restart() {
+        reset()
+        start()
+    }
+
     func pause(automatic: Bool = false) {
         pausedDate = Date.timeIntervalSinceReferenceDate
         timerCancellable?.cancel()
@@ -90,16 +103,19 @@ class RideService: Service {
     func stop() {
         stopDate = Date.timeIntervalSinceReferenceDate
         statePublisher.send(.stopped)
+        timerCancellable?.cancel()
     }
 
     func toggle() {
         switch statePublisher.value {
+        case .idle:
+            start()
         case .paused:
             resume()
         case .running:
             pause()
-        case .idle, .stopped:
-            start()
+        case .stopped:
+            restart()
         }
     }
 

@@ -14,6 +14,11 @@ class LocationService: NSObject, Service {
 
     let shouldAutostart = true
 
+    enum State {
+        case idle
+        case monitoring
+    }
+
     private let manager: CLLocationManager
     private var cancellables = Set<AnyCancellable>()
 
@@ -23,13 +28,13 @@ class LocationService: NSObject, Service {
     private let locationPublisher = PassthroughSubject<CLLocation, Never>()
     private(set) var location: AnyPublisher<CLLocation, Never>
 
-    private let startedPublisher = PassthroughSubject<Bool, Never>()
-    var started: AnyPublisher<Bool, Never>
+    private let statePublisher = CurrentValueSubject<State, Never>(.idle)
+    private(set) var state: AnyPublisher<State, Never>
 
     init(manager: CLLocationManager = CLLocationManager()) {
         self.manager = manager
         self.speed = speedPublisher.eraseToAnyPublisher()
-        self.started = startedPublisher.eraseToAnyPublisher()
+        self.state = statePublisher.eraseToAnyPublisher()
         self.location = locationPublisher.eraseToAnyPublisher()
         super.init()
         manager.delegate = self
@@ -44,14 +49,14 @@ class LocationService: NSObject, Service {
         manager.startMonitoringSignificantLocationChanges()
         manager.startUpdatingLocation()
         manager.startUpdatingHeading()
-        startedPublisher.send(true)
+        statePublisher.send(.monitoring)
     }
 
     func stop() {
+        statePublisher.send(.idle)
         manager.stopMonitoringSignificantLocationChanges()
         manager.stopUpdatingLocation()
         manager.stopUpdatingHeading()
-        startedPublisher.send(false)
     }
 }
 
