@@ -9,10 +9,46 @@
 import SwiftUI
 import SplitView
 
+class NotificationViewModel: ViewModel, ObservableObject {
+
+    @Published var message = ""
+    @Published var showNotification = false
+
+    override init() {
+        super.init()
+
+        rideService.state
+            .sink {
+                switch $0 {
+                case .idle, .stopped:
+                    ()
+                case .paused:
+                    self.show(message: "Ride has been paused")
+                case .running:
+                    self.show(message: "Ride has been started")
+                }
+        }
+        .store(in: &cancellables)
+    }
+
+    func show(message: String) {
+        self.message = message
+        withAnimation {
+            self.showNotification = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            withAnimation {
+                self.showNotification = false
+            }
+        }
+    }
+}
+
 struct ContentView: View {
 
     @ObservedObject var sliderViewModel = SliderControlViewModel(middle: 0.5, range: 0.35...0.85)
     @ObservedObject var contentViewModel: ContentViewModel
+    @ObservedObject var notificationViewModel = NotificationViewModel()
 
     var body: some View {
         GeometryReader { geometry in
@@ -41,6 +77,10 @@ struct ContentView: View {
                     .background(Color(UIColor.systemBackground))
                 }
             )
-        }.edgesIgnoringSafeArea([.horizontal, .bottom])
+        }
+        .notify(isShowing: notificationViewModel.showNotification) { [notificationViewModel] in
+            Text(notificationViewModel.message)
+        }
+        .edgesIgnoringSafeArea([.horizontal, .bottom])
     }
 }

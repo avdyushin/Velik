@@ -9,7 +9,12 @@
 import SwiftUI
 
 extension View {
+
     func scaledFont(name: String, size: CGFloat) -> some View {
-        self.modifier(ScaledFont(name: name, size: size))
+        modifier(ScaledFont(name: name, size: size))
+    }
+
+    func notify<Content: View>(isShowing: Bool, _ content: @escaping () -> Content) -> some View {
+        NotificationView(isShowing: isShowing, presenting: { self }, content: content)
     }
 }

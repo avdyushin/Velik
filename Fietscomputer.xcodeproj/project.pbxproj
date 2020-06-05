@@ -23,6 +23,7 @@
 		4B58B63424608A8400B62914 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63324608A8400B62914 /* Data+Extension.swift */; };
 		4B58B63624608A9800B62914 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63524608A9800B62914 /* Array+Extension.swift */; };
 		4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63924608EE400B62914 /* HeartRateService.swift */; };
+		4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B834E36248ABC8F00A0272E /* NotificationView.swift */; };
 		4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9AF245C067500BD5DD3 /* ContentView.swift */; };
 		4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B1245C29CB00BD5DD3 /* RideService.swift */; };
 		4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */; };
@@ -94,6 +95,7 @@
 		4B58B63324608A8400B62914 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		4B58B63524608A9800B62914 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		4B58B63924608EE400B62914 /* HeartRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateService.swift; sourceTree = "<group>"; };
+		4B834E36248ABC8F00A0272E /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		4B88C9AF245C067500BD5DD3 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B88C9B1245C29CB00BD5DD3 /* RideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
 		4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationViewModel.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				4BA41B45247ED7CC0002D88A /* ActionButton.swift */,
 				4BA41B47247ED7DD0002D88A /* GaugesView.swift */,
 				4BA41B49247ED8050002D88A /* GaugesWithIndicatorView.swift */,
+				4B834E36248ABC8F00A0272E /* NotificationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				4BA41B4A247ED8050002D88A /* GaugesWithIndicatorView.swift in Sources */,
 				4BA41B42247ED7760002D88A /* SliderControlView.swift in Sources */,
 				4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */,
+				4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */,
 				4B58B63624608A9800B62914 /* Array+Extension.swift in Sources */,
 				4BA41B192472F7310002D88A /* MapView2.swift in Sources */,
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
