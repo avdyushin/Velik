@@ -11,7 +11,7 @@ import SplitView
 
 struct ContentView: View {
 
-    @ObservedObject var sliderViewModel = SliderControlViewModel(middle: 0.5, range: 0.3...0.85)
+    @ObservedObject var sliderViewModel = SliderControlViewModel(middle: 0.5, range: 0.35...0.85)
     @ObservedObject var contentViewModel: ContentViewModel
 
     var body: some View {
@@ -23,7 +23,8 @@ struct ContentView: View {
                 bottomView: {
                     VStack(spacing: 0) {
                         GaugesWithIndicatorView(viewModel: self.contentViewModel)
-                        ActionButton(viewModel: self.contentViewModel.buttonViewModel) { index in
+                        ActionButton(goViewModel: self.contentViewModel.goButtonViewModel,
+                                     stopViewModel: self.contentViewModel.stopButtonViewModel) { index in
                             switch index {
                             case .right:
                                 self.contentViewModel.startPauseRide()
@@ -31,9 +32,11 @@ struct ContentView: View {
                                 self.contentViewModel.stopRide()
                             }
                         }
+                        .frame(height: 96)
+                        .padding([.bottom], 8)
                         Rectangle()
                             .frame(height: geometry.safeAreaInsets.bottom)
-                            .foregroundColor(.green)
+                            .foregroundColor(.white)
                     }
                     .background(Color(UIColor.systemBackground))
                 }

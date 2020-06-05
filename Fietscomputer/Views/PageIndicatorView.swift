@@ -12,27 +12,15 @@ struct PageIndicatorView: View {
     var index: Int
     var action: () -> Void
 
-    var imageName: String {
-        switch index {
-        case 0: return "speedometer"
-        case 1: return "timer"
-        case 2: return "heart.circle"
-        case 3: return "location.circle"
-        default: return "circle"
-        }
-    }
     var body: some View {
         Button(action: { withAnimation { self.action() } }, label: {
             ZStack {
-                Rectangle()
+                Circle()
                     .foregroundColor(.clear)
                     .frame(width: 16, height: 16)
-                Rectangle()
+                Circle()
                     .fill()
                     .frame(width: 8, height: 8)
-//                Image(systemName: imageName)
-//                    .resizable()
-//                    .frame(width: 24, height: 24)
             }
         })
     }

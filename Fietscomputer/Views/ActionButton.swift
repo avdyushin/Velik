@@ -8,24 +8,6 @@
 
 import SwiftUI
 
-//struct SwitchButton<ContentA: View, ContentB: View, Result: View>: View {
-//    typealias State = ActionButtonViewModel.ButtonState
-//    let state: State
-//    let content: Result
-//    init(state: State,
-//    @ViewBuilder contentA: @escaping (State) -> ContentA, @ViewBuilder contentB: @escaping (State) -> ContentB) {
-//        switch state {
-//        case .single:
-//            content = contentA(state)
-//        case .double
-//            content = contentB(state)
-//        }
-//    }
-//    var body: some View {
-//        content
-//    }
-//}
-
 struct ActionButton: View {
 
     enum Index {
@@ -33,22 +15,41 @@ struct ActionButton: View {
         case right
     }
 
-    @ObservedObject var viewModel: ActionButtonViewModel
+    @ObservedObject var goViewModel: GoButtonViewModel
+    @ObservedObject var stopViewModel: StopButtonViewModel
+
     let handler: (Index) -> Void
 
     var body: some View {
-        HStack(spacing: 0) {
-            if viewModel.isMultiButton {
-                Button(action: { self.handler(.left) }) {
-                    Text(viewModel.leftTitle)
+        Group {
+            HStack(spacing: 0) {
+                if stopViewModel.isVisible {
+                    Button(
+                        action: { self.handler(.left) },
+                        label: {
+                            HStack {
+                                Image(systemName: "xmark")
+                                Text("Stop")
+                            }.frame(minWidth: 0, maxWidth: .infinity)
+                        }
+                    )
+                        .foregroundColor(.red)
+                        .buttonStyle(ActionButtonStyle())
                 }
-                .foregroundColor(.red)
+                Button(
+                    action: { self.handler(.right) },
+                    label: { goViewModel.state.view() }
+                )
+                    .foregroundColor(stopViewModel.isVisible ? .orange : .green)
+                    .scaleEffect(stopViewModel.isVisible ? 0.9 : 1.0)
+                    .buttonStyle(RoundButtonStyle())
             }
-            Button(action: { self.handler(.right) }) {
-                Text(viewModel.rightTitle)
-            }
-            .foregroundColor(.green)
-        }
-        .buttonStyle(ActionButtonStyle())
+        }.padding([.leading, .trailing], 32)
+    }
+}
+
+struct ActionButton_Previews: PreviewProvider {
+    static var previews: some View {
+        ActionButton(goViewModel: GoButtonViewModel(), stopViewModel: StopButtonViewModel(), handler: { _ in })
     }
 }

@@ -14,7 +14,8 @@ class ContentViewModel: ViewModel, ObservableObject {
     @ObservedObject var speedViewModel: SpeedViewModel
     @ObservedObject var durationViewModel: DurationViewModel
     @ObservedObject var distanceViewModel: DistanceViewModel
-    @ObservedObject var buttonViewModel: ActionButtonViewModel
+    @ObservedObject var goButtonViewModel: GoButtonViewModel
+    @ObservedObject var stopButtonViewModel: StopButtonViewModel
 
     var numberOfPages = 4
 
@@ -26,7 +27,8 @@ class ContentViewModel: ViewModel, ObservableObject {
         self.speedViewModel = speedViewModel
         self.durationViewModel = durationViewModel
         self.distanceViewModel = distanceViewModel
-        self.buttonViewModel = ActionButtonViewModel()
+        self.goButtonViewModel = GoButtonViewModel()
+        self.stopButtonViewModel = StopButtonViewModel()
         super.init()
     }
 
