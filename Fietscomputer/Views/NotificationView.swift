@@ -57,4 +57,3 @@ struct NotificationView_Previews: PreviewProvider {
         )
     }
 }
-
