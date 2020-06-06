@@ -25,10 +25,36 @@ struct NotificationView<Presenting: View, Content: View>: View {
                 .padding()
                 .background(Color(UIColor.systemBackground))
                 .transition(.slide)
-                .opacity(self.isShowing ? 1 : 0)
-                .shadow(radius: 10)
+                //.border(Color.orange, width: 3)
+                .overlay(
+                    Rectangle()
+                        .fill()
+                        .foregroundColor(.orange)
+                        .frame(width: 12),
+                    alignment: .leading
+                )
+                .cornerRadius(radius: 6, corners: [.topLeft, .bottomLeft])
                 .offset(y: 32)
+                .opacity(self.isShowing ? 1 : 0)
             }
         }
     }
 }
+
+extension View {
+
+    func notify<Content: View>(isShowing: Bool, _ content: @escaping () -> Content) -> some View {
+        NotificationView(isShowing: isShowing, presenting: { self }, content: content)
+    }
+}
+
+struct NotificationView_Previews: PreviewProvider {
+    static var previews: some View {
+        NotificationView(
+            isShowing: true,
+            presenting: { EmptyView() },
+            content: { Text("Ride have been stopped") }
+        )
+    }
+}
+

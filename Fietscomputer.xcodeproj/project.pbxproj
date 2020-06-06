@@ -24,6 +24,7 @@
 		4B58B63624608A9800B62914 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63524608A9800B62914 /* Array+Extension.swift */; };
 		4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63924608EE400B62914 /* HeartRateService.swift */; };
 		4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B834E36248ABC8F00A0272E /* NotificationView.swift */; };
+		4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B834E38248C0B2900A0272E /* CornerRadiusStyle.swift */; };
 		4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9AF245C067500BD5DD3 /* ContentView.swift */; };
 		4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B1245C29CB00BD5DD3 /* RideService.swift */; };
 		4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */; };
@@ -96,6 +97,7 @@
 		4B58B63524608A9800B62914 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		4B58B63924608EE400B62914 /* HeartRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateService.swift; sourceTree = "<group>"; };
 		4B834E36248ABC8F00A0272E /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		4B834E38248C0B2900A0272E /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
 		4B88C9AF245C067500BD5DD3 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B88C9B1245C29CB00BD5DD3 /* RideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideService.swift; sourceTree = "<group>"; };
 		4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationViewModel.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			children = (
 				4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */,
 				4BDBAF8E248A81CF00180624 /* RoundButtonStyle.swift */,
+				4B834E38248C0B2900A0272E /* CornerRadiusStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */,
 				4BAB77E4245B300200F011A0 /* Permissions.swift in Sources */,
 				4BBB4B95246D617700CA710F /* ScaledFont.swift in Sources */,
+				4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */,
 				4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */,
 				4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */,
 				4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */,

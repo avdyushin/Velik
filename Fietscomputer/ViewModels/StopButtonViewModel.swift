@@ -9,7 +9,11 @@
 import SwiftUI
 
 class StopButtonViewModel: ViewModel, ObservableObject {
+
     @Published var isVisible = false
+    @Published var isToggled = false
+
+    var title: String { isToggled ? "Cancel" : "Stop" }
 
     override init() {
         super.init()

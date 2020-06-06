@@ -20,12 +20,14 @@ class NotificationViewModel: ViewModel, ObservableObject {
         rideService.state
             .sink {
                 switch $0 {
-                case .idle, .stopped:
+                case .idle:
                     ()
                 case .paused:
                     self.show(message: "Ride has been paused")
                 case .running:
                     self.show(message: "Ride has been started")
+                case .stopped:
+                    self.show(message: "Ride has been stopped")
                 }
         }
         .store(in: &cancellables)
@@ -36,7 +38,7 @@ class NotificationViewModel: ViewModel, ObservableObject {
         withAnimation {
             self.showNotification = true
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             withAnimation {
                 self.showNotification = false
             }
@@ -60,11 +62,11 @@ struct ContentView: View {
                     VStack(spacing: 0) {
                         GaugesWithIndicatorView(viewModel: self.contentViewModel)
                         ActionButton(goViewModel: self.contentViewModel.goButtonViewModel,
-                                     stopViewModel: self.contentViewModel.stopButtonViewModel) { index in
-                            switch index {
-                            case .right:
+                                     stopViewModel: self.contentViewModel.stopButtonViewModel) { intention in
+                            switch intention {
+                            case .startPause:
                                 self.contentViewModel.startPauseRide()
-                            case .left:
+                            case .stop:
                                 self.contentViewModel.stopRide()
                             }
                         }

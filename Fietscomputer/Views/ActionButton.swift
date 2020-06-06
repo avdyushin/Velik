@@ -10,37 +10,68 @@ import SwiftUI
 
 struct ActionButton: View {
 
-    enum Index {
-        case left
-        case right
+    enum Intention {
+        case startPause
+        case stop
     }
 
     @ObservedObject var goViewModel: GoButtonViewModel
     @ObservedObject var stopViewModel: StopButtonViewModel
 
-    let handler: (Index) -> Void
+    var stopButtonColor: Color {
+        if stopViewModel.isToggled {
+            return .gray
+        } else {
+            return .red
+        }
+    }
+
+    var goButtonColor: Color {
+        if stopViewModel.isToggled {
+            return .red
+        } else if stopViewModel.isVisible {
+            return .orange
+        } else {
+            return .green
+        }
+    }
+
+    let handler: (Intention) -> Void
 
     var body: some View {
         Group {
             HStack(spacing: 0) {
                 if stopViewModel.isVisible {
-                    Button(
-                        action: { self.handler(.left) },
-                        label: {
-                            HStack {
-                                Image(systemName: "xmark")
-                                Text("Stop")
-                            }.frame(minWidth: 0, maxWidth: .infinity)
-                        }
-                    )
-                        .foregroundColor(.red)
+                    Button(action: {
+                        //withAnimation {
+                            self.stopViewModel.isToggled.toggle()
+                        //}
+                    }, label: {
+                        HStack {
+                            // Image(systemName: "xmark")
+                            Text(stopViewModel.title)
+                        }.frame(minWidth: 0, maxWidth: .infinity)
+                    })
+                        .foregroundColor(stopButtonColor)
                         .buttonStyle(ActionButtonStyle())
                 }
-                Button(
-                    action: { self.handler(.right) },
-                    label: { goViewModel.state.view() }
-                )
-                    .foregroundColor(stopViewModel.isVisible ? .orange : .green)
+                Button(action: {
+                    if self.stopViewModel.isToggled {
+                        // Stop
+                        self.handler(.stop)
+                        self.stopViewModel.isToggled.toggle()
+                    } else {
+                        // Go, Pause, Resume
+                        self.handler(.startPause)
+                    }
+                }, label: {
+                    if self.stopViewModel.isToggled {
+                        Image(systemName: "stop.fill")
+                    } else {
+                        goViewModel.state.view()
+                    }
+                })
+                    .foregroundColor(goButtonColor)
                     .scaleEffect(stopViewModel.isVisible ? 0.9 : 1.0)
                     .buttonStyle(RoundButtonStyle())
             }
