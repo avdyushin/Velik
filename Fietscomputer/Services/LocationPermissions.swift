@@ -15,7 +15,9 @@ class LocationPermissions: NSObject, Permissions {
 
     private let manager: CLLocationManager
     private var cancellables = Set<AnyCancellable>()
-    private let statusPublisher = PassthroughSubject<CLAuthorizationStatus, Never>()
+    private let statusPublisher = CurrentValueSubject<CLAuthorizationStatus, Never>(
+        CLLocationManager.authorizationStatus()
+    )
     private(set) var status: AnyPublisher<CLAuthorizationStatus, Never>
 
     init(manager: CLLocationManager = CLLocationManager()) {

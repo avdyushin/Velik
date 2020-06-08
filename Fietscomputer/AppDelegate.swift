@@ -47,6 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     .compactMap { $0 as? Service }
                     .filter { $0.shouldAutostart }
                     .forEach { $0.start() }
+            case .restricted:
+                debugPrint("Restricted, rerequest?")
+            case .denied:
+                debugPrint("Denied, show banner")
             default:
                 debugPrint("Can't start location service")
             }

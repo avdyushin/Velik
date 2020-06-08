@@ -104,6 +104,8 @@ class RideService: Service {
         stopDate = Date.timeIntervalSinceReferenceDate
         statePublisher.send(.stopped)
         timerCancellable?.cancel()
+        elapsedTimePublisher.send(0)
+        distancePublisher.send(0)
     }
 
     func toggle() {
