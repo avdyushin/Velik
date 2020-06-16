@@ -13,6 +13,7 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private var coordinator: AppCoordinator!
 
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
@@ -20,20 +21,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         (UIApplication.shared.delegate as? AppDelegate)?.dependencies.build()
 
-        let sharedMapView = MKMapView()
-        let contentView = ContentView(contentViewModel: ContentViewModel(
-            mapViewModel: MapViewModel(),
-            speedViewModel: SpeedViewModel(),
-            durationViewModel: DurationViewModel(),
-            distanceViewModel: DistanceViewModel()
-        )).environment(\.mkMapView, sharedMapView)
-
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+            coordinator = AppCoordinator(window: window)
+            coordinator.start()
             self.window = window
-            window.makeKeyAndVisible()
         }
     }
 

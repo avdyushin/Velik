@@ -16,7 +16,7 @@ struct GaugesWithIndicatorView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             GaugesView(viewModel: viewModel, pageIndex: self.$pageIndex)
-                .padding(.bottom, 24)
+                .padding([.top, .bottom], 12)
             ZStack(alignment: .bottomTrailing) {
                 HStack(spacing: 12) {
                     ForEach(0..<viewModel.numberOfPages) { index in

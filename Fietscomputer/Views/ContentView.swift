@@ -9,79 +9,52 @@
 import SwiftUI
 import SplitView
 
-class NotificationViewModel: ViewModel, ObservableObject {
+struct ContentView<Presenter: RootPresenting>: View {
 
-    @Published var message = ""
-    @Published var showNotification = false
-
-    override init() {
-        super.init()
-
-        rideService.state
-            .sink {
-                switch $0 {
-                case .idle:
-                    ()
-                case .paused:
-                    self.show(message: "Ride has been paused")
-                case .running:
-                    self.show(message: "Ride has been started")
-                case .stopped:
-                    self.show(message: "Ride has been stopped")
-                }
-        }
-        .store(in: &cancellables)
-    }
-
-    func show(message: String) {
-        self.message = message
-        withAnimation {
-            self.showNotification = true
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            withAnimation {
-                self.showNotification = false
-            }
-        }
-    }
-}
-
-struct ContentView: View {
-
-    @ObservedObject var sliderViewModel = SliderControlViewModel(middle: 0.5, range: 0.35...0.85)
-    @ObservedObject var contentViewModel: ContentViewModel
-    @ObservedObject var notificationViewModel = NotificationViewModel()
+    @ObservedObject var presenter: Presenter
+    @State private var isPresented = false
 
     var body: some View {
         GeometryReader { geometry in
-            SplitView(
-                viewModel: self.sliderViewModel,
-                controlView: { SliderControlView() },
-                topView: { MapView(viewModel: self.contentViewModel.mapViewModel) },
-                bottomView: {
-                    VStack(spacing: 0) {
-                        GaugesWithIndicatorView(viewModel: self.contentViewModel)
-                        ActionButton(goViewModel: self.contentViewModel.goButtonViewModel,
-                                     stopViewModel: self.contentViewModel.stopButtonViewModel) { intention in
-                            switch intention {
-                            case .startPause:
-                                self.contentViewModel.startPauseRide()
-                            case .stop:
-                                self.contentViewModel.stopRide()
+            ZStack(alignment: .topLeading) {
+                SplitView(
+                    viewModel: self.presenter.viewModel.sliderViewModel,
+                    controlView: { SliderControlView() },
+                    topView: { MapView(viewModel: self.presenter.viewModel.mapViewModel) },
+                    bottomView: {
+                        VStack(spacing: 0) {
+                            GaugesWithIndicatorView(viewModel: self.presenter.viewModel)
+                            ActionButton(goViewModel: self.presenter.viewModel.goButtonViewModel,
+                                         stopViewModel: self.presenter.viewModel.stopButtonViewModel) { intention in
+                                switch intention {
+                                case .startPause:
+                                    self.presenter.viewModel.startPauseRide()
+                                case .stop:
+                                    self.presenter.viewModel.stopRide()
+                                }
                             }
+                            .frame(height: 96)
+                            .padding([.bottom], 8)
+                            Rectangle()
+                                .frame(height: geometry.safeAreaInsets.bottom)
+                                .foregroundColor(.white)
                         }
-                        .frame(height: 96)
-                        .padding([.bottom], 8)
-                        Rectangle()
-                            .frame(height: geometry.safeAreaInsets.bottom)
-                            .foregroundColor(.white)
+                        .background(Color(UIColor.systemBackground))
                     }
-                    .background(Color(UIColor.systemBackground))
-                }
-            )
+                )
+                Button(action: {
+                    self.isPresented.toggle()
+                    // self.presenter.onHistoryPressed(isPresented: self.$isPresented)
+                    debugPrint("Show History")
+                }, label: {
+                    Image(systemName: "line.horizontal.3")
+                })
+                    .buttonStyle(MenuButtonStyle())
+                    .padding()
+            }
         }
-        .notify(isShowing: notificationViewModel.showNotification) { [notificationViewModel] in
-            Text(notificationViewModel.message)
+        .notify(isShowing: self.presenter.viewModel.notificationViewModel.showNotification) {
+            Text(self.presenter.viewModel.notificationViewModel.message)
         }
         .edgesIgnoringSafeArea([.horizontal, .bottom])
     }

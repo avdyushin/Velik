@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SplitView
 
 class ContentViewModel: ViewModel, ObservableObject {
 
@@ -16,19 +17,25 @@ class ContentViewModel: ViewModel, ObservableObject {
     @ObservedObject var distanceViewModel: DistanceViewModel
     @ObservedObject var goButtonViewModel: GoButtonViewModel
     @ObservedObject var stopButtonViewModel: StopButtonViewModel
+    @ObservedObject var notificationViewModel: NotificationViewModel
+    @ObservedObject var sliderViewModel: SliderControlViewModel
 
-    var numberOfPages = 4
+    let numberOfPages = 4
 
     init(mapViewModel: MapViewModel,
          speedViewModel: SpeedViewModel,
          durationViewModel: DurationViewModel,
-         distanceViewModel: DistanceViewModel) {
+         distanceViewModel: DistanceViewModel,
+         notificationViewModel: NotificationViewModel,
+         sliderViewModel: SliderControlViewModel) {
         self.mapViewModel = mapViewModel
         self.speedViewModel = speedViewModel
         self.durationViewModel = durationViewModel
         self.distanceViewModel = distanceViewModel
         self.goButtonViewModel = GoButtonViewModel()
         self.stopButtonViewModel = StopButtonViewModel()
+        self.notificationViewModel = notificationViewModel
+        self.sliderViewModel = sliderViewModel
         super.init()
     }
 
