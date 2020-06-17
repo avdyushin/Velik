@@ -11,6 +11,7 @@ import SwiftUI
 
 struct EnvironmentMKMapView: EnvironmentKey {
     typealias Value = MKMapView
+
     static var defaultValue = MKMapView()
 }
 

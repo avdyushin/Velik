@@ -1,0 +1,19 @@
+disabled_rules:
+    - force_cast
+excluded:
+    - Strings.swift
+opt_in_rules:
+    - let_var_whitespace
+    - vertical_whitespace_closing_braces
+    - vertical_parameter_alignment_on_call
+    - first_where
+    - flatmap_over_map_reduce
+    - legacy_cggeometry_functions
+    - legacy_constant
+    - legacy_random
+nesting:
+    type_level: 3
+
+variable_name:
+    excluded:
+        - up

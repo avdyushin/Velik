@@ -33,5 +33,4 @@ class DistanceViewModel: GaugeViewModel {
             }
             .store(in: &cancellables)
     }
-
 }

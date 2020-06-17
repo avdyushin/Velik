@@ -20,7 +20,6 @@ extension UIColor {
         init?(bitsCount: Int) {
             self.init(rawValue: bitsCount)
         }
-
     }
 
     /// Returns color with given hex string

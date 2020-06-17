@@ -22,7 +22,7 @@ class GoButtonViewModel: ViewModel, ObservableObject {
         }
     }
 
-    @Published var state = State.text(Text("Go"))
+    @Published var state = State.text(Text(Strings.go))
 
     override init() {
         super.init()
@@ -32,7 +32,7 @@ class GoButtonViewModel: ViewModel, ObservableObject {
                 switch $0 {
                 case .idle, .stopped:
                     withAnimation {
-                        self.state = .text(Text("Go"))
+                        self.state = .text(Text(Strings.go))
                     }
                 case .paused:
                     withAnimation {

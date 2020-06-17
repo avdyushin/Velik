@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B10F19A249A84300050EEF4 /* Localizable in Frameworks */ = {isa = PBXBuildFile; productRef = 4B10F199249A84300050EEF4 /* Localizable */; };
+		4B10F19E249A85870050EEF4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B10F1A0249A85870050EEF4 /* Localizable.strings */; };
+		4B10F1A4249A8BFC0050EEF4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1A3249A8BFC0050EEF4 /* Strings.swift */; };
 		4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31822461D9AA00726271 /* AppDelegate.swift */; };
 		4B2B31852461D9AA00726271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31842461D9AA00726271 /* ContentView.swift */; };
 		4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31862461D9AB00726271 /* Assets.xcassets */; };
@@ -88,6 +91,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B10F19F249A85870050EEF4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B10F1A1249A85A80050EEF4 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B10F1A2249A8B3F0050EEF4 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B10F1A3249A8BFC0050EEF4 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		4B10F1A5249A8CB70050EEF4 /* Strings.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Strings.xml; sourceTree = "<group>"; };
 		4B2B31802461D9AA00726271 /* DebugBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2B31822461D9AA00726271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2B31842461D9AA00726271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -170,6 +178,7 @@
 				4BA41B272475A7E70002D88A /* SplitView in Frameworks */,
 				4BA41B3D247D7E590002D88A /* PageView in Frameworks */,
 				4BA41B40247ED02E0002D88A /* Injected in Frameworks */,
+				4B10F19A249A84300050EEF4 /* Localizable in Frameworks */,
 				4BA41B2A247841720002D88A /* CoreDataStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,9 +316,11 @@
 		4B88C9C1245C985D00BD5DD3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4B10F1A5249A8CB70050EEF4 /* Strings.xml */,
 				4BAB77C7245B2FE200F011A0 /* Assets.xcassets */,
 				4BAB77CC245B2FE200F011A0 /* LaunchScreen.storyboard */,
 				4BAB77C2245B2FE000F011A0 /* Fietscomputer.xcdatamodeld */,
+				4B10F1A0249A85870050EEF4 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -360,6 +371,7 @@
 				4B88C9C1245C985D00BD5DD3 /* Resources */,
 				4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */,
 				4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */,
+				4B10F1A3249A8BFC0050EEF4 /* Strings.swift */,
 				4BAB77CF245B2FE200F011A0 /* Info.plist */,
 				4BAB77C9245B2FE200F011A0 /* Preview Content */,
 			);
@@ -407,6 +419,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BAB77DD245B2FE200F011A0 /* Build configuration list for PBXNativeTarget "Fietscomputer" */;
 			buildPhases = (
+				4B10F19B249A84830050EEF4 /* Localizable */,
 				4BAB77B7245B2FE000F011A0 /* Sources */,
 				4BAB77B8245B2FE000F011A0 /* Frameworks */,
 				4BAB77B9245B2FE000F011A0 /* Resources */,
@@ -422,6 +435,7 @@
 				4BA41B29247841720002D88A /* CoreDataStorage */,
 				4BA41B3C247D7E590002D88A /* PageView */,
 				4BA41B3F247ED02E0002D88A /* Injected */,
+				4B10F199249A84300050EEF4 /* Localizable */,
 			);
 			productName = Fietscomputer;
 			productReference = 4BAB77BB245B2FE000F011A0 /* Fietscomputer.app */;
@@ -474,6 +488,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				nl,
 			);
 			mainGroup = 4BAB77B2245B2FE000F011A0;
 			packageReferences = (
@@ -481,6 +497,7 @@
 				4BA41B28247841720002D88A /* XCRemoteSwiftPackageReference "CoreDataStorage" */,
 				4BA41B3B247D7E590002D88A /* XCRemoteSwiftPackageReference "PageView" */,
 				4BA41B3E247ED02E0002D88A /* XCRemoteSwiftPackageReference "Injected" */,
+				4B10F198249A84300050EEF4 /* XCRemoteSwiftPackageReference "Localizable" */,
 			);
 			productRefGroup = 4BAB77BC245B2FE000F011A0 /* Products */;
 			projectDirPath = "";
@@ -509,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BAB77CE245B2FE200F011A0 /* LaunchScreen.storyboard in Resources */,
+				4B10F19E249A85870050EEF4 /* Localizable.strings in Resources */,
 				4BAB77CB245B2FE200F011A0 /* Preview Assets.xcassets in Resources */,
 				4BAB77C8245B2FE200F011A0 /* Assets.xcassets in Resources */,
 			);
@@ -524,6 +542,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4B10F19B249A84830050EEF4 /* Localizable */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(TARGETNAME)/Resources/Strings.xml",
+			);
+			name = Localizable;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/$(TARGETNAME)/Strings.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd $SRCROOT/$TARGETNAME/Resources/Localizable\n./make.sh $SCRIPT_INPUT_FILE_0 .. $SCRIPT_OUTPUT_FILE_0\n";
+		};
 		4BA41B4B247FC2F10002D88A /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -596,6 +634,7 @@
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
 				4B32582024923F290046BD6F /* Coordinator.swift in Sources */,
 				4BAB77C6245B2FE000F011A0 /* SpeedView.swift in Sources */,
+				4B10F1A4249A8BFC0050EEF4 /* Strings.swift in Sources */,
 				4B32582724924AA50046BD6F /* HistoryCoordinator.swift in Sources */,
 				4BDBAF8D248A7D5800180624 /* StopButtonViewModel.swift in Sources */,
 				4BA41B46247ED7CC0002D88A /* ActionButton.swift in Sources */,
@@ -635,6 +674,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4B10F1A0249A85870050EEF4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B10F19F249A85870050EEF4 /* en */,
+				4B10F1A1249A85A80050EEF4 /* ru */,
+				4B10F1A2249A8B3F0050EEF4 /* nl */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		4B2B318B2461D9AB00726271 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -708,6 +757,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -769,6 +819,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -946,6 +997,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4B10F198249A84300050EEF4 /* XCRemoteSwiftPackageReference "Localizable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/avdyushin/Localizable";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		4BA41B252475A7E70002D88A /* XCRemoteSwiftPackageReference "SplitView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/avdyushin/SplitView";
@@ -981,6 +1040,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4B10F199249A84300050EEF4 /* Localizable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B10F198249A84300050EEF4 /* XCRemoteSwiftPackageReference "Localizable" */;
+			productName = Localizable;
+		};
 		4BA41B262475A7E70002D88A /* SplitView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4BA41B252475A7E70002D88A /* XCRemoteSwiftPackageReference "SplitView" */;

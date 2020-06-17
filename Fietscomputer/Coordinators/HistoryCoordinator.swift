@@ -11,6 +11,7 @@ import SwiftUI
 class HistoryCoordinator: Coordinator, ViewRunner {
 
     private var isPresented: Binding<Bool>
+
     init(isPresented: Binding<Bool>) {
         self.isPresented = isPresented
     }

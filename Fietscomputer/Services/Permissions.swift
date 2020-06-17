@@ -12,6 +12,8 @@ import CoreLocation
 
 protocol Permissions {
     associatedtype Status
+
     var status: AnyPublisher<Status, Never> { get }
+
     func request() -> Future<Status, Never>
 }

@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "Localizable",
+        "repositoryURL": "https://github.com/avdyushin/Localizable",
+        "state": {
+          "branch": null,
+          "revision": "0e16c0e06b06687582533acfe08b359054afdfd0",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "PageView",
         "repositoryURL": "https://github.com/avdyushin/PageView",
         "state": {

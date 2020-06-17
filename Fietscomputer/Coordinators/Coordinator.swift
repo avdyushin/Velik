@@ -55,6 +55,7 @@ class Coordinator {
 class AppCoordinator: Coordinator, ViewRunner {
 
     private weak var window: UIWindow?
+
     init(window: UIWindow?) {
         self.window = window
     }

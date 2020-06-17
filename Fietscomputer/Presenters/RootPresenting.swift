@@ -23,7 +23,9 @@ class Presenter<C: Coordinator> {
 
 protocol RootPresenting: ObservableObject {
     associatedtype Content: View
+
     var viewModel: ContentViewModel { get }
+
     func onHistoryPressed(isPresented: Binding<Bool>) -> Content
 }
 
