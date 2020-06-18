@@ -12,7 +12,6 @@ struct HistoryView: View {
 
     @ObservedObject var viewModel: HistoryViewModel
     @FetchRequest(sortDescriptors: Ride.sortDescriptors) var rides: FetchedResults<Ride>
-    @Environment(\.managedObjectContext) var viewContext
 
     var body: some View {
         NavigationView {
