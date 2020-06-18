@@ -22,6 +22,7 @@ class RideService: Service {
     }
 
     @Injected private var locationService: LocationService
+    @Injected private var storageService: StorageService
 
     let shouldAutostart = false
 
@@ -106,6 +107,7 @@ class RideService: Service {
         timerCancellable?.cancel()
         elapsedTimePublisher.send(0)
         distancePublisher.send(0)
+        storeRide()
     }
 
     func toggle() {
@@ -128,5 +130,9 @@ class RideService: Service {
         }.sink { [elapsedTimePublisher] elapsed in
             elapsedTimePublisher.send(elapsed)
         }//.store(in: &cancellables)
+    }
+
+    private func storeRide() {
+        storageService.createNewRide(name: "Ride \(Int.random(in: 1...10))")
     }
 }

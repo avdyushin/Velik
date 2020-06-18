@@ -2,7 +2,12 @@
 <strings>
     <string id="go">
         <en>Go</en>
-        <nl>Gaan</nl>
+        <nl>Ga</nl>
         <ru>Поехали</ru>
+    </string>
+    <string id="stop">
+        <ru>Стоп</ru>
+        <en>Stop</en>
+        <nl>Stoppen</nl>
     </string>
 </strings>

@@ -10,6 +10,12 @@
 		4B10F19A249A84300050EEF4 /* Localizable in Frameworks */ = {isa = PBXBuildFile; productRef = 4B10F199249A84300050EEF4 /* Localizable */; };
 		4B10F19E249A85870050EEF4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B10F1A0249A85870050EEF4 /* Localizable.strings */; };
 		4B10F1A4249A8BFC0050EEF4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1A3249A8BFC0050EEF4 /* Strings.swift */; };
+		4B10F1A8249B988E0050EEF4 /* RideRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1A7249B988E0050EEF4 /* RideRepository.swift */; };
+		4B10F1AA249B98B40050EEF4 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1A9249B98B30050EEF4 /* Ride.swift */; };
+		4B10F1AC249BDBA80050EEF4 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1AB249BDBA80050EEF4 /* HistoryView.swift */; };
+		4B10F1AE249BDC020050EEF4 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1AD249BDC020050EEF4 /* HistoryViewModel.swift */; };
+		4B10F1B0249BDC1A0050EEF4 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1AF249BDC1A0050EEF4 /* ViewModel.swift */; };
+		4B10F1B2249BDE0D0050EEF4 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1B1249BDE0D0050EEF4 /* RideView.swift */; };
 		4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31822461D9AA00726271 /* AppDelegate.swift */; };
 		4B2B31852461D9AA00726271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31842461D9AA00726271 /* ContentView.swift */; };
 		4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31862461D9AB00726271 /* Assets.xcassets */; };
@@ -96,6 +102,12 @@
 		4B10F1A2249A8B3F0050EEF4 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4B10F1A3249A8BFC0050EEF4 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		4B10F1A5249A8CB70050EEF4 /* Strings.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Strings.xml; sourceTree = "<group>"; };
+		4B10F1A7249B988E0050EEF4 /* RideRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRepository.swift; sourceTree = "<group>"; };
+		4B10F1A9249B98B30050EEF4 /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
+		4B10F1AB249BDBA80050EEF4 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		4B10F1AD249BDC020050EEF4 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		4B10F1AF249BDC1A0050EEF4 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		4B10F1B1249BDE0D0050EEF4 /* RideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideView.swift; sourceTree = "<group>"; };
 		4B2B31802461D9AA00726271 /* DebugBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2B31822461D9AA00726271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2B31842461D9AA00726271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -193,6 +205,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B10F1A6249B987A0050EEF4 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				4B10F1A7249B988E0050EEF4 /* RideRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		4B2B31812461D9AA00726271 /* DebugBluetooth */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +305,8 @@
 				4BA41B47247ED7DD0002D88A /* GaugesView.swift */,
 				4BA41B49247ED8050002D88A /* GaugesWithIndicatorView.swift */,
 				4B834E36248ABC8F00A0272E /* NotificationView.swift */,
+				4B10F1AB249BDBA80050EEF4 /* HistoryView.swift */,
+				4B10F1B1249BDE0D0050EEF4 /* RideView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,6 +314,7 @@
 		4B88C9BF245C984A00BD5DD3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4B10F1AF249BDC1A0050EEF4 /* ViewModel.swift */,
 				4B88C9B3245C2BBC00BD5DD3 /* DurationViewModel.swift */,
 				4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */,
 				4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */,
@@ -301,6 +324,7 @@
 				4BA41B4C2481A32C0002D88A /* GoButtonViewModel.swift */,
 				4BDBAF8C248A7D5800180624 /* StopButtonViewModel.swift */,
 				4B32582824924CEC0046BD6F /* NotificationViewModel.swift */,
+				4B10F1AD249BDC020050EEF4 /* HistoryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -309,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */,
+				4B10F1A9249B98B30050EEF4 /* Ride.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -359,6 +384,7 @@
 		4BAB77BD245B2FE000F011A0 /* Fietscomputer */ = {
 			isa = PBXGroup;
 			children = (
+				4B10F1A6249B987A0050EEF4 /* Repositories */,
 				4B32581E24923F180046BD6F /* Coordinators */,
 				4B58B63224608A7600B62914 /* Extensions */,
 				4B58B62F246089BE00B62914 /* Utils */,
@@ -607,6 +633,7 @@
 				4BBB4B992470624900CA710F /* Color+Extension.swift in Sources */,
 				4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */,
 				4BA41B48247ED7DD0002D88A /* GaugesView.swift in Sources */,
+				4B10F1AA249B98B40050EEF4 /* Ride.swift in Sources */,
 				4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */,
 				4BA41B1F2472F7F30002D88A /* Timer2.swift in Sources */,
 				4B3258222492464E0046BD6F /* RootCoordinator.swift in Sources */,
@@ -617,18 +644,22 @@
 				4BBB4B95246D617700CA710F /* ScaledFont.swift in Sources */,
 				4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */,
 				4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */,
+				4B10F1B2249BDE0D0050EEF4 /* RideView.swift in Sources */,
 				4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */,
 				4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */,
 				4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */,
+				4B10F1AE249BDC020050EEF4 /* HistoryViewModel.swift in Sources */,
 				4BA41B152472F6ED0002D88A /* MapViewModel.swift in Sources */,
 				4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */,
 				4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */,
 				4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */,
 				4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */,
+				4B10F1B0249BDC1A0050EEF4 /* ViewModel.swift in Sources */,
 				4BA41B4A247ED8050002D88A /* GaugesWithIndicatorView.swift in Sources */,
 				4BA41B42247ED7760002D88A /* SliderControlView.swift in Sources */,
 				4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */,
 				4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */,
+				4B10F1A8249B988E0050EEF4 /* RideRepository.swift in Sources */,
 				4B58B63624608A9800B62914 /* Array+Extension.swift in Sources */,
 				4BA41B192472F7310002D88A /* MapView2.swift in Sources */,
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
@@ -651,6 +682,7 @@
 				4B325825249249B20046BD6F /* RootPresenting.swift in Sources */,
 				4B58B63424608A8400B62914 /* Data+Extension.swift in Sources */,
 				4BBB4B97246D619400CA710F /* View+Extension.swift in Sources */,
+				4B10F1AC249BDBA80050EEF4 /* HistoryView.swift in Sources */,
 				4BA41B172472F7080002D88A /* UserTrackingButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1002,7 +1034,7 @@
 			repositoryURL = "https://github.com/avdyushin/Localizable";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.0.1;
 			};
 		};
 		4BA41B252475A7E70002D88A /* XCRemoteSwiftPackageReference "SplitView" */ = {
@@ -1018,7 +1050,7 @@
 			repositoryURL = "https://github.com/avdyushin/CoreDataStorage";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.0.1;
 			};
 		};
 		4BA41B3B247D7E590002D88A /* XCRemoteSwiftPackageReference "PageView" */ = {

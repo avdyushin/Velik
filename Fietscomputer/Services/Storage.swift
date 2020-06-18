@@ -14,10 +14,16 @@ class StorageService: Service {
 
     let shouldAutostart = true
 
-    private let storage = CoreDataStorage(container: NSPersistentContainer(name: "Fietscomputer"))
+    let storage = CoreDataStorage(container: NSPersistentContainer(name: "Fietscomputer"))
 
     func start() {
         debugPrint(storage)
     }
     func stop() { }
+
+    func createNewRide(name: String) {
+        _ = storage.performInBackgroundAndSave { context -> Void in
+            Ride.create(name: name, context: context)
+        }
+    }
 }

@@ -13,6 +13,7 @@ struct ContentView<Presenter: RootPresenting>: View {
 
     @ObservedObject var presenter: Presenter
     @State private var isPresented = false
+    @Environment(\.managedObjectContext) var viewContext
 
     var body: some View {
         GeometryReader { geometry in
@@ -44,8 +45,6 @@ struct ContentView<Presenter: RootPresenting>: View {
                 )
                 Button(action: {
                     self.isPresented.toggle()
-                    // self.presenter.onHistoryPressed(isPresented: self.$isPresented)
-                    debugPrint("Show History")
                 }, label: {
                     Image(systemName: "line.horizontal.3")
                 })
@@ -55,6 +54,10 @@ struct ContentView<Presenter: RootPresenting>: View {
         }
         .notify(isShowing: self.presenter.viewModel.notificationViewModel.showNotification) {
             Text(self.presenter.viewModel.notificationViewModel.message)
+        }
+        .sheet(isPresented: $isPresented) {
+            HistoryView(viewModel: HistoryViewModel())
+                .environment(\.managedObjectContext, self.viewContext)
         }
         .edgesIgnoringSafeArea([.horizontal, .bottom])
     }

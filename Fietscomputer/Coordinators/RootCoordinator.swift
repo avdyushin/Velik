@@ -8,8 +8,11 @@
 
 import MapKit
 import SwiftUI
+import Injected
 
 class RootCoordinator: Coordinator, ViewRunner {
+
+    @Injected var storage: StorageService
 
     private weak var window: UIWindow?
     private let sharedMapView = MKMapView()
@@ -20,8 +23,11 @@ class RootCoordinator: Coordinator, ViewRunner {
 
     func start() -> some View {
         debugPrint("\(self) started")
+
         let contentView = RootViewFactory.make(with: self)
             .environment(\.mkMapView, sharedMapView)
+            .environment(\.managedObjectContext, storage.storage.mainContext)
+
         window?.rootViewController = UIHostingController(rootView:
             contentView //NavigationView { contentView }
         )

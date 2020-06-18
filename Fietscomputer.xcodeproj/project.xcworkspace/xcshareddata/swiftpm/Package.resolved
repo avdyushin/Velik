@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/avdyushin/CoreDataStorage",
         "state": {
           "branch": null,
-          "revision": "cc73dae39ae86ca3bd5eac7653ad83e8d10a3c14",
-          "version": "1.0.0"
+          "revision": "87b9d2b695449caa014a7733f1e9257197652cbe",
+          "version": "1.0.1"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/avdyushin/Localizable",
         "state": {
           "branch": null,
-          "revision": "0e16c0e06b06687582533acfe08b359054afdfd0",
-          "version": "1.0.0"
+          "revision": "0bdc52373db8662cf32a6a4f8964aaabbfa1b0e7",
+          "version": "1.0.2"
         }
       },
       {
