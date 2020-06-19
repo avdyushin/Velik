@@ -25,6 +25,8 @@ struct RideViewDetails: View {
             Divider()
             RideSummaryView(viewModel: viewModel.rideViewModel)
             Spacer()
+            Text(viewModel.tracks)
+            Text(viewModel.points)
             Button(
                 action: {
                     self.confirmDelete.toggle()

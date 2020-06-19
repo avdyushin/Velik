@@ -143,13 +143,14 @@ class RideService: Service {
 
     private func storeRide() {
         storageService.createNewRide(
-            name: "Ride \(Int.random(in: 1...10))",
+            name: "Ride",
             summary: Summary(
                 duration: duration,
                 distance: totalDistance,
                 avgSpeed: 20,
                 maxSpeed: 30
-            )
+            ),
+            locations: locations
         )
     }
 }

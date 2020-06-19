@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NotificationView<Presenting: View, Content: View>: View {
 
-    var isShowing: Bool
+    @Binding var isShowing: Bool
     let presenting: () -> Presenting
     let content: () -> Content
 
@@ -43,17 +43,17 @@ struct NotificationView<Presenting: View, Content: View>: View {
 
 extension View {
 
-    func notify<Content: View>(isShowing: Bool, _ content: @escaping () -> Content) -> some View {
+    func notify<Content: View>(isShowing: Binding<Bool>, _ content: @escaping () -> Content) -> some View {
         NotificationView(isShowing: isShowing, presenting: { self }, content: content)
     }
 }
 
-struct NotificationView_Previews: PreviewProvider {
-    static var previews: some View {
-        NotificationView(
-            isShowing: true,
-            presenting: { EmptyView() },
-            content: { Text("Ride have been stopped") }
-        )
-    }
-}
+//struct NotificationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NotificationView(
+//            isShowing: true,
+//            presenting: { EmptyView() },
+//            content: { Text("Ride have been stopped") }
+//        )
+//    }
+//}

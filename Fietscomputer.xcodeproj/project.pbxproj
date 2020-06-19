@@ -26,6 +26,8 @@
 		4B10F1C2249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift */; };
 		4B10F1C4249D2B260050EEF4 /* MKMapSnapshotter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1C3249D2B260050EEF4 /* MKMapSnapshotter+Extension.swift */; };
 		4B10F1C6249D2CD90050EEF4 /* RideDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1C5249D2CD90050EEF4 /* RideDetailsViewModel.swift */; };
+		4B10F1CD249D53D30050EEF4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1CC249D53D30050EEF4 /* Track.swift */; };
+		4B10F1CF249D53DB0050EEF4 /* TrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1CE249D53DB0050EEF4 /* TrackPoint.swift */; };
 		4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31822461D9AA00726271 /* AppDelegate.swift */; };
 		4B2B31852461D9AA00726271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31842461D9AA00726271 /* ContentView.swift */; };
 		4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31862461D9AB00726271 /* Assets.xcassets */; };
@@ -128,6 +130,8 @@
 		4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapSnapshotterSubsription.swift; sourceTree = "<group>"; };
 		4B10F1C3249D2B260050EEF4 /* MKMapSnapshotter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapSnapshotter+Extension.swift"; sourceTree = "<group>"; };
 		4B10F1C5249D2CD90050EEF4 /* RideDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailsViewModel.swift; sourceTree = "<group>"; };
+		4B10F1CC249D53D30050EEF4 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		4B10F1CE249D53DB0050EEF4 /* TrackPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPoint.swift; sourceTree = "<group>"; };
 		4B2B31802461D9AA00726271 /* DebugBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2B31822461D9AA00726271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2B31842461D9AA00726271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -284,6 +288,25 @@
 			name = Misc;
 			sourceTree = "<group>";
 		};
+		4B10F1D0249D591D0050EEF4 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				4BAB77E5245B3A1000F011A0 /* LocationService.swift */,
+				4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */,
+				4B10F1BB249D0AD60050EEF4 /* MapSnapshotService.swift */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
+		4B10F1D1249D592E0050EEF4 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				4B58B619245C9FA700B62914 /* BluetoothScanner.swift */,
+				4B58B63924608EE400B62914 /* HeartRateService.swift */,
+			);
+			name = Bluetooth;
+			sourceTree = "<group>";
+		};
 		4B2B31812461D9AA00726271 /* DebugBluetooth */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,15 +375,12 @@
 		4B88C9BD245C97FF00BD5DD3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4B10F1D1249D592E0050EEF4 /* Bluetooth */,
+				4B10F1D0249D591D0050EEF4 /* Location */,
 				4B88C9B5245C3DCD00BD5DD3 /* Service.swift */,
 				4BAB77E3245B300200F011A0 /* Permissions.swift */,
-				4BAB77E5245B3A1000F011A0 /* LocationService.swift */,
-				4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */,
 				4B88C9B1245C29CB00BD5DD3 /* RideService.swift */,
-				4B58B619245C9FA700B62914 /* BluetoothScanner.swift */,
-				4B58B63924608EE400B62914 /* HeartRateService.swift */,
 				4BA41B2B247841830002D88A /* Storage.swift */,
-				4B10F1BB249D0AD60050EEF4 /* MapSnapshotService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -404,6 +424,8 @@
 				4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */,
 				4B10F1A9249B98B30050EEF4 /* Ride.swift */,
 				4B10F1B3249C944C0050EEF4 /* RideSummary.swift */,
+				4B10F1CC249D53D30050EEF4 /* Track.swift */,
+				4B10F1CE249D53DB0050EEF4 /* TrackPoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -457,13 +479,13 @@
 				4B10F1A6249B987A0050EEF4 /* Repositories */,
 				4B32581E24923F180046BD6F /* Coordinators */,
 				4B58B63224608A7600B62914 /* Extensions */,
-				4B58B62F246089BE00B62914 /* Utils */,
 				4B88C9C0245C985500BD5DD3 /* Models */,
 				4B3258232492499E0046BD6F /* Presenters */,
 				4B88C9BF245C984A00BD5DD3 /* ViewModels */,
 				4B88C9BE245C982E00BD5DD3 /* Views */,
 				4B88C9BD245C97FF00BD5DD3 /* Services */,
 				4BA41B0D2472F6710002D88A /* Styles */,
+				4B58B62F246089BE00B62914 /* Utils */,
 				4B88C9C1245C985D00BD5DD3 /* Resources */,
 				4BAB77BE245B2FE000F011A0 /* AppDelegate.swift */,
 				4BAB77C0245B2FE000F011A0 /* SceneDelegate.swift */,
@@ -747,10 +769,12 @@
 				4BDBAF8D248A7D5800180624 /* StopButtonViewModel.swift in Sources */,
 				4BA41B46247ED7CC0002D88A /* ActionButton.swift in Sources */,
 				4BAB77E6245B3A1000F011A0 /* LocationService.swift in Sources */,
+				4B10F1CD249D53D30050EEF4 /* Track.swift in Sources */,
 				4BA41B2C247841830002D88A /* Storage.swift in Sources */,
 				4B58B631246089CB00B62914 /* AES.swift in Sources */,
 				4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */,
 				4BA41B1B2472F7550002D88A /* ContentViewModel.swift in Sources */,
+				4B10F1CF249D53DB0050EEF4 /* TrackPoint.swift in Sources */,
 				4B88C9B6245C3DCD00BD5DD3 /* Service.swift in Sources */,
 				4BA41B44247ED7A20002D88A /* PageIndicatorView.swift in Sources */,
 				4B32582924924CEC0046BD6F /* NotificationViewModel.swift in Sources */,

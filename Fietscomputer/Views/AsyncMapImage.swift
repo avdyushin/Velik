@@ -30,6 +30,6 @@ struct AsyncMapImage<Placeholder: View>: View {
             }
         }
         .onAppear(perform: mapLoader.start)
-        .onDisappear(perform: mapLoader.stop)
+        //.onDisappear(perform: mapLoader.stop)
     }
 }

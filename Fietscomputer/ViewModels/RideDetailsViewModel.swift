@@ -17,12 +17,21 @@ class RideDetailsViewModel: ObservableObject {
     let objectID: NSManagedObjectID
     var rideViewModel: RideViewModel
 
+    var tracks: String
+    var points: String
+
     init(ride: Ride) {
         self.objectID = ride.objectID
         self.rideViewModel = RideViewModel(
             createdAt: ride.createdAt,
             summary: ride.asRideSummary()
         )
+        self.tracks = "Tracks: \(ride.tracks?.count ?? 0)"
+        if let track = ride.tracks?.allObjects.first as? Track {
+            self.points = "Points: \(track.points?.count ?? 0)"
+        } else {
+            self.points = "None"
+        }
     }
 
     func delete() {

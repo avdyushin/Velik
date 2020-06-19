@@ -23,6 +23,9 @@ class MapImageLoader: ObservableObject {
     }
 
     func start() {
+        guard mapImage == nil else {
+            return
+        }
         snapshotter = snapshotService
             .makeSnapshot(center, size: CGSize(width: 120 * 3, height: 80 * 3))
             .replaceError(with: nil)
@@ -31,6 +34,6 @@ class MapImageLoader: ObservableObject {
     }
 
     func stop() {
-        snapshotter?.cancel()
+        // snapshotter?.cancel()
     }
 }

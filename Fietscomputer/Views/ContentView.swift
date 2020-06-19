@@ -12,7 +12,8 @@ import SplitView
 struct ContentView<Presenter: RootPresenting>: View {
 
     @ObservedObject var presenter: Presenter
-    @State private var isPresented = false
+    @State private var isHistoryPresented = false
+//    @State private var isNotificationPresented = false
     @Environment(\.managedObjectContext) var viewContext
 
     var body: some View {
@@ -44,7 +45,7 @@ struct ContentView<Presenter: RootPresenting>: View {
                     }
                 )
                 Button(action: {
-                    self.isPresented.toggle()
+                    self.isHistoryPresented.toggle()
                 }, label: {
                     Image(systemName: "line.horizontal.3")
                 })
@@ -52,10 +53,10 @@ struct ContentView<Presenter: RootPresenting>: View {
                     .padding()
             }
         }
-        .notify(isShowing: self.presenter.viewModel.notificationViewModel.showNotification) {
-            Text(self.presenter.viewModel.notificationViewModel.message)
-        }
-        .sheet(isPresented: $isPresented) {
+//        .notify(isShowing: $isNotificationPresented) {
+//            Text(self.presenter.viewModel.notificationViewModel.message)
+//        }
+        .sheet(isPresented: $isHistoryPresented) {
             HistoryView(viewModel: HistoryViewModel())
                 .environment(\.managedObjectContext, self.viewContext)
         }

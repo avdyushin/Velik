@@ -43,12 +43,9 @@ struct ActionButton: View {
             HStack(spacing: 0) {
                 if stopViewModel.isVisible {
                     Button(action: {
-                        //withAnimation {
-                            self.stopViewModel.isToggled.toggle()
-                        //}
+                        self.stopViewModel.isToggled.toggle()
                     }, label: {
                         HStack {
-                            // Image(systemName: "xmark")
                             Text(stopViewModel.title)
                         }.frame(minWidth: 0, maxWidth: .infinity)
                     })

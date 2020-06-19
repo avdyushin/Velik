@@ -31,13 +31,14 @@
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="track" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Track" inverseName="points" inverseEntity="Track"/>
     </entity>
     <elements>
         <element name="Ride" positionX="-63" positionY="-18" width="128" height="148"/>
-        <element name="Track" positionX="-36" positionY="45" width="128" height="133"/>
-        <element name="TrackPoint" positionX="-54" positionY="-9" width="128" height="148"/>
         <element name="RideSummary" positionX="-18" positionY="90" width="128" height="133"/>
+        <element name="Track" positionX="-36" positionY="45" width="128" height="133"/>
+        <element name="TrackPoint" positionX="-54" positionY="-9" width="128" height="163"/>
     </elements>
 </model>

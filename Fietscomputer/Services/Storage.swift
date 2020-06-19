@@ -6,8 +6,10 @@
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
+import Combine
 import CoreData
 import Foundation
+import CoreLocation
 import CoreDataStorage
 
 extension CoreDataStorage {
@@ -27,7 +29,7 @@ class StorageService: Service {
     }
     func stop() { }
 
-    func createNewRide(name: String, summary: RideService.Summary) {
+    func createNewRide(name: String, summary: RideService.Summary, locations: [CLLocation]) {
         storage.update { context in
             let ride = Ride.create(name: name, context: context)
             ride.summary = RideSummary.create(context: context)
@@ -35,6 +37,11 @@ class StorageService: Service {
             ride.summary?.duration = summary.duration
             ride.summary?.avgSpeed = summary.avgSpeed
             ride.summary?.maxSpeed = summary.maxSpeed
+            let track = Track.create(name: name, context: context)
+            ride.addToTracks(track)
+            locations.forEach {
+                track.addTrackPoint(with: $0, context: context)
+            }
         }
     }
 
