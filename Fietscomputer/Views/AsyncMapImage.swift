@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import struct UIKit.CGSize
 import struct CoreLocation.CLLocationCoordinate2D
 
 struct AsyncMapImage<Placeholder: View>: View {
@@ -24,7 +25,6 @@ struct AsyncMapImage<Placeholder: View>: View {
             if mapLoader.mapImage != nil {
                 Image(uiImage: mapLoader.mapImage!)
                     .resizable()
-                    .frame(width: 120, height: 80, alignment: .leading)
             } else {
                 placeholder
             }

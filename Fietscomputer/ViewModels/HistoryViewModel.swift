@@ -9,6 +9,4 @@
 import SwiftUI
 
 class HistoryViewModel: ObservableObject {
-
-    @FetchRequest(sortDescriptors: Ride.sortDescriptors) var rides: FetchedResults<Ride>
 }

@@ -6,9 +6,9 @@
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
-import class UIKit.UIImage
 import MapKit
 import Combine
+import class UIKit.UIImage
 
 class MKMapSnapshotterSubscription<S: Subscriber>: Subscription where S.Input == UIImage?, S.Failure == Error {
 
@@ -55,12 +55,5 @@ struct MKMapSnapshotterPublisher: Publisher {
     func receive<S: Subscriber>(subscriber: S) where Self.Failure == S.Failure, Self.Output == S.Input {
         let subscription = MKMapSnapshotterSubscription(subscriber: subscriber, snapshotter: snapshotter)
         subscriber.receive(subscription: subscription)
-    }
-}
-
-extension MKMapSnapshotter {
-
-    func publisher() -> MKMapSnapshotterPublisher {
-        MKMapSnapshotterPublisher(snapshotter: self)
     }
 }

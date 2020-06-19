@@ -13,7 +13,7 @@ class StopButtonViewModel: ViewModel, ObservableObject {
     @Published var isVisible = false
     @Published var isToggled = false
 
-    var title: String { isToggled ? "Cancel" : "Stop" }
+    var title: String { isToggled ? Strings.cancel : Strings.stop }
 
     override init() {
         super.init()

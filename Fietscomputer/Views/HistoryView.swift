@@ -16,14 +16,14 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
             List(rides) { ride in
-                NavigationLink(destination: RideView()) {
+                NavigationLink(destination: RideViewDetails(viewModel: RideDetailsViewModel(ride: ride))) {
                     RideCellView(viewModel: RideViewModel(
                         createdAt: ride.createdAt,
                         summary: ride.asRideSummary()
                     )).padding([.bottom], 6)
                 }
             }.listStyle(GroupedListStyle())
-            .navigationBarTitle("Rides")
+            .navigationBarTitle(Strings.rides)
         }
     }
 }

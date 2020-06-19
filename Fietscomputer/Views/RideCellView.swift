@@ -9,6 +9,22 @@
 import SwiftUI
 import struct CoreLocation.CLLocationCoordinate2D
 
+struct RideSummaryView: View {
+    var viewModel: RideViewModel
+    var body: some View {
+        HStack {
+            VStack(spacing: 8) {
+                ValueDescriptionView(text: viewModel.duration, details: viewModel.durationLabel)
+                ValueDescriptionView(text: viewModel.avgSpeed, details: viewModel.avgSpeedLabel)
+            }
+            VStack(spacing: 8) {
+                ValueDescriptionView(text: viewModel.distance, details: viewModel.distanceLabel)
+                ValueDescriptionView(text: viewModel.maxSpeed, details: viewModel.maxSpeedLabel)
+            }
+        }
+    }
+}
+
 struct RideCellView: View {
 
     var viewModel: RideViewModel
@@ -21,20 +37,10 @@ struct RideCellView: View {
             HStack(alignment: .top) {
                 AsyncMapImage(center: CLLocationCoordinate2D(latitude: 51.94, longitude: 4.49)) {
                     Rectangle()
-                        .frame(width: 120, height: 80, alignment: .leading)
                         .foregroundColor(Color(UIColor.systemFill))
-                }
+                }.frame(width: 120, height: 80, alignment: .leading)
                 VStack(alignment: .trailing, spacing: 8) {
-                    HStack {
-                        VStack(spacing: 8) {
-                            ValueDescriptionView(text: viewModel.duration, details: viewModel.durationLabel)
-                            ValueDescriptionView(text: viewModel.avgSpeed, details: viewModel.avgSpeedLabel)
-                        }
-                        VStack(spacing: 8) {
-                            ValueDescriptionView(text: viewModel.distance, details: viewModel.distanceLabel)
-                            ValueDescriptionView(text: viewModel.maxSpeed, details: viewModel.maxSpeedLabel)
-                        }
-                    }
+                    RideSummaryView(viewModel: viewModel)
                 }.frame(minWidth: 0, maxWidth: .infinity)
             }
         }

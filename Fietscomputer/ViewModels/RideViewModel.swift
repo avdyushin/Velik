@@ -17,10 +17,10 @@ class RideViewModel {
     var avgSpeed: String
     var maxSpeed: String
 
-    let distanceLabel = "Distance"
-    let durationLabel = "Duration"
-    let avgSpeedLabel = "Avg. Speed"
-    let maxSpeedLabel = "Max Speed"
+    let distanceLabel = Strings.distance
+    let durationLabel = Strings.duration
+    let avgSpeedLabel = Strings.avg_speed
+    let maxSpeedLabel = Strings.max_speed
 
     init(createdAt: Date?, summary: RideService.Summary) {
         date = Self.date(createdAt)
@@ -33,13 +33,13 @@ class RideViewModel {
     }
 
     static func date(_ value: Date?) -> String {
-        guard let value = value else { return "Unknown" }
+        guard let value = value else { return "" }
         let date = Formatters.relativeDateFormatter.localizedString(fromTimeInterval: value.timeIntervalSinceNow)
         if value.timeIntervalSinceNow > -60*60*24 {
             return date
         } else {
             let time = Formatters.timeFormatter.string(from: value)
-            return [date, "at", time].joined(separator: " ")
+            return [date, Strings.at, time].joined(separator: " ")
         }
     }
 

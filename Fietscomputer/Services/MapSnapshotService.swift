@@ -18,19 +18,10 @@ protocol MapSnapshotProtocol {
 class MapKitSnapshot: MapSnapshotProtocol {
 
     func makeSnapshot(_ center: CLLocationCoordinate2D, size: CGSize) -> AnyPublisher<UIImage?, Error> {
-        MKMapSnapshotter(options:
-            .init(region: MKCoordinateRegion(
-                center: center,
-                latitudinalMeters: 1200,
-                longitudinalMeters: 800
-            ))
-        ).publisher().eraseToAnyPublisher()
-    }
-}
-
-extension MKMapSnapshotter.Options {
-    convenience init(region: MKCoordinateRegion) {
-        self.init()
-        self.region = region
+        MKMapSnapshotter.Publisher(
+            center: center,
+            latitudinalMeters: 800,
+            longitudinalMeters: 1200
+        ).eraseToAnyPublisher()
     }
 }

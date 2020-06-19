@@ -37,4 +37,10 @@ class StorageService: Service {
             ride.summary?.maxSpeed = summary.maxSpeed
         }
     }
+
+    func deleteRide(objectID: NSManagedObjectID) {
+        storage.update { context in
+            context.delete(context.object(with: objectID))
+        }
+    }
 }

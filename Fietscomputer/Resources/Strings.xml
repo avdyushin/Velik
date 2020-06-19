@@ -10,4 +10,34 @@
         <en>Stop</en>
         <nl>Stoppen</nl>
     </string>
+    <string id="cancel">
+        <en>Cancel</en>
+    </string>
+    <string id="at">
+        <en>at</en>
+    </string>
+    <string id="rides">
+        <en>Rides</en>
+    </string>
+    <string id="duration">
+        <en>Duration</en>
+    </string>
+    <string id="distance">
+        <en>Distance</en>
+    </string>
+    <string id="avg_speed">
+        <en>Avg. Speed</en>
+    </string>
+    <string id="max_speed">
+        <en>Max Speed</en>
+    </string>
+    <string id="remove_ride">
+        <en>Remove Ride</en>
+    </string>
+    <string id="remove_ride_message">
+        <en>Are you sure you want to remove Ride?</en>
+    </string>
+    <string id="confirm_delete">
+        <en>Yes, please delete</en>
+    </string>
 </strings>
