@@ -18,22 +18,13 @@ protocol MapSnapshotProtocol {
 class MapKitSnapshot: MapSnapshotProtocol {
 
     func makeSnapshot(_ center: CLLocationCoordinate2D, size: CGSize) -> AnyPublisher<UIImage?, Error> {
-        Future<UIImage?, Error> { promise in
-            let snapshotter = MKMapSnapshotter(options:
-                .init(region: MKCoordinateRegion(
-                    center: center,
-                    latitudinalMeters: 1200,
-                    longitudinalMeters: 800
-                ))
-            )
-            snapshotter.start { snapshot, error in
-                if let error = error {
-                    promise(.failure(error))
-                } else {
-                    promise(.success(snapshot?.image))
-                }
-            }
-        }.eraseToAnyPublisher()
+        MKMapSnapshotter(options:
+            .init(region: MKCoordinateRegion(
+                center: center,
+                latitudinalMeters: 1200,
+                longitudinalMeters: 800
+            ))
+        ).publisher().eraseToAnyPublisher()
     }
 }
 

@@ -23,6 +23,7 @@
 		4B10F1BC249D0AD60050EEF4 /* MapSnapshotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1BB249D0AD60050EEF4 /* MapSnapshotService.swift */; };
 		4B10F1BE249D0DAC0050EEF4 /* MapImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1BD249D0DAC0050EEF4 /* MapImageLoader.swift */; };
 		4B10F1C0249D0F090050EEF4 /* AsyncMapImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1BF249D0F090050EEF4 /* AsyncMapImage.swift */; };
+		4B10F1C2249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift */; };
 		4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31822461D9AA00726271 /* AppDelegate.swift */; };
 		4B2B31852461D9AA00726271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31842461D9AA00726271 /* ContentView.swift */; };
 		4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31862461D9AB00726271 /* Assets.xcassets */; };
@@ -122,6 +123,7 @@
 		4B10F1BB249D0AD60050EEF4 /* MapSnapshotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSnapshotService.swift; sourceTree = "<group>"; };
 		4B10F1BD249D0DAC0050EEF4 /* MapImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapImageLoader.swift; sourceTree = "<group>"; };
 		4B10F1BF249D0F090050EEF4 /* AsyncMapImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMapImage.swift; sourceTree = "<group>"; };
+		4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapSnapshotterSubsription.swift; sourceTree = "<group>"; };
 		4B2B31802461D9AA00726271 /* DebugBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2B31822461D9AA00726271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2B31842461D9AA00726271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				4BA41B102472F6AB0002D88A /* Formatters.swift */,
 				4BA41B1E2472F7F30002D88A /* Timer2.swift */,
 				4B10F1BD249D0DAC0050EEF4 /* MapImageLoader.swift */,
+				4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				4BA41B1F2472F7F30002D88A /* Timer2.swift in Sources */,
 				4B3258222492464E0046BD6F /* RootCoordinator.swift in Sources */,
 				4BA41B4D2481A32C0002D88A /* GoButtonViewModel.swift in Sources */,
+				4B10F1C2249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift in Sources */,
 				4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */,
 				4B32582B249250EA0046BD6F /* MenuButtonStyle.swift in Sources */,
 				4BAB77E4245B300200F011A0 /* Permissions.swift in Sources */,
