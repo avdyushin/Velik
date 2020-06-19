@@ -27,4 +27,13 @@ extension Ride: Identifiable {
         ride.name = name
         return ride
     }
+
+    func asRideSummary() -> RideService.Summary {
+        RideService.Summary(
+            duration: summary?.duration ?? 0,
+            distance: summary?.distance ?? 0,
+            avgSpeed: summary?.avgSpeed ?? 0,
+            maxSpeed: summary?.maxSpeed ?? 0
+        )
+    }
 }

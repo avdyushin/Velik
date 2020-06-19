@@ -17,9 +17,13 @@ struct HistoryView: View {
         NavigationView {
             List(rides) { ride in
                 NavigationLink(destination: RideView()) {
-                    Text("Ride: \(ride)")
+                    RideCellView(viewModel: RideViewModel(
+                        createdAt: ride.createdAt,
+                        summary: ride.asRideSummary()
+                    )).padding([.bottom], 6)
                 }
-            }.navigationBarTitle("Rides")
+            }.listStyle(GroupedListStyle())
+            .navigationBarTitle("Rides")
         }
     }
 }

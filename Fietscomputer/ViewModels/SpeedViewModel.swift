@@ -17,9 +17,7 @@ class SpeedViewModel: GaugeViewModel {
         locationService.speed
             .map { $0 < 0 ? 0 : $0 } // filter out negative values
             .sink { value in // m/s
-                let mps = Measurement(value: value, unit: UnitSpeed.metersPerSecond)
-                let kph = mps.converted(to: UnitSpeed.kilometersPerHour)
-                let formatted = Formatters.formatted(from: kph)
+                let formatted = RideViewModel.speed(value)
                 self.value = formatted.value
                 self.units = formatted.units.uppercased()
         }

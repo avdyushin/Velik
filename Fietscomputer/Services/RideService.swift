@@ -21,6 +21,13 @@ class RideService: Service {
         case stopped
     }
 
+    struct Summary {
+        let duration: Double // s
+        let distance: CLLocationDistance // m
+        let avgSpeed: Double // m/s
+        let maxSpeed: Double // ms
+    }
+
     @Injected private var locationService: LocationService
     @Injected private var storageService: StorageService
 
@@ -28,6 +35,7 @@ class RideService: Service {
 
     private var locations = [CLLocation]()
     private var totalDistance: CLLocationDistance = 0
+    private var duration: Double = 0
 
     private let trackPublisher = PassthroughSubject<MKPolyline, Never>()
     private(set) var track: AnyPublisher<MKPolyline, Never>
@@ -127,12 +135,21 @@ class RideService: Service {
         timer = Timer2()
         timerCancellable = timer.timer.map { [startDate] _ in
             Date.timeIntervalSinceReferenceDate - startDate
-        }.sink { [elapsedTimePublisher] elapsed in
+        }.sink { [unowned self, elapsedTimePublisher] elapsed in
             elapsedTimePublisher.send(elapsed)
-        }//.store(in: &cancellables)
+            self.duration = elapsed
+        }
     }
 
     private func storeRide() {
-        storageService.createNewRide(name: "Ride \(Int.random(in: 1...10))")
+        storageService.createNewRide(
+            name: "Ride \(Int.random(in: 1...10))",
+            summary: Summary(
+                duration: duration,
+                distance: totalDistance,
+                avgSpeed: 20,
+                maxSpeed: 30
+            )
+        )
     }
 }

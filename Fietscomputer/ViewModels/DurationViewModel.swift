@@ -9,25 +9,14 @@
 import SwiftUI
 import Combine
 
-extension Formatters {
-
-    static var elaspedFormatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.zeroFormattingBehavior = [.pad]
-        return formatter
-    }()
-}
-
 class DurationViewModel: GaugeViewModel {
 
     override init() {
         super.init()
 
         rideService.elapsed
-            .sink { value in
-                self.value = Formatters.elaspedFormatter.string(from: value)!
-            }
+            .map { RideViewModel.duration($0) }
+            .assign(to: \.value, on: self)
             .store(in: &cancellables)
     }
 }
