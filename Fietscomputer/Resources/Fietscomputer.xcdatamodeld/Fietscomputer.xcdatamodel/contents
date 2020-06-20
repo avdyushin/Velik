@@ -19,7 +19,6 @@
     </entity>
     <entity name="RideSummary" representedClassName="RideSummary" syncable="YES" codeGenerationType="class">
         <attribute name="avgSpeed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="calories" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="distance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="duration" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="elevationGain" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -54,7 +53,7 @@
     </entity>
     <elements>
         <element name="Ride" positionX="-63" positionY="-18" width="128" height="178"/>
-        <element name="RideSummary" positionX="-18" positionY="90" width="128" height="178"/>
+        <element name="RideSummary" positionX="-18" positionY="90" width="128" height="163"/>
         <element name="Track" positionX="-36" positionY="45" width="128" height="133"/>
         <element name="TrackPoint" positionX="-54" positionY="-9" width="128" height="163"/>
         <element name="Gear" positionX="-36" positionY="108" width="128" height="103"/>
