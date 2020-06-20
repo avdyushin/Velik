@@ -11,6 +11,9 @@
 "avg_speed" = "Avg. Speed";
 "max_speed" = "Max Speed";
 "elevation_gain" = "Elevation Gain";
+"avg_power" = "Avg. Power";
+"energy_output" = "Energy Output";
+"weight_loss" = "Est. Weight Loss";
 "remove_ride" = "Remove Ride";
 "remove_ride_message" = "Are you sure you want to remove Ride?";
 "confirm_delete" = "Yes, please delete";

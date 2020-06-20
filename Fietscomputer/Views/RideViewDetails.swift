@@ -23,9 +23,7 @@ struct RideViewDetails: View {
                     .foregroundColor(Color(UIColor.systemFill))
             }.frame(width: 240, height: 160, alignment: .leading)
             Divider()
-            RideSummaryView(viewModel: viewModel.rideViewModel)
-            ValueDescriptionView(text: viewModel.rideViewModel.elevationGain,
-                                 details: viewModel.rideViewModel.elevGainLabel)
+            RideFullSummaryView(viewModel: viewModel.rideViewModel)
             Spacer()
             Text(viewModel.tracks)
             Text(viewModel.points)

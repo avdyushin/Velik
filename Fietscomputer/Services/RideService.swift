@@ -22,11 +22,32 @@ class RideService: Service {
     }
 
     struct Summary {
-        let duration: Double // s
+        let duration: TimeInterval // s
         let distance: CLLocationDistance // m
-        let avgSpeed: Double // m/s
-        let maxSpeed: Double // ms
-        let elevationGain: Double // m
+        let avgSpeed: CLLocationSpeed // m/s
+        let maxSpeed: CLLocationSpeed // ms
+        let elevationGain: CLLocationDistance // m
+        let avgPower: Double
+        let energy: Double
+        let weigthLoss: Double
+
+        init(duration: Double, distance: CLLocationDistance,
+             avgSpeed: CLLocationSpeed, maxSpeed: CLLocationSpeed,
+             elevationGain: CLLocationDistance) {
+
+            self.duration = duration
+            self.distance = distance
+            self.avgSpeed = avgSpeed
+            self.maxSpeed = maxSpeed
+            self.elevationGain = elevationGain
+
+            // Calculations
+            let power = Power.power(avgSpeed: Measurement(value: avgSpeed, unit: .metersPerSecond))
+            self.avgPower = power.value
+            let energy = Energy.energy(power: power, duration: Measurement(value: duration, unit: .seconds))
+            self.energy = energy.value
+            self.weigthLoss = Weight.loss(energy: energy).value
+        }
     }
 
     @Injected private var locationService: LocationService

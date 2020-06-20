@@ -32,6 +32,8 @@
 		4B1FF0B4249E74DF00D7AFF1 /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B3249E74DF00D7AFF1 /* Power.swift */; };
 		4B1FF0B6249E7EC500D7AFF1 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */; };
 		4B1FF0B8249E821C00D7AFF1 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B7249E821C00D7AFF1 /* Weight.swift */; };
+		4B1FF0BA249E923400D7AFF1 /* RideSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B9249E923400D7AFF1 /* RideSummaryView.swift */; };
+		4B1FF0BC249E95A500D7AFF1 /* RidePowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0BB249E95A500D7AFF1 /* RidePowerView.swift */; };
 		4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31822461D9AA00726271 /* AppDelegate.swift */; };
 		4B2B31852461D9AA00726271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31842461D9AA00726271 /* ContentView.swift */; };
 		4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31862461D9AB00726271 /* Assets.xcassets */; };
@@ -138,6 +140,8 @@
 		4B1FF0B3249E74DF00D7AFF1 /* Power.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Power.swift; sourceTree = "<group>"; };
 		4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
 		4B1FF0B7249E821C00D7AFF1 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
+		4B1FF0B9249E923400D7AFF1 /* RideSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideSummaryView.swift; sourceTree = "<group>"; };
+		4B1FF0BB249E95A500D7AFF1 /* RidePowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidePowerView.swift; sourceTree = "<group>"; };
 		4B2B31802461D9AA00726271 /* DebugBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2B31822461D9AA00726271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2B31842461D9AA00726271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -270,6 +274,8 @@
 				4B10F1AB249BDBA80050EEF4 /* HistoryView.swift */,
 				4B10F1B5249C986E0050EEF4 /* RideCellView.swift */,
 				4B10F1B1249BDE0D0050EEF4 /* RideViewDetails.swift */,
+				4B1FF0B9249E923400D7AFF1 /* RideSummaryView.swift */,
+				4B1FF0BB249E95A500D7AFF1 /* RidePowerView.swift */,
 			);
 			name = History;
 			sourceTree = "<group>";
@@ -747,7 +753,9 @@
 				4BAB77E4245B300200F011A0 /* Permissions.swift in Sources */,
 				4BBB4B95246D617700CA710F /* ScaledFont.swift in Sources */,
 				4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */,
+				4B1FF0BC249E95A500D7AFF1 /* RidePowerView.swift in Sources */,
 				4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */,
+				4B1FF0BA249E923400D7AFF1 /* RideSummaryView.swift in Sources */,
 				4B10F1B2249BDE0D0050EEF4 /* RideViewDetails.swift in Sources */,
 				4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */,
 				4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */,

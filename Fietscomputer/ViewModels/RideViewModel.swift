@@ -17,12 +17,18 @@ class RideViewModel {
     var avgSpeed: String
     var maxSpeed: String
     var elevationGain: String
+    var power: String
+    var energy: String
+    var weightLoss: String
 
     let distanceLabel = Strings.distance
     let durationLabel = Strings.duration
     let avgSpeedLabel = Strings.avg_speed
     let maxSpeedLabel = Strings.max_speed
     let elevGainLabel = Strings.elevation_gain
+    let powerLabel = Strings.avg_power
+    let energyLabel = Strings.energy_output
+    let weightLossLabel = Strings.weight_loss
 
     init(createdAt: Date?, summary: RideService.Summary) {
         date = Self.date(createdAt)
@@ -33,6 +39,12 @@ class RideViewModel {
         let maxSpeedPair = Self.speed(summary.maxSpeed)
         maxSpeed = maxSpeedPair.value + " " + maxSpeedPair.units
         elevationGain = Self.elevation(summary.elevationGain)
+        let powerPair = Self.power(power: summary.avgSpeed)
+        power = powerPair.value + " " + powerPair.units
+        let energyPair = Self.energy(power: summary.avgPower, duration: summary.duration)
+        energy = energyPair.value + " " + energyPair.units
+        let weigthPair = Self.weight(power: summary.avgPower, duration: summary.duration)
+        weightLoss = weigthPair.value + " " + weigthPair.units
     }
 
     static func date(_ value: Date?) -> String {
@@ -63,5 +75,28 @@ class RideViewModel {
         let mps = Measurement(value: value ?? 0, unit: UnitSpeed.metersPerSecond)
         let kph = mps.converted(to: UnitSpeed.kilometersPerHour)
         return Formatters.formatted(from: kph)
+    }
+
+    static func power(power: Double) -> ValueUnitPair {
+        let watt = Measurement(value: power, unit: UnitPower.watts)
+        return Formatters.formatted(from: watt)
+    }
+
+    static func energy(power: Double, duration: Double) -> ValueUnitPair {
+        let kilojoule = Energy.energy(
+            power: Measurement(value: power, unit: .watts),
+            duration: Measurement(value: duration, unit: .seconds)
+        )
+        let kcal = kilojoule.converted(to: .kilocalories)
+        return Formatters.formatted(from: kcal)
+    }
+
+    static func weight(power: Double, duration: Double) -> ValueUnitPair {
+        let kilojoule = Energy.energy(
+            power: Measurement(value: power, unit: .watts),
+            duration: Measurement(value: duration, unit: .seconds)
+        )
+        let kilograms = Weight.loss(energy: kilojoule)
+        return Formatters.formatted(from: kilograms)
     }
 }

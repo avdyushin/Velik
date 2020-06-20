@@ -9,22 +9,6 @@
 import SwiftUI
 import struct CoreLocation.CLLocationCoordinate2D
 
-struct RideSummaryView: View {
-    var viewModel: RideViewModel
-    var body: some View {
-        HStack {
-            VStack(spacing: 8) {
-                ValueDescriptionView(text: viewModel.duration, details: viewModel.durationLabel)
-                ValueDescriptionView(text: viewModel.avgSpeed, details: viewModel.avgSpeedLabel)
-            }
-            VStack(spacing: 8) {
-                ValueDescriptionView(text: viewModel.distance, details: viewModel.distanceLabel)
-                ValueDescriptionView(text: viewModel.maxSpeed, details: viewModel.maxSpeedLabel)
-            }
-        }
-    }
-}
-
 struct RideCellView: View {
 
     var viewModel: RideViewModel
