@@ -12,6 +12,7 @@ enum Strings {
     @Localizable static var distance = "distance"
     @Localizable static var avg_speed = "avg_speed"
     @Localizable static var max_speed = "max_speed"
+    @Localizable static var elevation_gain = "elevation_gain"
     @Localizable static var remove_ride = "remove_ride"
     @Localizable static var remove_ride_message = "remove_ride_message"
     @Localizable static var confirm_delete = "confirm_delete"

@@ -37,10 +37,9 @@ class StorageService: Service {
             ride.summary?.duration = summary.duration
             ride.summary?.avgSpeed = summary.avgSpeed
             ride.summary?.maxSpeed = summary.maxSpeed
-            let track = Track.create(name: name, context: context)
-            ride.addToTracks(track)
+            ride.track = Track.create(name: name, context: context)
             locations.forEach {
-                track.addTrackPoint(with: $0, context: context)
+                ride.track?.addTrackPoint(with: $0, context: context)
             }
         }
     }

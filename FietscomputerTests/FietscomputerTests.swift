@@ -19,9 +19,14 @@ class FietscomputerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    struct Location {
+        let speed: Double
+    }
+
+    func testSequences() throws {
+        let locations = [Location(speed: 10), Location(speed: 20), Location(speed: 40)]
+        XCTAssertEqual(40.0, locations.max(by: \.speed)?.speed)
+        XCTAssertEqual(23.33333, locations.average(by: \.speed), accuracy: 1e-3)
     }
 
     func testPerformanceExample() throws {

@@ -26,6 +26,7 @@ class RideService: Service {
         let distance: CLLocationDistance // m
         let avgSpeed: Double // m/s
         let maxSpeed: Double // ms
+        let elevationGain: Double // m
     }
 
     @Injected private var locationService: LocationService
@@ -35,7 +36,8 @@ class RideService: Service {
 
     private var locations = [CLLocation]()
     private var totalDistance: CLLocationDistance = 0
-    private var duration: Double = 0
+    private var duration: TimeInterval = 0
+    private var elevationGain: CLLocationDistance = 0
 
     private let trackPublisher = PassthroughSubject<MKPolyline, Never>()
     private(set) var track: AnyPublisher<MKPolyline, Never>
@@ -70,6 +72,7 @@ class RideService: Service {
         pausedDate = 0
         stopDate = 0
         totalDistance = 0
+        elevationGain = 0
     }
 
     func start() {
@@ -77,6 +80,8 @@ class RideService: Service {
         statePublisher.send(.running)
 
         locationService.location.sink { location in
+            let prevAltitude = self.locations.last?.altitude ?? 0
+            self.elevationGain += max(0, prevAltitude - location.altitude)
             self.locations.append(location)
             if self.locations.count >= 2 {
                 let locationA = self.locations[self.locations.count - 2]
@@ -147,8 +152,9 @@ class RideService: Service {
             summary: Summary(
                 duration: duration,
                 distance: totalDistance,
-                avgSpeed: 20,
-                maxSpeed: 30
+                avgSpeed: locations.average(by: \.speed),
+                maxSpeed: locations.max(by: \.speed)?.speed ?? .zero,
+                elevationGain: elevationGain
             ),
             locations: locations
         )

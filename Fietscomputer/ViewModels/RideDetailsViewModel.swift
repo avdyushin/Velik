@@ -26,8 +26,8 @@ class RideDetailsViewModel: ObservableObject {
             createdAt: ride.createdAt,
             summary: ride.asRideSummary()
         )
-        self.tracks = "Tracks: \(ride.tracks?.count ?? 0)"
-        if let track = ride.tracks?.allObjects.first as? Track {
+        self.tracks = "Tracks: \(ride.track?.points?.count ?? 0)"
+        if let track = ride.track {
             self.points = "Points: \(track.points?.count ?? 0)"
         } else {
             self.points = "None"

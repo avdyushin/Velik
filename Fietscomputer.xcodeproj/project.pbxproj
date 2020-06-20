@@ -28,6 +28,7 @@
 		4B10F1C6249D2CD90050EEF4 /* RideDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1C5249D2CD90050EEF4 /* RideDetailsViewModel.swift */; };
 		4B10F1CD249D53D30050EEF4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1CC249D53D30050EEF4 /* Track.swift */; };
 		4B10F1CF249D53DB0050EEF4 /* TrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1CE249D53DB0050EEF4 /* TrackPoint.swift */; };
+		4B1FF0B2249E2AA500D7AFF1 /* Collections+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B1249E2AA500D7AFF1 /* Collections+Extension.swift */; };
 		4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31822461D9AA00726271 /* AppDelegate.swift */; };
 		4B2B31852461D9AA00726271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31842461D9AA00726271 /* ContentView.swift */; };
 		4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31862461D9AB00726271 /* Assets.xcassets */; };
@@ -36,7 +37,6 @@
 		4B2B31932461D9BB00726271 /* BluetoothScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B619245C9FA700B62914 /* BluetoothScanner.swift */; };
 		4B2B31942461D9DE00726271 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B5245C3DCD00BD5DD3 /* Service.swift */; };
 		4B2B31952461D9E700726271 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63324608A8400B62914 /* Data+Extension.swift */; };
-		4B2B31962461D9E700726271 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63524608A9800B62914 /* Array+Extension.swift */; };
 		4B2B31972461F98300726271 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63924608EE400B62914 /* HeartRateService.swift */; };
 		4B32582024923F290046BD6F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32581F24923F290046BD6F /* Coordinator.swift */; };
 		4B3258222492464E0046BD6F /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3258212492464E0046BD6F /* RootCoordinator.swift */; };
@@ -48,7 +48,6 @@
 		4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */; };
 		4B58B631246089CB00B62914 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
 		4B58B63424608A8400B62914 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63324608A8400B62914 /* Data+Extension.swift */; };
-		4B58B63624608A9800B62914 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63524608A9800B62914 /* Array+Extension.swift */; };
 		4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63924608EE400B62914 /* HeartRateService.swift */; };
 		4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B834E36248ABC8F00A0272E /* NotificationView.swift */; };
 		4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B834E38248C0B2900A0272E /* CornerRadiusStyle.swift */; };
@@ -132,6 +131,7 @@
 		4B10F1C5249D2CD90050EEF4 /* RideDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailsViewModel.swift; sourceTree = "<group>"; };
 		4B10F1CC249D53D30050EEF4 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		4B10F1CE249D53DB0050EEF4 /* TrackPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPoint.swift; sourceTree = "<group>"; };
+		4B1FF0B1249E2AA500D7AFF1 /* Collections+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+Extension.swift"; sourceTree = "<group>"; };
 		4B2B31802461D9AA00726271 /* DebugBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2B31822461D9AA00726271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2B31842461D9AA00726271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -150,7 +150,6 @@
 		4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissions.swift; sourceTree = "<group>"; };
 		4B58B630246089CB00B62914 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		4B58B63324608A8400B62914 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
-		4B58B63524608A9800B62914 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		4B58B63924608EE400B62914 /* HeartRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateService.swift; sourceTree = "<group>"; };
 		4B834E36248ABC8F00A0272E /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		4B834E38248C0B2900A0272E /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
@@ -363,11 +362,11 @@
 		4B58B63224608A7600B62914 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4B58B63324608A8400B62914 /* Data+Extension.swift */,
-				4B58B63524608A9800B62914 /* Array+Extension.swift */,
-				4BBB4B96246D619400CA710F /* View+Extension.swift */,
 				4BBB4B982470624900CA710F /* Color+Extension.swift */,
+				4B1FF0B1249E2AA500D7AFF1 /* Collections+Extension.swift */,
+				4B58B63324608A8400B62914 /* Data+Extension.swift */,
 				4B10F1C3249D2B260050EEF4 /* MKMapSnapshotter+Extension.swift */,
+				4BBB4B96246D619400CA710F /* View+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -709,7 +708,6 @@
 				4B2B31932461D9BB00726271 /* BluetoothScanner.swift in Sources */,
 				4B2B31952461D9E700726271 /* Data+Extension.swift in Sources */,
 				4B2B31972461F98300726271 /* HeartRateService.swift in Sources */,
-				4B2B31962461D9E700726271 /* Array+Extension.swift in Sources */,
 				4BA041202462F6AD002E4D81 /* AES.swift in Sources */,
 				4B2B31852461D9AA00726271 /* ContentView.swift in Sources */,
 				4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */,
@@ -745,6 +743,7 @@
 				4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */,
 				4B10F1C6249D2CD90050EEF4 /* RideDetailsViewModel.swift in Sources */,
 				4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */,
+				4B1FF0B2249E2AA500D7AFF1 /* Collections+Extension.swift in Sources */,
 				4B10F1AE249BDC020050EEF4 /* HistoryViewModel.swift in Sources */,
 				4BA41B152472F6ED0002D88A /* MapViewModel.swift in Sources */,
 				4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */,
@@ -759,7 +758,6 @@
 				4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */,
 				4B10F1A8249B988E0050EEF4 /* RideRepository.swift in Sources */,
 				4B10F1BE249D0DAC0050EEF4 /* MapImageLoader.swift in Sources */,
-				4B58B63624608A9800B62914 /* Array+Extension.swift in Sources */,
 				4BA41B192472F7310002D88A /* MapView2.swift in Sources */,
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
 				4B32582024923F290046BD6F /* Coordinator.swift in Sources */,

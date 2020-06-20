@@ -56,7 +56,8 @@ struct RideCellViewPreview: PreviewProvider {
                     duration: 30,
                     distance: 20,
                     avgSpeed: 5,
-                    maxSpeed: 10
+                    maxSpeed: 10,
+                    elevationGain: 100
                 )
             ))
             RideCellView(viewModel: RideViewModel(
@@ -65,7 +66,8 @@ struct RideCellViewPreview: PreviewProvider {
                     duration: 30023,
                     distance: 123456,
                     avgSpeed: 7,
-                    maxSpeed: 9
+                    maxSpeed: 9,
+                    elevationGain: 50
                 )
             ))
             RideCellView(viewModel: RideViewModel(
@@ -74,7 +76,8 @@ struct RideCellViewPreview: PreviewProvider {
                     duration: 3022,
                     distance: 2000000,
                     avgSpeed: 20,
-                    maxSpeed: 30
+                    maxSpeed: 30,
+                    elevationGain: 123
                 )
             ))
         }

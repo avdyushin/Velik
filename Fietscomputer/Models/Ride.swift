@@ -33,7 +33,8 @@ extension Ride: Identifiable {
             duration: summary?.duration ?? 0,
             distance: summary?.distance ?? 0,
             avgSpeed: summary?.avgSpeed ?? 0,
-            maxSpeed: summary?.maxSpeed ?? 0
+            maxSpeed: summary?.maxSpeed ?? 0,
+            elevationGain: summary?.elevationGain ?? 0
         )
     }
 }

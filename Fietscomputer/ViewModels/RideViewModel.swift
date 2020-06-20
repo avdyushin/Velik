@@ -16,11 +16,13 @@ class RideViewModel {
     var duration: String
     var avgSpeed: String
     var maxSpeed: String
+    var elevationGain: String
 
     let distanceLabel = Strings.distance
     let durationLabel = Strings.duration
     let avgSpeedLabel = Strings.avg_speed
     let maxSpeedLabel = Strings.max_speed
+    let elevGainLabel = Strings.elevation_gain
 
     init(createdAt: Date?, summary: RideService.Summary) {
         date = Self.date(createdAt)
@@ -30,6 +32,7 @@ class RideViewModel {
         avgSpeed = avgSpeedPair.value + " " + avgSpeedPair.units
         let maxSpeedPair = Self.speed(summary.maxSpeed)
         maxSpeed = maxSpeedPair.value + " " + maxSpeedPair.units
+        elevationGain = Self.elevation(summary.elevationGain)
     }
 
     static func date(_ value: Date?) -> String {
@@ -41,6 +44,10 @@ class RideViewModel {
             let time = Formatters.timeFormatter.string(from: value)
             return [date, Strings.at, time].joined(separator: " ")
         }
+    }
+
+    static func elevation(_ value: Double?) -> String {
+        Formatters.distanceFormatter.string(from: Measurement(value: value ?? 0, unit: UnitLength.meters))
     }
 
     static func distance(_ value: Double?) -> String {

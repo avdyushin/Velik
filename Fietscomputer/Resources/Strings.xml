@@ -31,6 +31,9 @@
     <string id="max_speed">
         <en>Max Speed</en>
     </string>
+    <string id="elevation_gain">
+        <en>Elevation Gain</en>
+    </string>
     <string id="remove_ride">
         <en>Remove Ride</en>
     </string>

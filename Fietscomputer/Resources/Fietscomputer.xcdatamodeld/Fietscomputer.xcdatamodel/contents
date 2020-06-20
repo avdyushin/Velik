@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Gear" representedClassName="Gear" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="rides" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ride" inverseName="gear" inverseEntity="Ride"/>
+    </entity>
     <entity name="Ride" representedClassName="Ride" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="deletedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="gear" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Gear" inverseName="rides" inverseEntity="Gear"/>
         <relationship name="summary" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="RideSummary" inverseName="ride" inverseEntity="RideSummary"/>
-        <relationship name="tracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="ride" inverseEntity="Track"/>
+        <relationship name="track" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Track" inverseName="ride" inverseEntity="Track"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="rides" inverseEntity="User"/>
     </entity>
     <entity name="RideSummary" representedClassName="RideSummary" syncable="YES" codeGenerationType="class">
         <attribute name="avgSpeed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="calories" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="distance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="duration" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="elevationGain" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="maxSpeed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="power" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="ride" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ride" inverseName="summary" inverseEntity="Ride"/>
     </entity>
     <entity name="Track" representedClassName="Track" syncable="YES" codeGenerationType="class">
@@ -23,7 +34,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="points" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TrackPoint" inverseName="track" inverseEntity="TrackPoint"/>
-        <relationship name="ride" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ride" inverseName="tracks" inverseEntity="Ride"/>
+        <relationship name="ride" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ride" inverseName="track" inverseEntity="Ride"/>
     </entity>
     <entity name="TrackPoint" representedClassName="TrackPoint" syncable="YES" codeGenerationType="class">
         <attribute name="elevation" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -35,10 +46,18 @@
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="track" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Track" inverseName="points" inverseEntity="Track"/>
     </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="rides" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ride" inverseName="user" inverseEntity="Ride"/>
+    </entity>
     <elements>
-        <element name="Ride" positionX="-63" positionY="-18" width="128" height="148"/>
-        <element name="RideSummary" positionX="-18" positionY="90" width="128" height="133"/>
+        <element name="Ride" positionX="-63" positionY="-18" width="128" height="178"/>
+        <element name="RideSummary" positionX="-18" positionY="90" width="128" height="178"/>
         <element name="Track" positionX="-36" positionY="45" width="128" height="133"/>
         <element name="TrackPoint" positionX="-54" positionY="-9" width="128" height="163"/>
+        <element name="Gear" positionX="-36" positionY="108" width="128" height="103"/>
+        <element name="User" positionX="-27" positionY="117" width="128" height="103"/>
     </elements>
 </model>
