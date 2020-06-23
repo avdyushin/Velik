@@ -12,8 +12,6 @@ struct RideTrackDrawer: MapSnapshotProcessor {
 
     let startColor = UIColor.fdAndroidGreen
     let stopColor = UIColor.flatGreenSeaColor
-    let latitudinalMeters: CLLocationDistance = 200
-    let longitudinalMeters: CLLocationDistance = 200
 
     private var locations: [CLLocationCoordinate2D]
 
@@ -38,7 +36,7 @@ struct RideTrackDrawer: MapSnapshotProcessor {
             return UIGraphicsGetImageFromCurrentImageContext()
         }
 
-        context.setLineWidth(20)
+        context.setLineWidth(10)
         context.setStrokeColor(UIColor.blue.cgColor)
         context.setLineCap(.round)
 

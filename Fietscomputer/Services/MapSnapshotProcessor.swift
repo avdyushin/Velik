@@ -11,8 +11,5 @@ import MapKit
 import CoreLocation
 
 protocol MapSnapshotProcessor {
-    var latitudinalMeters: CLLocationDistance { get }
-    var longitudinalMeters: CLLocationDistance { get }
-
     func process(_ snapshot: MKMapSnapshotter.Snapshot?) -> UIImage?
 }

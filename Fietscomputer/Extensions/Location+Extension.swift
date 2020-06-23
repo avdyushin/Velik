@@ -52,7 +52,7 @@ extension Collection where Element == CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: lat.asDegrees(), longitude: lon.asDegrees())
     }
 
-    func dimensions() -> (latitudinalMeters: CLLocationDistance, longitudinalMeters: CLLocationDistance)? {
+    func region() -> MKCoordinateRegion? {
         guard count > 1 else {
             return nil
         }
@@ -70,20 +70,15 @@ extension Collection where Element == CLLocationCoordinate2D {
         let latitudinalMeters = southWest.distance(from: southEast)
         let longitudinalMeters = northEast.distance(from: northWest)
 
-        return (latitudinalMeters, longitudinalMeters)
-    }
+        let centerLatitude = (minLatitude + maxLatitude) / 2
+        let centerLongitude = (minLongitude + maxLongitude) / 2
 
-    func region() -> MKCoordinateRegion? {
-        guard
-            let center = center(),
-            let dimensions = dimensions() else {
-                return nil
-        }
+        let center = CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
 
         return MKCoordinateRegion(
             center: center,
-            latitudinalMeters: dimensions.latitudinalMeters + 300,
-            longitudinalMeters: dimensions.longitudinalMeters + 300
+            latitudinalMeters: latitudinalMeters * 1.2,
+            longitudinalMeters: longitudinalMeters * 1.2
         )
     }
 }
