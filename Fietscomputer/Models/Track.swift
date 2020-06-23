@@ -19,24 +19,24 @@ extension Track {
         updatedAt = Date()
     }
 
+    var trackPoints: [TrackPoint] { points?.toTypedArray() ?? [] }
+
     @discardableResult
     static func create(name: String, context: NSManagedObjectContext) -> Track {
-        let track = self.init(context: context)
-        track.name = name
-        return track
+        Track(context: context).apply {
+            $0.name = name
+        }
     }
 
     func addTrackPoint(with location: CLLocation, context: NSManagedObjectContext) {
-        self.addToPoints(
+        addToPoints(
             TrackPoint.create(with: location, context: context)
         )
     }
 
     func locations() -> [CLLocationCoordinate2D] {
-        points?
-            .compactMap { $0 as? TrackPoint }
+        trackPoints
             .sorted(by: \.timestamp!)
             .map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
-        ?? []
     }
 }

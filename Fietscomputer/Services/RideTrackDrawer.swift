@@ -10,8 +10,10 @@ import MapKit
 
 struct RideTrackDrawer: MapSnapshotProcessor {
 
-    var latitudinalMeters: CLLocationDistance = 200
-    var longitudinalMeters: CLLocationDistance = 200
+    let startColor = UIColor.fdAndroidGreen
+    let stopColor = UIColor.flatGreenSeaColor
+    let latitudinalMeters: CLLocationDistance = 200
+    let longitudinalMeters: CLLocationDistance = 200
 
     private var locations: [CLLocationCoordinate2D]
 
@@ -20,7 +22,9 @@ struct RideTrackDrawer: MapSnapshotProcessor {
     }
 
     func process(_ snapshot: MKMapSnapshotter.Snapshot?) -> UIImage? {
+
         guard let snapshot = snapshot else { return nil }
+
         defer {
             UIGraphicsEndImageContext()
         }
@@ -36,12 +40,29 @@ struct RideTrackDrawer: MapSnapshotProcessor {
 
         context.setLineWidth(20)
         context.setStrokeColor(UIColor.blue.cgColor)
+        context.setLineCap(.round)
 
         let points = locations.map { snapshot.point(for: $0) }
         let path = CGMutablePath()
         path.addLines(between: points)
-        context.addPath(path)
-        context.strokePath()
+
+        context.draw { context in
+            context.addPath(path)
+            context.replacePathWithStrokedPath()
+            context.clip()
+
+            let colours = [startColor.cgColor, stopColor.cgColor] as CFArray
+            let colorSpace = CGColorSpaceCreateDeviceRGB()
+            var gradient = CGGradient(colorsSpace: colorSpace, colors: colours, locations: nil)
+
+            context.drawLinearGradient(
+                gradient!,
+                start: CGPoint(x: 0, y: 0),
+                end: CGPoint(x: snapshot.image.size.width, y: snapshot.image.size.height),
+                options: []
+            )
+            gradient = nil
+        }
 
         return UIGraphicsGetImageFromCurrentImageContext()
     }

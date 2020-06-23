@@ -24,9 +24,9 @@ extension Ride: Identifiable {
 
     @discardableResult
     static func create(name: String, context: NSManagedObjectContext) -> Ride {
-        let ride = self.init(context: context)
-        ride.name = name
-        return ride
+        Ride(context: context).apply {
+            $0.name = name
+        }
     }
 
     func asRideSummary() -> RideService.Summary {

@@ -18,12 +18,12 @@ extension TrackPoint {
 
     @discardableResult
     static func create(with location: CLLocation, context: NSManagedObjectContext) -> TrackPoint {
-        let trackPoint = self.init(context: context)
-        trackPoint.longitude = location.coordinate.longitude
-        trackPoint.latitude = location.coordinate.latitude
-        trackPoint.speed = location.speed
-        trackPoint.elevation = location.altitude
-        trackPoint.timestamp = location.timestamp
-        return trackPoint
+        TrackPoint(context: context).apply {
+            $0.elevation = location.altitude
+            $0.latitude = location.coordinate.latitude
+            $0.longitude = location.coordinate.longitude
+            $0.speed = location.speed
+            $0.timestamp = location.timestamp
+        }
     }
 }

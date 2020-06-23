@@ -52,3 +52,10 @@ extension Sequence {
         self.sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
 }
+
+extension NSSet {
+
+    func toTypedArray<T>() -> [T] {
+        compactMap { $0 as? T }
+    }
+}

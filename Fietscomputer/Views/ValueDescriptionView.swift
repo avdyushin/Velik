@@ -17,7 +17,7 @@ struct ValueDescriptionView: View {
             Text(text)
                 .font(.headline)
             Text(details.localizedUppercase)
-                .font(.footnote)
+                .font(.caption)
                 .foregroundColor(.secondary)
         }
     }

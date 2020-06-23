@@ -71,6 +71,7 @@ struct MapView2: UIViewRepresentable {
 //                } else {
 //                    renderer.strokeColor = .systemGreen
 //                }
+                renderer.strokeColor = .systemGreen
                 renderer.lineWidth = 10
                 return renderer
             } else {
