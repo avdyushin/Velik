@@ -39,6 +39,8 @@
 		4B208D8924A248F4009E5F6C /* RideTrackDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208D8824A248F4009E5F6C /* RideTrackDrawer.swift */; };
 		4B208D8B24A2695C009E5F6C /* Applicable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208D8A24A2695C009E5F6C /* Applicable.swift */; };
 		4B208D8D24A273BF009E5F6C /* CGContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208D8C24A273BF009E5F6C /* CGContext+Extensions.swift */; };
+		4B208D9424A29958009E5F6C /* Ride1.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9224A29958009E5F6C /* Ride1.gpx */; };
+		4B208D9524A29958009E5F6C /* Ride2.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9324A29958009E5F6C /* Ride2.gpx */; };
 		4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31822461D9AA00726271 /* AppDelegate.swift */; };
 		4B2B31852461D9AA00726271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31842461D9AA00726271 /* ContentView.swift */; };
 		4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31862461D9AB00726271 /* Assets.xcassets */; };
@@ -152,6 +154,8 @@
 		4B208D8824A248F4009E5F6C /* RideTrackDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideTrackDrawer.swift; sourceTree = "<group>"; };
 		4B208D8A24A2695C009E5F6C /* Applicable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicable.swift; sourceTree = "<group>"; };
 		4B208D8C24A273BF009E5F6C /* CGContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGContext+Extensions.swift"; sourceTree = "<group>"; };
+		4B208D9224A29958009E5F6C /* Ride1.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Ride1.gpx; sourceTree = "<group>"; };
+		4B208D9324A29958009E5F6C /* Ride2.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Ride2.gpx; sourceTree = "<group>"; };
 		4B2B31802461D9AA00726271 /* DebugBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2B31822461D9AA00726271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2B31842461D9AA00726271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -462,6 +466,8 @@
 		4B88C9C1245C985D00BD5DD3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4B208D9224A29958009E5F6C /* Ride1.gpx */,
+				4B208D9324A29958009E5F6C /* Ride2.gpx */,
 				4B10F1A5249A8CB70050EEF4 /* Strings.xml */,
 				4BAB77C7245B2FE200F011A0 /* Assets.xcassets */,
 				4BAB77CC245B2FE200F011A0 /* LaunchScreen.storyboard */,
@@ -676,6 +682,8 @@
 				4B10F19E249A85870050EEF4 /* Localizable.strings in Resources */,
 				4BAB77CB245B2FE200F011A0 /* Preview Assets.xcassets in Resources */,
 				4BAB77C8245B2FE200F011A0 /* Assets.xcassets in Resources */,
+				4B208D9524A29958009E5F6C /* Ride2.gpx in Resources */,
+				4B208D9424A29958009E5F6C /* Ride1.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
