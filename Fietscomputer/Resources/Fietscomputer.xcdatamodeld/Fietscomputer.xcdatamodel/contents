@@ -42,7 +42,7 @@
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="track" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Track" inverseName="points" inverseEntity="Track"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
@@ -52,11 +52,11 @@
         <relationship name="rides" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ride" inverseName="user" inverseEntity="Ride"/>
     </entity>
     <elements>
+        <element name="Gear" positionX="-36" positionY="108" width="128" height="103"/>
         <element name="Ride" positionX="-63" positionY="-18" width="128" height="178"/>
         <element name="RideSummary" positionX="-18" positionY="90" width="128" height="163"/>
         <element name="Track" positionX="-36" positionY="45" width="128" height="133"/>
         <element name="TrackPoint" positionX="-54" positionY="-9" width="128" height="163"/>
-        <element name="Gear" positionX="-36" positionY="108" width="128" height="103"/>
         <element name="User" positionX="-27" positionY="117" width="128" height="103"/>
     </elements>
 </model>

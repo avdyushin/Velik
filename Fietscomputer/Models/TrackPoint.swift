@@ -23,7 +23,7 @@ extension TrackPoint {
         trackPoint.latitude = location.coordinate.latitude
         trackPoint.speed = location.speed
         trackPoint.elevation = location.altitude
-        debugPrint("point created")
+        trackPoint.timestamp = location.timestamp
         return trackPoint
     }
 }

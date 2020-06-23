@@ -18,17 +18,16 @@ extension MKMapSnapshotter.Options {
 extension MKMapSnapshotter {
     // swiftlint:disable:next identifier_name
     static func Publisher(center: CLLocationCoordinate2D,
-                          latitudinalMeters: CLLocationDistance,
-                          longitudinalMeters: CLLocationDistance) -> MKMapSnapshotterPublisher {
+                          processor: MapSnapshotProcessor) -> MKMapSnapshotterPublisher {
         let options = MKMapSnapshotter.Options(
             region: MKCoordinateRegion(
                 center: center,
-                latitudinalMeters: latitudinalMeters,
-                longitudinalMeters: longitudinalMeters
+                latitudinalMeters: processor.latitudinalMeters,
+                longitudinalMeters: processor.longitudinalMeters
             )
         )
         options.size = CGSize(width: 1200, height: 800)
         let snapshotter = MKMapSnapshotter(options: options)
-        return MKMapSnapshotterPublisher(snapshotter: snapshotter)
+        return MKMapSnapshotterPublisher(snapshotter: snapshotter, processor: processor)
     }
 }

@@ -9,6 +9,7 @@
 import SwiftUI
 import CoreData
 import Injected
+import CoreLocation
 
 class RideDetailsViewModel: ObservableObject {
 
@@ -24,7 +25,9 @@ class RideDetailsViewModel: ObservableObject {
         self.objectID = ride.objectID
         self.rideViewModel = RideViewModel(
             createdAt: ride.createdAt,
-            summary: ride.asRideSummary()
+            summary: ride.asRideSummary(),
+            center: ride.mapCenter(),
+            locations: ride.locations()
         )
         self.tracks = "Tracks: \(ride.track?.points?.count ?? 0)"
         if let track = ride.track {

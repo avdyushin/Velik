@@ -12,16 +12,17 @@ import Combine
 import struct CoreLocation.CLLocationCoordinate2D
 
 protocol MapSnapshotProtocol {
-    func makeSnapshot(_ center: CLLocationCoordinate2D, size: CGSize) -> AnyPublisher<UIImage?, Error>
+    func makeSnapshot(_ center: CLLocationCoordinate2D,
+                      processor: MapSnapshotProcessor) -> AnyPublisher<UIImage?, Error>
 }
 
 class MapKitSnapshot: MapSnapshotProtocol {
 
-    func makeSnapshot(_ center: CLLocationCoordinate2D, size: CGSize) -> AnyPublisher<UIImage?, Error> {
-        MKMapSnapshotter.Publisher(
-            center: center,
-            latitudinalMeters: 800,
-            longitudinalMeters: 1200
-        ).eraseToAnyPublisher()
+    func makeSnapshot(_ center: CLLocationCoordinate2D,
+                      processor: MapSnapshotProcessor) -> AnyPublisher<UIImage?, Error> {
+
+        MKMapSnapshotter
+            .Publisher(center: center, processor: processor)
+            .eraseToAnyPublisher()
     }
 }

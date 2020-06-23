@@ -16,8 +16,6 @@ extension Collection where Index == Int {
     }
 }
 
-// Based on https://stackoverflow.com/questions/28288148/making-my-function-calculate-average-of-array-swift
-
 extension Sequence where Element: AdditiveArithmetic {
     func sum() -> Element { reduce(.zero, +) }
 }
@@ -39,10 +37,18 @@ extension Collection {
 extension Sequence {
 
     func sum<T: AdditiveArithmetic>(by keyPath: KeyPath<Element, T>) -> T {
-        self.map { $0[keyPath: keyPath ] }.sum()
+        self.map { $0[keyPath: keyPath] }.sum()
     }
 
     func max<T: Comparable>(by keyPath: KeyPath<Element, T>) -> Element? {
         self.max { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
+    }
+
+    func min<T: Comparable>(by keyPath: KeyPath<Element, T>) -> Element? {
+        self.min { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
+    }
+
+    func sorted<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Self.Element] {
+        self.sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
 }

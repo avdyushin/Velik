@@ -18,7 +18,7 @@ struct RideViewDetails: View {
 
     var body: some View {
         VStack {
-            AsyncMapImage(center: CLLocationCoordinate2D(latitude: 51.94, longitude: 4.49)) {
+            AsyncMapImage(center: viewModel.rideViewModel.center, processor: viewModel.rideViewModel.mapProcessor()) {
                 Rectangle()
                     .foregroundColor(Color(UIColor.systemFill))
             }.frame(width: 240, height: 160, alignment: .leading)

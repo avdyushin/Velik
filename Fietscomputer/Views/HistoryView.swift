@@ -19,7 +19,9 @@ struct HistoryView: View {
                 NavigationLink(destination: RideViewDetails(viewModel: RideDetailsViewModel(ride: ride))) {
                     RideCellView(viewModel: RideViewModel(
                         createdAt: ride.createdAt,
-                        summary: ride.asRideSummary()
+                        summary: ride.asRideSummary(),
+                        center: ride.mapCenter(),
+                        locations: ride.locations()
                     )).padding([.bottom], 6)
                 }
             }.listStyle(GroupedListStyle())

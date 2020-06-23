@@ -1,7 +1,7 @@
 disabled_rules:
     - force_cast
 excluded:
-    - Strings.swift
+    - Fietscomputer/Strings.swift
 opt_in_rules:
     - let_var_whitespace
     - vertical_whitespace_closing_braces
@@ -14,6 +14,8 @@ opt_in_rules:
 nesting:
     type_level: 3
 
-variable_name:
+identifier_name:
     excluded:
-        - up
+        - x
+        - y
+        - z

@@ -15,8 +15,11 @@ struct AsyncMapImage<Placeholder: View>: View {
     @ObservedObject private var mapLoader: MapImageLoader
     private let placeholder: Placeholder
 
-    init(center: CLLocationCoordinate2D, @ViewBuilder _ placeholder: () -> Placeholder) {
-        self.mapLoader = MapImageLoader(center: center)
+    init(center: CLLocationCoordinate2D,
+         processor: MapSnapshotProcessor,
+         @ViewBuilder _ placeholder: () -> Placeholder) {
+
+        self.mapLoader = MapImageLoader(center: center, processor: processor)
         self.placeholder = placeholder()
     }
 

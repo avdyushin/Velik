@@ -42,7 +42,8 @@ class RideService: Service {
             self.elevationGain = elevationGain
 
             // Calculations
-            let power = Power.power(avgSpeed: Measurement(value: avgSpeed, unit: .metersPerSecond))
+            let configuration = Parameters(avgSpeed: Measurement(value: avgSpeed, unit: .metersPerSecond))
+            let power = Power.power(parameters: configuration)
             self.avgPower = power.value
             let energy = Energy.energy(power: power, duration: Measurement(value: duration, unit: .seconds))
             self.energy = energy.value

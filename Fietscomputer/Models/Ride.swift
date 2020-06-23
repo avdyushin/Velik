@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import CoreLocation
 
 extension Ride: Identifiable {
 
@@ -36,5 +37,13 @@ extension Ride: Identifiable {
             maxSpeed: summary?.maxSpeed ?? 0,
             elevationGain: summary?.elevationGain ?? 0
         )
+    }
+
+    func locations() -> [CLLocationCoordinate2D] {
+        track?.locations() ?? []
+    }
+
+    func mapCenter() -> CLLocationCoordinate2D {
+        locations().middle() ?? CLLocationCoordinate2D(latitude: 51.94, longitude: 4.49)
     }
 }

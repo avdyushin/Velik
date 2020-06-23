@@ -6,7 +6,7 @@
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
-import Foundation
+import CoreLocation
 
 class RideViewModel {
 
@@ -20,6 +20,8 @@ class RideViewModel {
     var power: String
     var energy: String
     var weightLoss: String
+    var center: CLLocationCoordinate2D
+    var locations: [CLLocationCoordinate2D]
 
     let distanceLabel = Strings.distance
     let durationLabel = Strings.duration
@@ -30,7 +32,11 @@ class RideViewModel {
     let energyLabel = Strings.energy_output
     let weightLossLabel = Strings.weight_loss
 
-    init(createdAt: Date?, summary: RideService.Summary) {
+    init(createdAt: Date?,
+         summary: RideService.Summary,
+         center: CLLocationCoordinate2D,
+         locations: [CLLocationCoordinate2D]) {
+
         date = Self.date(createdAt)
         distance = Self.distance(summary.distance)
         duration = Self.duration(summary.duration)
@@ -45,6 +51,12 @@ class RideViewModel {
         energy = energyPair.value + " " + energyPair.units
         let weigthPair = Self.weight(power: summary.avgPower, duration: summary.duration)
         weightLoss = weigthPair.value + " " + weigthPair.units
+        self.center = center
+        self.locations = locations
+    }
+
+    func mapProcessor() -> MapSnapshotProcessor {
+        RideTrackDrawer(locations)
     }
 
     static func date(_ value: Date?) -> String {

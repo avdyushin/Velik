@@ -14,11 +14,13 @@ class MKMapSnapshotterSubscription<S: Subscriber>: Subscription where S.Input ==
 
     private var subscriber: S?
     private let snapshotter: MKMapSnapshotter
+    private let processor: MapSnapshotProcessor
     private let queue = DispatchQueue(label: "MapSnapshotter")
 
-    init(subscriber: S, snapshotter: MKMapSnapshotter) {
+    init(subscriber: S, snapshotter: MKMapSnapshotter, processor: MapSnapshotProcessor) {
         self.subscriber = subscriber
         self.snapshotter = snapshotter
+        self.processor = processor
         start()
     }
 
@@ -31,11 +33,11 @@ class MKMapSnapshotterSubscription<S: Subscriber>: Subscription where S.Input ==
     }
 
     private func start() {
-        snapshotter.start(with: queue) { [subscriber] snapshot, error in
+        snapshotter.start(with: queue) { [subscriber, processor] snapshot, error in
             if let error = error {
                 _ = subscriber?.receive(completion: .failure(error))
             } else {
-                _ = subscriber?.receive(snapshot?.image)
+                _ = subscriber?.receive(processor.process(snapshot))
             }
         }
     }
@@ -47,13 +49,17 @@ struct MKMapSnapshotterPublisher: Publisher {
     typealias Failure = Error
 
     private let snapshotter: MKMapSnapshotter
+    private let processor: MapSnapshotProcessor
 
-    init(snapshotter: MKMapSnapshotter) {
+    init(snapshotter: MKMapSnapshotter, processor: MapSnapshotProcessor) {
         self.snapshotter = snapshotter
+        self.processor = processor
     }
 
     func receive<S: Subscriber>(subscriber: S) where Self.Failure == S.Failure, Self.Output == S.Input {
-        let subscription = MKMapSnapshotterSubscription(subscriber: subscriber, snapshotter: snapshotter)
+        let subscription = MKMapSnapshotterSubscription(
+            subscriber: subscriber, snapshotter: snapshotter, processor: processor
+        )
         subscriber.receive(subscription: subscription)
     }
 }

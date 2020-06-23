@@ -8,6 +8,7 @@
 
 import CoreData
 import class CoreLocation.CLLocation
+import struct CoreLocation.CLLocationCoordinate2D
 
 extension Track {
 
@@ -29,5 +30,13 @@ extension Track {
         self.addToPoints(
             TrackPoint.create(with: location, context: context)
         )
+    }
+
+    func locations() -> [CLLocationCoordinate2D] {
+        points?
+            .compactMap { $0 as? TrackPoint }
+            .sorted(by: \.timestamp!)
+            .map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
+        ?? []
     }
 }

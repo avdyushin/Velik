@@ -13,21 +13,41 @@ class FietscomputerTests: XCTestCase {
 
     struct Location {
         let speed: Double
+        let lat: Double
+        let lon: Double
     }
 
     func testSequences() {
-        let locations = [Location(speed: 10), Location(speed: 20), Location(speed: 40)]
+        let locations = [
+            Location(speed: 10, lat: 0, lon: 0),
+            Location(speed: 20, lat: 0, lon: 0),
+            Location(speed: 40, lat: 0, lon: 0)
+        ]
         XCTAssertEqual(40.0, locations.max(by: \.speed)?.speed)
+        XCTAssertEqual(10.0, locations.min(by: \.speed)?.speed)
         XCTAssertEqual(23.33333, locations.average(by: \.speed), accuracy: 1e-3)
     }
 
-    func testPower() {
-        let power = Power.power(
-            avgSpeed: Measurement(value: 20, unit: UnitSpeed.kilometersPerHour),
-            elevation: Measurement(value: 7, unit: UnitLength.meters),
-            weight: Measurement(value: 70, unit: UnitMass.kilograms)
+    func testPowerLow() {
+        let power = Power.power(parameters:
+            Parameters(
+                avgSpeed: Measurement(value: 18, unit: UnitSpeed.kilometersPerHour),
+                altitude: Measurement(value: 7, unit: UnitLength.meters),
+                weight: Measurement(value: 70, unit: UnitMass.kilograms)
+            )
         )
-        XCTAssertEqual(62.39, power.value, accuracy: 0.1)
+        XCTAssertEqual(47.25, power.value, accuracy: 0.1)
+    }
+
+    func testPowerHigh() {
+        let power = Power.power(parameters:
+            Parameters(
+                avgSpeed: Measurement(value: 23, unit: UnitSpeed.kilometersPerHour),
+                altitude: Measurement(value: 7, unit: UnitLength.meters),
+                weight: Measurement(value: 70, unit: UnitMass.kilograms)
+            )
+        )
+        XCTAssertEqual(84.44, power.value, accuracy: 0.1)
     }
 
     func testKj() {
