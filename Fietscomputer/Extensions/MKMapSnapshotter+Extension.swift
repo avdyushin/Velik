@@ -9,24 +9,19 @@
 import MapKit
 
 extension MKMapSnapshotter.Options {
-    convenience init(region: MKCoordinateRegion) {
+    convenience init(region: MKCoordinateRegion, size: CGSize) {
         self.init()
         self.region = region
+        self.size = size
     }
 }
 
 extension MKMapSnapshotter {
     // swiftlint:disable:next identifier_name
-    static func Publisher(center: CLLocationCoordinate2D,
+    static func Publisher(region: MKCoordinateRegion,
+                          size: CGSize = CGSize(width: 1200, height: 800),
                           processor: MapSnapshotProcessor) -> MKMapSnapshotterPublisher {
-        let options = MKMapSnapshotter.Options(
-            region: MKCoordinateRegion(
-                center: center,
-                latitudinalMeters: processor.latitudinalMeters,
-                longitudinalMeters: processor.longitudinalMeters
-            )
-        )
-        options.size = CGSize(width: 1200, height: 800)
+        let options = MKMapSnapshotter.Options(region: region, size: size)
         let snapshotter = MKMapSnapshotter(options: options)
         return MKMapSnapshotterPublisher(snapshotter: snapshotter, processor: processor)
     }

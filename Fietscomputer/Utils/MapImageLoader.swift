@@ -7,20 +7,22 @@
 //
 
 import UIKit
+import MapKit
 import Combine
-import struct CoreLocation.CLLocationCoordinate2D
 
 class MapImageLoader: ObservableObject {
 
     @Published var mapImage: UIImage?
 
-    private let center: CLLocationCoordinate2D
+    private let region: MKCoordinateRegion
+    private let size: CGSize
     private let processor: MapSnapshotProcessor
     private var snapshotter: Cancellable?
     private let snapshotService: MapSnapshotProtocol = MapKitSnapshot()
 
-    init(center: CLLocationCoordinate2D, processor: MapSnapshotProcessor) {
-        self.center = center
+    init(region: MKCoordinateRegion, size: CGSize, processor: MapSnapshotProcessor) {
+        self.region = region
+        self.size = size
         self.processor = processor
     }
 
@@ -29,7 +31,7 @@ class MapImageLoader: ObservableObject {
             return
         }
         snapshotter = snapshotService
-            .makeSnapshot(center, processor: processor)
+            .makeSnapshot(region: region, size: size, processor: processor)
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .assign(to: \.mapImage, on: self)

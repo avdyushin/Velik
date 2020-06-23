@@ -6,6 +6,7 @@
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
+import MapKit
 import CoreLocation
 
 extension Double {
@@ -20,7 +21,7 @@ extension Double {
 extension Collection where Element == CLLocationCoordinate2D {
 
     /// See: http://www.geomidpoint.com/calculation.html
-    func middle() -> Element? {
+    func center() -> Element? {
         guard !isEmpty else {
             return nil
         }
@@ -49,5 +50,40 @@ extension Collection where Element == CLLocationCoordinate2D {
         let lat = atan2(z, hyp)
 
         return CLLocationCoordinate2D(latitude: lat.asDegrees(), longitude: lon.asDegrees())
+    }
+
+    func dimensions() -> (latitudinalMeters: CLLocationDistance, longitudinalMeters: CLLocationDistance)? {
+        guard count > 1 else {
+            return nil
+        }
+
+        let minLatitude = self.min(by: \.latitude)!.latitude
+        let minLongitude = self.min(by: \.longitude)!.longitude
+        let maxLatitude = self.max(by: \.latitude)!.latitude
+        let maxLongitude = self.max(by: \.longitude)!.longitude
+
+        let southWest = CLLocation(latitude: minLatitude, longitude: minLongitude)
+        let southEast = CLLocation(latitude: minLatitude, longitude: maxLongitude)
+        let northEast = CLLocation(latitude: maxLatitude, longitude: maxLongitude)
+        let northWest = CLLocation(latitude: maxLatitude, longitude: minLongitude)
+
+        let latitudinalMeters = southWest.distance(from: southEast)
+        let longitudinalMeters = northEast.distance(from: northWest)
+
+        return (latitudinalMeters, longitudinalMeters)
+    }
+
+    func region() -> MKCoordinateRegion? {
+        guard
+            let center = center(),
+            let dimensions = dimensions() else {
+                return nil
+        }
+
+        return MKCoordinateRegion(
+            center: center,
+            latitudinalMeters: dimensions.latitudinalMeters + 300,
+            longitudinalMeters: dimensions.longitudinalMeters + 300
+        )
     }
 }

@@ -19,7 +19,9 @@ struct RideCellView: View {
                 .font(.caption)
                 .foregroundColor(.secondary)
             HStack(alignment: .top) {
-                AsyncMapImage(center: viewModel.center, processor: viewModel.mapProcessor()) {
+                AsyncMapImage(region: viewModel.mapRegion,
+                              size: viewModel.mapSize,
+                              processor: viewModel.mapProcessor()) {
                     Rectangle()
                         .foregroundColor(Color(UIColor.systemFill))
                 }.frame(width: 120, height: 80, alignment: .leading)
@@ -43,7 +45,6 @@ struct RideCellViewPreview: PreviewProvider {
                     maxSpeed: 10,
                     elevationGain: 100
                 ),
-                center: CLLocationCoordinate2D(latitude: 51.94, longitude: 4.49),
                 locations: []
             ))
             RideCellView(viewModel: RideViewModel(
@@ -55,7 +56,6 @@ struct RideCellViewPreview: PreviewProvider {
                     maxSpeed: 9,
                     elevationGain: 50
                 ),
-                center: CLLocationCoordinate2D(latitude: 53.94, longitude: 4.49),
                 locations: []
             ))
             RideCellView(viewModel: RideViewModel(
@@ -67,7 +67,6 @@ struct RideCellViewPreview: PreviewProvider {
                     maxSpeed: 30,
                     elevationGain: 123
                 ),
-                center: CLLocationCoordinate2D(latitude: 51.94, longitude: 7.49),
                 locations: []
             ))
         }

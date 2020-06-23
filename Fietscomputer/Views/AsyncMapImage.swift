@@ -7,19 +7,20 @@
 //
 
 import SwiftUI
+import MapKit
 import struct UIKit.CGSize
-import struct CoreLocation.CLLocationCoordinate2D
 
 struct AsyncMapImage<Placeholder: View>: View {
 
     @ObservedObject private var mapLoader: MapImageLoader
     private let placeholder: Placeholder
 
-    init(center: CLLocationCoordinate2D,
+    init(region: MKCoordinateRegion,
+         size: CGSize,
          processor: MapSnapshotProcessor,
          @ViewBuilder _ placeholder: () -> Placeholder) {
 
-        self.mapLoader = MapImageLoader(center: center, processor: processor)
+        self.mapLoader = MapImageLoader(region: region, size: size, processor: processor)
         self.placeholder = placeholder()
     }
 

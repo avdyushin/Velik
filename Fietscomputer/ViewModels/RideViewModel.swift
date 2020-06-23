@@ -6,6 +6,8 @@
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
+import UIKit
+import MapKit
 import CoreLocation
 
 class RideViewModel {
@@ -20,7 +22,6 @@ class RideViewModel {
     var power: String
     var energy: String
     var weightLoss: String
-    var center: CLLocationCoordinate2D
     var locations: [CLLocationCoordinate2D]
 
     let distanceLabel = Strings.distance
@@ -32,9 +33,18 @@ class RideViewModel {
     let energyLabel = Strings.energy_output
     let weightLossLabel = Strings.weight_loss
 
+    var center: CLLocationCoordinate2D {
+        locations.center() ?? CLLocationCoordinate2D(latitude: 53.94, longitude: 4.49)
+    }
+
+    var mapSize = CGSize(width: 120*3, height: 80*3)
+
+    var mapRegion: MKCoordinateRegion {
+        locations.region() ?? MKCoordinateRegion()
+    }
+
     init(createdAt: Date?,
          summary: RideService.Summary,
-         center: CLLocationCoordinate2D,
          locations: [CLLocationCoordinate2D]) {
 
         date = Self.date(createdAt)
@@ -51,7 +61,6 @@ class RideViewModel {
         energy = energyPair.value + " " + energyPair.units
         let weigthPair = Self.weight(power: summary.avgPower, duration: summary.duration)
         weightLoss = weigthPair.value + " " + weigthPair.units
-        self.center = center
         self.locations = locations
     }
 

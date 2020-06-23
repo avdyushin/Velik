@@ -17,6 +17,7 @@ class RideDetailsViewModel: ObservableObject {
 
     let objectID: NSManagedObjectID
     var rideViewModel: RideViewModel
+    let mapSize = CGSize(width: 240*3, height: 160*3)
 
     var tracks: String
     var points: String
@@ -26,7 +27,6 @@ class RideDetailsViewModel: ObservableObject {
         self.rideViewModel = RideViewModel(
             createdAt: ride.createdAt,
             summary: ride.asRideSummary(),
-            center: ride.mapCenter(),
             locations: ride.locations()
         )
         self.tracks = "Tracks: \(ride.track?.points?.count ?? 0)"

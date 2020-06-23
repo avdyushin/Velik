@@ -20,7 +20,6 @@ struct HistoryView: View {
                     RideCellView(viewModel: RideViewModel(
                         createdAt: ride.createdAt,
                         summary: ride.asRideSummary(),
-                        center: ride.mapCenter(),
                         locations: ride.locations()
                     )).padding([.bottom], 6)
                 }

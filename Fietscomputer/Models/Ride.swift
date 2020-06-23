@@ -44,6 +44,6 @@ extension Ride: Identifiable {
     }
 
     func mapCenter() -> CLLocationCoordinate2D {
-        locations().middle() ?? CLLocationCoordinate2D(latitude: 51.94, longitude: 4.49)
+        locations().center() ?? CLLocationCoordinate2D(latitude: 51.94, longitude: 4.49)
     }
 }
