@@ -14,6 +14,7 @@ import CoreDataStorage
 class TrackPointTests: XCTestCase {
 
     var storage: CoreDataStorage!
+    var parser: NanoXML!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -23,20 +24,32 @@ class TrackPointTests: XCTestCase {
         description.shouldAddStoreAsynchronously = false
         container.persistentStoreDescriptions = [description]
         storage = CoreDataStorage(container: container)
+
+        let bundle = Bundle(for: type(of: self))
+        let url = bundle.url(forResource: "Ride2", withExtension: "gpx")!
+        let xml = try! String(contentsOf: url)
+        parser = NanoXML(xmlString: xml)
     }
 
     override func tearDownWithError() throws {
         storage = nil
+        parser = nil
         try super.tearDownWithError()
     }
 
-    func testXmlDecoder() throws {
-        let bundle = Bundle(for: type(of: self))
-        let url = bundle.url(forResource: "Ride2", withExtension: "gpx")!
-        let xml = try! String(contentsOf: url)
-        let parser = NanoXML(xmlString: xml)
-        let decoder = XMLDecoder(parser.rootNode()!)
-        decoder.userInfo[CodingUserInfoKey.context!] = storage.mainContext
-        XCTAssertNoThrow(try TrackPoint(from: decoder))
+    func testDecodeSingleWaypoint() throws {
+        let first = parser.rootNode()?.children.first { $0.name == "wpt" }
+        let decoder = XMLDecoder(first!)
+        let wpt = try GPXWayPoint(from: decoder)
+        XCTAssertEqual(51.943208, wpt.latitude, accuracy: 1e-4)
+        XCTAssertEqual(4.484162, wpt.longitude, accuracy: 1e-4)
+        XCTAssertEqual(-0.5, wpt.elevation, accuracy: 0.1)
+        debugPrint(wpt)
+    }
+
+    func testCoreDataDecoder() {
+//        let decoder = XMLDecoder(first!)
+//        decoder.userInfo[CodingUserInfoKey.context!] = storage.mainContext
+//        XCTAssertNoThrow(try TrackPoint(from: decoder))
     }
 }

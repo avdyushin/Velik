@@ -23,16 +23,28 @@ class XMLDecoder: Decoder {
         var allKeys: [Key] = []
         let element: XMLNode
 
-            init(_ element: XMLNode) {
+        init(_ element: XMLNode) {
             self.element = element
         }
 
+        fileprivate func unpackDouble(_ string: String, forKey key: Key) throws -> Double {
+            guard let value = Double(string) else {
+                throw DecodingError.dataCorruptedError(
+                    forKey: key,
+                    in: self,
+                    debugDescription: "Invalid double value: \(string)"
+                )
+            }
+            return value
+        }
+
         func contains(_ key: Key) -> Bool {
-            true
+            element.attributes.keys.contains { $0 == key.stringValue} ||
+            element.children.contains { $0.name == key.stringValue }
         }
 
         func decodeNil(forKey key: Key) throws -> Bool {
-            false
+            fatalError()
         }
 
         func decode(_ type: Bool.Type, forKey key: Key) throws -> Bool {
@@ -40,11 +52,33 @@ class XMLDecoder: Decoder {
         }
 
         func decode(_ type: String.Type, forKey key: Key) throws -> String {
-            fatalError()
+            if let attributeValue = element.attribute(with: key.stringValue) {
+                return attributeValue
+            }
+
+            if let nodeValue = element.child(with: key.stringValue)?.value {
+                return nodeValue
+            }
+
+            throw DecodingError.keyNotFound(
+                key,
+                DecodingError.Context(codingPath: codingPath, debugDescription: "Not found")
+            )
         }
 
         func decode(_ type: Double.Type, forKey key: Key) throws -> Double {
-            fatalError()
+            if let attributeValue = element.attribute(with: key.stringValue) {
+                return try unpackDouble(attributeValue, forKey: key)
+            }
+
+            if let nodeValue = element.child(with: key.stringValue)?.value {
+                return try unpackDouble(nodeValue, forKey: key)
+            }
+
+            throw DecodingError.keyNotFound(
+                key,
+                DecodingError.Context(codingPath: codingPath, debugDescription: "Not found")
+            )
         }
 
         func decode(_ type: Float.Type, forKey key: Key) throws -> Float {
@@ -92,15 +126,13 @@ class XMLDecoder: Decoder {
         }
 
         func decode<T>(_ type: T.Type, forKey key: Key) throws -> T where T: Decodable {
-            try T(from: XMLDecoder(element))
-//            if type is UUID.Type {
-//                let uuidString = try decode(String.self, forKey: key)
-//                return UUID(uuidString: uuidString) as! T
-//            } else {
-//                throw DecodingError.dataCorrupted(
-//                    DecodingError.Context(codingPath: codingPath, debugDescription: "Unsupported type: \(type)")
-//                )
-//            }
+            guard let child = element.child(with: key.stringValue) else {
+                throw DecodingError.keyNotFound(
+                    key,
+                    DecodingError.Context(codingPath: codingPath, debugDescription: "Not found")
+                )
+            }
+            return try T(from: XMLDecoder(child))
         }
 
         func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type,
@@ -138,11 +170,35 @@ class XMLDecoder: Decoder {
         }
 
         func decode(_ type: String.Type) throws -> String {
-            element.value ?? "Unknown"
+            fatalError()
         }
 
+        static var dateFormatter: DateFormatter = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+            dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+            return dateFormatter
+        }()
+
         func decode(_ type: Double.Type) throws -> Double {
-            fatalError()
+            guard let string = element.value else {
+                throw DecodingError.dataCorruptedError(
+                    in: self,
+                    debugDescription: "Invalid format: \(String(describing: element.value))"
+                )
+            }
+            if let double = Double(string) {
+                return double
+            }
+            if let date = SVDC.dateFormatter.date(from: string) {
+                return date.timeIntervalSinceReferenceDate
+            }
+
+            throw DecodingError.dataCorruptedError(
+                in: self,
+                debugDescription: "Invalid format: \(String(describing: element.value))"
+            )
         }
 
         func decode(_ type: Float.Type) throws -> Float {

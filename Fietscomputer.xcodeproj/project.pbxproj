@@ -60,6 +60,7 @@
 		4B32582724924AA50046BD6F /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32582624924AA50046BD6F /* HistoryCoordinator.swift */; };
 		4B32582924924CEC0046BD6F /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32582824924CEC0046BD6F /* NotificationViewModel.swift */; };
 		4B32582B249250EA0046BD6F /* MenuButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32582A249250EA0046BD6F /* MenuButtonStyle.swift */; };
+		4B4EC29B24A3BD1D007B507A /* GPXWayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC29A24A3BD1D007B507A /* GPXWayPoint.swift */; };
 		4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B619245C9FA700B62914 /* BluetoothScanner.swift */; };
 		4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */; };
 		4B58B631246089CB00B62914 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
@@ -183,6 +184,7 @@
 		4B32582624924AA50046BD6F /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		4B32582824924CEC0046BD6F /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		4B32582A249250EA0046BD6F /* MenuButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonStyle.swift; sourceTree = "<group>"; };
+		4B4EC29A24A3BD1D007B507A /* GPXWayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXWayPoint.swift; sourceTree = "<group>"; };
 		4B58B619245C9FA700B62914 /* BluetoothScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothScanner.swift; sourceTree = "<group>"; };
 		4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissions.swift; sourceTree = "<group>"; };
 		4B58B630246089CB00B62914 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				4B1FF0B3249E74DF00D7AFF1 /* Power.swift */,
 				4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */,
 				4B1FF0B7249E821C00D7AFF1 /* Weight.swift */,
+				4B4EC29A24A3BD1D007B507A /* GPXWayPoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -848,6 +851,7 @@
 				4B10F1CF249D53DB0050EEF4 /* TrackPoint.swift in Sources */,
 				4B88C9B6245C3DCD00BD5DD3 /* Service.swift in Sources */,
 				4BA41B44247ED7A20002D88A /* PageIndicatorView.swift in Sources */,
+				4B4EC29B24A3BD1D007B507A /* GPXWayPoint.swift in Sources */,
 				4B208D8724A246B8009E5F6C /* MapSnapshotProcessor.swift in Sources */,
 				4B32582924924CEC0046BD6F /* NotificationViewModel.swift in Sources */,
 				4BA41B1D2472F7830002D88A /* EnvironmentMKMapView.swift in Sources */,
