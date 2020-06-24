@@ -82,3 +82,9 @@ extension Collection where Element == CLLocationCoordinate2D {
         )
     }
 }
+
+extension CLLocationCoordinate2D {
+    init(trackPoint: TrackPoint) {
+        self.init(latitude: trackPoint.latitude, longitude: trackPoint.longitude)
+    }
+}

@@ -1,5 +1,6 @@
 disabled_rules:
     - force_cast
+    - force_try
 excluded:
     - Fietscomputer/Strings.swift
 opt_in_rules:
@@ -16,6 +17,7 @@ nesting:
 
 identifier_name:
     excluded:
+        - id
         - x
         - y
         - z

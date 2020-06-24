@@ -19,7 +19,7 @@ extension Ride: Identifiable {
     }
 
     static var sortDescriptors: [NSSortDescriptor] {
-        [NSSortDescriptor(keyPath: \Ride.updatedAt, ascending: false)]
+        [NSSortDescriptor(keyPath: \Ride.createdAt, ascending: false)]
     }
 
     @discardableResult
@@ -41,9 +41,5 @@ extension Ride: Identifiable {
 
     func locations() -> [CLLocationCoordinate2D] {
         track?.locations() ?? []
-    }
-
-    func mapCenter() -> CLLocationCoordinate2D {
-        locations().center() ?? CLLocationCoordinate2D(latitude: 51.94, longitude: 4.49)
     }
 }

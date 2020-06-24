@@ -21,12 +21,12 @@ extension CoreDataStorage {
 class StorageService: Service {
 
     let shouldAutostart = true
-
-    let storage = CoreDataStorage(container: NSPersistentContainer(name: "Fietscomputer"))
+    let storage = CoreDataStorage(container: try! NSPersistentContainer("Fietscomputer"))
 
     func start() {
         debugPrint(storage)
     }
+
     func stop() { }
 
     func createNewRide(name: String, summary: RideService.Summary, locations: [CLLocation]) {

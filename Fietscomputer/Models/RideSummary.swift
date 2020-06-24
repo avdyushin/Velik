@@ -17,6 +17,6 @@ extension RideSummary: Identifiable {
 
     @discardableResult
     static func create(context: NSManagedObjectContext) -> RideSummary {
-        self.init(context: context)
+        RideSummary(context: context)
     }
 }
