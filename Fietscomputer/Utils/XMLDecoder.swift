@@ -45,12 +45,11 @@ class XMLDecoder: Decoder {
         }
 
         func contains(_ key: Key) -> Bool {
-            element.attributes.keys.contains { $0 == key.stringValue} ||
-            element.children.contains { $0.name == key.stringValue }
+            element.contains(name: key.stringValue)
         }
 
         func decodeNil(forKey key: Key) throws -> Bool {
-            fatalError()
+            contains(key)
         }
 
         func decode(_ type: Bool.Type, forKey key: Key) throws -> Bool {
@@ -58,12 +57,8 @@ class XMLDecoder: Decoder {
         }
 
         func decode(_ type: String.Type, forKey key: Key) throws -> String {
-            if let attributeValue = element.attribute(with: key.stringValue) {
-                return attributeValue
-            }
-
-            if let nodeValue = element.child(with: key.stringValue)?.value {
-                return nodeValue
+            if let value = element.anyValue(with: key.stringValue) {
+                return value
             }
 
             throw DecodingError.keyNotFound(
@@ -73,12 +68,8 @@ class XMLDecoder: Decoder {
         }
 
         func decode(_ type: Double.Type, forKey key: Key) throws -> Double {
-            if let attributeValue = element.attribute(with: key.stringValue) {
-                return try unpackDouble(attributeValue, forKey: key)
-            }
-
-            if let nodeValue = element.child(with: key.stringValue)?.value {
-                return try unpackDouble(nodeValue, forKey: key)
+            if let value = element.anyValue(with: key.stringValue) {
+                return try unpackDouble(value, forKey: key)
             }
 
             throw DecodingError.keyNotFound(
@@ -261,8 +252,8 @@ class XMLDecoder: Decoder {
 
         var codingPath: [CodingKey] = []
         var count: Int?
-        var isAtEnd: Bool = false
-        var currentIndex: Int = 0
+        var isAtEnd: Bool
+        var currentIndex: Int
         let elements: [XMLNode]
         let filter: Filter
 
@@ -270,6 +261,8 @@ class XMLDecoder: Decoder {
             self.filter = filter ?? { _ in true }
             self.elements = element.children.filter(self.filter)
             self.count = self.elements.count
+            self.currentIndex = 0
+            self.isAtEnd = currentIndex == self.count
         }
 
         mutating func decodeNil() throws -> Bool {

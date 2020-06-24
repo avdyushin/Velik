@@ -31,10 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        guard let context = URLContexts.first else {
-            return
-        }
-        debugPrint("OPEN GPX: ", context)
+        coordinator.open(URLContexts: URLContexts)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }

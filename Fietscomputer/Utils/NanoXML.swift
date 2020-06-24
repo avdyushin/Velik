@@ -16,11 +16,22 @@ protocol XMLNode {
 }
 
 extension XMLNode {
+
     func attribute(with name: String) -> String? {
         attributes.first { $0.key == name }?.value
     }
+
     func child(with name: String) -> XMLNode? {
         children.first { $0.name == name }
+    }
+
+    func contains(name: String) -> Bool {
+        attributes.keys.contains { $0 == name} ||
+        children.contains { $0.name == name }
+    }
+
+    func anyValue(with name: String) -> String? {
+        attribute(with: name) ?? child(with: name)?.value
     }
 }
 

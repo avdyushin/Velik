@@ -61,6 +61,7 @@
 		4B32582924924CEC0046BD6F /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32582824924CEC0046BD6F /* NotificationViewModel.swift */; };
 		4B32582B249250EA0046BD6F /* MenuButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32582A249250EA0046BD6F /* MenuButtonStyle.swift */; };
 		4B4EC29B24A3BD1D007B507A /* GPXWayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC29A24A3BD1D007B507A /* GPXWayPoint.swift */; };
+		4B4EC29E24A3DAF6007B507A /* GPXImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC29D24A3DAF6007B507A /* GPXImporter.swift */; };
 		4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B619245C9FA700B62914 /* BluetoothScanner.swift */; };
 		4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */; };
 		4B58B631246089CB00B62914 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
@@ -185,6 +186,7 @@
 		4B32582824924CEC0046BD6F /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		4B32582A249250EA0046BD6F /* MenuButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonStyle.swift; sourceTree = "<group>"; };
 		4B4EC29A24A3BD1D007B507A /* GPXWayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXWayPoint.swift; sourceTree = "<group>"; };
+		4B4EC29D24A3DAF6007B507A /* GPXImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXImporter.swift; sourceTree = "<group>"; };
 		4B58B619245C9FA700B62914 /* BluetoothScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothScanner.swift; sourceTree = "<group>"; };
 		4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissions.swift; sourceTree = "<group>"; };
 		4B58B630246089CB00B62914 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
@@ -390,6 +392,14 @@
 			path = Presenters;
 			sourceTree = "<group>";
 		};
+		4B4EC29C24A3DAE7007B507A /* GPX */ = {
+			isa = PBXGroup;
+			children = (
+				4B4EC29D24A3DAF6007B507A /* GPXImporter.swift */,
+			);
+			name = GPX;
+			sourceTree = "<group>";
+		};
 		4B58B62F246089BE00B62914 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +436,7 @@
 		4B88C9BD245C97FF00BD5DD3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4B4EC29C24A3DAE7007B507A /* GPX */,
 				4B10F1D1249D592E0050EEF4 /* Bluetooth */,
 				4B10F1D0249D591D0050EEF4 /* Location */,
 				4B88C9B5245C3DCD00BD5DD3 /* Service.swift */,
@@ -809,6 +820,7 @@
 				4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */,
 				4B1FF0BC249E95A500D7AFF1 /* RidePowerView.swift in Sources */,
 				4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */,
+				4B4EC29E24A3DAF6007B507A /* GPXImporter.swift in Sources */,
 				4B1FF0BA249E923400D7AFF1 /* RideSummaryView.swift in Sources */,
 				4B10F1B2249BDE0D0050EEF4 /* RideViewDetails.swift in Sources */,
 				4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */,

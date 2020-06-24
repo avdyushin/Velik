@@ -19,6 +19,6 @@ struct GPXWayPoint: Codable {
 
     let latitude: Double
     let longitude: Double
-    let elevation: Double
-    let timestamp: Date
+    let elevation: Double?
+    let timestamp: Date?
 }

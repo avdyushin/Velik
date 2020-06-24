@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import Injected
 
 protocol ViewRunner {
     associatedtype Content: View
@@ -54,6 +55,8 @@ class Coordinator {
 
 class AppCoordinator: Coordinator, ViewRunner {
 
+    @Injected var dataImporter: GPXImporter
+
     private weak var window: UIWindow?
 
     init(window: UIWindow?) {
@@ -64,5 +67,17 @@ class AppCoordinator: Coordinator, ViewRunner {
     func start() -> some View {
         debugPrint("\(self) started")
         return route(to: RootCoordinator(window: window))
+    }
+
+    func open(URLContexts: Set<UIOpenURLContext>) {
+        guard let context = URLContexts.first else {
+            return
+        }
+
+        do {
+            try dataImporter.import(url: context.url)
+        } catch {
+            debugPrint("GPX Import", error)
+        }
     }
 }

@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Dependency { LocationService() }
         Dependency { RideService() }
         Dependency { HeartRateService() }
+        Dependency { GPXImporter() }
     }
 
     func application(_ application: UIApplication,
