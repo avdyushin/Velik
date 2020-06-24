@@ -47,6 +47,17 @@ class TrackPointTests: XCTestCase {
         debugPrint(wpt)
     }
 
+    func testWaypointContainer() throws {
+        let first = parser.rootNode()
+        let decoder = XMLDecoder(first!) { $0.name == "wpt" }
+        let waypoints = try [GPXWayPoint](from: decoder)
+        let wpt = waypoints.first!
+        XCTAssertEqual(51.943208, wpt.latitude, accuracy: 1e-4)
+        XCTAssertEqual(4.484162, wpt.longitude, accuracy: 1e-4)
+        XCTAssertEqual(-0.5, wpt.elevation, accuracy: 0.1)
+        XCTAssertEqual(4441, waypoints.count)
+    }
+
     func testCoreDataDecoder() {
 //        let decoder = XMLDecoder(first!)
 //        decoder.userInfo[CodingUserInfoKey.context!] = storage.mainContext

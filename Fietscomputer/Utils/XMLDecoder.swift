@@ -10,21 +10,27 @@ import Foundation
 
 class XMLDecoder: Decoder {
 
+    typealias Filter = (XMLNode) -> Bool
+
     var codingPath: [CodingKey] = []
     var userInfo: [CodingUserInfoKey: Any] = [:]
     let element: XMLNode
+    let filter: Filter?
 
-    init(_ element: XMLNode) {
+    init(_ element: XMLNode, filter: Filter? = nil) {
         self.element = element
+        self.filter = filter
     }
 
     struct KDC<Key: CodingKey>: KeyedDecodingContainerProtocol {
         var codingPath: [CodingKey] = []
         var allKeys: [Key] = []
         let element: XMLNode
+        let filter: Filter?
 
-        init(_ element: XMLNode) {
+        init(_ element: XMLNode, filter: Filter?) {
             self.element = element
+            self.filter = filter
         }
 
         fileprivate func unpackDouble(_ string: String, forKey key: Key) throws -> Double {
@@ -132,7 +138,7 @@ class XMLDecoder: Decoder {
                     DecodingError.Context(codingPath: codingPath, debugDescription: "Not found")
                 )
             }
-            return try T(from: XMLDecoder(child))
+            return try T(from: XMLDecoder(child, filter: filter))
         }
 
         func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type,
@@ -161,6 +167,7 @@ class XMLDecoder: Decoder {
         init(_ element: XMLNode) {
             self.element = element
         }
+
         func decodeNil() -> Bool {
             fatalError()
         }
@@ -250,12 +257,110 @@ class XMLDecoder: Decoder {
         }
     }
 
+    struct UDC: UnkeyedDecodingContainer {
+
+        var codingPath: [CodingKey] = []
+        var count: Int?
+        var isAtEnd: Bool = false
+        var currentIndex: Int = 0
+        let elements: [XMLNode]
+        let filter: Filter
+
+        init(_ element: XMLNode, filter: Filter?) {
+            self.filter = filter ?? { _ in true }
+            self.elements = element.children.filter(self.filter)
+            self.count = self.elements.count
+        }
+
+        mutating func decodeNil() throws -> Bool {
+            fatalError()
+        }
+
+        mutating func decode(_ type: Bool.Type) throws -> Bool {
+            fatalError()
+        }
+
+        mutating func decode(_ type: String.Type) throws -> String {
+            fatalError()
+        }
+
+        mutating func decode(_ type: Double.Type) throws -> Double {
+            fatalError()
+        }
+
+        mutating func decode(_ type: Float.Type) throws -> Float {
+            fatalError()
+        }
+
+        mutating func decode(_ type: Int.Type) throws -> Int {
+            fatalError()
+        }
+
+        mutating func decode(_ type: Int8.Type) throws -> Int8 {
+            fatalError()
+        }
+
+        mutating func decode(_ type: Int16.Type) throws -> Int16 {
+            fatalError()
+        }
+
+        mutating func decode(_ type: Int32.Type) throws -> Int32 {
+            fatalError()
+        }
+
+        mutating func decode(_ type: Int64.Type) throws -> Int64 {
+            fatalError()
+        }
+
+        mutating func decode(_ type: UInt.Type) throws -> UInt {
+            fatalError()
+        }
+
+        mutating func decode(_ type: UInt8.Type) throws -> UInt8 {
+            fatalError()
+        }
+
+        mutating func decode(_ type: UInt16.Type) throws -> UInt16 {
+            fatalError()
+        }
+
+        mutating func decode(_ type: UInt32.Type) throws -> UInt32 {
+            fatalError()
+        }
+
+        mutating func decode(_ type: UInt64.Type) throws -> UInt64 {
+            fatalError()
+        }
+
+        mutating func decode<T>(_ type: T.Type) throws -> T where T: Decodable {
+            defer {
+                currentIndex += 1
+                isAtEnd = currentIndex == count
+            }
+            let child = elements[currentIndex]
+            return try T(from: XMLDecoder(child, filter: filter))
+        }
+
+        mutating func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type)
+            throws -> KeyedDecodingContainer<NestedKey> where NestedKey: CodingKey {
+            fatalError()
+        }
+
+        mutating func nestedUnkeyedContainer() throws -> UnkeyedDecodingContainer {
+            fatalError()
+        }
+
+        mutating func superDecoder() throws -> Decoder {
+            fatalError()
+        }
+    }
+
     func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> where Key: CodingKey {
-        KeyedDecodingContainer(KDC(element))
+        KeyedDecodingContainer(KDC(element, filter: filter))
     }
 
     func unkeyedContainer() throws -> UnkeyedDecodingContainer {
-        fatalError()
+        UDC(element, filter: filter)
     }
 
     func singleValueContainer() throws -> SingleValueDecodingContainer {

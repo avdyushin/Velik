@@ -51,6 +51,10 @@ extension Sequence {
     func sorted<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Self.Element] {
         self.sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
+
+    func count(_ where: (Element) -> Bool) -> Int {
+        self.filter(`where`).count
+    }
 }
 
 extension NSSet {
