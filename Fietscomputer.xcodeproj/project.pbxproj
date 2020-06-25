@@ -62,6 +62,7 @@
 		4B32582B249250EA0046BD6F /* MenuButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32582A249250EA0046BD6F /* MenuButtonStyle.swift */; };
 		4B4EC29B24A3BD1D007B507A /* GPXWayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC29A24A3BD1D007B507A /* GPXWayPoint.swift */; };
 		4B4EC29E24A3DAF6007B507A /* GPXImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC29D24A3DAF6007B507A /* GPXImporter.swift */; };
+		4B4EC2A124A474C6007B507A /* TrackSegment.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B4EC29F24A47350007B507A /* TrackSegment.gpx */; };
 		4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B619245C9FA700B62914 /* BluetoothScanner.swift */; };
 		4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */; };
 		4B58B631246089CB00B62914 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
@@ -114,8 +115,8 @@
 		4BDBAF8D248A7D5800180624 /* StopButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBAF8C248A7D5800180624 /* StopButtonViewModel.swift */; };
 		4BDBAF8F248A81CF00180624 /* RoundButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBAF8E248A81CF00180624 /* RoundButtonStyle.swift */; };
 		4BF6689A24A3935B001AA07E /* NanoXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6689924A3935B001AA07E /* NanoXML.swift */; };
-		4BF6689C24A3958D001AA07E /* Ride1.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9224A29958009E5F6C /* Ride1.gpx */; };
-		4BF6689D24A39590001AA07E /* Ride2.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9324A29958009E5F6C /* Ride2.gpx */; };
+		4BF6689C24A3958D001AA07E /* NoTime.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9224A29958009E5F6C /* NoTime.gpx */; };
+		4BF6689D24A39590001AA07E /* WayPoints.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9324A29958009E5F6C /* WayPoints.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,8 +164,8 @@
 		4B208D8824A248F4009E5F6C /* RideTrackDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideTrackDrawer.swift; sourceTree = "<group>"; };
 		4B208D8A24A2695C009E5F6C /* Applicable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicable.swift; sourceTree = "<group>"; };
 		4B208D8C24A273BF009E5F6C /* CGContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGContext+Extensions.swift"; sourceTree = "<group>"; };
-		4B208D9224A29958009E5F6C /* Ride1.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Ride1.gpx; sourceTree = "<group>"; };
-		4B208D9324A29958009E5F6C /* Ride2.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Ride2.gpx; sourceTree = "<group>"; };
+		4B208D9224A29958009E5F6C /* NoTime.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NoTime.gpx; sourceTree = "<group>"; };
+		4B208D9324A29958009E5F6C /* WayPoints.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WayPoints.gpx; sourceTree = "<group>"; };
 		4B208D9624A36A89009E5F6C /* CodingUserInfoKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodingUserInfoKey+Extensions.swift"; sourceTree = "<group>"; };
 		4B208D9824A36A9C009E5F6C /* TrackPoint+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackPoint+Decodable.swift"; sourceTree = "<group>"; };
 		4B208D9A24A37656009E5F6C /* XMLDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDecoder.swift; sourceTree = "<group>"; };
@@ -187,6 +188,7 @@
 		4B32582A249250EA0046BD6F /* MenuButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonStyle.swift; sourceTree = "<group>"; };
 		4B4EC29A24A3BD1D007B507A /* GPXWayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXWayPoint.swift; sourceTree = "<group>"; };
 		4B4EC29D24A3DAF6007B507A /* GPXImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXImporter.swift; sourceTree = "<group>"; };
+		4B4EC29F24A47350007B507A /* TrackSegment.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TrackSegment.gpx; sourceTree = "<group>"; };
 		4B58B619245C9FA700B62914 /* BluetoothScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothScanner.swift; sourceTree = "<group>"; };
 		4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissions.swift; sourceTree = "<group>"; };
 		4B58B630246089CB00B62914 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
@@ -500,8 +502,9 @@
 		4B88C9C1245C985D00BD5DD3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4B208D9224A29958009E5F6C /* Ride1.gpx */,
-				4B208D9324A29958009E5F6C /* Ride2.gpx */,
+				4B4EC29F24A47350007B507A /* TrackSegment.gpx */,
+				4B208D9224A29958009E5F6C /* NoTime.gpx */,
+				4B208D9324A29958009E5F6C /* WayPoints.gpx */,
 				4B10F1A5249A8CB70050EEF4 /* Strings.xml */,
 				4BAB77C7245B2FE200F011A0 /* Assets.xcassets */,
 				4BAB77CC245B2FE200F011A0 /* LaunchScreen.storyboard */,
@@ -724,8 +727,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BF6689D24A39590001AA07E /* Ride2.gpx in Resources */,
-				4BF6689C24A3958D001AA07E /* Ride1.gpx in Resources */,
+				4BF6689D24A39590001AA07E /* WayPoints.gpx in Resources */,
+				4B4EC2A124A474C6007B507A /* TrackSegment.gpx in Resources */,
+				4BF6689C24A3958D001AA07E /* NoTime.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,27 +10,33 @@ import Foundation
 
 class XMLDecoder: Decoder {
 
-    typealias Filter = (XMLNode) -> Bool
+    static var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return dateFormatter
+    }()
 
     var codingPath: [CodingKey] = []
     var userInfo: [CodingUserInfoKey: Any] = [:]
     let element: XMLNode
-    let filter: Filter?
+    let name: String?
 
-    init(_ element: XMLNode, filter: Filter? = nil) {
+    init(_ element: XMLNode, name: String? = nil) {
         self.element = element
-        self.filter = filter
+        self.name = name
     }
 
     struct KDC<Key: CodingKey>: KeyedDecodingContainerProtocol {
         var codingPath: [CodingKey] = []
         var allKeys: [Key] = []
         let element: XMLNode
-        let filter: Filter?
+        let name: String?
 
-        init(_ element: XMLNode, filter: Filter?) {
+        init(_ element: XMLNode, name: String?) {
             self.element = element
-            self.filter = filter
+            self.name = name
         }
 
         fileprivate func unpackDouble(_ string: String, forKey key: Key) throws -> Double {
@@ -123,13 +129,13 @@ class XMLDecoder: Decoder {
         }
 
         func decode<T>(_ type: T.Type, forKey key: Key) throws -> T where T: Decodable {
-            guard let child = element.child(with: key.stringValue) else {
+            guard let child = element[key.stringValue] else {
                 throw DecodingError.keyNotFound(
                     key,
                     DecodingError.Context(codingPath: codingPath, debugDescription: "Not found")
                 )
             }
-            return try T(from: XMLDecoder(child, filter: filter))
+            return try T(from: XMLDecoder(child, name: name))
         }
 
         func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type,
@@ -171,14 +177,6 @@ class XMLDecoder: Decoder {
             fatalError()
         }
 
-        static var dateFormatter: DateFormatter = {
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-            dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-            return dateFormatter
-        }()
-
         func decode(_ type: Double.Type) throws -> Double {
             guard let string = element.value else {
                 throw DecodingError.dataCorruptedError(
@@ -189,7 +187,7 @@ class XMLDecoder: Decoder {
             if let double = Double(string) {
                 return double
             }
-            if let date = SVDC.dateFormatter.date(from: string) {
+            if let date = XMLDecoder.dateFormatter.date(from: string) {
                 return date.timeIntervalSinceReferenceDate
             }
 
@@ -255,11 +253,11 @@ class XMLDecoder: Decoder {
         var isAtEnd: Bool
         var currentIndex: Int
         let elements: [XMLNode]
-        let filter: Filter
+        let name: String?
 
-        init(_ element: XMLNode, filter: Filter?) {
-            self.filter = filter ?? { _ in true }
-            self.elements = element.children.filter(self.filter)
+        init(_ element: XMLNode, name: String?) {
+            self.name = name
+            self.elements = element.children.filter { $0.name == name }
             self.count = self.elements.count
             self.currentIndex = 0
             self.isAtEnd = currentIndex == self.count
@@ -331,7 +329,7 @@ class XMLDecoder: Decoder {
                 isAtEnd = currentIndex == count
             }
             let child = elements[currentIndex]
-            return try T(from: XMLDecoder(child, filter: filter))
+            return try T(from: XMLDecoder(child, name: name))
         }
 
         mutating func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type)
@@ -349,11 +347,11 @@ class XMLDecoder: Decoder {
     }
 
     func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> where Key: CodingKey {
-        KeyedDecodingContainer(KDC(element, filter: filter))
+        KeyedDecodingContainer(KDC(element, name: name))
     }
 
     func unkeyedContainer() throws -> UnkeyedDecodingContainer {
-        UDC(element, filter: filter)
+        UDC(element, name: name)
     }
 
     func singleValueContainer() throws -> SingleValueDecodingContainer {

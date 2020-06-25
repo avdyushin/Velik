@@ -22,11 +22,11 @@ struct GPXImporter: DataImporter {
         let xml = try String(contentsOf: url)
         let parser = NanoXML(xmlString: xml)
 
-        guard let root = parser.rootNode() else {
+        guard let root = parser.root else {
             throw Errors.invalidXML
         }
 
-        let decoder = XMLDecoder(root) { $0.name == "wpt" }
+        let decoder = XMLDecoder(root, name: "wpt")
         let waypoints = try [GPXWayPoint](from: decoder)
 
         debugPrint("Got \(waypoints.count)")

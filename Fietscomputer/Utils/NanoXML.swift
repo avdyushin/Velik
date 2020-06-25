@@ -17,12 +17,24 @@ protocol XMLNode {
 
 extension XMLNode {
 
-    func attribute(with name: String) -> String? {
+    func attribute(name: String) -> String? {
         attributes.first { $0.key == name }?.value
     }
 
-    func child(with name: String) -> XMLNode? {
-        children.first { $0.name == name }
+    private func firstChild<T: Equatable>(by keyPath: KeyPath<XMLNode, T>, with value: T) -> XMLNode? {
+        children.first { $0[keyPath: keyPath] == value }
+    }
+
+    subscript(name: String) -> XMLNode? {
+        firstChild(by: \.name, with: name)
+    }
+
+    func find(path: String) -> XMLNode? {
+        var current: XMLNode? = self
+        path.split(separator: "/").forEach {
+            current = current?[String($0)]
+        }
+        return current
     }
 
     func contains(name: String) -> Bool {
@@ -31,11 +43,11 @@ extension XMLNode {
     }
 
     func anyValue(with name: String) -> String? {
-        attribute(with: name) ?? child(with: name)?.value
+        attribute(name: name) ?? self[name]?.value
     }
 }
 
-class XMLElement: XMLNode {
+final class XMLElement: XMLNode {
     let name: String
     var attributes = [String: String]()
     var children = [XMLNode]()
@@ -48,13 +60,13 @@ class XMLElement: XMLNode {
     }
 }
 
-class NanoXML: NSObject {
+class NanoXML: NSObject, XMLParserDelegate {
 
     var error: Error?
 
-    private var stack = [XMLNode]()
+    private var stack = [XMLElement]()
     private let xmlString: String
-    private var root: XMLNode?
+    private(set) var root: XMLElement?
 
     init(xmlString: String) {
         self.xmlString = xmlString
@@ -63,11 +75,6 @@ class NanoXML: NSObject {
         parser.delegate = self
         parser.parse()
     }
-
-    func rootNode() -> XMLNode? { root }
-}
-
-extension NanoXML: XMLParserDelegate {
 
     func parser(_ parser: XMLParser,
                 didStartElement elementName: String,

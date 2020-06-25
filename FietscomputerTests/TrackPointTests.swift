@@ -13,6 +13,12 @@ import CoreDataStorage
 
 class TrackPointTests: XCTestCase {
 
+    enum GPXFiles: String {
+        case waypoints = "WayPoints"
+        case minimum = "NoTime"
+        case segment = "TrackSegment"
+    }
+
     var storage: CoreDataStorage!
     var parser: NanoXML!
 
@@ -24,7 +30,6 @@ class TrackPointTests: XCTestCase {
         description.shouldAddStoreAsynchronously = false
         container.persistentStoreDescriptions = [description]
         storage = CoreDataStorage(container: container)
-
     }
 
     override func tearDownWithError() throws {
@@ -33,49 +38,73 @@ class TrackPointTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func createXML(name: String) {
+    func createXML(file: GPXFiles) {
         let bundle = Bundle(for: type(of: self))
-        let url = bundle.url(forResource: name, withExtension: "gpx")!
+        let url = bundle.url(forResource: file.rawValue, withExtension: "gpx")!
         let xml = try! String(contentsOf: url)
         parser = NanoXML(xmlString: xml)
     }
 
     func testDecodeSingleWaypoint() throws {
-        createXML(name: "Ride2")
-        let first = parser.rootNode()?.children.first { $0.name == "wpt" }
+        createXML(file: .waypoints)
+        let first = parser.root?.children.first { $0.name == "wpt" }
         let decoder = XMLDecoder(first!)
-        let wpt = try GPXWayPoint(from: decoder)
-        XCTAssertEqual(51.943208, wpt.latitude, accuracy: 1e-4)
-        XCTAssertEqual(4.484162, wpt.longitude, accuracy: 1e-4)
-        if let ele = wpt.elevation {
-            XCTAssertEqual(-0.5, ele, accuracy: 0.1)
+        let waypoint = try GPXWayPoint(from: decoder)
+        XCTAssertEqual(51.943208, waypoint.latitude, accuracy: 1e-4)
+        XCTAssertEqual(4.484162, waypoint.longitude, accuracy: 1e-4)
+        if let elevation = waypoint.elevation {
+            XCTAssertEqual(-0.5, elevation, accuracy: 0.1)
         }
-        debugPrint(wpt)
     }
 
     func testDecodeSingleMinimumWaypoint() throws {
-        createXML(name: "Ride1")
-        let first = parser.rootNode()?.children.first { $0.name == "wpt" }
+        createXML(file: .minimum)
+        let first = parser.root?.children.first { $0.name == "wpt" }
         let decoder = XMLDecoder(first!)
-        let wpt = try GPXWayPoint(from: decoder)
-        XCTAssertEqual(51.94334, wpt.latitude, accuracy: 1e-4)
-        XCTAssertEqual(4.48391, wpt.longitude, accuracy: 1e-4)
-        if let ele = wpt.elevation {
-            XCTAssertEqual(-0.5, ele, accuracy: 0.1)
+        let waypoint = try GPXWayPoint(from: decoder)
+        XCTAssertEqual(51.94334, waypoint.latitude, accuracy: 1e-4)
+        XCTAssertEqual(4.48391, waypoint.longitude, accuracy: 1e-4)
+        if let elevation = waypoint.elevation {
+            XCTAssertEqual(-0.5, elevation, accuracy: 0.1)
         }
-        debugPrint(wpt)
     }
 
     func testWaypointContainer() throws {
-        createXML(name: "Ride2")
-        let first = parser.rootNode()
-        let decoder = XMLDecoder(first!) { $0.name == "wpt" }
+        createXML(file: .waypoints)
+        let first = parser.root
+        let decoder = XMLDecoder(first!, name: "wpt")
         let waypoints = try [GPXWayPoint](from: decoder)
-        let wpt = waypoints.first!
-        XCTAssertEqual(51.943208, wpt.latitude, accuracy: 1e-4)
-        XCTAssertEqual(4.484162, wpt.longitude, accuracy: 1e-4)
-        if let ele = wpt.elevation {
-            XCTAssertEqual(-0.5, ele, accuracy: 0.1)
+        let waypoint = waypoints.first!
+        XCTAssertEqual(51.943208, waypoint.latitude, accuracy: 1e-4)
+        XCTAssertEqual(4.484162, waypoint.longitude, accuracy: 1e-4)
+        if let elevation = waypoint.elevation {
+            XCTAssertEqual(-0.5, elevation, accuracy: 0.1)
+        }
+        XCTAssertEqual(4441, waypoints.count)
+    }
+
+    func testDecodeTrackSegment() throws {
+        createXML(file: .segment)
+        let track = parser.root?.find(path: "trk/trkseg/trkpt")
+        let decoder = XMLDecoder(track!)
+        let waypoint = try GPXWayPoint(from: decoder)
+        XCTAssertEqual(51.943208, waypoint.latitude, accuracy: 1e-4)
+        XCTAssertEqual(4.484162, waypoint.longitude, accuracy: 1e-4)
+        if let elevation = waypoint.elevation {
+            XCTAssertEqual(-0.5, elevation, accuracy: 0.1)
+        }
+    }
+
+    func testDecodeSegmentContainer() throws {
+        createXML(file: .segment)
+        let track = parser.root?.find(path: "trk/trkseg")
+        let decoder = XMLDecoder(track!, name: "trkpt")
+        let waypoints = try [GPXWayPoint](from: decoder)
+        let waypoint = waypoints.first!
+        XCTAssertEqual(51.943208, waypoint.latitude, accuracy: 1e-4)
+        XCTAssertEqual(4.484162, waypoint.longitude, accuracy: 1e-4)
+        if let elevation = waypoint.elevation {
+            XCTAssertEqual(-0.5, elevation, accuracy: 0.1)
         }
         XCTAssertEqual(4441, waypoints.count)
     }
