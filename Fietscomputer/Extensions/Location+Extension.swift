@@ -88,3 +88,19 @@ extension CLLocationCoordinate2D {
         self.init(latitude: trackPoint.latitude, longitude: trackPoint.longitude)
     }
 }
+
+extension CLLocation {
+    convenience init(wayPoint: GPXPoint) {
+        self.init(
+            coordinate: CLLocationCoordinate2D(
+                latitude: wayPoint.latitude,
+                longitude: wayPoint.longitude),
+            altitude: wayPoint.elevation ?? 0,
+            horizontalAccuracy: 0,
+            verticalAccuracy: 0,
+            course: 0,
+            speed: wayPoint.speed ?? 0,
+            timestamp: wayPoint.timestamp ?? Date()
+        )
+    }
+}

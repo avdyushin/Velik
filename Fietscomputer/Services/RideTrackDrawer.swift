@@ -39,6 +39,7 @@ struct RideTrackDrawer: MapSnapshotProcessor {
         context.setLineWidth(10)
         context.setStrokeColor(UIColor.blue.cgColor)
         context.setLineCap(.round)
+        context.setLineJoin(.round)
 
         let points = locations.map { snapshot.point(for: $0) }
         let path = CGMutablePath()

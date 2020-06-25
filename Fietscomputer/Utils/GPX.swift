@@ -6,7 +6,7 @@
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
-import Foundation
+import CoreLocation
 
 struct GPX {
 
@@ -16,6 +16,8 @@ struct GPX {
 
     let name: String?
     let points: [GPXPoint]
+
+    var locations: [CLLocation] { points.map(CLLocation.init) }
 
     init(contentsOf url: URL) throws {
 

@@ -49,6 +49,10 @@ class RideService: Service {
             self.energy = energy.value
             self.weigthLoss = Weight.loss(energy: energy).value
         }
+
+        static func empty() -> Self {
+            .init(duration: 0, distance: 0, avgSpeed: 0, maxSpeed: 0, elevationGain: 0)
+        }
     }
 
     @Injected private var locationService: LocationService
