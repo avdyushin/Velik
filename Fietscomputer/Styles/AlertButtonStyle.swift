@@ -1,14 +1,14 @@
 //
-//  ActionButtonStyle.swift
+//  AlertButtonStyle.swift
 //  Fietscomputer
 //
-//  Created by Grigory Avdyushin on 18/05/2020.
+//  Created by Grigory Avdyushin on 25/06/2020.
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
 import SwiftUI
 
-struct ActionButtonStyle: ButtonStyle {
+struct AlertButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         GeometryReader { geometry in
             configuration.label
@@ -18,7 +18,6 @@ struct ActionButtonStyle: ButtonStyle {
                     RoundedRectangle(cornerRadius: geometry.size.height / 2)
                         .stroke(lineWidth: 2)
                         .fill()
-                        .background(Color(UIColor.systemBackground))
             )
         }
         .opacity(configuration.isPressed ? 0.5 : 1.0)

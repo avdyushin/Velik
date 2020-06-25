@@ -43,6 +43,16 @@ extension TrackPoint {
             $0.timestamp = location.timestamp
         }
     }
+
+    static func create(with waypoint: GPXPoint, context: NSManagedObjectContext) -> TrackPoint {
+        TrackPoint(context: context).apply {
+            $0.elevation = waypoint.elevation ?? 0
+            $0.latitude = waypoint.latitude
+            $0.longitude = waypoint.longitude
+            $0.speed = waypoint.speed ?? 0
+            $0.timestamp = waypoint.timestamp ?? Date()
+        }
+    }
 }
 
 extension TrackPoint: Encodable {

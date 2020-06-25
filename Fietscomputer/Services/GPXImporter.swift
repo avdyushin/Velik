@@ -6,29 +6,32 @@
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 protocol DataImporter {
+    var availableGPX: AnyPublisher<GPX, Never> { get }
+
     func `import`(url: URL) throws
+    func save()
 }
 
 struct GPXImporter: DataImporter {
 
-    enum Errors: Error {
-        case invalidXML
+    private let available = PassthroughSubject<GPX, Never>()
+    let availableGPX: AnyPublisher<GPX, Never>
+
+    init() {
+        availableGPX = available.eraseToAnyPublisher()
     }
 
     func `import`(url: URL) throws {
-        let xml = try String(contentsOf: url)
-        let parser = NanoXML(xmlString: xml)
+        let gpx = try GPX(contentsOf: url)
+        available.send(gpx)
+        debugPrint("Got \(gpx.points.count)")
+    }
 
-        guard let root = parser.root else {
-            throw Errors.invalidXML
-        }
-
-        let decoder = XMLDecoder(root, name: "wpt")
-        let waypoints = try [GPXWayPoint](from: decoder)
-
-        debugPrint("Got \(waypoints.count)")
+    func save() {
+        debugPrint("Save me")
     }
 }

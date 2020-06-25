@@ -54,15 +54,17 @@
 		4B2B31942461D9DE00726271 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B5245C3DCD00BD5DD3 /* Service.swift */; };
 		4B2B31952461D9E700726271 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63324608A8400B62914 /* Data+Extension.swift */; };
 		4B2B31972461F98300726271 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63924608EE400B62914 /* HeartRateService.swift */; };
+		4B2FE5E624A4FC050011523C /* AlertButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2FE5E524A4FC050011523C /* AlertButtonStyle.swift */; };
 		4B32582024923F290046BD6F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32581F24923F290046BD6F /* Coordinator.swift */; };
 		4B3258222492464E0046BD6F /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3258212492464E0046BD6F /* RootCoordinator.swift */; };
 		4B325825249249B20046BD6F /* RootPresenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B325824249249B20046BD6F /* RootPresenting.swift */; };
 		4B32582724924AA50046BD6F /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32582624924AA50046BD6F /* HistoryCoordinator.swift */; };
 		4B32582924924CEC0046BD6F /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32582824924CEC0046BD6F /* NotificationViewModel.swift */; };
 		4B32582B249250EA0046BD6F /* MenuButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B32582A249250EA0046BD6F /* MenuButtonStyle.swift */; };
-		4B4EC29B24A3BD1D007B507A /* GPXWayPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC29A24A3BD1D007B507A /* GPXWayPoint.swift */; };
+		4B4EC29B24A3BD1D007B507A /* GPXPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC29A24A3BD1D007B507A /* GPXPoint.swift */; };
 		4B4EC29E24A3DAF6007B507A /* GPXImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC29D24A3DAF6007B507A /* GPXImporter.swift */; };
 		4B4EC2A124A474C6007B507A /* TrackSegment.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B4EC29F24A47350007B507A /* TrackSegment.gpx */; };
+		4B4EC2A324A48140007B507A /* GPX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC2A224A48140007B507A /* GPX.swift */; };
 		4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B619245C9FA700B62914 /* BluetoothScanner.swift */; };
 		4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */; };
 		4B58B631246089CB00B62914 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
@@ -180,15 +182,17 @@
 		4B2B318C2461D9AB00726271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B2B318E2461D9AB00726271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B2B318F2461D9AB00726271 /* DebugBluetooth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DebugBluetooth.entitlements; sourceTree = "<group>"; };
+		4B2FE5E524A4FC050011523C /* AlertButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButtonStyle.swift; sourceTree = "<group>"; };
 		4B32581F24923F290046BD6F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4B3258212492464E0046BD6F /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		4B325824249249B20046BD6F /* RootPresenting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPresenting.swift; sourceTree = "<group>"; };
 		4B32582624924AA50046BD6F /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
 		4B32582824924CEC0046BD6F /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		4B32582A249250EA0046BD6F /* MenuButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonStyle.swift; sourceTree = "<group>"; };
-		4B4EC29A24A3BD1D007B507A /* GPXWayPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXWayPoint.swift; sourceTree = "<group>"; };
+		4B4EC29A24A3BD1D007B507A /* GPXPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXPoint.swift; sourceTree = "<group>"; };
 		4B4EC29D24A3DAF6007B507A /* GPXImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXImporter.swift; sourceTree = "<group>"; };
 		4B4EC29F24A47350007B507A /* TrackSegment.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TrackSegment.gpx; sourceTree = "<group>"; };
+		4B4EC2A224A48140007B507A /* GPX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPX.swift; sourceTree = "<group>"; };
 		4B58B619245C9FA700B62914 /* BluetoothScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothScanner.swift; sourceTree = "<group>"; };
 		4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissions.swift; sourceTree = "<group>"; };
 		4B58B630246089CB00B62914 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				4B58B630246089CB00B62914 /* AES.swift */,
+				4B4EC2A224A48140007B507A /* GPX.swift */,
 				4BBB4B94246D617700CA710F /* ScaledFont.swift */,
 				4BA41B102472F6AB0002D88A /* Formatters.swift */,
 				4BA41B1E2472F7F30002D88A /* Timer2.swift */,
@@ -494,7 +499,7 @@
 				4B1FF0B3249E74DF00D7AFF1 /* Power.swift */,
 				4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */,
 				4B1FF0B7249E821C00D7AFF1 /* Weight.swift */,
-				4B4EC29A24A3BD1D007B507A /* GPXWayPoint.swift */,
+				4B4EC29A24A3BD1D007B507A /* GPXPoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -521,6 +526,7 @@
 				4BDBAF8E248A81CF00180624 /* RoundButtonStyle.swift */,
 				4B834E38248C0B2900A0272E /* CornerRadiusStyle.swift */,
 				4B32582A249250EA0046BD6F /* MenuButtonStyle.swift */,
+				4B2FE5E524A4FC050011523C /* AlertButtonStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -801,6 +807,7 @@
 				4B208DA024A37EAF009E5F6C /* PersistentContainer.swift in Sources */,
 				4B10F1B6249C986E0050EEF4 /* RideCellView.swift in Sources */,
 				4BBB4B992470624900CA710F /* Color+Extension.swift in Sources */,
+				4B2FE5E624A4FC050011523C /* AlertButtonStyle.swift in Sources */,
 				4B1FF0B4249E74DF00D7AFF1 /* Power.swift in Sources */,
 				4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */,
 				4B10F1B8249C98A30050EEF4 /* RideViewModel.swift in Sources */,
@@ -845,6 +852,7 @@
 				4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */,
 				4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */,
 				4B10F1A8249B988E0050EEF4 /* RideRepository.swift in Sources */,
+				4B4EC2A324A48140007B507A /* GPX.swift in Sources */,
 				4B10F1BE249D0DAC0050EEF4 /* MapImageLoader.swift in Sources */,
 				4BA41B192472F7310002D88A /* MapView2.swift in Sources */,
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
@@ -867,7 +875,7 @@
 				4B10F1CF249D53DB0050EEF4 /* TrackPoint.swift in Sources */,
 				4B88C9B6245C3DCD00BD5DD3 /* Service.swift in Sources */,
 				4BA41B44247ED7A20002D88A /* PageIndicatorView.swift in Sources */,
-				4B4EC29B24A3BD1D007B507A /* GPXWayPoint.swift in Sources */,
+				4B4EC29B24A3BD1D007B507A /* GPXPoint.swift in Sources */,
 				4B208D8724A246B8009E5F6C /* MapSnapshotProcessor.swift in Sources */,
 				4B32582924924CEC0046BD6F /* NotificationViewModel.swift in Sources */,
 				4BA41B1D2472F7830002D88A /* EnvironmentMKMapView.swift in Sources */,
