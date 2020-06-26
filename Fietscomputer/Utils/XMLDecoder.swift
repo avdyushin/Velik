@@ -55,7 +55,7 @@ class XMLDecoder: Decoder {
         }
 
         func decodeNil(forKey key: Key) throws -> Bool {
-            contains(key)
+            false
         }
 
         func decode(_ type: Bool.Type, forKey key: Key) throws -> Bool {
