@@ -15,12 +15,13 @@ struct AsyncMapImage<Placeholder: View>: View {
     @ObservedObject private var mapLoader: MapImageLoader
     private let placeholder: Placeholder
 
-    init(region: MKCoordinateRegion,
+    init(uuid: UUID,
+         region: MKCoordinateRegion,
          size: CGSize,
          processor: MapSnapshotProcessor,
          @ViewBuilder _ placeholder: () -> Placeholder) {
 
-        self.mapLoader = MapImageLoader(region: region, size: size, processor: processor)
+        self.mapLoader = MapImageLoader(uuid: uuid, region: region, size: size, processor: processor)
         self.placeholder = placeholder()
     }
 
@@ -34,6 +35,6 @@ struct AsyncMapImage<Placeholder: View>: View {
             }
         }
         .onAppear(perform: mapLoader.start)
-        //.onDisappear(perform: mapLoader.stop)
+        .onDisappear(perform: mapLoader.stop)
     }
 }

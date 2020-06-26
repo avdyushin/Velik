@@ -14,13 +14,15 @@ class MapImageLoader: ObservableObject {
 
     @Published var mapImage: UIImage?
 
+    private let key: MapImageCache.Key
     private let region: MKCoordinateRegion
     private let size: CGSize
     private let processor: MapSnapshotProcessor
-    private var snapshotter: Cancellable?
+    private var snapshot: Cancellable?
     private let snapshotService: MapSnapshotProtocol = MapKitSnapshot()
 
-    init(region: MKCoordinateRegion, size: CGSize, processor: MapSnapshotProcessor) {
+    init(uuid: UUID, region: MKCoordinateRegion, size: CGSize, processor: MapSnapshotProcessor) {
+        self.key = MapImageCache.key(uuid: uuid, size: size)
         self.region = region
         self.size = size
         self.processor = processor
@@ -30,14 +32,23 @@ class MapImageLoader: ObservableObject {
         guard mapImage == nil else {
             return
         }
-        snapshotter = snapshotService
+
+        guard MapImageCache.inMemory[key] == nil else {
+            mapImage = MapImageCache.inMemory[key]
+            return
+        }
+
+        snapshot = snapshotService
             .makeSnapshot(region: region, size: size, processor: processor)
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
-            .assign(to: \.mapImage, on: self)
+            .sink {
+                self.mapImage = $0
+                MapImageCache.inMemory[self.key] = $0
+            }
     }
 
     func stop() {
-        // snapshotter?.cancel()
+        snapshot?.cancel()
     }
 }

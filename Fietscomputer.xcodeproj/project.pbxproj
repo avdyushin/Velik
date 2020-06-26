@@ -70,6 +70,7 @@
 		4B58B631246089CB00B62914 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
 		4B58B63424608A8400B62914 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63324608A8400B62914 /* Data+Extension.swift */; };
 		4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63924608EE400B62914 /* HeartRateService.swift */; };
+		4B5C0D7224A67B3600DBCB90 /* MapImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5C0D7124A67B3600DBCB90 /* MapImageCache.swift */; };
 		4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B834E36248ABC8F00A0272E /* NotificationView.swift */; };
 		4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B834E38248C0B2900A0272E /* CornerRadiusStyle.swift */; };
 		4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9AF245C067500BD5DD3 /* ContentView.swift */; };
@@ -198,6 +199,7 @@
 		4B58B630246089CB00B62914 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		4B58B63324608A8400B62914 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		4B58B63924608EE400B62914 /* HeartRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateService.swift; sourceTree = "<group>"; };
+		4B5C0D7124A67B3600DBCB90 /* MapImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapImageCache.swift; sourceTree = "<group>"; };
 		4B834E36248ABC8F00A0272E /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		4B834E38248C0B2900A0272E /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
 		4B88C9AF245C067500BD5DD3 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -409,16 +411,12 @@
 		4B58B62F246089BE00B62914 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4B5C0D7324A67BC500DBCB90 /* XML */,
+				4B5C0D7424A67C0500DBCB90 /* Map */,
 				4B58B630246089CB00B62914 /* AES.swift */,
-				4B4EC2A224A48140007B507A /* GPX.swift */,
 				4BBB4B94246D617700CA710F /* ScaledFont.swift */,
 				4BA41B102472F6AB0002D88A /* Formatters.swift */,
 				4BA41B1E2472F7F30002D88A /* Timer2.swift */,
-				4B10F1BD249D0DAC0050EEF4 /* MapImageLoader.swift */,
-				4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift */,
-				4B208D9A24A37656009E5F6C /* XMLDecoder.swift */,
-				4B208D9F24A37EAF009E5F6C /* PersistentContainer.swift */,
-				4BF6689924A3935B001AA07E /* NanoXML.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -440,16 +438,45 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		4B5C0D7324A67BC500DBCB90 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				4BF6689924A3935B001AA07E /* NanoXML.swift */,
+				4B208D9A24A37656009E5F6C /* XMLDecoder.swift */,
+				4B4EC2A224A48140007B507A /* GPX.swift */,
+			);
+			name = XML;
+			sourceTree = "<group>";
+		};
+		4B5C0D7424A67C0500DBCB90 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift */,
+				4B10F1BD249D0DAC0050EEF4 /* MapImageLoader.swift */,
+				4B5C0D7124A67B3600DBCB90 /* MapImageCache.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		4B5C0D7524A67C4D00DBCB90 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				4B208D9F24A37EAF009E5F6C /* PersistentContainer.swift */,
+				4BA41B2B247841830002D88A /* Storage.swift */,
+			);
+			name = Storage;
+			sourceTree = "<group>";
+		};
 		4B88C9BD245C97FF00BD5DD3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				4B4EC29C24A3DAE7007B507A /* GPX */,
 				4B10F1D1249D592E0050EEF4 /* Bluetooth */,
+				4B4EC29C24A3DAE7007B507A /* GPX */,
 				4B10F1D0249D591D0050EEF4 /* Location */,
+				4B5C0D7524A67C4D00DBCB90 /* Storage */,
 				4B88C9B5245C3DCD00BD5DD3 /* Service.swift */,
 				4BAB77E3245B300200F011A0 /* Permissions.swift */,
 				4B88C9B1245C29CB00BD5DD3 /* RideService.swift */,
-				4BA41B2B247841830002D88A /* Storage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -839,6 +866,7 @@
 				4B10F1C6249D2CD90050EEF4 /* RideDetailsViewModel.swift in Sources */,
 				4BAB77BF245B2FE000F011A0 /* AppDelegate.swift in Sources */,
 				4B1FF0B2249E2AA500D7AFF1 /* Collections+Extension.swift in Sources */,
+				4B5C0D7224A67B3600DBCB90 /* MapImageCache.swift in Sources */,
 				4B10F1AE249BDC020050EEF4 /* HistoryViewModel.swift in Sources */,
 				4BA41B152472F6ED0002D88A /* MapViewModel.swift in Sources */,
 				4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */,

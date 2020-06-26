@@ -25,6 +25,7 @@ class RideDetailsViewModel: ObservableObject {
     init(ride: Ride) {
         self.objectID = ride.objectID
         self.rideViewModel = RideViewModel(
+            uuid: ride.id!,
             createdAt: ride.createdAt,
             summary: ride.asRideSummary(),
             locations: ride.locations()

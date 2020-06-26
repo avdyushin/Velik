@@ -19,7 +19,8 @@ struct RideCellView: View {
                 .font(.caption)
                 .foregroundColor(.secondary)
             HStack(alignment: .top) {
-                AsyncMapImage(region: viewModel.mapRegion,
+                AsyncMapImage(uuid: viewModel.uuid,
+                              region: viewModel.mapRegion,
                               size: viewModel.mapSize,
                               processor: viewModel.mapProcessor()) {
                     Rectangle()
@@ -37,6 +38,7 @@ struct RideCellViewPreview: PreviewProvider {
     static var previews: some View {
         VStack {
             RideCellView(viewModel: RideViewModel(
+                uuid: UUID(),
                 createdAt: Date(),
                 summary: RideService.Summary(
                     duration: 30,
@@ -48,6 +50,7 @@ struct RideCellViewPreview: PreviewProvider {
                 locations: []
             ))
             RideCellView(viewModel: RideViewModel(
+                uuid: UUID(),
                 createdAt: Date().advanced(by: -60*60*20),
                 summary: RideService.Summary(
                     duration: 30023,
@@ -59,6 +62,7 @@ struct RideCellViewPreview: PreviewProvider {
                 locations: []
             ))
             RideCellView(viewModel: RideViewModel(
+                uuid: UUID(),
                 createdAt: Date().advanced(by: -60*60*24*5),
                 summary: RideService.Summary(
                     duration: 3022,

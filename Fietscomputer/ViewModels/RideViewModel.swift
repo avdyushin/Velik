@@ -12,6 +12,7 @@ import CoreLocation
 
 class RideViewModel {
 
+    var uuid: UUID
     var date: String
 
     var distance: String
@@ -43,10 +44,12 @@ class RideViewModel {
         locations.region() ?? MKCoordinateRegion()
     }
 
-    init(createdAt: Date?,
+    init(uuid: UUID,
+         createdAt: Date?,
          summary: RideService.Summary,
          locations: [CLLocationCoordinate2D]) {
 
+        self.uuid = uuid
         date = Self.date(createdAt)
         distance = Self.distance(summary.distance)
         duration = Self.duration(summary.duration)

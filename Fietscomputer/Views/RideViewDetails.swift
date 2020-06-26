@@ -17,28 +17,24 @@ struct RideViewDetails: View {
     @State private var confirmDelete = false
 
     var body: some View {
-        VStack {
-            AsyncMapImage(region: viewModel.rideViewModel.mapRegion,
-                          size: viewModel.mapSize,
-                          processor: viewModel.rideViewModel.mapProcessor()) {
-                Rectangle()
-                    .foregroundColor(Color(UIColor.systemFill))
-            }.frame(width: 240, height: 160, alignment: .leading)
-            Divider()
-            RideFullSummaryView(viewModel: viewModel.rideViewModel)
-            Spacer()
-            Text(viewModel.tracks)
-            Text(viewModel.points)
-            Button(
-                action: {
-                    self.confirmDelete.toggle()
-                },
-                label: {
-                    Text(Strings.remove_ride)
-                        .foregroundColor(.red)
-                }
-            )
-            .padding()
+        GeometryReader { [viewModel] geometry in
+            VStack {
+                AsyncMapImage(uuid: viewModel.rideViewModel.uuid,
+                              region: viewModel.rideViewModel.mapRegion,
+                              size: viewModel.mapSize,
+                              processor: viewModel.rideViewModel.mapProcessor()) {
+                    Rectangle() // placeholder
+                        .foregroundColor(Color(UIColor.systemFill))
+                }.frame(
+                    minWidth: 0,
+                    maxWidth: .infinity,
+                    minHeight: 0,
+                    maxHeight: geometry.size.width/1.5,
+                    alignment: .top
+                )
+                RideFullSummaryView(viewModel: viewModel.rideViewModel)
+                Spacer()
+            }
         }.actionSheet(isPresented: $confirmDelete) { () -> ActionSheet in
             ActionSheet(
                 title: Text(Strings.remove_ride_message),
@@ -47,6 +43,14 @@ struct RideViewDetails: View {
                     .cancel()
                 ]
             )
-        }
+        }.navigationBarItems(
+            trailing: Button(
+                action: { self.confirmDelete.toggle() },
+                label: {
+                    Image(systemName: "trash")
+                        .foregroundColor(.red)
+                }
+            )
+        )
     }
 }

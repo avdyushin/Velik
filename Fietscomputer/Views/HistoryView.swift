@@ -16,8 +16,13 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
             List(rides) { ride in
-                NavigationLink(destination: RideViewDetails(viewModel: RideDetailsViewModel(ride: ride))) {
+                NavigationLink(
+                    destination:
+                    RideViewDetails(viewModel: RideDetailsViewModel(ride: ride))
+                        .navigationBarTitle("Details", displayMode: .inline)
+                ) {
                     RideCellView(viewModel: RideViewModel(
+                        uuid: ride.id!,
                         createdAt: ride.createdAt,
                         summary: ride.asRideSummary(),
                         locations: ride.locations()
