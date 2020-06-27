@@ -23,7 +23,7 @@ class RideViewModel {
     var power: String
     var energy: String
     var weightLoss: String
-    var locations: [CLLocationCoordinate2D]
+    var locations: [CLLocation]
 
     let distanceLabel = Strings.distance
     let durationLabel = Strings.duration
@@ -35,7 +35,7 @@ class RideViewModel {
     let weightLossLabel = Strings.weight_loss
 
     var center: CLLocationCoordinate2D {
-        locations.center() ?? CLLocationCoordinate2D(latitude: 53.94, longitude: 4.49)
+        locations.center()?.coordinate ?? CLLocationCoordinate2D(latitude: 53.94, longitude: 4.49)
     }
 
     var mapSize = CGSize(width: 120*3, height: 80*3)
@@ -47,7 +47,7 @@ class RideViewModel {
     init(uuid: UUID,
          createdAt: Date?,
          summary: RideService.Summary,
-         locations: [CLLocationCoordinate2D]) {
+         locations: [CLLocation]) {
 
         self.uuid = uuid
         date = Self.date(createdAt)

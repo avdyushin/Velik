@@ -34,9 +34,9 @@ extension Track {
         )
     }
 
-    func locations() -> [CLLocationCoordinate2D] {
+    func locations() -> [CLLocation] {
         trackPoints
             .sorted(by: \.timestamp)
-            .map(CLLocationCoordinate2D.init)
+            .map(CLLocation.init)
     }
 }

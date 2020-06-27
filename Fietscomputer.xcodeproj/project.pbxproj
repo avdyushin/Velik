@@ -71,6 +71,7 @@
 		4B58B63424608A8400B62914 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63324608A8400B62914 /* Data+Extension.swift */; };
 		4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B63924608EE400B62914 /* HeartRateService.swift */; };
 		4B5C0D7224A67B3600DBCB90 /* MapImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5C0D7124A67B3600DBCB90 /* MapImageCache.swift */; };
+		4B5C0D7924A7AABF00DBCB90 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5C0D7824A7AABF00DBCB90 /* LineChartView.swift */; };
 		4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B834E36248ABC8F00A0272E /* NotificationView.swift */; };
 		4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B834E38248C0B2900A0272E /* CornerRadiusStyle.swift */; };
 		4B88C9B0245C067600BD5DD3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9AF245C067500BD5DD3 /* ContentView.swift */; };
@@ -200,6 +201,7 @@
 		4B58B63324608A8400B62914 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		4B58B63924608EE400B62914 /* HeartRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateService.swift; sourceTree = "<group>"; };
 		4B5C0D7124A67B3600DBCB90 /* MapImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapImageCache.swift; sourceTree = "<group>"; };
+		4B5C0D7824A7AABF00DBCB90 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		4B834E36248ABC8F00A0272E /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		4B834E38248C0B2900A0272E /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
 		4B88C9AF245C067500BD5DD3 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -467,6 +469,14 @@
 			name = Storage;
 			sourceTree = "<group>";
 		};
+		4B5C0D7724A7AAAB00DBCB90 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				4B5C0D7824A7AABF00DBCB90 /* LineChartView.swift */,
+			);
+			name = Chart;
+			sourceTree = "<group>";
+		};
 		4B88C9BD245C97FF00BD5DD3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,6 +494,7 @@
 		4B88C9BE245C982E00BD5DD3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4B5C0D7724A7AAAB00DBCB90 /* Chart */,
 				4B10F1CA249D303C0050EEF4 /* Buttons */,
 				4B10F1C9249D302C0050EEF4 /* History */,
 				4B10F1C7249D2FF70050EEF4 /* Gauges */,
@@ -869,6 +880,7 @@
 				4B5C0D7224A67B3600DBCB90 /* MapImageCache.swift in Sources */,
 				4B10F1AE249BDC020050EEF4 /* HistoryViewModel.swift in Sources */,
 				4BA41B152472F6ED0002D88A /* MapViewModel.swift in Sources */,
+				4B5C0D7924A7AABF00DBCB90 /* LineChartView.swift in Sources */,
 				4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */,
 				4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */,
 				4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */,

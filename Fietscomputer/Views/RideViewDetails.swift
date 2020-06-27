@@ -28,12 +28,12 @@ struct RideViewDetails: View {
                 }.frame(
                     minWidth: 0,
                     maxWidth: .infinity,
-                    minHeight: 0,
+                    minHeight: geometry.size.width/1.5,
                     maxHeight: geometry.size.width/1.5,
                     alignment: .top
                 )
                 RideFullSummaryView(viewModel: viewModel.rideViewModel)
-                Spacer()
+                LineChartView(values: viewModel.rideViewModel.locations.lazy.map { $0.altitude })
             }
         }.actionSheet(isPresented: $confirmDelete) { () -> ActionSheet in
             ActionSheet(

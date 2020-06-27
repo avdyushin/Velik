@@ -18,7 +18,7 @@ extension Double {
     }
 }
 
-extension Collection where Element == CLLocationCoordinate2D {
+extension Collection where Element == CLLocation {
 
     /// See: http://www.geomidpoint.com/calculation.html
     func center() -> Element? {
@@ -34,8 +34,8 @@ extension Collection where Element == CLLocationCoordinate2D {
         var z = Double.zero
 
         forEach {
-            let lat = $0.latitude.asRadians()
-            let lon = $0.longitude.asRadians()
+            let lat = $0.coordinate.latitude.asRadians()
+            let lon = $0.coordinate.longitude.asRadians()
             x += cos(lat) * cos(lon)
             y += cos(lat) * sin(lon)
             z += sin(lat)
@@ -49,7 +49,7 @@ extension Collection where Element == CLLocationCoordinate2D {
         let hyp = sqrt(x * x + y * y)
         let lat = atan2(z, hyp)
 
-        return CLLocationCoordinate2D(latitude: lat.asDegrees(), longitude: lon.asDegrees())
+        return CLLocation(latitude: lat.asDegrees(), longitude: lon.asDegrees())
     }
 
     func region() -> MKCoordinateRegion? {
@@ -57,10 +57,10 @@ extension Collection where Element == CLLocationCoordinate2D {
             return nil
         }
 
-        let minLatitude = self.min(by: \.latitude)!.latitude
-        let minLongitude = self.min(by: \.longitude)!.longitude
-        let maxLatitude = self.max(by: \.latitude)!.latitude
-        let maxLongitude = self.max(by: \.longitude)!.longitude
+        let minLatitude = self.min(by: \.coordinate.latitude)!.coordinate.latitude
+        let minLongitude = self.min(by: \.coordinate.longitude)!.coordinate.longitude
+        let maxLatitude = self.max(by: \.coordinate.latitude)!.coordinate.latitude
+        let maxLongitude = self.max(by: \.coordinate.longitude)!.coordinate.longitude
 
         let southWest = CLLocation(latitude: minLatitude, longitude: minLongitude)
         let southEast = CLLocation(latitude: minLatitude, longitude: maxLongitude)
@@ -101,6 +101,22 @@ extension CLLocation {
             course: 0,
             speed: wayPoint.speed ?? 0,
             timestamp: wayPoint.timestamp ?? Date()
+        )
+    }
+}
+
+extension CLLocation {
+    convenience init(trackPoint: TrackPoint) {
+        self.init(
+            coordinate: CLLocationCoordinate2D(
+                latitude: trackPoint.latitude,
+                longitude: trackPoint.longitude),
+            altitude: trackPoint.elevation,
+            horizontalAccuracy: 0,
+            verticalAccuracy: 0,
+            course: 0,
+            speed: trackPoint.speed,
+            timestamp: trackPoint.timestamp
         )
     }
 }

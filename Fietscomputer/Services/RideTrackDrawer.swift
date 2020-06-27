@@ -13,9 +13,9 @@ struct RideTrackDrawer: MapSnapshotProcessor {
     let startColor = UIColor.fdAndroidGreen
     let stopColor = UIColor.flatGreenSeaColor
 
-    private var locations: [CLLocationCoordinate2D]
+    private var locations: [CLLocation]
 
-    init(_ locations: [CLLocationCoordinate2D]) {
+    init(_ locations: [CLLocation]) {
         self.locations = locations
     }
 
@@ -41,7 +41,7 @@ struct RideTrackDrawer: MapSnapshotProcessor {
         context.setLineCap(.round)
         context.setLineJoin(.round)
 
-        let points = locations.map { snapshot.point(for: $0) }
+        let points = locations.map { snapshot.point(for: $0.coordinate) }
         let path = CGMutablePath()
         path.addLines(between: points)
 

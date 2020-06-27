@@ -19,9 +19,6 @@ class RideDetailsViewModel: ObservableObject {
     var rideViewModel: RideViewModel
     let mapSize = CGSize(width: 240*3, height: 160*3)
 
-    var tracks: String
-    var points: String
-
     init(ride: Ride) {
         self.objectID = ride.objectID
         self.rideViewModel = RideViewModel(
@@ -30,12 +27,6 @@ class RideDetailsViewModel: ObservableObject {
             summary: ride.asRideSummary(),
             locations: ride.locations()
         )
-        self.tracks = "Tracks: \(ride.track?.points?.count ?? 0)"
-        if let track = ride.track {
-            self.points = "Points: \(track.points?.count ?? 0)"
-        } else {
-            self.points = "None"
-        }
     }
 
     func delete() {

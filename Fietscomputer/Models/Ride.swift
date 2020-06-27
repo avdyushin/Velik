@@ -39,7 +39,7 @@ extension Ride: Identifiable {
         )
     }
 
-    func locations() -> [CLLocationCoordinate2D] {
+    func locations() -> [CLLocation] {
         track?.locations() ?? []
     }
 }
