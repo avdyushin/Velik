@@ -33,13 +33,14 @@ struct RideViewDetails: View {
                         maxHeight: geometry.size.width/1.5,
                         alignment: .top
                     )
-                    RideFullSummaryView(viewModel: viewModel.rideViewModel)
                     Text(Strings.elevation).padding()
                     LineChartView(values: viewModel.rideViewModel.locations.lazy.map { $0.altitude })
+                        .frame(width: geometry.size.width) // Fix animation inside ScrollView
                         .frame(minHeight: 180, maxHeight: 180)
-                    Text(Strings.speed).padding()
-                    LineChartView(values: viewModel.rideViewModel.locations.lazy.map { $0.speed })
-                        .frame(minHeight: 180, maxHeight: 180)
+                    RideFullSummaryView(viewModel: viewModel.rideViewModel)
+//                    Text(Strings.speed).padding()
+//                    LineChartView(values: viewModel.rideViewModel.locations.lazy.map { $0.speed })
+//                        .frame(minHeight: 180, maxHeight: 180)
                 }
             }
         }.actionSheet(isPresented: $confirmDelete) { () -> ActionSheet in

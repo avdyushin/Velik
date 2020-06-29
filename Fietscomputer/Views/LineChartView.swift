@@ -13,6 +13,7 @@ struct LineChartView: View {
 
     let values: [Double]
     @State private var percentage: CGFloat = .zero
+    @State private var scaleY: CGFloat = .zero
 
     private let lineGradient = LinearGradient(
         gradient: Gradient(colors: [
@@ -41,15 +42,19 @@ struct LineChartView: View {
 //                Spacer()
 //                Text("min \(self.minY)")
 //            }
-            ZStack {
-                MountainShape(values: self.values, isClosed: true)
+//            ZStack {
+            MountainShape(values: self.values, scaleY: self.scaleY, isClosed: true)
                     .fill(self.lineGradient)
 //                MountainShape(values: self.values)
 //                    .trim(from: .zero, to: self.percentage)
 //                    .stroke(self.lineGradient, lineWidth: 1)
-            }
-//            .animation(.easeOut(duration: 5))
-//            .onAppear(perform: { self.percentage = 1 })
+//                .animation(.default)
+                    .animation(.easeInOut(duration: 3))
+                    .onAppear(perform: {
+                        //withAnimation { self.percentage = 1 }
+                        withAnimation { self.scaleY = 1 }
+                    })
+//            }
         }
     }
 }
