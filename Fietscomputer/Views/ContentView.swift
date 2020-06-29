@@ -74,13 +74,13 @@ struct ContentView<Presenter: RootPresenting>: View {
         GeometryReader { geometry in
             Group {
                 VStack(spacing: 16) {
-                    Text("Do you want to import GPX?")
+                    Text(Strings.import_gpx_message)
                         .bold()
                     Text(self.importTitle)
                     HStack {
                         Button(
                             action: { withAnimation { self.isImportPresented = false } },
-                            label: { Text("No") }
+                            label: { Text(Strings.no) }
                         )
                             .buttonStyle(AlertButtonStyle())
                             .foregroundColor(.red)
@@ -91,7 +91,7 @@ struct ContentView<Presenter: RootPresenting>: View {
                                 }
                                 self.gpxImport.save()
                         },
-                            label: { Text("Yes") }
+                            label: { Text(Strings.yes) }
                         )
                             .buttonStyle(AlertButtonStyle())
                             .foregroundColor(.green)

@@ -18,22 +18,29 @@ struct RideViewDetails: View {
 
     var body: some View {
         GeometryReader { [viewModel] geometry in
-            VStack {
-                AsyncMapImage(uuid: viewModel.rideViewModel.uuid,
-                              region: viewModel.rideViewModel.mapRegion,
-                              size: viewModel.mapSize,
-                              processor: viewModel.rideViewModel.mapProcessor()) {
-                    Rectangle() // placeholder
-                        .foregroundColor(Color(UIColor.systemFill))
-                }.frame(
-                    minWidth: 0,
-                    maxWidth: .infinity,
-                    minHeight: geometry.size.width/1.5,
-                    maxHeight: geometry.size.width/1.5,
-                    alignment: .top
-                )
-                RideFullSummaryView(viewModel: viewModel.rideViewModel)
-                LineChartView(values: viewModel.rideViewModel.locations.lazy.map { $0.altitude })
+            ScrollView {
+                VStack(alignment: .leading) {
+                    AsyncMapImage(uuid: viewModel.rideViewModel.uuid,
+                                  region: viewModel.rideViewModel.mapRegion,
+                                  size: viewModel.mapSize,
+                                  processor: viewModel.rideViewModel.mapProcessor()) {
+                                    Rectangle() // placeholder
+                                        .foregroundColor(Color(UIColor.systemFill))
+                    }.frame(
+                        minWidth: 0,
+                        maxWidth: .infinity,
+                        minHeight: geometry.size.width/1.5,
+                        maxHeight: geometry.size.width/1.5,
+                        alignment: .top
+                    )
+                    RideFullSummaryView(viewModel: viewModel.rideViewModel)
+                    Text(Strings.elevation).padding()
+                    LineChartView(values: viewModel.rideViewModel.locations.lazy.map { $0.altitude })
+                        .frame(minHeight: 180, maxHeight: 180)
+                    Text(Strings.speed).padding()
+                    LineChartView(values: viewModel.rideViewModel.locations.lazy.map { $0.speed })
+                        .frame(minHeight: 180, maxHeight: 180)
+                }
             }
         }.actionSheet(isPresented: $confirmDelete) { () -> ActionSheet in
             ActionSheet(
