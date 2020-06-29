@@ -34,6 +34,12 @@
     <string id="elevation_gain">
         <en>Elevation Gain</en>
     </string>
+    <string id="elevation">
+        <en>Elevation</en>
+    </string>
+    <string id="speed">
+        <en>Speed</en>
+    </string>
     <string id="avg_power">
         <en>Avg. Power</en>
     </string>
@@ -51,5 +57,14 @@
     </string>
     <string id="confirm_delete">
         <en>Yes, please delete</en>
+    </string>
+    <string id="import_gpx_message">
+        <en>Do you want to import GPX?</en>
+    </string>
+    <string id="yes">
+        <en>Yes</en>
+    </string>
+    <string id="no">
+        <en>No</en>
     </string>
 </strings>
