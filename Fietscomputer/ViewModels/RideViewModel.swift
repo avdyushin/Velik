@@ -14,6 +14,7 @@ class RideViewModel {
 
     var uuid: UUID
     var date: String
+    var title: String
 
     var distance: String
     var duration: String
@@ -54,12 +55,14 @@ class RideViewModel {
     }
 
     init(uuid: UUID,
-         createdAt: Date?,
+         name: String?,
+         createdAt: Date,
          summary: RideService.Summary,
          locations: [CLLocation]) {
 
         self.uuid = uuid
         date = Self.date(createdAt)
+        title = name ?? "Unnamed Ride"
         distance = Self.distance(summary.distance)
         duration = Self.duration(summary.duration)
         avgSpeedValue = summary.avgSpeed

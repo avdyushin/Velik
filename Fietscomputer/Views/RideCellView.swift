@@ -14,10 +14,15 @@ struct RideCellView: View {
     var viewModel: RideViewModel
 
     var body: some View {
-        VStack(alignment: .trailing) {
-            Text(viewModel.date)
-                .font(.caption)
-                .foregroundColor(.secondary)
+        VStack {
+            HStack(alignment: .firstTextBaseline) {
+                Text(viewModel.title)
+                    .lineLimit(3)
+                Spacer()
+                Text(viewModel.date)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
             HStack(alignment: .top) {
                 AsyncMapImage(uuid: viewModel.uuid,
                               region: viewModel.mapRegion,
@@ -39,6 +44,7 @@ struct RideCellViewPreview: PreviewProvider {
         VStack {
             RideCellView(viewModel: RideViewModel(
                 uuid: UUID(),
+                name: "Morning Ride",
                 createdAt: Date(),
                 summary: RideService.Summary(
                     duration: 30,
@@ -51,6 +57,7 @@ struct RideCellViewPreview: PreviewProvider {
             ))
             RideCellView(viewModel: RideViewModel(
                 uuid: UUID(),
+                name: "Evening Ride",
                 createdAt: Date().advanced(by: -60*60*20),
                 summary: RideService.Summary(
                     duration: 30023,
@@ -63,6 +70,7 @@ struct RideCellViewPreview: PreviewProvider {
             ))
             RideCellView(viewModel: RideViewModel(
                 uuid: UUID(),
+                name: "Afternoon Ride",
                 createdAt: Date().advanced(by: -60*60*24*5),
                 summary: RideService.Summary(
                     duration: 3022,

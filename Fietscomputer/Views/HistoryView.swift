@@ -23,7 +23,8 @@ struct HistoryView: View {
                 ) {
                     RideCellView(viewModel: RideViewModel(
                         uuid: ride.id!,
-                        createdAt: ride.createdAt,
+                        name: ride.name,
+                        createdAt: ride.createdAt!,
                         summary: ride.asRideSummary(),
                         locations: ride.locations()
                     )).padding([.bottom], 6)
