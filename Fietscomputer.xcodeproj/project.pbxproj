@@ -66,6 +66,8 @@
 		4B4EC2A124A474C6007B507A /* TrackSegment.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B4EC29F24A47350007B507A /* TrackSegment.gpx */; };
 		4B4EC2A324A48140007B507A /* GPX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC2A224A48140007B507A /* GPX.swift */; };
 		4B4F6D9F24AA3664001E68CA /* MountainShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F6D9E24AA3664001E68CA /* MountainShape.swift */; };
+		4B4F6DA124AB1709001E68CA /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F6DA024AB1709001E68CA /* CGPoint+Extension.swift */; };
+		4B4F6DA324AB174B001E68CA /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F6DA224AB174B001E68CA /* Axis.swift */; };
 		4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B619245C9FA700B62914 /* BluetoothScanner.swift */; };
 		4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */; };
 		4B58B631246089CB00B62914 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
@@ -197,6 +199,8 @@
 		4B4EC29F24A47350007B507A /* TrackSegment.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TrackSegment.gpx; sourceTree = "<group>"; };
 		4B4EC2A224A48140007B507A /* GPX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPX.swift; sourceTree = "<group>"; };
 		4B4F6D9E24AA3664001E68CA /* MountainShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountainShape.swift; sourceTree = "<group>"; };
+		4B4F6DA024AB1709001E68CA /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
+		4B4F6DA224AB174B001E68CA /* Axis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axis.swift; sourceTree = "<group>"; };
 		4B58B619245C9FA700B62914 /* BluetoothScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothScanner.swift; sourceTree = "<group>"; };
 		4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissions.swift; sourceTree = "<group>"; };
 		4B58B630246089CB00B62914 /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
@@ -438,6 +442,7 @@
 				4B208D8C24A273BF009E5F6C /* CGContext+Extensions.swift */,
 				4B208D9624A36A89009E5F6C /* CodingUserInfoKey+Extensions.swift */,
 				4B208DA124A38CFA009E5F6C /* NSPersistentContainer+Extensions.swift */,
+				4B4F6DA024AB1709001E68CA /* CGPoint+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 		4B5C0D7724A7AAAB00DBCB90 /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				4B4F6DA224AB174B001E68CA /* Axis.swift */,
 				4B4F6D9E24AA3664001E68CA /* MountainShape.swift */,
 				4B5C0D7824A7AABF00DBCB90 /* LineChartView.swift */,
 			);
@@ -861,6 +867,7 @@
 				4BA41B1F2472F7F30002D88A /* Timer2.swift in Sources */,
 				4B3258222492464E0046BD6F /* RootCoordinator.swift in Sources */,
 				4BF6689A24A3935B001AA07E /* NanoXML.swift in Sources */,
+				4B4F6DA324AB174B001E68CA /* Axis.swift in Sources */,
 				4BA41B4D2481A32C0002D88A /* GoButtonViewModel.swift in Sources */,
 				4B4F6D9F24AA3664001E68CA /* MountainShape.swift in Sources */,
 				4B10F1C2249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift in Sources */,
@@ -928,6 +935,7 @@
 				4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */,
 				4B1FF0B8249E821C00D7AFF1 /* Weight.swift in Sources */,
 				4B325825249249B20046BD6F /* RootPresenting.swift in Sources */,
+				4B4F6DA124AB1709001E68CA /* CGPoint+Extension.swift in Sources */,
 				4B10F1C4249D2B260050EEF4 /* MKMapSnapshotter+Extension.swift in Sources */,
 				4B58B63424608A8400B62914 /* Data+Extension.swift in Sources */,
 				4BBB4B97246D619400CA710F /* View+Extension.swift in Sources */,

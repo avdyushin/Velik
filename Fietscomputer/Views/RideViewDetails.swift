@@ -26,21 +26,26 @@ struct RideViewDetails: View {
                                   processor: viewModel.rideViewModel.mapProcessor()) {
                                     Rectangle() // placeholder
                                         .foregroundColor(Color(UIColor.systemFill))
-                    }.frame(
-                        minWidth: 0,
-                        maxWidth: .infinity,
-                        minHeight: geometry.size.width/1.5,
-                        maxHeight: geometry.size.width/1.5,
-                        alignment: .top
-                    )
+                    }.frame(width: geometry.size.width, height: geometry.size.width/1.5)
                     Text(Strings.elevation).padding()
-                    LineChartView(values: viewModel.rideViewModel.locations.lazy.map { $0.altitude })
+                    LineChartView(values: viewModel.rideViewModel.elevations,
+                                  fillStyle: viewModel.chartFillStyle)
+                        .animation(.easeInOut(duration: 2/3))
                         .frame(width: geometry.size.width) // Fix animation inside ScrollView
-                        .frame(minHeight: 180, maxHeight: 180)
+                        .frame(height: 180)
                     RideFullSummaryView(viewModel: viewModel.rideViewModel)
-//                    Text(Strings.speed).padding()
-//                    LineChartView(values: viewModel.rideViewModel.locations.lazy.map { $0.speed })
-//                        .frame(minHeight: 180, maxHeight: 180)
+                    Text(Strings.speed).padding()
+                    if viewModel.isChartVisible(.speed) {
+                        LineChartView(values: viewModel.rideViewModel.speed,
+                                      fillStyle: viewModel.chartFillStyle)
+                            .frame(width: geometry.size.width, height: 100)
+                    } else {
+                        Text(Strings.no_data_available)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding(32)
+                    }
                 }
             }
         }.actionSheet(isPresented: $confirmDelete) { () -> ActionSheet in

@@ -25,6 +25,15 @@ class RideViewModel {
     var weightLoss: String
     var locations: [CLLocation]
 
+    lazy var elevations: [CLLocationDistance] = {
+        self.locations.map { $0.altitude }
+    }()
+
+    let avgSpeedValue: CLLocationSpeed
+    lazy var speed: [CLLocationDistance] = {
+        self.locations.map { $0.speed }
+    }()
+
     let distanceLabel = Strings.distance
     let durationLabel = Strings.duration
     let avgSpeedLabel = Strings.avg_speed
@@ -53,6 +62,7 @@ class RideViewModel {
         date = Self.date(createdAt)
         distance = Self.distance(summary.distance)
         duration = Self.duration(summary.duration)
+        avgSpeedValue = summary.avgSpeed
         let avgSpeedPair = Self.speed(summary.avgSpeed)
         avgSpeed = avgSpeedPair.value + " " + avgSpeedPair.units
         let maxSpeedPair = Self.speed(summary.maxSpeed)

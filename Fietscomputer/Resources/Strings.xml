@@ -67,4 +67,7 @@
     <string id="no">
         <en>No</en>
     </string>
+    <string id="no_data_available">
+        <en>No data available</en>
+    </string>
 </strings>

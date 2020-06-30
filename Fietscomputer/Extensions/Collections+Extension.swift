@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import struct CoreGraphics.CGPoint
 
 extension Collection where Index == Int {
     func chunked(size: Int) -> [[Element]] {
@@ -61,5 +62,11 @@ extension NSSet {
 
     func toTypedArray<T>() -> [T] {
         compactMap { $0 as? T }
+    }
+}
+
+extension Collection where Element == Double {
+    func enumeratedCGPoints() -> [CGPoint] {
+        enumerated().map { CGPoint(x: Double($0), y: $1) }
     }
 }

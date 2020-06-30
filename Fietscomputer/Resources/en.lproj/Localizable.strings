@@ -22,4 +22,5 @@
 "import_gpx_message" = "Do you want to import GPX?";
 "yes" = "Yes";
 "no" = "No";
+"no_data_available" = "No data available";
 

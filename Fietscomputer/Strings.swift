@@ -24,5 +24,6 @@ enum Strings {
     @Localizable static var import_gpx_message = "import_gpx_message"
     @Localizable static var yes = "yes"
     @Localizable static var no = "no"
+    @Localizable static var no_data_available = "no_data_available"
 }
 
