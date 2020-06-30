@@ -24,7 +24,7 @@ struct Axis {
         )
     }
 
-    func convert(point: CGPoint, in rect: CGRect, scale: CGPoint) -> CGPoint {
+    func convert(point: CGPoint, in rect: CGRect, scale: CGPoint = CGPoint(x: 1, y: 1)) -> CGPoint {
         let scale = self.scale(in: rect.scaled(by: scale))
         return CGPoint(
             x: point.x * scale.x,
@@ -32,7 +32,7 @@ struct Axis {
         )
     }
 
-    func convert(values: [Double], in rect: CGRect, scale: CGPoint) -> [CGPoint] {
+    func convert(values: [Double], in rect: CGRect, scale: CGPoint = CGPoint(x: 1, y: 1)) -> [CGPoint] {
         values.enumeratedCGPoints().map { convert(point: $0, in: rect, scale: scale) }
     }
 }
