@@ -15,6 +15,7 @@ struct RideViewDetails: View {
 
     let viewModel: RideDetailsViewModel
     @State private var confirmDelete = false
+    @Injected private var gpxExporter: GPXExporter
 
     var body: some View {
         GeometryReader { [viewModel] geometry in
@@ -57,13 +58,23 @@ struct RideViewDetails: View {
                 ]
             )
         }.navigationBarItems(
-            trailing: Button(
-                action: { self.confirmDelete.toggle() },
-                label: {
-                    Image(systemName: "trash")
-                        .foregroundColor(.red)
-                }
-            )
+            trailing:
+            HStack {
+                Button(
+                    action: { try? self.gpxExporter.export(rideUUID: self.viewModel.rideViewModel.uuid) },
+                    label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                )
+                Spacer(minLength: 16)
+                Button(
+                    action: { self.confirmDelete.toggle() },
+                    label: {
+                        Image(systemName: "trash")
+                            .foregroundColor(.red)
+                    }
+                )
+            }
         )
     }
 }

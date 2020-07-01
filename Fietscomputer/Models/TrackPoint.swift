@@ -67,7 +67,7 @@ extension TrackPoint: Encodable {
         try container.encode(elevation, forKey: .elevation)
         try container.encode(latitude, forKey: .latitude)
         try container.encode(longitude, forKey: .longitude)
-        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(name, forKey: .name)
         try container.encode(speed, forKey: .speed)
         try container.encode(timestamp, forKey: .timestamp)
     }

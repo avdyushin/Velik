@@ -121,6 +121,8 @@
 		4BBB4B992470624900CA710F /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBB4B982470624900CA710F /* Color+Extension.swift */; };
 		4BDBAF8D248A7D5800180624 /* StopButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBAF8C248A7D5800180624 /* StopButtonViewModel.swift */; };
 		4BDBAF8F248A81CF00180624 /* RoundButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBAF8E248A81CF00180624 /* RoundButtonStyle.swift */; };
+		4BF17BAB24ACD8F100D0345E /* GPXExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF17BAA24ACD8F100D0345E /* GPXExporter.swift */; };
+		4BF17BAD24ACDA0900D0345E /* XMLEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF17BAC24ACDA0900D0345E /* XMLEncoder.swift */; };
 		4BF6689A24A3935B001AA07E /* NanoXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6689924A3935B001AA07E /* NanoXML.swift */; };
 		4BF6689C24A3958D001AA07E /* NoTime.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9224A29958009E5F6C /* NoTime.gpx */; };
 		4BF6689D24A39590001AA07E /* WayPoints.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9324A29958009E5F6C /* WayPoints.gpx */; };
@@ -253,6 +255,8 @@
 		4BBB4B982470624900CA710F /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		4BDBAF8C248A7D5800180624 /* StopButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopButtonViewModel.swift; sourceTree = "<group>"; };
 		4BDBAF8E248A81CF00180624 /* RoundButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonStyle.swift; sourceTree = "<group>"; };
+		4BF17BAA24ACD8F100D0345E /* GPXExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXExporter.swift; sourceTree = "<group>"; };
+		4BF17BAC24ACDA0900D0345E /* XMLEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLEncoder.swift; sourceTree = "<group>"; };
 		4BF6689924A3935B001AA07E /* NanoXML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoXML.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -412,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				4B4EC29D24A3DAF6007B507A /* GPXImporter.swift */,
+				4BF17BAA24ACD8F100D0345E /* GPXExporter.swift */,
 			);
 			name = GPX;
 			sourceTree = "<group>";
@@ -452,6 +457,7 @@
 			children = (
 				4BF6689924A3935B001AA07E /* NanoXML.swift */,
 				4B208D9A24A37656009E5F6C /* XMLDecoder.swift */,
+				4BF17BAC24ACDA0900D0345E /* XMLEncoder.swift */,
 				4B4EC2A224A48140007B507A /* GPX.swift */,
 			);
 			name = XML;
@@ -870,6 +876,7 @@
 				4B4F6DA324AB174B001E68CA /* Axis.swift in Sources */,
 				4BA41B4D2481A32C0002D88A /* GoButtonViewModel.swift in Sources */,
 				4B4F6D9F24AA3664001E68CA /* MountainShape.swift in Sources */,
+				4BF17BAB24ACD8F100D0345E /* GPXExporter.swift in Sources */,
 				4B10F1C2249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift in Sources */,
 				4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */,
 				4B32582B249250EA0046BD6F /* MenuButtonStyle.swift in Sources */,
@@ -934,6 +941,7 @@
 				4B10F1BA249D09DD0050EEF4 /* ValueDescriptionView.swift in Sources */,
 				4BAB77C1245B2FE000F011A0 /* SceneDelegate.swift in Sources */,
 				4B1FF0B8249E821C00D7AFF1 /* Weight.swift in Sources */,
+				4BF17BAD24ACDA0900D0345E /* XMLEncoder.swift in Sources */,
 				4B325825249249B20046BD6F /* RootPresenting.swift in Sources */,
 				4B4F6DA124AB1709001E68CA /* CGPoint+Extension.swift in Sources */,
 				4B10F1C4249D2B260050EEF4 /* MKMapSnapshotter+Extension.swift in Sources */,

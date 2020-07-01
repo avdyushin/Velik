@@ -50,4 +50,23 @@ class StorageService: Service {
             context.delete(context.object(with: objectID))
         }
     }
+
+    enum StorageError: Error {
+        case itemNotFound(UUID)
+    }
+
+    func findRide(by uuid: UUID) -> AnyPublisher<Ride, Error> {
+        let request: NSFetchRequest<Ride> = Ride.fetchRequest()
+        request.predicate = NSPredicate(format: "%K == %@", "id"/*#keyPath(Ride.id)*/, uuid as CVarArg)
+        return storage
+            .fetch(request)
+            .tryMap {
+                guard let first = $0.first else {
+                    throw StorageError.itemNotFound(uuid)
+                }
+                return first
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
 }
