@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GPXPoint: Codable {
+struct GPXPoint: Codable, XMLNodeEncodable {
 
     enum CodingKeys: String, CodingKey {
         case latitude = "lat"
@@ -18,9 +18,26 @@ struct GPXPoint: Codable {
         case timestamp
     }
 
+    static func nodeEncoding(forKey key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.latitude, CodingKeys.longitude: return .attribute
+        default: return .element
+        }
+    }
+
     let latitude: Double
     let longitude: Double
     let elevation: Double?
     let speed: Double?
     let timestamp: Date?
+}
+
+extension GPXPoint {
+    init(trackPoint: TrackPoint) {
+        self.latitude = trackPoint.latitude
+        self.longitude = trackPoint.longitude
+        self.elevation = trackPoint.elevation
+        self.speed = trackPoint.speed
+        self.timestamp = trackPoint.timestamp
+    }
 }

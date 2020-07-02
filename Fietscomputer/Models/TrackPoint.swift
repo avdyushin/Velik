@@ -45,7 +45,7 @@ extension TrackPoint {
     }
 }
 
-extension TrackPoint: Encodable, XMLNodeEncodable {
+extension TrackPoint: Encodable {
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -55,13 +55,6 @@ extension TrackPoint: Encodable, XMLNodeEncodable {
         case name
         case speed
         case timestamp
-    }
-
-    static func nodeEncoding(forKey key: CodingKey) -> XMLEncoder.NodeEncoding {
-        switch key {
-        case CodingKeys.latitude, CodingKeys.longitude: return .attribute
-        default: return .element
-        }
     }
 
     enum CodingErrors: Error {

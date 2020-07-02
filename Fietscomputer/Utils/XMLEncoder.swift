@@ -32,12 +32,18 @@ class XMLEncoder: Encoder {
 
     var codingPath: [CodingKey] = []
     var userInfo: [CodingUserInfoKey: Any] = [:]
-    var node: XMLElement
-    var nodeEncodable: XMLNodeEncodable?
+    private var node: XMLElement
+    private var nodeEncodable: XMLNodeEncodable?
 
-    init(node: XMLElement, nodeEncodable: XMLNodeEncodable?) {
+    private init(node: XMLElement, nodeEncodable: XMLNodeEncodable?) {
         self.node = node
         self.nodeEncodable = nodeEncodable
+    }
+
+    static func encode(_ encodable: Encodable & XMLNodeEncodable, root: String) throws -> XMLElement {
+        let encoder = XMLEncoder(node: XMLElement(root), nodeEncodable: encodable)
+        try encodable.encode(to: encoder)
+        return encoder.node
     }
 
     struct KEC<Key: CodingKey>: KeyedEncodingContainerProtocol {
@@ -55,22 +61,18 @@ class XMLEncoder: Encoder {
         mutating func encode(_ value: Bool, forKey key: Key) throws { fatalError() }
 
         mutating func encode(_ value: String, forKey key: Key) throws {
-            let child = XMLElement(key.stringValue)
-            child.value = value
-            node.children.append(child)
+            switch nodeEncodable.encoding(forKey: key) {
+            case .attribute:
+                node.attributes[key.stringValue] = value
+            case .element:
+                let child = XMLElement(key.stringValue)
+                child.value = value
+                node.children.append(child)
+            }
         }
 
         mutating func encode(_ value: Double, forKey key: Key) throws {
-            debugPrint("node encode", key.stringValue, "with", nodeEncodable.encoding(forKey: key))
-            let encodedValue = "\(value)"
-            switch nodeEncodable.encoding(forKey: key) {
-            case .attribute:
-                node.attributes[key.stringValue] = encodedValue
-            case .element:
-                let child = XMLElement(key.stringValue)
-                child.value = encodedValue
-                node.children.append(child)
-            }
+            try encode("\(value)", forKey: key)
         }
 
         mutating func encode(_ value: Float, forKey key: Key) throws { fatalError() }

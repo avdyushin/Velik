@@ -62,39 +62,3 @@ public final class Track: NSManagedObject {
             .map(CLLocation.init) ?? []
     }
 }
-
-// TODO: move to GPX track
-extension Track: Encodable {
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case metadata
-        case track = "trk"
-    }
-
-    enum MetadataCodingKeys: CodingKey {
-        case time
-    }
-
-    enum TrackCodingKeys: String, CodingKey {
-        case name
-        case segment = "trkseg"
-    }
-
-    enum PointsCodingKeys: String, CodingKey {
-        case point = "trkpt"
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        var metadata = container.nestedContainer(keyedBy: MetadataCodingKeys.self, forKey: .metadata)
-        try metadata.encode(createdAt, forKey: .time)
-        var trackContainer = container.nestedContainer(keyedBy: TrackCodingKeys.self, forKey: .track)
-        try trackContainer.encodeIfPresent(name, forKey: .name)
-        var pointsContainer = trackContainer.nestedContainer(keyedBy: PointsCodingKeys.self, forKey: .segment)
-        try points?.forEach {
-            try pointsContainer.encode($0, forKey: .point)
-        }
-    }
-}
