@@ -14,8 +14,8 @@ struct GPXPoint: Codable {
         case latitude = "lat"
         case longitude = "lon"
         case elevation = "ele"
-        case speed = "speed"
-        case timestamp = "time"
+        case speed
+        case timestamp
     }
 
     let latitude: Double

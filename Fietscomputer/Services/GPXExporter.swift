@@ -32,7 +32,7 @@ class GPXExporter: DataExporter {
             }, receiveValue: { ride in
                 debugPrint("We have ride!", String(describing: ride.name))
                 if let track = ride.track {
-                    let encoder = XMLEncoder(node: XMLElement("gpx"))
+                    let encoder = XMLEncoder(node: XMLElement("gpx"), nodeEncodable: track as? XMLNodeEncodable)
                     try? track.encode(to: encoder)
                     let root = encoder.node
                     debugPrint(root)

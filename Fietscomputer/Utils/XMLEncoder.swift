@@ -8,23 +8,47 @@
 
 import Foundation
 
+protocol XMLNodeEncodable {
+    static func nodeEncoding(forKey key: CodingKey) -> XMLEncoder.NodeEncoding
+}
+
+extension Optional where Wrapped == XMLNodeEncodable {
+    func encoding(forKey key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch self {
+        case .some(let object):
+            return type(of: object).nodeEncoding(forKey: key)
+        default:
+            return .element
+        }
+    }
+}
+
 class XMLEncoder: Encoder {
+
+    enum NodeEncoding {
+        case attribute
+        case element
+    }
 
     var codingPath: [CodingKey] = []
     var userInfo: [CodingUserInfoKey: Any] = [:]
     var node: XMLElement
+    var nodeEncodable: XMLNodeEncodable?
 
-    init(node: XMLElement) {
+    init(node: XMLElement, nodeEncodable: XMLNodeEncodable?) {
         self.node = node
+        self.nodeEncodable = nodeEncodable
     }
 
     struct KEC<Key: CodingKey>: KeyedEncodingContainerProtocol {
 
         var codingPath: [CodingKey] = []
         var node: XMLElement
+        var nodeEncodable: XMLNodeEncodable?
 
-        init(node: XMLElement) {
+        init(node: XMLElement, nodeEncodable: XMLNodeEncodable?) {
             self.node = node
+            self.nodeEncodable = nodeEncodable
         }
 
         mutating func encodeNil(forKey key: Key) throws { fatalError() }
@@ -37,9 +61,16 @@ class XMLEncoder: Encoder {
         }
 
         mutating func encode(_ value: Double, forKey key: Key) throws {
-            let child = XMLElement(key.stringValue)
-            child.value = "\(value)"
-            node.children.append(child)
+            debugPrint("node encode", key.stringValue, "with", nodeEncodable.encoding(forKey: key))
+            let encodedValue = "\(value)"
+            switch nodeEncodable.encoding(forKey: key) {
+            case .attribute:
+                node.attributes[key.stringValue] = encodedValue
+            case .element:
+                let child = XMLElement(key.stringValue)
+                child.value = encodedValue
+                node.children.append(child)
+            }
         }
 
         mutating func encode(_ value: Float, forKey key: Key) throws { fatalError() }
@@ -57,7 +88,7 @@ class XMLEncoder: Encoder {
         mutating func encode<T>(_ value: T, forKey key: Key) throws where T: Encodable {
             let child = XMLElement(key.stringValue)
             node.children.append(child)
-            return try value.encode(to: XMLEncoder(node: child))
+            try value.encode(to: XMLEncoder(node: child, nodeEncodable: value as? XMLNodeEncodable))
         }
 
         mutating func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type,
@@ -65,7 +96,7 @@ class XMLEncoder: Encoder {
             where NestedKey: CodingKey {
                 let child = XMLElement(key.stringValue)
                 node.children.append(child)
-                return KeyedEncodingContainer(KEC<NestedKey>(node: child))
+                return KeyedEncodingContainer(KEC<NestedKey>(node: child, nodeEncodable: nodeEncodable))
         }
 
         mutating func nestedUnkeyedContainer(forKey key: Key) -> UnkeyedEncodingContainer { fatalError() }
@@ -74,7 +105,7 @@ class XMLEncoder: Encoder {
     }
 
     func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key: CodingKey {
-        KeyedEncodingContainer(KEC(node: node))
+        KeyedEncodingContainer(KEC(node: node, nodeEncodable: nodeEncodable))
     }
 
     struct UEC: UnkeyedEncodingContainer {
@@ -102,7 +133,7 @@ class XMLEncoder: Encoder {
         mutating func encode(_ value: UInt32) throws { fatalError() }
         mutating func encode(_ value: UInt64) throws { fatalError() }
         mutating func encode<T>(_ value: T) throws where T: Encodable {
-            try value.encode(to: XMLEncoder(node: node))
+            try value.encode(to: XMLEncoder(node: node, nodeEncodable: value as? XMLNodeEncodable))
         }
         mutating func encode(_ value: Bool) throws { fatalError() }
         mutating func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type) -> KeyedEncodingContainer<NestedKey>
@@ -148,7 +179,7 @@ class XMLEncoder: Encoder {
         mutating func encode(_ value: UInt64) throws { fatalError() }
 
         mutating func encode<T>(_ value: T) throws where T: Encodable {
-            try value.encode(to: XMLEncoder(node: node))
+            try value.encode(to: XMLEncoder(node: node, nodeEncodable: value as? XMLNodeEncodable))
         }
     }
 

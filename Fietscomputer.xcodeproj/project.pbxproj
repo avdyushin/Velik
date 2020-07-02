@@ -126,6 +126,7 @@
 		4BF6689A24A3935B001AA07E /* NanoXML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6689924A3935B001AA07E /* NanoXML.swift */; };
 		4BF6689C24A3958D001AA07E /* NoTime.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9224A29958009E5F6C /* NoTime.gpx */; };
 		4BF6689D24A39590001AA07E /* WayPoints.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9324A29958009E5F6C /* WayPoints.gpx */; };
+		4BF6F6AE24AE46E80004219B /* GPXTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6AD24AE46E80004219B /* GPXTrack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,6 +259,7 @@
 		4BF17BAA24ACD8F100D0345E /* GPXExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXExporter.swift; sourceTree = "<group>"; };
 		4BF17BAC24ACDA0900D0345E /* XMLEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLEncoder.swift; sourceTree = "<group>"; };
 		4BF6689924A3935B001AA07E /* NanoXML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoXML.swift; sourceTree = "<group>"; };
+		4BF6F6AD24AE46E80004219B /* GPXTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXTrack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -553,6 +555,7 @@
 				4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */,
 				4B1FF0B7249E821C00D7AFF1 /* Weight.swift */,
 				4B4EC29A24A3BD1D007B507A /* GPXPoint.swift */,
+				4BF6F6AD24AE46E80004219B /* GPXTrack.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				4BA41B48247ED7DD0002D88A /* GaugesView.swift in Sources */,
 				4B10F1AA249B98B40050EEF4 /* Ride.swift in Sources */,
 				4B208D8D24A273BF009E5F6C /* CGContext+Extensions.swift in Sources */,
+				4BF6F6AE24AE46E80004219B /* GPXTrack.swift in Sources */,
 				4B10F1B4249C944C0050EEF4 /* RideSummary.swift in Sources */,
 				4B208D8924A248F4009E5F6C /* RideTrackDrawer.swift in Sources */,
 				4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */,

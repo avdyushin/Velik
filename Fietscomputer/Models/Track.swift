@@ -63,6 +63,7 @@ public final class Track: NSManagedObject {
     }
 }
 
+// TODO: move to GPX track
 extension Track: Encodable {
 
     enum CodingKeys: String, CodingKey {
