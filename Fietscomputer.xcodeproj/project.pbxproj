@@ -127,6 +127,10 @@
 		4BF6689C24A3958D001AA07E /* NoTime.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9224A29958009E5F6C /* NoTime.gpx */; };
 		4BF6689D24A39590001AA07E /* WayPoints.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B208D9324A29958009E5F6C /* WayPoints.gpx */; };
 		4BF6F6AE24AE46E80004219B /* GPXTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6AD24AE46E80004219B /* GPXTrack.swift */; };
+		4BF6F6B024AE52480004219B /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6AF24AE52480004219B /* DateFormatter+Extension.swift */; };
+		4BF6F6B224AE52680004219B /* XMLNodeEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B124AE52680004219B /* XMLNodeEncodable.swift */; };
+		4BF6F6B424AE53330004219B /* XMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B324AE53330004219B /* XMLNode.swift */; };
+		4BF6F6B624AE53490004219B /* XMLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B524AE53490004219B /* XMLElement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +264,10 @@
 		4BF17BAC24ACDA0900D0345E /* XMLEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLEncoder.swift; sourceTree = "<group>"; };
 		4BF6689924A3935B001AA07E /* NanoXML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NanoXML.swift; sourceTree = "<group>"; };
 		4BF6F6AD24AE46E80004219B /* GPXTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXTrack.swift; sourceTree = "<group>"; };
+		4BF6F6AF24AE52480004219B /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		4BF6F6B124AE52680004219B /* XMLNodeEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLNodeEncodable.swift; sourceTree = "<group>"; };
+		4BF6F6B324AE53330004219B /* XMLNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLNode.swift; sourceTree = "<group>"; };
+		4BF6F6B524AE53490004219B /* XMLElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLElement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,6 +458,7 @@
 				4B208D9624A36A89009E5F6C /* CodingUserInfoKey+Extensions.swift */,
 				4B208DA124A38CFA009E5F6C /* NSPersistentContainer+Extensions.swift */,
 				4B4F6DA024AB1709001E68CA /* CGPoint+Extension.swift */,
+				4BF6F6AF24AE52480004219B /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -458,6 +467,9 @@
 			isa = PBXGroup;
 			children = (
 				4BF6689924A3935B001AA07E /* NanoXML.swift */,
+				4BF6F6B324AE53330004219B /* XMLNode.swift */,
+				4BF6F6B124AE52680004219B /* XMLNodeEncodable.swift */,
+				4BF6F6B524AE53490004219B /* XMLElement.swift */,
 				4B208D9A24A37656009E5F6C /* XMLDecoder.swift */,
 				4BF17BAC24ACDA0900D0345E /* XMLEncoder.swift */,
 				4B4EC2A224A48140007B507A /* GPX.swift */,
@@ -903,6 +915,7 @@
 				4B10F1AE249BDC020050EEF4 /* HistoryViewModel.swift in Sources */,
 				4BA41B152472F6ED0002D88A /* MapViewModel.swift in Sources */,
 				4B5C0D7924A7AABF00DBCB90 /* LineChartView.swift in Sources */,
+				4BF6F6B424AE53330004219B /* XMLNode.swift in Sources */,
 				4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */,
 				4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */,
 				4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */,
@@ -918,6 +931,7 @@
 				4B10F1BE249D0DAC0050EEF4 /* MapImageLoader.swift in Sources */,
 				4BA41B192472F7310002D88A /* MapView2.swift in Sources */,
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
+				4BF6F6B624AE53490004219B /* XMLElement.swift in Sources */,
 				4B32582024923F290046BD6F /* Coordinator.swift in Sources */,
 				4B208D9924A36A9C009E5F6C /* TrackPoint+Decodable.swift in Sources */,
 				4B208D8524A23943009E5F6C /* Location+Extension.swift in Sources */,
@@ -926,8 +940,10 @@
 				4B10F1A4249A8BFC0050EEF4 /* Strings.swift in Sources */,
 				4B32582724924AA50046BD6F /* HistoryCoordinator.swift in Sources */,
 				4BDBAF8D248A7D5800180624 /* StopButtonViewModel.swift in Sources */,
+				4BF6F6B224AE52680004219B /* XMLNodeEncodable.swift in Sources */,
 				4BA41B46247ED7CC0002D88A /* ActionButton.swift in Sources */,
 				4BAB77E6245B3A1000F011A0 /* LocationService.swift in Sources */,
+				4BF6F6B024AE52480004219B /* DateFormatter+Extension.swift in Sources */,
 				4B10F1CD249D53D30050EEF4 /* Track.swift in Sources */,
 				4BA41B2C247841830002D88A /* Storage.swift in Sources */,
 				4B58B631246089CB00B62914 /* AES.swift in Sources */,

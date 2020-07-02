@@ -35,6 +35,7 @@ class GPXExporter: DataExporter {
                     let gpxTrack = GPXTrack(track: track)
                     do {
                         let xmlRoot = try XMLEncoder.encode(gpxTrack, root: "gpx")
+                        debugPrint(xmlRoot.asString())
                         debugPrint(xmlRoot)
                     } catch {
                         debugPrint("error", error)

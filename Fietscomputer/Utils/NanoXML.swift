@@ -8,58 +8,6 @@
 
 import Foundation
 
-protocol XMLNode {
-    var name: String { get }
-    var value: String? { get set }
-    var children: [XMLNode] { get set }
-    var attributes: [String: String] { get set }
-}
-
-extension XMLNode {
-
-    func attribute(name: String) -> String? {
-        attributes.first { $0.key == name }?.value
-    }
-
-    private func firstChild<T: Equatable>(by keyPath: KeyPath<XMLNode, T>, with value: T) -> XMLNode? {
-        children.first { $0[keyPath: keyPath] == value }
-    }
-
-    subscript(name: String) -> XMLNode? {
-        firstChild(by: \.name, with: name)
-    }
-
-    func find(path: String) -> XMLNode? {
-        var current: XMLNode? = self
-        path.split(separator: "/").forEach {
-            current = current?[String($0)]
-        }
-        return current
-    }
-
-    func contains(name: String) -> Bool {
-        attributes.keys.contains { $0 == name} ||
-        children.contains { $0.name == name }
-    }
-
-    func anyValue(with name: String) -> String? {
-        attribute(name: name) ?? self[name]?.value
-    }
-}
-
-final class XMLElement: XMLNode {
-    let name: String
-    var attributes = [String: String]()
-    var children = [XMLNode]()
-    var value: String?
-
-    init(_ name: String, attributes: [String: String] = [:], value: String? = nil) {
-        self.name = name
-        self.attributes = attributes
-        self.value = value
-    }
-}
-
 class NanoXML: NSObject, XMLParserDelegate {
 
     var error: Error?

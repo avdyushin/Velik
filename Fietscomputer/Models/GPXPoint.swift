@@ -15,7 +15,7 @@ struct GPXPoint: Codable, XMLNodeEncodable {
         case longitude = "lon"
         case elevation = "ele"
         case speed
-        case timestamp
+        case timestamp = "time"
     }
 
     static func nodeEncoding(forKey key: CodingKey) -> XMLEncoder.NodeEncoding {

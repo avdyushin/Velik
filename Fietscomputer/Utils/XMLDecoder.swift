@@ -10,14 +10,6 @@ import Foundation
 
 class XMLDecoder: Decoder {
 
-    static var dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        return dateFormatter
-    }()
-
     var codingPath: [CodingKey] = []
     var userInfo: [CodingUserInfoKey: Any] = [:]
     let element: XMLNode
@@ -101,6 +93,16 @@ class XMLDecoder: Decoder {
                     DecodingError.Context(codingPath: codingPath, debugDescription: "Not found")
                 )
             }
+            if type is Date.Type {
+                if let value = child.value {
+                    if let date = DateFormatter.iso8601.date(from: value) as? T {
+                        return date
+                    }
+                    if let date = DateFormatter.iso8601Full.date(from: value) as? T {
+                        return date
+                    }
+                }
+            }
             return try T(from: XMLDecoder(child, name: name))
         }
 
@@ -110,52 +112,6 @@ class XMLDecoder: Decoder {
         func nestedUnkeyedContainer(forKey key: Key) throws -> UnkeyedDecodingContainer { fatalError() }
         func superDecoder() throws -> Decoder { fatalError() }
         func superDecoder(forKey key: Key) throws -> Decoder { fatalError() }
-    }
-
-    struct SVDC: SingleValueDecodingContainer {
-        var codingPath: [CodingKey] = []
-        let element: XMLNode
-
-        init(_ element: XMLNode) {
-            self.element = element
-        }
-
-        func decodeNil() -> Bool { fatalError() }
-        func decode(_ type: Bool.Type) throws -> Bool { fatalError() }
-        func decode(_ type: String.Type) throws -> String { fatalError() }
-
-        func decode(_ type: Double.Type) throws -> Double {
-            guard let string = element.value else {
-                throw DecodingError.dataCorruptedError(
-                    in: self,
-                    debugDescription: "Invalid format: \(String(describing: element.value))"
-                )
-            }
-            if let double = Double(string) {
-                return double
-            }
-            if let date = XMLDecoder.dateFormatter.date(from: string) {
-                return date.timeIntervalSinceReferenceDate
-            }
-
-            throw DecodingError.dataCorruptedError(
-                in: self,
-                debugDescription: "Invalid format: \(String(describing: element.value))"
-            )
-        }
-
-        func decode(_ type: Float.Type) throws -> Float { fatalError() }
-        func decode(_ type: Int.Type) throws -> Int { fatalError() }
-        func decode(_ type: Int8.Type) throws -> Int8 { fatalError() }
-        func decode(_ type: Int16.Type) throws -> Int16 { fatalError() }
-        func decode(_ type: Int32.Type) throws -> Int32 { fatalError() }
-        func decode(_ type: Int64.Type) throws -> Int64 { fatalError() }
-        func decode(_ type: UInt.Type) throws -> UInt { fatalError() }
-        func decode(_ type: UInt8.Type) throws -> UInt8 { fatalError() }
-        func decode(_ type: UInt16.Type) throws -> UInt16 { fatalError() }
-        func decode(_ type: UInt32.Type) throws -> UInt32 { fatalError() }
-        func decode(_ type: UInt64.Type) throws -> UInt64 { fatalError() }
-        func decode<T>(_ type: T.Type) throws -> T where T: Decodable { fatalError() }
     }
 
     struct UDC: UnkeyedDecodingContainer {
@@ -214,7 +170,5 @@ class XMLDecoder: Decoder {
         UDC(element, name: name)
     }
 
-    func singleValueContainer() throws -> SingleValueDecodingContainer {
-        SVDC(element)
-    }
+    func singleValueContainer() throws -> SingleValueDecodingContainer { fatalError() }
 }
