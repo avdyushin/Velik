@@ -10,7 +10,7 @@ import Foundation
 
 class XMLEncoder: Encoder {
 
-    enum NodeEncoding {
+    enum NodeEncodingStrategy {
         case attribute
         case element
     }
@@ -77,7 +77,7 @@ class XMLEncoder: Encoder {
             switch value {
             case let date as Date:
                 let child = XMLElement(key.stringValue)
-                child.value = DateFormatter.iso8601Full.string(from: date)
+                child.value = DateFormatter.iso8601.string(from: date)
                 node.children.append(child)
             default:
                 let child = XMLElement(key.stringValue)

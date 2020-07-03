@@ -12,7 +12,7 @@ import Foundation
 import CoreLocation
 
 protocol DataImporter {
-    var availableGPX: AnyPublisher<GPX, Never> { get }
+    var availableGPX: AnyPublisher<GPXTrack, Never> { get }
 
     func `import`(url: URL) throws
     func save()
@@ -22,17 +22,19 @@ class GPXImporter: DataImporter {
 
     @Injected private var storage: StorageService
 
-    private let available = PassthroughSubject<GPX, Never>()
-    let availableGPX: AnyPublisher<GPX, Never>
-    var gpx: GPX?
+    private let available = PassthroughSubject<GPXTrack, Never>()
+    let availableGPX: AnyPublisher<GPXTrack, Never>
+    var gpx: GPXTrack?
 
     init() {
         availableGPX = available.eraseToAnyPublisher()
     }
 
     func `import`(url: URL) throws {
-        gpx = try GPX(contentsOf: url)
-        available.send(gpx!)
+        let xml = try String(contentsOf: url)
+        let gpx: GPXTrack = try XMLDecoder.decode(xml)
+        available.send(gpx)
+        self.gpx = gpx
     }
 
     func save() {
@@ -74,7 +76,8 @@ class GPXImporter: DataImporter {
                 distance: distance,
                 avgSpeed: avgSpeed,
                 maxSpeed: maxSpeed,
-                elevationGain: elevationGain),
+                elevationGain: elevationGain
+            ),
             locations: gpx.locations
         )
     }

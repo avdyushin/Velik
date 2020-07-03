@@ -38,11 +38,14 @@ class TrackPointTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func createXML(file: GPXFiles) {
+    func readFile(file: GPXFiles) -> String {
         let bundle = Bundle(for: type(of: self))
         let url = bundle.url(forResource: file.rawValue, withExtension: "gpx")!
-        let xml = try! String(contentsOf: url)
-        parser = NanoXML(xmlString: xml)
+        return try! String(contentsOf: url)
+    }
+
+    func createXML(file: GPXFiles) {
+        parser = NanoXML(xmlString: readFile(file: file))
     }
 
     func testDecodeNameWaypoint() throws {
@@ -64,18 +67,6 @@ class TrackPointTests: XCTestCase {
         let waypoint = try GPXPoint(from: decoder)
         XCTAssertEqual(51.943208, waypoint.latitude, accuracy: 1e-4)
         XCTAssertEqual(4.484162, waypoint.longitude, accuracy: 1e-4)
-        if let elevation = waypoint.elevation {
-            XCTAssertEqual(-0.5, elevation, accuracy: 0.1)
-        }
-    }
-
-    func testDecodeSingleMinimumWaypoint() throws {
-        createXML(file: .minimum)
-        let first = parser.root?["wpt"]
-        let decoder = XMLDecoder(first!)
-        let waypoint = try GPXPoint(from: decoder)
-        XCTAssertEqual(51.94334, waypoint.latitude, accuracy: 1e-4)
-        XCTAssertEqual(4.48391, waypoint.longitude, accuracy: 1e-4)
         if let elevation = waypoint.elevation {
             XCTAssertEqual(-0.5, elevation, accuracy: 0.1)
         }
@@ -121,10 +112,57 @@ class TrackPointTests: XCTestCase {
         XCTAssertEqual(4441, waypoints.count)
     }
 
-    func testCoreDataDecoder() {
+    func testDecodeGPXTrack() throws {
+        createXML(file: .segment)
+        let xml = parser.root!
+        let track = try GPXTrack(from: XMLDecoder(xml))
+        let waypoint = track.points.first!
+        XCTAssertEqual(51.943208, waypoint.latitude, accuracy: 1e-4)
+        XCTAssertEqual(4.484162, waypoint.longitude, accuracy: 1e-4)
+        if let elevation = waypoint.elevation {
+            XCTAssertEqual(-0.5, elevation, accuracy: 0.1)
+        }
+        XCTAssertEqual(4441, track.points.count)
+    }
+
+    func testDecodeExportedTrack() throws {
+        let bundle = Bundle(for: type(of: self))
+        let url = bundle.url(forResource: "Exported", withExtension: "gpx")!
+        let track: GPXTrack = try XMLDecoder.decode(try String(contentsOf: url))
+        let waypoint = track.points.first!
+        XCTAssertEqual(51.943208, waypoint.latitude, accuracy: 1e-4)
+        XCTAssertEqual(4.484162, waypoint.longitude, accuracy: 1e-4)
+        if let elevation = waypoint.elevation {
+            XCTAssertEqual(-0.5, elevation, accuracy: 0.1)
+        }
+        XCTAssertEqual(4441, track.points.count)
+    }
+
+    func testGPXImporter() throws {
+        let bundle = Bundle(for: type(of: self))
+        let url = bundle.url(forResource: "Afternoon_Ride", withExtension: "gpx")!
+        let gpxImporter = GPXImporter()
+
+        let expectation = self.expectation(description: "Imported")
+        let cancellable = gpxImporter.availableGPX.sink { track in
+            let waypoint = track.points.first!
+            XCTAssertEqual(51.943208, waypoint.latitude, accuracy: 1e-4)
+            XCTAssertEqual(4.484162, waypoint.longitude, accuracy: 1e-4)
+            if let elevation = waypoint.elevation {
+                XCTAssertEqual(-0.5, elevation, accuracy: 0.1)
+            }
+            XCTAssertEqual(4441, track.points.count)
+            expectation.fulfill()
+        }
+        try gpxImporter.import(url: url)
+        self.wait(for: [expectation], timeout: 1)
+        XCTAssertNotNil(cancellable)
+    }
+
+//    func testCoreDataDecoder() {
 //        createXML(name: "Ride2")
 //        let decoder = XMLDecoder(first!)
 //        decoder.userInfo[CodingUserInfoKey.context!] = storage.mainContext
 //        XCTAssertNoThrow(try TrackPoint(from: decoder))
-    }
+//    }
 }

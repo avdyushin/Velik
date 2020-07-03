@@ -64,7 +64,6 @@
 		4B4EC29B24A3BD1D007B507A /* GPXPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC29A24A3BD1D007B507A /* GPXPoint.swift */; };
 		4B4EC29E24A3DAF6007B507A /* GPXImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC29D24A3DAF6007B507A /* GPXImporter.swift */; };
 		4B4EC2A124A474C6007B507A /* TrackSegment.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4B4EC29F24A47350007B507A /* TrackSegment.gpx */; };
-		4B4EC2A324A48140007B507A /* GPX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EC2A224A48140007B507A /* GPX.swift */; };
 		4B4F6D9F24AA3664001E68CA /* MountainShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F6D9E24AA3664001E68CA /* MountainShape.swift */; };
 		4B4F6DA124AB1709001E68CA /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F6DA024AB1709001E68CA /* CGPoint+Extension.swift */; };
 		4B4F6DA324AB174B001E68CA /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4F6DA224AB174B001E68CA /* Axis.swift */; };
@@ -131,6 +130,8 @@
 		4BF6F6B224AE52680004219B /* XMLNodeEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B124AE52680004219B /* XMLNodeEncodable.swift */; };
 		4BF6F6B424AE53330004219B /* XMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B324AE53330004219B /* XMLNode.swift */; };
 		4BF6F6B624AE53490004219B /* XMLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B524AE53490004219B /* XMLElement.swift */; };
+		4BF6F6B824AFA31A0004219B /* Afternoon_Ride.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B724AFA31A0004219B /* Afternoon_Ride.gpx */; };
+		4BF6F6BC24AFA8120004219B /* Exported.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BB24AFA8120004219B /* Exported.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,7 +205,6 @@
 		4B4EC29A24A3BD1D007B507A /* GPXPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXPoint.swift; sourceTree = "<group>"; };
 		4B4EC29D24A3DAF6007B507A /* GPXImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXImporter.swift; sourceTree = "<group>"; };
 		4B4EC29F24A47350007B507A /* TrackSegment.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TrackSegment.gpx; sourceTree = "<group>"; };
-		4B4EC2A224A48140007B507A /* GPX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPX.swift; sourceTree = "<group>"; };
 		4B4F6D9E24AA3664001E68CA /* MountainShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountainShape.swift; sourceTree = "<group>"; };
 		4B4F6DA024AB1709001E68CA /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		4B4F6DA224AB174B001E68CA /* Axis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axis.swift; sourceTree = "<group>"; };
@@ -268,6 +268,8 @@
 		4BF6F6B124AE52680004219B /* XMLNodeEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLNodeEncodable.swift; sourceTree = "<group>"; };
 		4BF6F6B324AE53330004219B /* XMLNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLNode.swift; sourceTree = "<group>"; };
 		4BF6F6B524AE53490004219B /* XMLElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLElement.swift; sourceTree = "<group>"; };
+		4BF6F6B724AFA31A0004219B /* Afternoon_Ride.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Afternoon_Ride.gpx; sourceTree = "<group>"; };
+		4BF6F6BB24AFA8120004219B /* Exported.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Exported.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,7 +474,6 @@
 				4BF6F6B524AE53490004219B /* XMLElement.swift */,
 				4B208D9A24A37656009E5F6C /* XMLDecoder.swift */,
 				4BF17BAC24ACDA0900D0345E /* XMLEncoder.swift */,
-				4B4EC2A224A48140007B507A /* GPX.swift */,
 			);
 			name = XML;
 			sourceTree = "<group>";
@@ -575,9 +576,11 @@
 		4B88C9C1245C985D00BD5DD3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4BF6F6B724AFA31A0004219B /* Afternoon_Ride.gpx */,
 				4B4EC29F24A47350007B507A /* TrackSegment.gpx */,
 				4B208D9224A29958009E5F6C /* NoTime.gpx */,
 				4B208D9324A29958009E5F6C /* WayPoints.gpx */,
+				4BF6F6BB24AFA8120004219B /* Exported.gpx */,
 				4B10F1A5249A8CB70050EEF4 /* Strings.xml */,
 				4BAB77C7245B2FE200F011A0 /* Assets.xcassets */,
 				4BAB77CC245B2FE200F011A0 /* LaunchScreen.storyboard */,
@@ -803,7 +806,9 @@
 			files = (
 				4BF6689D24A39590001AA07E /* WayPoints.gpx in Resources */,
 				4B4EC2A124A474C6007B507A /* TrackSegment.gpx in Resources */,
+				4BF6F6B824AFA31A0004219B /* Afternoon_Ride.gpx in Resources */,
 				4BF6689C24A3958D001AA07E /* NoTime.gpx in Resources */,
+				4BF6F6BC24AFA8120004219B /* Exported.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,7 +932,6 @@
 				4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */,
 				4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */,
 				4B10F1A8249B988E0050EEF4 /* RideRepository.swift in Sources */,
-				4B4EC2A324A48140007B507A /* GPX.swift in Sources */,
 				4B10F1BE249D0DAC0050EEF4 /* MapImageLoader.swift in Sources */,
 				4BA41B192472F7310002D88A /* MapView2.swift in Sources */,
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,

@@ -9,11 +9,11 @@
 import Foundation
 
 protocol XMLNodeEncodable {
-    static func nodeEncoding(forKey key: CodingKey) -> XMLEncoder.NodeEncoding
+    static func nodeEncoding(forKey key: CodingKey) -> XMLEncoder.NodeEncodingStrategy
 }
 
 extension Optional where Wrapped == XMLNodeEncodable {
-    func encoding(forKey key: CodingKey) -> XMLEncoder.NodeEncoding {
+    func encoding(forKey key: CodingKey) -> XMLEncoder.NodeEncodingStrategy {
         switch self {
         case .some(let object):
             return type(of: object).nodeEncoding(forKey: key)

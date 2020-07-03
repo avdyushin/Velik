@@ -18,7 +18,7 @@ struct GPXPoint: Codable, XMLNodeEncodable {
         case timestamp = "time"
     }
 
-    static func nodeEncoding(forKey key: CodingKey) -> XMLEncoder.NodeEncoding {
+    static func nodeEncoding(forKey key: CodingKey) -> XMLEncoder.NodeEncodingStrategy {
         switch key {
         case CodingKeys.latitude, CodingKeys.longitude: return .attribute
         default: return .element

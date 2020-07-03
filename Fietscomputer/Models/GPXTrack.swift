@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct GPXTrack {
     let id: UUID
     let name: String?
     let timestamp: Date
     let points: [GPXPoint]
+
+    var locations: [CLLocation] { points.map(CLLocation.init) }
 }
 
 extension GPXTrack {
@@ -45,7 +48,7 @@ extension GPXTrack: Encodable, XMLNodeEncodable {
         case point = "trkpt"
     }
 
-    static func nodeEncoding(forKey key: CodingKey) -> XMLEncoder.NodeEncoding {
+    static func nodeEncoding(forKey key: CodingKey) -> XMLEncoder.NodeEncodingStrategy {
         switch key {
         case CodingKeys.creator: return .attribute
         default: return .element
@@ -60,8 +63,40 @@ extension GPXTrack: Encodable, XMLNodeEncodable {
         var trackContainer = container.nestedContainer(keyedBy: TrackCodingKeys.self, forKey: .track)
         try trackContainer.encodeIfPresent(name, forKey: .name)
         var pointsContainer = trackContainer.nestedContainer(keyedBy: PointsCodingKeys.self, forKey: .segment)
-        try points.forEach {
-            try pointsContainer.encode($0, forKey: .point)
+        try points
+            .sorted { pointA, pointB in
+                switch (pointA.timestamp, pointB.timestamp) {
+                case (.some(let timestampA), .some(let timestampB)):
+                    return timestampA < timestampB
+                default:
+                    return false
+                }
+            }
+            .forEach {
+                try pointsContainer.encode($0, forKey: .point)
+            }
+    }
+}
+
+extension GPXTrack: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = UUID()
+        let metadata = try container.nestedContainer(keyedBy: MetadataCodingKeys.self, forKey: .metadata)
+        self.timestamp = try metadata.decode(Date.self, forKey: .time)
+        let trackContainer = try container.nestedContainer(keyedBy: TrackCodingKeys.self, forKey: .track)
+        self.name = try trackContainer.decodeIfPresent(String.self, forKey: .name)
+        let segmentContainer = try trackContainer.nestedContainer(keyedBy: PointsCodingKeys.self, forKey: .segment)
+        var pointsContainer = try segmentContainer.nestedUnkeyedContainer(forKey: .point)
+        if var count = pointsContainer.count, count > 0 {
+            var points = [GPXPoint]()
+            while count > 0 {
+                defer { count -= 1 }
+                points.append(try pointsContainer.decode(GPXPoint.self))
+            }
+            self.points = points
+        } else {
+            self.points = []
         }
     }
 }

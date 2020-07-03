@@ -20,6 +20,16 @@ class XMLDecoder: Decoder {
         self.name = name
     }
 
+    static func decode<T: Decodable>(_ xmlString: String) throws -> T {
+        guard let root = NanoXML(xmlString: xmlString).root else {
+            throw DecodingError.dataCorrupted(
+                DecodingError.Context(codingPath: [], debugDescription: "No XML root node")
+            )
+        }
+        let decoder = XMLDecoder(root)
+        return try T(from: decoder)
+    }
+
     struct KDC<Key: CodingKey>: KeyedDecodingContainerProtocol {
         var codingPath: [CodingKey] = []
         var allKeys: [Key] = []
@@ -108,8 +118,18 @@ class XMLDecoder: Decoder {
 
         func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type,
                                         forKey key: Key) throws -> KeyedDecodingContainer<NestedKey>
-            where NestedKey: CodingKey { fatalError() }
-        func nestedUnkeyedContainer(forKey key: Key) throws -> UnkeyedDecodingContainer { fatalError() }
+            where NestedKey: CodingKey {
+                guard let child = element.find(path: key.stringValue) else {
+                    throw DecodingError.keyNotFound(
+                        key,
+                        DecodingError.Context(codingPath: codingPath, debugDescription: "Not found")
+                    )
+                }
+                return KeyedDecodingContainer(KDC<NestedKey>(child, name: name))
+        }
+        func nestedUnkeyedContainer(forKey key: Key) throws -> UnkeyedDecodingContainer {
+            UDC(element, name: key.stringValue)
+        }
         func superDecoder() throws -> Decoder { fatalError() }
         func superDecoder(forKey key: Key) throws -> Decoder { fatalError() }
     }
@@ -153,7 +173,7 @@ class XMLDecoder: Decoder {
                 isAtEnd = currentIndex == count
             }
             let child = elements[currentIndex]
-            return try T(from: XMLDecoder(child, name: name))
+            return try T(from: XMLDecoder(child))
         }
 
         mutating func nestedContainer<NestedKey>(keyedBy type: NestedKey.Type)
