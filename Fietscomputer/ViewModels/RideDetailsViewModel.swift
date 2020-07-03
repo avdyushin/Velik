@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 import CoreData
 import Injected
 import CoreLocation
@@ -19,6 +20,11 @@ class RideDetailsViewModel: ObservableObject {
     }
 
     @Injected var storage: StorageService
+    @Injected private var gpxExporter: GPXExporter
+
+    private var cancellables = Set<AnyCancellable>()
+
+    @Published var exportURL: URL?
 
     let objectID: NSManagedObjectID
     var rideViewModel: RideViewModel
@@ -55,5 +61,14 @@ class RideDetailsViewModel: ObservableObject {
         case .speed:
             return rideViewModel.avgSpeedValue != .zero && !rideViewModel.speed.isEmpty
         }
+    }
+
+    func export() {
+        gpxExporter
+            .export(rideUUID: rideViewModel.uuid)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { url in self.exportURL = url }
+            ).store(in: &cancellables)
     }
 }

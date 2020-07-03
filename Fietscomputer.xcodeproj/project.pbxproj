@@ -132,6 +132,7 @@
 		4BF6F6B624AE53490004219B /* XMLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B524AE53490004219B /* XMLElement.swift */; };
 		4BF6F6B824AFA31A0004219B /* Afternoon_Ride.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B724AFA31A0004219B /* Afternoon_Ride.gpx */; };
 		4BF6F6BC24AFA8120004219B /* Exported.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BB24AFA8120004219B /* Exported.gpx */; };
+		4BF6F6BE24AFADB40004219B /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BD24AFADB40004219B /* ShareSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,6 +271,7 @@
 		4BF6F6B524AE53490004219B /* XMLElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLElement.swift; sourceTree = "<group>"; };
 		4BF6F6B724AFA31A0004219B /* Afternoon_Ride.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Afternoon_Ride.gpx; sourceTree = "<group>"; };
 		4BF6F6BB24AFA8120004219B /* Exported.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Exported.gpx; sourceTree = "<group>"; };
+		4BF6F6BD24AFADB40004219B /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +361,7 @@
 				4BA41B43247ED7A20002D88A /* PageIndicatorView.swift */,
 				4B834E36248ABC8F00A0272E /* NotificationView.swift */,
 				4B10F1B9249D09DD0050EEF4 /* ValueDescriptionView.swift */,
+				4BF6F6BD24AFADB40004219B /* ShareSheet.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -885,6 +888,7 @@
 				4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */,
 				4B10F1B8249C98A30050EEF4 /* RideViewModel.swift in Sources */,
 				4BA41B48247ED7DD0002D88A /* GaugesView.swift in Sources */,
+				4BF6F6BE24AFADB40004219B /* ShareSheet.swift in Sources */,
 				4B10F1AA249B98B40050EEF4 /* Ride.swift in Sources */,
 				4B208D8D24A273BF009E5F6C /* CGContext+Extensions.swift in Sources */,
 				4BF6F6AE24AE46E80004219B /* GPXTrack.swift in Sources */,

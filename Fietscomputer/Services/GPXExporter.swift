@@ -11,37 +11,32 @@ import Injected
 import Foundation
 
 protocol DataExporter {
-    func export(rideUUID: UUID) throws
+    func export(rideUUID: UUID) -> AnyPublisher<URL, Error>
 }
 
 class GPXExporter: DataExporter {
 
-    private var cancellables = Set<AnyCancellable>()
+    enum GPXError: Error {
+        case noDocumentsDirectory
+    }
+
     @Injected private var storage: StorageService
 
-    func export(rideUUID uuid: UUID) throws {
-        debugPrint("Export", uuid)
+    func export(rideUUID uuid: UUID) -> AnyPublisher<URL, Error> {
         storage
             .findRide(by: uuid)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let error):
-                    debugPrint("error", error)
-                case .finished: ()
+            .compactMap { $0.track }
+            .tryMap { track in
+                let gpxTrack = GPXTrack(track: track)
+                let xmlRoot = try XMLEncoder.encode(gpxTrack, root: "gpx")
+                guard let docs = FileManager
+                    .default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                        throw GPXError.noDocumentsDirectory
                 }
-            }, receiveValue: { ride in
-                debugPrint("We have ride!", String(describing: ride.name))
-                if let track = ride.track {
-                    let gpxTrack = GPXTrack(track: track)
-                    do {
-                        let xmlRoot = try XMLEncoder.encode(gpxTrack, root: "gpx")
-                        debugPrint(xmlRoot.asString())
-                        debugPrint(xmlRoot)
-                    } catch {
-                        debugPrint("error", error)
-                    }
-                }
-            })
-            .store(in: &cancellables)
+                let url = docs.appendingPathComponent("Track").appendingPathExtension("gpx")
+                let xml = xmlRoot.asString()
+                try xml.write(to: url, atomically: true, encoding: .utf8)
+                return url
+            }.eraseToAnyPublisher()
     }
 }

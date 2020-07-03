@@ -26,6 +26,7 @@ struct ContentView<Presenter: RootPresenting>: View {
     @ObservedObject var presenter: Presenter
     @State private var isHistoryPresented = false
     @State private var isImportPresented = false
+    @State private var isExportPresented = false
     @Environment(\.managedObjectContext) var viewContext
 
     @State private var importTitle: String = ""

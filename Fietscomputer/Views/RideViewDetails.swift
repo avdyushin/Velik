@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 import Injected
 import class CoreData.NSManagedObjectID
 import struct CoreLocation.CLLocationCoordinate2D
@@ -15,7 +16,7 @@ struct RideViewDetails: View {
 
     let viewModel: RideDetailsViewModel
     @State private var confirmDelete = false
-    @Injected private var gpxExporter: GPXExporter
+    @State private var sharePresented = false
 
     var body: some View {
         GeometryReader { [viewModel] geometry in
@@ -57,14 +58,14 @@ struct RideViewDetails: View {
                     .cancel()
                 ]
             )
+        }.sheet(isPresented: $sharePresented) {
+            ShareSheet(activityItems: [self.viewModel.exportURL])
         }.navigationBarItems(
             trailing:
             HStack {
                 Button(
-                    action: { try? self.gpxExporter.export(rideUUID: self.viewModel.rideViewModel.uuid) },
-                    label: {
-                        Image(systemName: "square.and.arrow.up")
-                    }
+                    action: { self.viewModel.export() },
+                    label: { Image(systemName: "square.and.arrow.up") }
                 )
                 Spacer(minLength: 16)
                 Button(
@@ -75,6 +76,8 @@ struct RideViewDetails: View {
                     }
                 )
             }
-        )
+        ).onReceive(viewModel.$exportURL) {
+            if $0 != nil { self.sharePresented.toggle() }
+        }
     }
 }
