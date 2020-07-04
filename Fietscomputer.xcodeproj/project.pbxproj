@@ -134,6 +134,7 @@
 		4BF6F6BC24AFA8120004219B /* Exported.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BB24AFA8120004219B /* Exported.gpx */; };
 		4BF6F6BE24AFADB40004219B /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BD24AFADB40004219B /* ShareSheet.swift */; };
 		4BF6F6C024B069100004219B /* RideMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BF24B069100004219B /* RideMapView.swift */; };
+		4BF6F6C224B06D270004219B /* GridShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6C124B06D270004219B /* GridShape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -274,6 +275,7 @@
 		4BF6F6BB24AFA8120004219B /* Exported.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Exported.gpx; sourceTree = "<group>"; };
 		4BF6F6BD24AFADB40004219B /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		4BF6F6BF24B069100004219B /* RideMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMapView.swift; sourceTree = "<group>"; };
+		4BF6F6C124B06D270004219B /* GridShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +510,7 @@
 			children = (
 				4B4F6DA224AB174B001E68CA /* Axis.swift */,
 				4B4F6D9E24AA3664001E68CA /* MountainShape.swift */,
+				4BF6F6C124B06D270004219B /* GridShape.swift */,
 				4B5C0D7824A7AABF00DBCB90 /* LineChartView.swift */,
 			);
 			name = Chart;
@@ -899,6 +902,7 @@
 				4B208D8924A248F4009E5F6C /* RideTrackDrawer.swift in Sources */,
 				4B88C9B2245C29CB00BD5DD3 /* RideService.swift in Sources */,
 				4BA41B1F2472F7F30002D88A /* Timer2.swift in Sources */,
+				4BF6F6C224B06D270004219B /* GridShape.swift in Sources */,
 				4B3258222492464E0046BD6F /* RootCoordinator.swift in Sources */,
 				4BF6689A24A3935B001AA07E /* NanoXML.swift in Sources */,
 				4B4F6DA324AB174B001E68CA /* Axis.swift in Sources */,
