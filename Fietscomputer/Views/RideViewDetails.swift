@@ -53,7 +53,7 @@ struct RideViewDetails: View {
                         LineChartView(values: viewModel.rideViewModel.speed,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
-                            .frame(width: geometry.size.width, height: 100)
+                            .frame(width: geometry.size.width, height: 180)
                     } else { self.noDataText }
                 }
             }
