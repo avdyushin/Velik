@@ -21,6 +21,6 @@ class SpeedViewModel: GaugeViewModel {
                 self.value = formatted.value
                 self.units = formatted.units.uppercased()
         }
-        .store(in: &cancellables)
+        .store(in: &cancellable)
     }
 }

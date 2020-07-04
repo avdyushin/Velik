@@ -14,7 +14,7 @@ class LocationPermissions: NSObject, Permissions {
     typealias Status = CLAuthorizationStatus
 
     private let manager: CLLocationManager
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     private let statusPublisher = CurrentValueSubject<CLAuthorizationStatus, Never>(
         CLLocationManager.authorizationStatus()
     )
@@ -33,7 +33,7 @@ class LocationPermissions: NSObject, Permissions {
 
             self.status
                 .sink { promise(.success($0)) }
-                .store(in: &self.cancellables)
+                .store(in: &self.cancellable)
             self.manager.requestAlwaysAuthorization()
         }
     }

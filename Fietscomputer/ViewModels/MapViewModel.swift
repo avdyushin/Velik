@@ -28,16 +28,16 @@ class MapViewModel: ViewModel, ObservableObject {
             }
             .print("location started here")
             .assign(to: \.isLocationStarted, on: self)
-            .store(in: &cancellables)
+            .store(in: &cancellable)
 
         rideService.state
             .print("ride started here")
             .assign(to: \.rideState, on: self)
-            .store(in: &cancellables)
+            .store(in: &cancellable)
 
         rideService.track
             .removeDuplicates()
             .assign(to: \.polyline, on: self)
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 }

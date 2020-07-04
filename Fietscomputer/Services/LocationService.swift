@@ -20,7 +20,7 @@ class LocationService: NSObject, Service {
     }
 
     private let manager: CLLocationManager
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
 
     private let speedPublisher = CurrentValueSubject<CLLocationSpeed, Never>(0)
     private(set) var speed: AnyPublisher<CLLocationSpeed, Never>

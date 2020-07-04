@@ -14,5 +14,5 @@ class ViewModel {
     @Injected var locationService: LocationService
     @Injected var bluetoothService: BluetoothScanner
 
-    var cancellables = Set<AnyCancellable>()
+    var cancellable = Set<AnyCancellable>()
 }

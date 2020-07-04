@@ -67,7 +67,7 @@ class BluetoothScanner: NSObject, Service {
         private var notifyingPublishers = [CBUUID: PassthroughSubject<CBCharacteristic, Error>]()
         private var updateValuePublishers = [CBUUID: PassthroughSubject<CBCharacteristic, Error>]()
 
-        private var cancellables = Set<AnyCancellable>()
+        private var cancellable = Set<AnyCancellable>()
 
         let peripheral: CBPeripheral
         weak var scanner: BluetoothScanner!
@@ -143,7 +143,7 @@ class BluetoothScanner: NSObject, Service {
                         }, receiveValue: { characteristic in
                             promise(.success(characteristic))
                         })
-                        .store(in: &self.cancellables)
+                        .store(in: &self.cancellable)
                     self.peripheral.writeValue(data, for: characteristic, type: type)
                 }
 
@@ -152,7 +152,7 @@ class BluetoothScanner: NSObject, Service {
                     self.notifyingPublishers[characteristic.uuid]?
                         .retry(3)
                         .sink(receiveCompletion: { _ in}, receiveValue: { _ in doWrite() })
-                        .store(in: &self.cancellables)
+                        .store(in: &self.cancellable)
                     self.peripheral.setNotifyValue(true, for: characteristic)
                 } else {
                     doWrite()
@@ -195,7 +195,7 @@ class BluetoothScanner: NSObject, Service {
     private var connected = [UUID: CBPeripheral]()
 
     private(set) var connectedPublishers = [UUID: PassthroughSubject<CBPeripheral, Error>]()
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
 
     private(set) lazy var state = CurrentValueSubject<CBManagerState, Never>(manager.state)
     private var statePublisher: AnyCancellable?
@@ -211,7 +211,7 @@ class BluetoothScanner: NSObject, Service {
                     self.stop()
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 
     func start() {
@@ -255,7 +255,7 @@ class BluetoothScanner: NSObject, Service {
                 }
             }, receiveValue: { value in
                 promise(.success(Peripheral(peripheral: value, scanner: self)))
-            }).store(in: &self.cancellables)
+            }).store(in: &self.cancellable)
 
             self.listQueue.sync {
                 self.connected[peripheral.identifier] = peripheral

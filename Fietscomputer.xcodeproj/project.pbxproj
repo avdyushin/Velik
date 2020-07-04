@@ -133,6 +133,7 @@
 		4BF6F6B824AFA31A0004219B /* Afternoon_Ride.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B724AFA31A0004219B /* Afternoon_Ride.gpx */; };
 		4BF6F6BC24AFA8120004219B /* Exported.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BB24AFA8120004219B /* Exported.gpx */; };
 		4BF6F6BE24AFADB40004219B /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BD24AFADB40004219B /* ShareSheet.swift */; };
+		4BF6F6C024B069100004219B /* RideMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BF24B069100004219B /* RideMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +273,7 @@
 		4BF6F6B724AFA31A0004219B /* Afternoon_Ride.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Afternoon_Ride.gpx; sourceTree = "<group>"; };
 		4BF6F6BB24AFA8120004219B /* Exported.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Exported.gpx; sourceTree = "<group>"; };
 		4BF6F6BD24AFADB40004219B /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		4BF6F6BF24B069100004219B /* RideMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				4B10F1AB249BDBA80050EEF4 /* HistoryView.swift */,
+				4BF6F6BF24B069100004219B /* RideMapView.swift */,
 				4B10F1B5249C986E0050EEF4 /* RideCellView.swift */,
 				4B10F1B1249BDE0D0050EEF4 /* RideViewDetails.swift */,
 				4B1FF0B9249E923400D7AFF1 /* RideSummaryView.swift */,
@@ -935,6 +938,7 @@
 				4BA41B42247ED7760002D88A /* SliderControlView.swift in Sources */,
 				4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */,
 				4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */,
+				4BF6F6C024B069100004219B /* RideMapView.swift in Sources */,
 				4B10F1A8249B988E0050EEF4 /* RideRepository.swift in Sources */,
 				4B10F1BE249D0DAC0050EEF4 /* MapImageLoader.swift in Sources */,
 				4BA41B192472F7310002D88A /* MapView2.swift in Sources */,

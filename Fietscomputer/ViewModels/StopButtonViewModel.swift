@@ -29,6 +29,6 @@ class StopButtonViewModel: ViewModel, ObservableObject {
                     withAnimation { self.isVisible = true }
                 }
         }
-        .store(in: &cancellables)
+        .store(in: &cancellable)
     }
 }

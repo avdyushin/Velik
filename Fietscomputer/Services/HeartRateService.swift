@@ -18,7 +18,7 @@ class HeartRateService: Service {
     let shouldAutostart = false
 
     private let scanner = BluetoothScanner()
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
     private var authCh = PassthroughSubject<BluetoothScanner.Characteristics, Error>()
     private var ready = CurrentValueSubject<Bool, Error>(false)
     private var heartRateCh = PassthroughSubject<BluetoothScanner.Characteristics, Error>()
@@ -59,7 +59,7 @@ class HeartRateService: Service {
                     default: ()
                     }
             })
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 
     fileprivate func bindAuth() {
@@ -81,7 +81,7 @@ class HeartRateService: Service {
         .filter { $0.characteristic.value?.prefix(3) == Data([0x10, 0x03, 0x01]) }
         .sink(receiveCompletion: { _ in },
               receiveValue: { [ready] _ in ready.send(true) })
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 
     fileprivate func bindHeartRate() {
@@ -92,6 +92,6 @@ class HeartRateService: Service {
         }
         .sink(receiveCompletion: { _ in },
               receiveValue: { _ in })
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 }

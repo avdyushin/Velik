@@ -24,16 +24,10 @@ struct RideCellView: View {
                     .foregroundColor(.secondary)
             }
             HStack(alignment: .top) {
-                AsyncMapImage(uuid: viewModel.uuid,
-                              region: viewModel.mapRegion,
-                              size: viewModel.mapSize,
-                              processor: viewModel.mapProcessor()) {
-                    Rectangle()
-                        .foregroundColor(Color(UIColor.systemFill))
-                }.frame(width: 120, height: 80, alignment: .leading)
-                VStack(alignment: .trailing, spacing: 8) {
-                    RideSummaryView(viewModel: viewModel)
-                }.frame(minWidth: 0, maxWidth: .infinity)
+                RideMapView(viewModel: viewModel, mapSize: viewModel.mapSize)
+                    .frame(width: 120, height: 80, alignment: .leading)
+                RideSummaryView(viewModel: viewModel)
+                    .frame(minWidth: 0, maxWidth: .infinity)
             }
         }
     }

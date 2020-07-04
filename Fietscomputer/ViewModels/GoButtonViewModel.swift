@@ -44,6 +44,6 @@ class GoButtonViewModel: ViewModel, ObservableObject {
                     }
                 }
             }
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 }

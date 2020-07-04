@@ -83,7 +83,7 @@ class RideService: Service {
     private let statePublisher = CurrentValueSubject<State, Never>(.idle)
     private(set) var state: AnyPublisher<State, Never>
 
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
 
     init() {
         self.elapsed = elapsedTimePublisher.eraseToAnyPublisher()
@@ -118,7 +118,7 @@ class RideService: Service {
                 self.totalDistance += delta
                 self.distancePublisher.send(self.totalDistance)
             }
-        }.store(in: &cancellables)
+        }.store(in: &cancellable)
 
         run()
     }

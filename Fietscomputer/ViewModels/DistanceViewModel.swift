@@ -17,6 +17,6 @@ class DistanceViewModel: GaugeViewModel {
         rideService.distance
             .map { RideViewModel.distance($0) }
             .assign(to: \.value, on: self)
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 }

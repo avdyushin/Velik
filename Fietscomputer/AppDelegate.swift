@@ -14,7 +14,7 @@ import Injected
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
 
     let dependencies = Dependencies {
         Dependency { StorageService() }
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 debugPrint("Can't start location service")
             }
         }
-        .store(in: &cancellables)
+        .store(in: &cancellable)
         return true
     }
 

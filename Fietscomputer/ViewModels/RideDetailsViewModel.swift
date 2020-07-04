@@ -19,10 +19,10 @@ class RideDetailsViewModel: ObservableObject {
         case speed
     }
 
-    @Injected var storage: StorageService
-    @Injected private var gpxExporter: GPXExporter
+    @Injected private var storage: StorageService
+    @Injected private var exporter: GPXExporter
 
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
 
     @Published var exportURL: URL?
 
@@ -57,18 +57,18 @@ class RideDetailsViewModel: ObservableObject {
     func isChartVisible(_ type: ChartType) -> Bool {
         switch type {
         case .elevation:
-            return !rideViewModel.elevations.isEmpty
+            return rideViewModel.elevationGainValue != .zero && !rideViewModel.elevations.isEmpty
         case .speed:
             return rideViewModel.avgSpeedValue != .zero && !rideViewModel.speed.isEmpty
         }
     }
 
     func export() {
-        gpxExporter
+        exporter
             .export(rideUUID: rideViewModel.uuid)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { url in self.exportURL = url }
-            ).store(in: &cancellables)
+            ).store(in: &cancellable)
     }
 }

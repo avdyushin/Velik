@@ -29,7 +29,7 @@ class NotificationViewModel: ViewModel, ObservableObject {
                     self.show(message: "Ride has been stopped")
                 }
         }
-        .store(in: &cancellables)
+        .store(in: &cancellable)
     }
 
     func show(message: String) {

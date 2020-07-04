@@ -26,6 +26,7 @@ class RideViewModel {
     var weightLoss: String
     var locations: [CLLocation]
 
+    let elevationGainValue: CLLocationDistance
     lazy var elevations: [CLLocationDistance] = {
         self.locations.map { $0.altitude }
     }()
@@ -62,7 +63,7 @@ class RideViewModel {
 
         self.uuid = uuid
         date = Self.date(createdAt)
-        title = name ?? "Unnamed Ride"
+        title = name ?? Strings.unnamed_ride
         distance = Self.distance(summary.distance)
         duration = Self.duration(summary.duration)
         avgSpeedValue = summary.avgSpeed
@@ -70,13 +71,14 @@ class RideViewModel {
         avgSpeed = avgSpeedPair.value + " " + avgSpeedPair.units
         let maxSpeedPair = Self.speed(summary.maxSpeed)
         maxSpeed = maxSpeedPair.value + " " + maxSpeedPair.units
+        elevationGainValue = summary.elevationGain
         elevationGain = Self.elevation(summary.elevationGain)
         let powerPair = Self.power(power: summary.avgSpeed)
         power = powerPair.value + " " + powerPair.units
         let energyPair = Self.energy(power: summary.avgPower, duration: summary.duration)
         energy = energyPair.value + " " + energyPair.units
-        let weigthPair = Self.weight(power: summary.avgPower, duration: summary.duration)
-        weightLoss = weigthPair.value + " " + weigthPair.units
+        let weightPair = Self.weight(power: summary.avgPower, duration: summary.duration)
+        weightLoss = weightPair.value + " " + weightPair.units
         self.locations = locations
     }
 
@@ -100,12 +102,12 @@ class RideViewModel {
     }
 
     static func distance(_ value: Double?) -> String {
-        let kilometers = Measurement(value: value ?? 0, unit: UnitLength.meters).converted(to: .kilometers)
-        return Formatters.distanceFormatter.string(from: kilometers)
+        let kilometres = Measurement(value: value ?? 0, unit: UnitLength.meters).converted(to: .kilometers)
+        return Formatters.distanceFormatter.string(from: kilometres)
     }
 
     static func duration(_ value: Double?) -> String {
-        Formatters.elaspedFormatter.string(from: value ?? 0)!
+        Formatters.elapsedFormatter.string(from: value ?? 0)!
     }
 
     static func speed(_ value: Double?) -> ValueUnitPair {

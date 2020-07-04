@@ -70,4 +70,7 @@
     <string id="no_data_available">
         <en>No data available</en>
     </string>
+    <string id="unnamed_ride">
+        <en>Unnamed Ride</en>
+    </string>
 </strings>

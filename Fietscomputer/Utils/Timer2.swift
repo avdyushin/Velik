@@ -12,15 +12,15 @@ import Foundation
 class Timer2 {
 
     let timer = Timer.TimerPublisher(interval: 1.0, runLoop: .main, mode: .default)
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable = Set<AnyCancellable>()
 
     init() {
         timer
             .connect()
-            .store(in: &cancellables)
+            .store(in: &cancellable)
     }
 
     deinit {
-        cancellables.forEach { $0.cancel() }
+        cancellable.forEach { $0.cancel() }
     }
 }

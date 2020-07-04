@@ -37,7 +37,7 @@ struct Formatters {
         return formatter
     }()
 
-    static var elaspedFormatter: DateComponentsFormatter = {
+    static var elapsedFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.zeroFormattingBehavior = [.pad]
@@ -60,7 +60,8 @@ struct Formatters {
 
     static func formatted<U: Unit>(from measurement: Measurement<U>) -> ValueUnitPair {
         let value = Formatters.speedValue.string(from: NSNumber(value: measurement.value))
+        let zero = Formatters.speedValue.string(from: NSNumber(value: Double.zero))!
         let units = Formatters.speedMeasurement.string(from: measurement.unit)
-        return (value ?? "0.0", units)
+        return (value ?? zero, units)
     }
 }

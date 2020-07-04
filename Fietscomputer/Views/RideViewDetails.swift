@@ -18,39 +18,46 @@ struct RideViewDetails: View {
     @State private var confirmDelete = false
     @State private var sharePresented = false
 
+    var noDataText: some View {
+        Text(Strings.no_data_available)
+            .font(.caption)
+            .foregroundColor(.secondary)
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .padding(32)
+    }
+
     var body: some View {
         GeometryReader { [viewModel] geometry in
             ScrollView {
                 VStack(alignment: .leading) {
-                    AsyncMapImage(uuid: viewModel.rideViewModel.uuid,
-                                  region: viewModel.rideViewModel.mapRegion,
-                                  size: viewModel.mapSize,
-                                  processor: viewModel.rideViewModel.mapProcessor()) {
-                                    Rectangle() // placeholder
-                                        .foregroundColor(Color(UIColor.systemFill))
-                    }.frame(width: geometry.size.width, height: geometry.size.width/1.5)
+                    // Map
+                    RideMapView(viewModel: viewModel.rideViewModel, mapSize: viewModel.mapSize)
+                        .frame(width: geometry.size.width, height: geometry.size.width/1.5)
+
+                    // Elevation
                     Text(Strings.elevation).padding()
-                    LineChartView(values: viewModel.rideViewModel.elevations,
-                                  fillStyle: viewModel.chartFillStyle)
-                        .animation(.easeInOut(duration: 2/3))
-                        .frame(width: geometry.size.width) // Fix animation inside ScrollView
-                        .frame(height: 180)
+                    if viewModel.isChartVisible(.elevation) {
+                        LineChartView(values: viewModel.rideViewModel.elevations,
+                                      fillStyle: viewModel.chartFillStyle)
+                            .animation(.easeInOut(duration: 2/3))
+                            .frame(width: geometry.size.width) // Fix animation inside ScrollView
+                            .frame(height: 180)
+                    } else { self.noDataText }
+
+                    // Summary
                     RideFullSummaryView(viewModel: viewModel.rideViewModel)
+
+                    // Speed
                     Text(Strings.speed).padding()
                     if viewModel.isChartVisible(.speed) {
                         LineChartView(values: viewModel.rideViewModel.speed,
                                       fillStyle: viewModel.chartFillStyle)
+                            .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width, height: 100)
-                    } else {
-                        Text(Strings.no_data_available)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .padding(32)
-                    }
+                    } else { self.noDataText }
                 }
             }
-        }.actionSheet(isPresented: $confirmDelete) { () -> ActionSheet in
+        }.actionSheet(isPresented: $confirmDelete) {
             ActionSheet(
                 title: Text(Strings.remove_ride_message),
                 buttons: [
@@ -59,7 +66,7 @@ struct RideViewDetails: View {
                 ]
             )
         }.sheet(isPresented: $sharePresented) {
-            ShareSheet(activityItems: [self.viewModel.exportURL])
+            ShareSheet(activityItems: [self.viewModel.exportURL as Any])
         }.navigationBarItems(
             trailing:
             HStack {
