@@ -81,6 +81,28 @@ extension Collection where Element == CLLocation {
             longitudinalMeters: longitudinalMeters
         )
     }
+
+    // TODO: Check calculations
+    func accumulateDistance() -> AnyIterator<CLLocationDistance> {
+        guard var current = self.first else {
+            return AnyIterator { nil }
+        }
+        var distance: CLLocationDistance = 0.0
+        var offset = 1
+
+        return AnyIterator {
+            guard self.index(self.startIndex, offsetBy: offset) != self.endIndex else {
+                return nil
+            }
+            defer {
+                let location = self[self.index(self.startIndex, offsetBy: offset)]
+                distance += current.distance(from: location)
+                offset += 1
+                current = location
+            }
+            return distance
+        }
+    }
 }
 
 extension CLLocationCoordinate2D {

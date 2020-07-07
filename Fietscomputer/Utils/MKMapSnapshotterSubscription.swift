@@ -1,5 +1,5 @@
 //
-//  MKMapSnapshotterSubsription.swift
+//  MKMapSnapshotterSubscription.swift
 //  Fietscomputer
 //
 //  Created by Grigory Avdyushin on 19/06/2020.

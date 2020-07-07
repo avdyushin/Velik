@@ -36,6 +36,10 @@ class RideDetailsViewModel: RideViewModel {
         endPoint: UnitPoint(x: 0, y: 1)
     )
 
+    override func mapProcessor() -> MapSnapshotProcessor {
+        RideTrackDrawer(style: .greenWithMarkers) { [unowned self] in self.locations }
+    }
+
     func delete() {
         storage.deleteRide(objectID: ride.objectID)
     }

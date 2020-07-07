@@ -79,7 +79,7 @@ class RideViewModel {
     }
 
     func mapProcessor() -> MapSnapshotProcessor {
-        RideTrackDrawer({ [unowned self] in self.locations })
+        RideTrackDrawer(style: .green) { [unowned self] in self.locations }
     }
 
     static func date(_ value: Date?) -> String {
@@ -98,8 +98,8 @@ class RideViewModel {
     }
 
     static func distance(_ value: Double?) -> String {
-        let kilometres = Measurement(value: value ?? 0, unit: UnitLength.meters).converted(to: .kilometers)
-        return Formatters.distanceFormatter.string(from: kilometres)
+        let kilometers = Measurement(value: value ?? 0, unit: UnitLength.meters).converted(to: .kilometers)
+        return Formatters.distanceFormatter.string(from: kilometers)
     }
 
     static func duration(_ value: Double?) -> String {

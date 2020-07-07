@@ -23,7 +23,7 @@
 		4B10F1BC249D0AD60050EEF4 /* MapSnapshotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1BB249D0AD60050EEF4 /* MapSnapshotService.swift */; };
 		4B10F1BE249D0DAC0050EEF4 /* MapImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1BD249D0DAC0050EEF4 /* MapImageLoader.swift */; };
 		4B10F1C0249D0F090050EEF4 /* AsyncMapImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1BF249D0F090050EEF4 /* AsyncMapImage.swift */; };
-		4B10F1C2249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift */; };
+		4B10F1C2249D23A50050EEF4 /* MKMapSnapshotterSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubscription.swift */; };
 		4B10F1C4249D2B260050EEF4 /* MKMapSnapshotter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1C3249D2B260050EEF4 /* MKMapSnapshotter+Extension.swift */; };
 		4B10F1C6249D2CD90050EEF4 /* RideDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1C5249D2CD90050EEF4 /* RideDetailsViewModel.swift */; };
 		4B10F1CD249D53D30050EEF4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1CC249D53D30050EEF4 /* Track.swift */; };
@@ -167,7 +167,7 @@
 		4B10F1BB249D0AD60050EEF4 /* MapSnapshotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSnapshotService.swift; sourceTree = "<group>"; };
 		4B10F1BD249D0DAC0050EEF4 /* MapImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapImageLoader.swift; sourceTree = "<group>"; };
 		4B10F1BF249D0F090050EEF4 /* AsyncMapImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncMapImage.swift; sourceTree = "<group>"; };
-		4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapSnapshotterSubsription.swift; sourceTree = "<group>"; };
+		4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapSnapshotterSubscription.swift; sourceTree = "<group>"; };
 		4B10F1C3249D2B260050EEF4 /* MKMapSnapshotter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapSnapshotter+Extension.swift"; sourceTree = "<group>"; };
 		4B10F1C5249D2CD90050EEF4 /* RideDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailsViewModel.swift; sourceTree = "<group>"; };
 		4B10F1CC249D53D30050EEF4 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -491,7 +491,7 @@
 		4B5C0D7424A67C0500DBCB90 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift */,
+				4B10F1C1249D23A50050EEF4 /* MKMapSnapshotterSubscription.swift */,
 				4B10F1BD249D0DAC0050EEF4 /* MapImageLoader.swift */,
 				4B5C0D7124A67B3600DBCB90 /* MapImageCache.swift */,
 			);
@@ -912,7 +912,7 @@
 				4BA41B4D2481A32C0002D88A /* GoButtonViewModel.swift in Sources */,
 				4B4F6D9F24AA3664001E68CA /* MountainShape.swift in Sources */,
 				4BF17BAB24ACD8F100D0345E /* GPXExporter.swift in Sources */,
-				4B10F1C2249D23A50050EEF4 /* MKMapSnapshotterSubsription.swift in Sources */,
+				4B10F1C2249D23A50050EEF4 /* MKMapSnapshotterSubscription.swift in Sources */,
 				4B88C9B4245C2BBC00BD5DD3 /* DurationViewModel.swift in Sources */,
 				4B32582B249250EA0046BD6F /* MenuButtonStyle.swift in Sources */,
 				4B208D9724A36A89009E5F6C /* CodingUserInfoKey+Extensions.swift in Sources */,
