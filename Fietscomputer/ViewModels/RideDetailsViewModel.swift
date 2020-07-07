@@ -12,7 +12,7 @@ import CoreData
 import Injected
 import CoreLocation
 
-class RideDetailsViewModel: ObservableObject {
+class RideDetailsViewModel: RideViewModel {
 
     enum ChartType {
         case elevation
@@ -24,11 +24,8 @@ class RideDetailsViewModel: ObservableObject {
 
     private var cancellable = Set<AnyCancellable>()
 
+    override var mapSize: CGSize { CGSize(width: 240*3, height: 160*3) }
     @Published var exportURL: URL?
-
-    let objectID: NSManagedObjectID
-    var rideViewModel: RideViewModel
-    let mapSize = CGSize(width: 240*3, height: 160*3)
 
     let chartFillStyle = LinearGradient(
         gradient: Gradient(colors: [
@@ -39,36 +36,37 @@ class RideDetailsViewModel: ObservableObject {
         endPoint: UnitPoint(x: 0, y: 1)
     )
 
-    init(ride: Ride) {
-        self.objectID = ride.objectID
-        self.rideViewModel = RideViewModel(
-            uuid: ride.id!,
-            name: ride.name,
-            createdAt: ride.createdAt!,
-            summary: ride.asRideSummary(),
-            locations: ride.locations()
-        )
-    }
-
     func delete() {
-        storage.deleteRide(objectID: objectID)
+        storage.deleteRide(objectID: ride.objectID)
     }
 
     func isChartVisible(_ type: ChartType) -> Bool {
         switch type {
         case .elevation:
-            return rideViewModel.elevationGainValue != .zero && !rideViewModel.elevations.isEmpty
+            return elevationGainValue != .zero && !elevations.isEmpty
         case .speed:
-            return rideViewModel.avgSpeedValue != .zero && !rideViewModel.speed.isEmpty
+            return avgSpeedValue != .zero && !speed.isEmpty
         }
     }
 
     func export() {
         exporter
-            .export(rideUUID: rideViewModel.uuid)
+            .export(rideUUID: uuid)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { url in self.exportURL = url }
             ).store(in: &cancellable)
+    }
+
+    func fixRegion() {
+        if let region = self.ride.locations().region() {
+            let id = ride.objectID
+            _ = storage.storage.performInBackgroundAndSave { context -> Void in
+                guard let ride = context.object(with: id) as? Ride, ride.track != nil else {
+                    return
+                }
+                ride.track?.region = TrackRegion.create(region: region, context: context)
+            }
+        }
     }
 }

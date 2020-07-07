@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import struct CoreLocation.CLLocationCoordinate2D
+import CoreLocation
 
 struct RideCellView: View {
 
@@ -33,48 +33,48 @@ struct RideCellView: View {
     }
 }
 
-struct RideCellViewPreview: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            RideCellView(viewModel: RideViewModel(
-                uuid: UUID(),
-                name: "Morning Ride",
-                createdAt: Date(),
-                summary: RideService.Summary(
-                    duration: 30,
-                    distance: 20,
-                    avgSpeed: 5,
-                    maxSpeed: 10,
-                    elevationGain: 100
-                ),
-                locations: []
-            ))
-            RideCellView(viewModel: RideViewModel(
-                uuid: UUID(),
-                name: "Evening Ride",
-                createdAt: Date().advanced(by: -60*60*20),
-                summary: RideService.Summary(
-                    duration: 30023,
-                    distance: 123456,
-                    avgSpeed: 7,
-                    maxSpeed: 9,
-                    elevationGain: 50
-                ),
-                locations: []
-            ))
-            RideCellView(viewModel: RideViewModel(
-                uuid: UUID(),
-                name: "Afternoon Ride",
-                createdAt: Date().advanced(by: -60*60*24*5),
-                summary: RideService.Summary(
-                    duration: 3022,
-                    distance: 2000000,
-                    avgSpeed: 20,
-                    maxSpeed: 30,
-                    elevationGain: 123
-                ),
-                locations: []
-            ))
-        }
-    }
-}
+//struct RideCellViewPreview: PreviewProvider {
+//    static var previews: some View {
+//        VStack {
+//            RideCellView(viewModel: RideViewModel(
+//                uuid: UUID(),
+//                name: "Morning Ride",
+//                createdAt: Date(),
+//                summary: RideService.Summary(
+//                    duration: 30,
+//                    distance: 20,
+//                    avgSpeed: 5,
+//                    maxSpeed: 10,
+//                    elevationGain: 100
+//                ),
+//                locations: []
+//            ))
+//            RideCellView(viewModel: RideViewModel(
+//                uuid: UUID(),
+//                name: "Evening Ride",
+//                createdAt: Date().advanced(by: -60*60*20),
+//                summary: RideService.Summary(
+//                    duration: 30023,
+//                    distance: 123456,
+//                    avgSpeed: 7,
+//                    maxSpeed: 9,
+//                    elevationGain: 50
+//                ),
+//                locations: []
+//            ))
+//            RideCellView(viewModel: RideViewModel(
+//                uuid: UUID(),
+//                name: "Afternoon Ride",
+//                createdAt: Date().advanced(by: -60*60*24*5),
+//                summary: RideService.Summary(
+//                    duration: 3022,
+//                    distance: 2000000,
+//                    avgSpeed: 20,
+//                    maxSpeed: 30,
+//                    elevationGain: 123
+//                ),
+//                locations: []
+//            ))
+//        }
+//    }
+//}

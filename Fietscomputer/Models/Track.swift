@@ -19,6 +19,7 @@ public final class Track: NSManagedObject {
     @NSManaged public var updatedAt: Date
     @NSManaged public var points: Set<TrackPoint>?
     @NSManaged public var ride: Ride?
+    @NSManaged public var region: TrackRegion?
 
     @objc(addPointsObject:)
     @NSManaged public func addToPoints(_ value: TrackPoint)

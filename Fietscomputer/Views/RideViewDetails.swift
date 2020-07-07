@@ -31,13 +31,13 @@ struct RideViewDetails: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     // Map
-                    RideMapView(viewModel: viewModel.rideViewModel, mapSize: viewModel.mapSize)
+                    RideMapView(viewModel: viewModel, mapSize: viewModel.mapSize)
                         .frame(width: geometry.size.width, height: geometry.size.width/1.5)
 
                     // Elevation
                     Text(Strings.elevation).padding()
                     if viewModel.isChartVisible(.elevation) {
-                        LineChartView(values: viewModel.rideViewModel.elevations,
+                        LineChartView(values: viewModel.elevations,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width) // Fix animation inside ScrollView
@@ -45,12 +45,12 @@ struct RideViewDetails: View {
                     } else { self.noDataText }
 
                     // Summary
-                    RideFullSummaryView(viewModel: viewModel.rideViewModel)
+                    RideFullSummaryView(viewModel: viewModel)
 
                     // Speed
                     Text(Strings.speed).padding()
                     if viewModel.isChartVisible(.speed) {
-                        LineChartView(values: viewModel.rideViewModel.speed,
+                        LineChartView(values: viewModel.speed,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width, height: 180)

@@ -13,13 +13,14 @@ struct RideTrackDrawer: MapSnapshotProcessor {
     let startColor = UIColor.fdAndroidGreen
     let stopColor = UIColor.flatGreenSeaColor
 
-    private var locations: [CLLocation]
+    private var locations: () -> [CLLocation]
 
-    init(_ locations: [CLLocation]) {
+    init(_ locations: @escaping () -> [CLLocation]) {
         self.locations = locations
     }
 
     func process(_ snapshot: MKMapSnapshotter.Snapshot?) -> UIImage? {
+        dispatchPrecondition(condition: .notOnQueue(DispatchQueue.main))
 
         guard let snapshot = snapshot else { return nil }
 
@@ -31,6 +32,8 @@ struct RideTrackDrawer: MapSnapshotProcessor {
 
         // Original image
         snapshot.image.draw(at: .zero)
+
+        let locations = self.locations()
 
         guard let context = UIGraphicsGetCurrentContext(), locations.count > 1 else {
             return UIGraphicsGetImageFromCurrentImageContext()

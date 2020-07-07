@@ -33,6 +33,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="points" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TrackPoint" inverseName="track" inverseEntity="TrackPoint"/>
+        <relationship name="region" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TrackRegion" inverseName="track" inverseEntity="TrackRegion"/>
         <relationship name="ride" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ride" inverseName="track" inverseEntity="Ride"/>
     </entity>
     <entity name="TrackPoint" representedClassName="TrackPoint" syncable="YES">
@@ -45,6 +46,13 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="track" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Track" inverseName="points" inverseEntity="Track"/>
     </entity>
+    <entity name="TrackRegion" representedClassName="TrackRegion" syncable="YES" codeGenerationType="class">
+        <attribute name="latitudeCenter" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="latitudeDelta" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitudeCenter" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitudeDelta" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="track" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Track" inverseName="region" inverseEntity="Track"/>
+    </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -55,8 +63,9 @@
         <element name="Gear" positionX="-36" positionY="108" width="128" height="103"/>
         <element name="Ride" positionX="-63" positionY="-18" width="128" height="178"/>
         <element name="RideSummary" positionX="-18" positionY="90" width="128" height="163"/>
-        <element name="Track" positionX="-36" positionY="45" width="128" height="133"/>
+        <element name="Track" positionX="-36" positionY="45" width="128" height="28"/>
         <element name="TrackPoint" positionX="-54" positionY="-9" width="128" height="28"/>
         <element name="User" positionX="-27" positionY="117" width="128" height="103"/>
+        <element name="TrackRegion" positionX="-36" positionY="108" width="128" height="118"/>
     </elements>
 </model>

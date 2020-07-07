@@ -21,13 +21,8 @@ struct HistoryView: View {
                     RideViewDetails(viewModel: RideDetailsViewModel(ride: ride))
                         .navigationBarTitle("Details", displayMode: .inline)
                 ) {
-                    RideCellView(viewModel: RideViewModel(
-                        uuid: ride.id!,
-                        name: ride.name,
-                        createdAt: ride.createdAt!,
-                        summary: ride.asRideSummary(),
-                        locations: ride.locations()
-                    )).padding([.bottom], 6)
+                    RideCellView(viewModel: RideViewModel(ride: ride))
+                        .padding([.bottom], 6)
                 }
             }.listStyle(GroupedListStyle())
             .navigationBarTitle(Strings.rides)

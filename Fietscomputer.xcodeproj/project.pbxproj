@@ -135,6 +135,7 @@
 		4BF6F6BE24AFADB40004219B /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BD24AFADB40004219B /* ShareSheet.swift */; };
 		4BF6F6C024B069100004219B /* RideMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BF24B069100004219B /* RideMapView.swift */; };
 		4BF6F6C224B06D270004219B /* GridShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6C124B06D270004219B /* GridShape.swift */; };
+		4BF6F6C624B4D7220004219B /* TrackRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6C524B4D7220004219B /* TrackRegion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -276,6 +277,7 @@
 		4BF6F6BD24AFADB40004219B /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		4BF6F6BF24B069100004219B /* RideMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMapView.swift; sourceTree = "<group>"; };
 		4BF6F6C124B06D270004219B /* GridShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridShape.swift; sourceTree = "<group>"; };
+		4BF6F6C524B4D7220004219B /* TrackRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRegion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -573,6 +575,7 @@
 				4B10F1CC249D53D30050EEF4 /* Track.swift */,
 				4B10F1CE249D53DB0050EEF4 /* TrackPoint.swift */,
 				4B208D9824A36A9C009E5F6C /* TrackPoint+Decodable.swift */,
+				4BF6F6C524B4D7220004219B /* TrackRegion.swift */,
 				4B1FF0B3249E74DF00D7AFF1 /* Power.swift */,
 				4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */,
 				4B1FF0B7249E821C00D7AFF1 /* Weight.swift */,
@@ -965,6 +968,7 @@
 				4B58B631246089CB00B62914 /* AES.swift in Sources */,
 				4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */,
 				4BA41B1B2472F7550002D88A /* ContentViewModel.swift in Sources */,
+				4BF6F6C624B4D7220004219B /* TrackRegion.swift in Sources */,
 				4B208D9B24A37656009E5F6C /* XMLDecoder.swift in Sources */,
 				4B10F1CF249D53DB0050EEF4 /* TrackPoint.swift in Sources */,
 				4B88C9B6245C3DCD00BD5DD3 /* Service.swift in Sources */,

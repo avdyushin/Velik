@@ -77,8 +77,8 @@ extension Collection where Element == CLLocation {
 
         return MKCoordinateRegion(
             center: center,
-            latitudinalMeters: latitudinalMeters * 1.2,
-            longitudinalMeters: longitudinalMeters * 1.2
+            latitudinalMeters: latitudinalMeters,
+            longitudinalMeters: longitudinalMeters
         )
     }
 }

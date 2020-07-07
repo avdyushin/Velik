@@ -42,6 +42,9 @@ class StorageService: Service {
             locations.forEach {
                 ride.track?.addTrackPoint(with: $0, context: context)
             }
+            if let region = locations.region() {
+                ride.track?.region = TrackRegion.create(region: region, context: context)
+            }
         }
     }
 

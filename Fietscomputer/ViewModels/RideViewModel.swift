@@ -8,9 +8,12 @@
 
 import UIKit
 import MapKit
+import CoreData
 import CoreLocation
 
 class RideViewModel {
+
+    let ride: Ride
 
     var uuid: UUID
     var date: String
@@ -24,7 +27,10 @@ class RideViewModel {
     var power: String
     var energy: String
     var weightLoss: String
-    var locations: [CLLocation]
+
+    lazy var locations: [CLLocation] = {
+        self.ride.locations()
+    }()
 
     let elevationGainValue: CLLocationDistance
     lazy var elevations: [CLLocationDistance] = {
@@ -44,26 +50,16 @@ class RideViewModel {
     let powerLabel = Strings.avg_power
     let energyLabel = Strings.energy_output
     let weightLossLabel = Strings.weight_loss
+    let mapRegion: MKCoordinateRegion
 
-    var center: CLLocationCoordinate2D {
-        locations.center()?.coordinate ?? CLLocationCoordinate2D(latitude: 53.94, longitude: 4.49)
-    }
+    var mapSize: CGSize { CGSize(width: 120*3, height: 80*3) }
 
-    var mapSize = CGSize(width: 120*3, height: 80*3)
-
-    var mapRegion: MKCoordinateRegion {
-        locations.region() ?? MKCoordinateRegion()
-    }
-
-    init(uuid: UUID,
-         name: String?,
-         createdAt: Date,
-         summary: RideService.Summary,
-         locations: [CLLocation]) {
-
-        self.uuid = uuid
-        date = Self.date(createdAt)
-        title = name ?? Strings.unnamed_ride
+    init(ride: Ride) {
+        self.ride = ride
+        self.uuid = ride.id!
+        date = Self.date(ride.createdAt)
+        title = ride.name ?? Strings.unnamed_ride
+        let summary = ride.asRideSummary()
         distance = Self.distance(summary.distance)
         duration = Self.duration(summary.duration)
         avgSpeedValue = summary.avgSpeed
@@ -79,11 +75,11 @@ class RideViewModel {
         energy = energyPair.value + " " + energyPair.units
         let weightPair = Self.weight(power: summary.avgPower, duration: summary.duration)
         weightLoss = weightPair.value + " " + weightPair.units
-        self.locations = locations
+        mapRegion = ride.track?.region?.asMKCoordinateRegion(scale: (1.2, 1.2)) ?? MKCoordinateRegion()
     }
 
     func mapProcessor() -> MapSnapshotProcessor {
-        RideTrackDrawer(locations)
+        RideTrackDrawer({ [unowned self] in self.locations })
     }
 
     static func date(_ value: Date?) -> String {

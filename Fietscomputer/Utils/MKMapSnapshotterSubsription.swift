@@ -8,6 +8,7 @@
 
 import MapKit
 import Combine
+import Foundation
 import class UIKit.UIImage
 
 class MKMapSnapshotterSubscription<S: Subscriber>: Subscription where S.Input == UIImage?, S.Failure == Error {
@@ -15,7 +16,7 @@ class MKMapSnapshotterSubscription<S: Subscriber>: Subscription where S.Input ==
     private var subscriber: S?
     private let snapshotter: MKMapSnapshotter
     private let processor: MapSnapshotProcessor
-    private let queue = DispatchQueue(label: "MapSnapshotter")
+    private let queue = DispatchQueue(label: "MKMapSnapshot", qos: .background, attributes: .concurrent)
 
     init(subscriber: S, snapshotter: MKMapSnapshotter, processor: MapSnapshotProcessor) {
         self.subscriber = subscriber
@@ -33,7 +34,8 @@ class MKMapSnapshotterSubscription<S: Subscriber>: Subscription where S.Input ==
     }
 
     private func start() {
-        snapshotter.start(with: queue) { [subscriber, processor] snapshot, error in
+        snapshotter.start(with: queue) { [subscriber, processor, queue] snapshot, error in
+            dispatchPrecondition(condition: .onQueue(queue))
             if let error = error {
                 _ = subscriber?.receive(completion: .failure(error))
             } else {
