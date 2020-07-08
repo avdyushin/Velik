@@ -18,7 +18,7 @@ extension Double {
     }
 }
 
-extension Collection where Element == CLLocation {
+extension Collection where Element == CLLocation, Index == Int {
 
     /// See: http://www.geomidpoint.com/calculation.html
     func center() -> Element? {
@@ -67,8 +67,10 @@ extension Collection where Element == CLLocation {
         let northEast = CLLocation(latitude: maxLatitude, longitude: maxLongitude)
         let northWest = CLLocation(latitude: maxLatitude, longitude: minLongitude)
 
-        let latitudinalMeters = southWest.distance(from: southEast)
-        let longitudinalMeters = northEast.distance(from: northWest)
+        let latitudinalMeters = Swift.max(southWest.distance(from: northWest), southEast.distance(from: northEast))
+        let longitudinalMeters = Swift.max(southWest.distance(from: southEast), northEast.distance(from: northWest))
+
+        let delta = Swift.max(latitudinalMeters, longitudinalMeters)
 
         let centerLatitude = (minLatitude + maxLatitude) / 2
         let centerLongitude = (minLongitude + maxLongitude) / 2
@@ -77,29 +79,25 @@ extension Collection where Element == CLLocation {
 
         return MKCoordinateRegion(
             center: center,
-            latitudinalMeters: latitudinalMeters,
-            longitudinalMeters: longitudinalMeters
+            latitudinalMeters: delta,
+            longitudinalMeters: delta
         )
     }
 
-    // TODO: Check calculations
     func accumulateDistance() -> AnyIterator<CLLocationDistance> {
         guard var current = self.first else {
             return AnyIterator { nil }
         }
         var distance: CLLocationDistance = 0.0
-        var offset = 1
+        var index = 1
 
         return AnyIterator {
-            guard self.index(self.startIndex, offsetBy: offset) != self.endIndex else {
-                return nil
-            }
+            guard index != self.count else { return nil }
             defer {
-                let location = self[self.index(self.startIndex, offsetBy: offset)]
-                distance += current.distance(from: location)
-                offset += 1
-                current = location
+                current = self[index]
+                index += 1
             }
+            distance += current.distance(from: self[index])
             return distance
         }
     }
