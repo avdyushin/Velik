@@ -38,7 +38,6 @@ class GPXImporter: DataImporter {
     }
 
     func save() {
-        debugPrint("Save me")
         guard let gpx = gpx, !gpx.locations.isEmpty else {
             return
         }

@@ -79,7 +79,9 @@ class RideViewModel {
     }
 
     func mapProcessor() -> MapSnapshotProcessor {
-        RideTrackDrawer(style: .green) { [unowned self] in self.locations }
+        RideTrackDrawer({ [unowned self] in self.locations }) {
+            TrackDrawer(style: .green)
+        }
     }
 
     static func date(_ value: Date?) -> String {

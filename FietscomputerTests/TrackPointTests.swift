@@ -8,6 +8,7 @@
 
 import XCTest
 import CoreData
+import CoreLocation
 import CoreDataStorage
 @testable import Fietscomputer
 
@@ -15,7 +16,7 @@ class TrackPointTests: XCTestCase {
 
     enum GPXFiles: String {
         case waypoints = "WayPoints"
-        case minimum = "NoTime"
+        case withoutTime = "NoTime"
         case segment = "TrackSegment"
     }
 
@@ -157,6 +158,37 @@ class TrackPointTests: XCTestCase {
         try gpxImporter.import(url: url)
         self.wait(for: [expectation], timeout: 1)
         XCTAssertNotNil(cancellable)
+    }
+
+    func testDistanceCalculation() throws {
+        createXML(file: .segment)
+        let xml = parser.root!
+        let track = try GPXTrack(from: XMLDecoder(xml))
+        var current = track.locations.first!
+        var distance = 0.0
+        track.locations.dropFirst().forEach {
+            distance += current.distance(from: $0)
+            current = $0
+        }
+        XCTAssertEqual(25152.3893, distance, accuracy: 1)
+        let total = track.locations.accumulateDistance().max()!
+        XCTAssertEqual(25152.3893, total, accuracy: 0.1)
+    }
+
+    func testDistanceCalculation2() throws {
+        createXML(file: .withoutTime)
+        let track = parser.root
+        let decoder = XMLDecoder(track!, name: "wpt")
+        let locations = try [GPXPoint](from: decoder).map(CLLocation.init)
+        var current = locations.first!
+        var distance = 0.0
+        locations.dropFirst().forEach {
+            distance += current.distance(from: $0)
+            current = $0
+        }
+        XCTAssertEqual(34020.7127, distance, accuracy: 0.001)
+        let total = locations.accumulateDistance().max()!
+        XCTAssertEqual(34020.7127, total, accuracy: 0.1)
     }
 
 //    func testCoreDataDecoder() {

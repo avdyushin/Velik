@@ -28,6 +28,8 @@
 		4B10F1C6249D2CD90050EEF4 /* RideDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1C5249D2CD90050EEF4 /* RideDetailsViewModel.swift */; };
 		4B10F1CD249D53D30050EEF4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1CC249D53D30050EEF4 /* Track.swift */; };
 		4B10F1CF249D53DB0050EEF4 /* TrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1CE249D53DB0050EEF4 /* TrackPoint.swift */; };
+		4B1CFB6D24B5A771004CFA02 /* TrackDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1CFB6C24B5A771004CFA02 /* TrackDrawer.swift */; };
+		4B1CFB6F24B5A788004CFA02 /* MarkerDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1CFB6E24B5A788004CFA02 /* MarkerDrawer.swift */; };
 		4B1FF0B2249E2AA500D7AFF1 /* Collections+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B1249E2AA500D7AFF1 /* Collections+Extension.swift */; };
 		4B1FF0B4249E74DF00D7AFF1 /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B3249E74DF00D7AFF1 /* Power.swift */; };
 		4B1FF0B6249E7EC500D7AFF1 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */; };
@@ -172,6 +174,8 @@
 		4B10F1C5249D2CD90050EEF4 /* RideDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailsViewModel.swift; sourceTree = "<group>"; };
 		4B10F1CC249D53D30050EEF4 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		4B10F1CE249D53DB0050EEF4 /* TrackPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPoint.swift; sourceTree = "<group>"; };
+		4B1CFB6C24B5A771004CFA02 /* TrackDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDrawer.swift; sourceTree = "<group>"; };
+		4B1CFB6E24B5A788004CFA02 /* MarkerDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerDrawer.swift; sourceTree = "<group>"; };
 		4B1FF0B1249E2AA500D7AFF1 /* Collections+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+Extension.swift"; sourceTree = "<group>"; };
 		4B1FF0B3249E74DF00D7AFF1 /* Power.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Power.swift; sourceTree = "<group>"; };
 		4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
@@ -376,6 +380,7 @@
 		4B10F1D0249D591D0050EEF4 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				4B1CFB6B24B5A75A004CFA02 /* Drawable */,
 				4BAB77E5245B3A1000F011A0 /* LocationService.swift */,
 				4B58B61B245C9FBA00B62914 /* LocationPermissions.swift */,
 				4B10F1BB249D0AD60050EEF4 /* MapSnapshotService.swift */,
@@ -392,6 +397,15 @@
 				4B58B63924608EE400B62914 /* HeartRateService.swift */,
 			);
 			name = Bluetooth;
+			sourceTree = "<group>";
+		};
+		4B1CFB6B24B5A75A004CFA02 /* Drawable */ = {
+			isa = PBXGroup;
+			children = (
+				4B1CFB6C24B5A771004CFA02 /* TrackDrawer.swift */,
+				4B1CFB6E24B5A788004CFA02 /* MarkerDrawer.swift */,
+			);
+			name = Drawable;
 			sourceTree = "<group>";
 		};
 		4B2B31812461D9AA00726271 /* DebugBluetooth */ = {
@@ -923,6 +937,7 @@
 				4B1FF0BC249E95A500D7AFF1 /* RidePowerView.swift in Sources */,
 				4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */,
 				4B4EC29E24A3DAF6007B507A /* GPXImporter.swift in Sources */,
+				4B1CFB6F24B5A788004CFA02 /* MarkerDrawer.swift in Sources */,
 				4B1FF0BA249E923400D7AFF1 /* RideSummaryView.swift in Sources */,
 				4B10F1B2249BDE0D0050EEF4 /* RideViewDetails.swift in Sources */,
 				4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */,
@@ -988,6 +1003,7 @@
 				4B58B63424608A8400B62914 /* Data+Extension.swift in Sources */,
 				4BBB4B97246D619400CA710F /* View+Extension.swift in Sources */,
 				4B10F1AC249BDBA80050EEF4 /* HistoryView.swift in Sources */,
+				4B1CFB6D24B5A771004CFA02 /* TrackDrawer.swift in Sources */,
 				4BA41B172472F7080002D88A /* UserTrackingButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
