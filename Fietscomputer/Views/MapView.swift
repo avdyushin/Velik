@@ -17,7 +17,7 @@ struct MapView: View {
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            MapView2(viewModel: viewModel)
+            TrackerMapView(viewModel: viewModel)
             ZStack {
                 Rectangle().fill(Color(.systemBackground)).cornerRadius(4).shadow(radius: 2)
                 UserTrackingButton().accentColor(Color.green).fixedSize()

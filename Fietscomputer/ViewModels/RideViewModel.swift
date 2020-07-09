@@ -32,6 +32,10 @@ class RideViewModel {
         self.ride.locations()
     }()
 
+    lazy var coordinates: [CLLocationCoordinate2D] = {
+        self.locations.map { $0.coordinate }
+    }()
+
     let elevationGainValue: CLLocationDistance
     lazy var elevations: [CLLocationDistance] = {
         self.locations.map { $0.altitude }

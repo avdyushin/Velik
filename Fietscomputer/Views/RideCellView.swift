@@ -24,7 +24,7 @@ struct RideCellView: View {
                     .foregroundColor(.secondary)
             }
             HStack(alignment: .top) {
-                RideMapView(viewModel: viewModel, mapSize: viewModel.mapSize)
+                RideMapSnapshotView(viewModel: viewModel, mapSize: viewModel.mapSize)
                     .frame(width: 120, height: 80, alignment: .leading)
                 RideSummaryView(viewModel: viewModel)
                     .frame(minWidth: 0, maxWidth: .infinity)

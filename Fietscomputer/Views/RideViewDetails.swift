@@ -31,9 +31,13 @@ struct RideViewDetails: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     // Map
-                    RideMapView(viewModel: viewModel, mapSize: viewModel.mapSize)
-                        .frame(width: geometry.size.width, height: geometry.size.width/1.5)
-
+                    NavigationLink(destination:
+                        RideMapView(viewModel: viewModel)
+                            .navigationBarTitle(Text(Strings.map), displayMode: .inline)
+                    ) {
+                        RideMapSnapshotView(viewModel: viewModel, mapSize: viewModel.mapSize)
+                            .frame(width: geometry.size.width, height: geometry.size.width/1.5)
+                    }.buttonStyle(PlainButtonStyle())
                     // Elevation
                     Text(Strings.elevation).padding()
                     if viewModel.isChartVisible(.elevation) {

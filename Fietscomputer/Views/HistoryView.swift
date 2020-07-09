@@ -19,7 +19,7 @@ struct HistoryView: View {
                 NavigationLink(
                     destination:
                     RideViewDetails(viewModel: RideDetailsViewModel(ride: ride))
-                        .navigationBarTitle("Details", displayMode: .inline)
+                        .navigationBarTitle(Text(Strings.summary), displayMode: .inline)
                 ) {
                     RideCellView(viewModel: RideViewModel(ride: ride))
                         .padding([.bottom], 6)

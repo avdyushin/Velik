@@ -36,7 +36,7 @@
 		4B1FF0B6249E7EC500D7AFF1 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */; };
 		4B1FF0B8249E821C00D7AFF1 /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B7249E821C00D7AFF1 /* Weight.swift */; };
 		4B1FF0BA249E923400D7AFF1 /* RideSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B9249E923400D7AFF1 /* RideSummaryView.swift */; };
-		4B1FF0BC249E95A500D7AFF1 /* RidePowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0BB249E95A500D7AFF1 /* RidePowerView.swift */; };
+		4B1FF0BC249E95A500D7AFF1 /* RideFullSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0BB249E95A500D7AFF1 /* RideFullSummaryView.swift */; };
 		4B208D8524A23943009E5F6C /* Location+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208D8424A23943009E5F6C /* Location+Extension.swift */; };
 		4B208D8724A246B8009E5F6C /* MapSnapshotProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208D8624A246B8009E5F6C /* MapSnapshotProcessor.swift */; };
 		4B208D8924A248F4009E5F6C /* RideTrackDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208D8824A248F4009E5F6C /* RideTrackDrawer.swift */; };
@@ -86,13 +86,15 @@
 		4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */; };
 		4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */; };
 		4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */; };
+		4B8C93F524B78B4500785B9D /* RideMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C93F424B78B4500785B9D /* RideMapViewModel.swift */; };
+		4B8C93F724B78BE400785B9D /* RideMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C93F624B78BE400785B9D /* RideMapView.swift */; };
 		4BA041202462F6AD002E4D81 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
 		4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */; };
 		4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B102472F6AB0002D88A /* Formatters.swift */; };
 		4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B122472F6C50002D88A /* SpeedViewModel.swift */; };
 		4BA41B152472F6ED0002D88A /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B142472F6ED0002D88A /* MapViewModel.swift */; };
 		4BA41B172472F7080002D88A /* UserTrackingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B162472F7080002D88A /* UserTrackingButton.swift */; };
-		4BA41B192472F7310002D88A /* MapView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B182472F7310002D88A /* MapView2.swift */; };
+		4BA41B192472F7310002D88A /* TrackerMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B182472F7310002D88A /* TrackerMapView.swift */; };
 		4BA41B1B2472F7550002D88A /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1A2472F7550002D88A /* ContentViewModel.swift */; };
 		4BA41B1D2472F7830002D88A /* EnvironmentMKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */; };
 		4BA41B1F2472F7F30002D88A /* Timer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B1E2472F7F30002D88A /* Timer2.swift */; };
@@ -136,7 +138,7 @@
 		4BF6F6B824AFA31A0004219B /* Afternoon_Ride.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6F6B724AFA31A0004219B /* Afternoon_Ride.gpx */; };
 		4BF6F6BC24AFA8120004219B /* Exported.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BB24AFA8120004219B /* Exported.gpx */; };
 		4BF6F6BE24AFADB40004219B /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BD24AFADB40004219B /* ShareSheet.swift */; };
-		4BF6F6C024B069100004219B /* RideMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BF24B069100004219B /* RideMapView.swift */; };
+		4BF6F6C024B069100004219B /* RideMapSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6BF24B069100004219B /* RideMapSnapshotView.swift */; };
 		4BF6F6C224B06D270004219B /* GridShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6C124B06D270004219B /* GridShape.swift */; };
 		4BF6F6C624B4D7220004219B /* TrackRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF6F6C524B4D7220004219B /* TrackRegion.swift */; };
 /* End PBXBuildFile section */
@@ -183,7 +185,7 @@
 		4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
 		4B1FF0B7249E821C00D7AFF1 /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		4B1FF0B9249E923400D7AFF1 /* RideSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideSummaryView.swift; sourceTree = "<group>"; };
-		4B1FF0BB249E95A500D7AFF1 /* RidePowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidePowerView.swift; sourceTree = "<group>"; };
+		4B1FF0BB249E95A500D7AFF1 /* RideFullSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideFullSummaryView.swift; sourceTree = "<group>"; };
 		4B208D8424A23943009E5F6C /* Location+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+Extension.swift"; sourceTree = "<group>"; };
 		4B208D8624A246B8009E5F6C /* MapSnapshotProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSnapshotProcessor.swift; sourceTree = "<group>"; };
 		4B208D8824A248F4009E5F6C /* RideTrackDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideTrackDrawer.swift; sourceTree = "<group>"; };
@@ -234,12 +236,14 @@
 		4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewModel.swift; sourceTree = "<group>"; };
 		4B88C9B9245C68C800BD5DD3 /* GaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeView.swift; sourceTree = "<group>"; };
 		4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeViewModel.swift; sourceTree = "<group>"; };
+		4B8C93F424B78B4500785B9D /* RideMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMapViewModel.swift; sourceTree = "<group>"; };
+		4B8C93F624B78BE400785B9D /* RideMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMapView.swift; sourceTree = "<group>"; };
 		4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonStyle.swift; sourceTree = "<group>"; };
 		4BA41B102472F6AB0002D88A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		4BA41B122472F6C50002D88A /* SpeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedViewModel.swift; sourceTree = "<group>"; };
 		4BA41B142472F6ED0002D88A /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		4BA41B162472F7080002D88A /* UserTrackingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTrackingButton.swift; sourceTree = "<group>"; };
-		4BA41B182472F7310002D88A /* MapView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView2.swift; sourceTree = "<group>"; };
+		4BA41B182472F7310002D88A /* TrackerMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerMapView.swift; sourceTree = "<group>"; };
 		4BA41B1A2472F7550002D88A /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		4BA41B1C2472F7830002D88A /* EnvironmentMKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentMKMapView.swift; sourceTree = "<group>"; };
 		4BA41B1E2472F7F30002D88A /* Timer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer2.swift; sourceTree = "<group>"; };
@@ -281,7 +285,7 @@
 		4BF6F6B724AFA31A0004219B /* Afternoon_Ride.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Afternoon_Ride.gpx; sourceTree = "<group>"; };
 		4BF6F6BB24AFA8120004219B /* Exported.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Exported.gpx; sourceTree = "<group>"; };
 		4BF6F6BD24AFADB40004219B /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
-		4BF6F6BF24B069100004219B /* RideMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMapView.swift; sourceTree = "<group>"; };
+		4BF6F6BF24B069100004219B /* RideMapSnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMapSnapshotView.swift; sourceTree = "<group>"; };
 		4BF6F6C124B06D270004219B /* GridShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridShape.swift; sourceTree = "<group>"; };
 		4BF6F6C524B4D7220004219B /* TrackRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRegion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -340,7 +344,7 @@
 			children = (
 				4B10F1BF249D0F090050EEF4 /* AsyncMapImage.swift */,
 				4BAB77E7245B4E1E00F011A0 /* MapView.swift */,
-				4BA41B182472F7310002D88A /* MapView2.swift */,
+				4BA41B182472F7310002D88A /* TrackerMapView.swift */,
 				4BA41B162472F7080002D88A /* UserTrackingButton.swift */,
 			);
 			name = Map;
@@ -350,11 +354,12 @@
 			isa = PBXGroup;
 			children = (
 				4B10F1AB249BDBA80050EEF4 /* HistoryView.swift */,
-				4BF6F6BF24B069100004219B /* RideMapView.swift */,
+				4BF6F6BF24B069100004219B /* RideMapSnapshotView.swift */,
 				4B10F1B5249C986E0050EEF4 /* RideCellView.swift */,
 				4B10F1B1249BDE0D0050EEF4 /* RideViewDetails.swift */,
+				4B8C93F624B78BE400785B9D /* RideMapView.swift */,
 				4B1FF0B9249E923400D7AFF1 /* RideSummaryView.swift */,
-				4B1FF0BB249E95A500D7AFF1 /* RidePowerView.swift */,
+				4B1FF0BB249E95A500D7AFF1 /* RideFullSummaryView.swift */,
 			);
 			name = History;
 			sourceTree = "<group>";
@@ -578,6 +583,7 @@
 				4B10F1AD249BDC020050EEF4 /* HistoryViewModel.swift */,
 				4B10F1B7249C98A30050EEF4 /* RideViewModel.swift */,
 				4B10F1C5249D2CD90050EEF4 /* RideDetailsViewModel.swift */,
+				4B8C93F424B78B4500785B9D /* RideMapViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -937,7 +943,7 @@
 				4BBB4B95246D617700CA710F /* ScaledFont.swift in Sources */,
 				4B208D8B24A2695C009E5F6C /* Applicable.swift in Sources */,
 				4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */,
-				4B1FF0BC249E95A500D7AFF1 /* RidePowerView.swift in Sources */,
+				4B1FF0BC249E95A500D7AFF1 /* RideFullSummaryView.swift in Sources */,
 				4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */,
 				4B4EC29E24A3DAF6007B507A /* GPXImporter.swift in Sources */,
 				4B1CFB6F24B5A788004CFA02 /* MarkerDrawer.swift in Sources */,
@@ -963,10 +969,11 @@
 				4BA41B42247ED7760002D88A /* SliderControlView.swift in Sources */,
 				4B88C9BA245C68C800BD5DD3 /* GaugeView.swift in Sources */,
 				4B834E37248ABC8F00A0272E /* NotificationView.swift in Sources */,
-				4BF6F6C024B069100004219B /* RideMapView.swift in Sources */,
+				4BF6F6C024B069100004219B /* RideMapSnapshotView.swift in Sources */,
+				4B8C93F724B78BE400785B9D /* RideMapView.swift in Sources */,
 				4B10F1A8249B988E0050EEF4 /* RideRepository.swift in Sources */,
 				4B10F1BE249D0DAC0050EEF4 /* MapImageLoader.swift in Sources */,
-				4BA41B192472F7310002D88A /* MapView2.swift in Sources */,
+				4BA41B192472F7310002D88A /* TrackerMapView.swift in Sources */,
 				4B88C9B8245C64C800BD5DD3 /* DistanceViewModel.swift in Sources */,
 				4BF6F6B624AE53490004219B /* XMLElement.swift in Sources */,
 				4B32582024923F290046BD6F /* Coordinator.swift in Sources */,
@@ -1004,6 +1011,7 @@
 				4B4F6DA124AB1709001E68CA /* CGPoint+Extension.swift in Sources */,
 				4B10F1C4249D2B260050EEF4 /* MKMapSnapshotter+Extension.swift in Sources */,
 				4B58B63424608A8400B62914 /* Data+Extension.swift in Sources */,
+				4B8C93F524B78B4500785B9D /* RideMapViewModel.swift in Sources */,
 				4BBB4B97246D619400CA710F /* View+Extension.swift in Sources */,
 				4B10F1AC249BDBA80050EEF4 /* HistoryView.swift in Sources */,
 				4B1CFB6D24B5A771004CFA02 /* TrackDrawer.swift in Sources */,

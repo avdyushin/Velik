@@ -73,4 +73,10 @@
     <string id="unnamed_ride">
         <en>Unnamed Ride</en>
     </string>
+    <string id="summary">
+        <en>Summary</en>
+    </string>
+    <string id="map">
+        <en>Map</en>
+    </string>
 </strings>

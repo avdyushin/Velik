@@ -16,30 +16,14 @@ struct MarkerDrawer: LocationDrawable {
             let last = snapshot.point(for: locations.last!.coordinate)
             UIImage(named: "finish")?.draw(at: last.applying(.init(translationX: -8, y: -16)))
 
-            let total = locations.accumulateDistance().max() ?? 0
-            let step: Double
-            if total / 1000 > 1 {
-                step = 1000
-            } else if total / 100 > 1 {
-                step = 100
-            } else {
-                step = 0
-            }
-            if step > 0 {
-                var value = 0
-                locations.accumulateDistance().enumerated().forEach { index, distance in
-                    let location = locations[index]
-                    if Int(distance / step) > value {
-                        value += 1
-                        let point = snapshot.point(for: location.coordinate)
-                        drawDistanceMarker(value, at: point, in: context)
-                    }
-                }
+            locations.distanceLocations { location, distance in
+                let point = snapshot.point(for: location.coordinate)
+                drawDistanceMarker(distance, at: point, in: context)
             }
         }
     }
 
-    private func drawDistanceMarker(_ distance: Int, at atPoint: CGPoint, in context: CGContext) {
+    private func drawDistanceMarker(_ distance: CLLocationDistance, at atPoint: CGPoint, in context: CGContext) {
         let popup = UIImage(named: "place-marker")!
         let point = atPoint.applying(.init(translationX: -popup.size.width / 2, y: -popup.size.height))
         popup.draw(at: point)

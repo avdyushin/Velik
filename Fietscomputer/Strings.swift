@@ -26,5 +26,7 @@ enum Strings {
     @Localizable static var no = "no"
     @Localizable static var no_data_available = "no_data_available"
     @Localizable static var unnamed_ride = "unnamed_ride"
+    @Localizable static var summary = "summary"
+    @Localizable static var map = "map"
 }
 

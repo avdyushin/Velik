@@ -18,6 +18,8 @@ extension Double {
     }
 }
 
+typealias LocationWithDistance = (location: CLLocation, distance: CLLocationDistance)
+
 extension Collection where Element == CLLocation, Index == Int {
 
     /// See: http://www.geomidpoint.com/calculation.html
@@ -100,6 +102,42 @@ extension Collection where Element == CLLocation, Index == Int {
             distance += current.distance(from: self[index])
             return distance
         }
+    }
+
+    func distanceLocations(_ block: (LocationWithDistance) -> Void) {
+        distanceLocations().forEach(block)
+    }
+
+    func distanceLocations() -> [LocationWithDistance] {
+        let total = accumulateDistance().max() ?? 0
+        let step: Double
+        if total / 1000 > 1 {
+            step = 1000
+        } else if total / 100 > 1 {
+            step = 100
+        } else {
+            step = 0
+        }
+        if step > 0 {
+            return distanceLocations(step: step)
+        } else {
+            return []
+        }
+    }
+
+    func distanceLocations(step: CLLocationDistance) -> [LocationWithDistance] {
+        precondition(step > 0)
+
+        var result = [LocationWithDistance]()
+        var total: CLLocationDistance = 0
+        accumulateDistance().enumerated().forEach { index, distance in
+            let location = self[index]
+            if Int(distance / step) > Int(total) {
+                total += 1
+                result.append((location, total))
+            }
+        }
+        return result
     }
 }
 
