@@ -30,6 +30,7 @@
 		4B10F1CF249D53DB0050EEF4 /* TrackPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B10F1CE249D53DB0050EEF4 /* TrackPoint.swift */; };
 		4B1CFB6D24B5A771004CFA02 /* TrackDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1CFB6C24B5A771004CFA02 /* TrackDrawer.swift */; };
 		4B1CFB6F24B5A788004CFA02 /* MarkerDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1CFB6E24B5A788004CFA02 /* MarkerDrawer.swift */; };
+		4B1CFB7724B6ECAD004CFA02 /* GPXUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1CFB7624B6ECAD004CFA02 /* GPXUtils.swift */; };
 		4B1FF0B2249E2AA500D7AFF1 /* Collections+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B1249E2AA500D7AFF1 /* Collections+Extension.swift */; };
 		4B1FF0B4249E74DF00D7AFF1 /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B3249E74DF00D7AFF1 /* Power.swift */; };
 		4B1FF0B6249E7EC500D7AFF1 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */; };
@@ -176,6 +177,7 @@
 		4B10F1CE249D53DB0050EEF4 /* TrackPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPoint.swift; sourceTree = "<group>"; };
 		4B1CFB6C24B5A771004CFA02 /* TrackDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDrawer.swift; sourceTree = "<group>"; };
 		4B1CFB6E24B5A788004CFA02 /* MarkerDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerDrawer.swift; sourceTree = "<group>"; };
+		4B1CFB7624B6ECAD004CFA02 /* GPXUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXUtils.swift; sourceTree = "<group>"; };
 		4B1FF0B1249E2AA500D7AFF1 /* Collections+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+Extension.swift"; sourceTree = "<group>"; };
 		4B1FF0B3249E74DF00D7AFF1 /* Power.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Power.swift; sourceTree = "<group>"; };
 		4B1FF0B5249E7EC500D7AFF1 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 				4BAB77D8245B2FE200F011A0 /* FietscomputerTests.swift */,
 				4BAB77DA245B2FE200F011A0 /* Info.plist */,
 				4B208D9C24A37A75009E5F6C /* TrackPointTests.swift */,
+				4B1CFB7624B6ECAD004CFA02 /* GPXUtils.swift */,
 			);
 			path = FietscomputerTests;
 			sourceTree = "<group>";
@@ -1012,6 +1015,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B1CFB7724B6ECAD004CFA02 /* GPXUtils.swift in Sources */,
 				4B208D9D24A37A75009E5F6C /* TrackPointTests.swift in Sources */,
 				4BAB77D9245B2FE200F011A0 /* FietscomputerTests.swift in Sources */,
 			);

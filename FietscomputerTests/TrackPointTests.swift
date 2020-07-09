@@ -14,12 +14,6 @@ import CoreDataStorage
 
 class TrackPointTests: XCTestCase {
 
-    enum GPXFiles: String {
-        case waypoints = "WayPoints"
-        case withoutTime = "NoTime"
-        case segment = "TrackSegment"
-    }
-
     var storage: CoreDataStorage!
     var parser: NanoXML!
 
@@ -39,14 +33,8 @@ class TrackPointTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func readFile(file: GPXFiles) -> String {
-        let bundle = Bundle(for: type(of: self))
-        let url = bundle.url(forResource: file.rawValue, withExtension: "gpx")!
-        return try! String(contentsOf: url)
-    }
-
-    func createXML(file: GPXFiles) {
-        parser = NanoXML(xmlString: readFile(file: file))
+    func createXML(file: GPXUtils.GPXFiles) {
+        parser = NanoXML(xmlString: GPXUtils.readFile(file: file))
     }
 
     func testDecodeNameWaypoint() throws {

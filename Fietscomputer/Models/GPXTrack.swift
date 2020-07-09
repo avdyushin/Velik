@@ -33,9 +33,11 @@ extension GPXTrack: Encodable, XMLNodeEncodable {
         case creator
         case metadata
         case track = "trk"
+        case waypoint = "wpt"
     }
 
     enum MetadataCodingKeys: CodingKey {
+        case name
         case time
     }
 
@@ -84,19 +86,34 @@ extension GPXTrack: Decodable {
         self.id = UUID()
         let metadata = try container.nestedContainer(keyedBy: MetadataCodingKeys.self, forKey: .metadata)
         self.timestamp = try metadata.decode(Date.self, forKey: .time)
-        let trackContainer = try container.nestedContainer(keyedBy: TrackCodingKeys.self, forKey: .track)
-        self.name = try trackContainer.decodeIfPresent(String.self, forKey: .name)
-        let segmentContainer = try trackContainer.nestedContainer(keyedBy: PointsCodingKeys.self, forKey: .segment)
-        var pointsContainer = try segmentContainer.nestedUnkeyedContainer(forKey: .point)
-        if var count = pointsContainer.count, count > 0 {
-            var points = [GPXPoint]()
-            while count > 0 {
-                defer { count -= 1 }
-                points.append(try pointsContainer.decode(GPXPoint.self))
+        if container.contains(.track) {
+            let trackContainer = try container.nestedContainer(keyedBy: TrackCodingKeys.self, forKey: .track)
+            self.name = try trackContainer.decodeIfPresent(String.self, forKey: .name)
+            let segmentContainer = try trackContainer.nestedContainer(keyedBy: PointsCodingKeys.self, forKey: .segment)
+            var pointsContainer = try segmentContainer.nestedUnkeyedContainer(forKey: .point)
+            if var count = pointsContainer.count, count > 0 {
+                var points = [GPXPoint]()
+                while count > 0 {
+                    defer { count -= 1 }
+                    points.append(try pointsContainer.decode(GPXPoint.self))
+                }
+                self.points = points
+            } else {
+                self.points = []
             }
-            self.points = points
         } else {
-            self.points = []
+            self.name = try metadata.decodeIfPresent(String.self, forKey: .name)
+            var pointsContainer = try container.nestedUnkeyedContainer(forKey: .waypoint)
+            if var count = pointsContainer.count, count > 0 {
+                var points = [GPXPoint]()
+                while count > 0 {
+                    defer { count -= 1 }
+                    points.append(try pointsContainer.decode(GPXPoint.self))
+                }
+                self.points = points
+            } else {
+                self.points = []
+            }
         }
     }
 }
