@@ -33,6 +33,10 @@ enum DistanceUtils {
     }()
 
     static func string(for distance: Measurement<UnitLength>) -> String {
-        Self.distanceFormatter.string(from: NSNumber(value: distance.value)) ?? ""
+        string(for: distance.value)
+    }
+
+    static func string(for distance: CLLocationDistance) -> String {
+        Self.distanceFormatter.string(from: NSNumber(value: distance)) ?? ""
     }
 }

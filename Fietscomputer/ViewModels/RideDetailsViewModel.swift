@@ -21,11 +21,15 @@ class RideDetailsViewModel: RideViewModel {
 
     @Injected private var storage: StorageService
     @Injected private var exporter: GPXExporter
+    @Published var exportURL: URL?
 
     private var cancellable = Set<AnyCancellable>()
 
     override var mapSize: CGSize { CGSize(width: 240*3, height: 160*3) }
-    @Published var exportURL: URL?
+
+    var distanceMarks: [CLLocationDistance] {
+        [0] + locations.distanceLocations().map { $0.distance.value }
+    }
 
     let chartFillStyle = LinearGradient(
         gradient: Gradient(colors: [

@@ -113,8 +113,7 @@ extension Collection where Element == CLLocation, Index == Int {
             return []
         }
 
-        let step = DistanceUtils.step(for: total)
-        return distanceLocations(step: step)
+        return distanceLocations(step: DistanceUtils.step(for: total))
     }
 
     func distanceLocations(step: Measurement<UnitLength>) -> [LocationWithDistance] {

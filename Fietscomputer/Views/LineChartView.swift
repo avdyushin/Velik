@@ -12,14 +12,22 @@ import CoreLocation
 struct LineChartView<S: ShapeStyle>: View {
 
     let values: [Double]
+    let xLabels: [Double]
     let fillStyle: S
 
     let yLabels = [0, 10, 30, 40, 50]
-    let xLabels = [10, 20, 30, 40, 50]
+    let xLabelsCount: Int = 10
+
+    private var xThreshold: Int { max(1, xLabels.count / xLabelsCount) }
+    private var xLabelsVisible: [Double] {
+        xLabels.enumerated().compactMap {
+            $0.offset.isMultiple(of: xThreshold) ? $0.element : nil
+        }
+    }
 
     @State private var scale = MountainShape.AnimatableData(1.0, 0.0)
 
-    private let gridSize = CGSize(width: 16, height: 16)
+    private let gridSize = CGSize(width: 48, height: 16)
 
     var body: some View {
         VStack(spacing: 0) {
@@ -28,7 +36,7 @@ struct LineChartView<S: ShapeStyle>: View {
                     ForEach(0..<yLabels.count, id: \.self) { index in
                         Group {
                             HStack {
-                                Text("\(self.yLabels[index])")
+                                Text("xx")
                                     .foregroundColor(Color(UIColor.tertiaryLabel))
                                     .font(.caption)
                                 Rectangle()
@@ -40,7 +48,8 @@ struct LineChartView<S: ShapeStyle>: View {
                             }
                         }
                     }
-                }.padding([.leading], gridSize.height / 2)
+                }//.padding([.leading], gridSize.height / 2)
+                    .frame(width: gridSize.width)
                 ZStack {
                     MountainShape(values: values, scale: scale, isClosed: true)
                         .fill(fillStyle)
@@ -51,14 +60,14 @@ struct LineChartView<S: ShapeStyle>: View {
                     //    .stroke(Color.gray.opacity(0.3))
                 }
             }
-            HStack {
-                ForEach(0..<xLabels.count, id: \.self) { index in
+            HStack(alignment: .top) {
+                ForEach(0..<xLabelsVisible.count, id: \.self) { index in
                     Group {
-                        VStack {
+                        VStack(spacing: 2) {
                             Rectangle()
                                 .frame(width: 1, height: self.gridSize.height / 2, alignment: .leading)
                                 .foregroundColor(Color(UIColor.quaternaryLabel))
-                            Text("\(self.xLabels[index])")
+                            Text(DistanceUtils.string(for: self.xLabelsVisible[index]))
                                 .foregroundColor(Color(UIColor.tertiaryLabel))
                                 .font(.caption)
                         }
@@ -67,7 +76,7 @@ struct LineChartView<S: ShapeStyle>: View {
                         }
                     }
                 }
-            }
+            }.padding(.leading, gridSize.width)
         }
     }
 }
