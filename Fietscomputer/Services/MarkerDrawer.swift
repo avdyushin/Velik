@@ -23,7 +23,7 @@ struct MarkerDrawer: LocationDrawable {
         }
     }
 
-    private func drawDistanceMarker(_ distance: CLLocationDistance, at atPoint: CGPoint, in context: CGContext) {
+    private func drawDistanceMarker(_ distance: Measurement<UnitLength>, at atPoint: CGPoint, in context: CGContext) {
         let popup = UIImage(named: "place-marker")!
         let point = atPoint.applying(.init(translationX: -popup.size.width / 2, y: -popup.size.height))
         popup.draw(at: point)
@@ -32,7 +32,7 @@ struct MarkerDrawer: LocationDrawable {
             NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .body), size: 8)
         ]
-        let string = NSAttributedString(string: "\(distance)", attributes: attributes)
+        let string = NSAttributedString(string: DistanceUtils.string(for: distance), attributes: attributes)
         let textSize = string.size()
         let center = point
             .applying(.init(

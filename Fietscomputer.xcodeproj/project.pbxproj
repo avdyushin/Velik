@@ -91,6 +91,7 @@
 		4B8C93FA24B848D300785B9D /* GradientPathDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C93F924B848D300785B9D /* GradientPathDrawer.swift */; };
 		4B8C93FC24B84C3F00785B9D /* GradientPolylineRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C93FB24B84C3F00785B9D /* GradientPolylineRenderer.swift */; };
 		4BA041202462F6AD002E4D81 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
+		4BA0754824B8E57A00E42A26 /* DistanceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0754724B8E57A00E42A26 /* DistanceUtils.swift */; };
 		4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */; };
 		4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B102472F6AB0002D88A /* Formatters.swift */; };
 		4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B122472F6C50002D88A /* SpeedViewModel.swift */; };
@@ -242,6 +243,7 @@
 		4B8C93F624B78BE400785B9D /* RideMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMapView.swift; sourceTree = "<group>"; };
 		4B8C93F924B848D300785B9D /* GradientPathDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPathDrawer.swift; sourceTree = "<group>"; };
 		4B8C93FB24B84C3F00785B9D /* GradientPolylineRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPolylineRenderer.swift; sourceTree = "<group>"; };
+		4BA0754724B8E57A00E42A26 /* DistanceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceUtils.swift; sourceTree = "<group>"; };
 		4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonStyle.swift; sourceTree = "<group>"; };
 		4BA41B102472F6AB0002D88A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		4BA41B122472F6C50002D88A /* SpeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedViewModel.swift; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 				4BBB4B94246D617700CA710F /* ScaledFont.swift */,
 				4BA41B102472F6AB0002D88A /* Formatters.swift */,
 				4BA41B1E2472F7F30002D88A /* Timer2.swift */,
+				4BA0754724B8E57A00E42A26 /* DistanceUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -979,6 +982,7 @@
 				4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */,
 				4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */,
 				4B10F1C0249D0F090050EEF4 /* AsyncMapImage.swift in Sources */,
+				4BA0754824B8E57A00E42A26 /* DistanceUtils.swift in Sources */,
 				4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */,
 				4B10F1B0249BDC1A0050EEF4 /* ViewModel.swift in Sources */,
 				4BA41B4A247ED8050002D88A /* GaugesWithIndicatorView.swift in Sources */,

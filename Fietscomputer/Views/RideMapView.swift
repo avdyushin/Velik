@@ -9,6 +9,18 @@
 import MapKit
 import SwiftUI
 
+class DistanceAnnotation: MKPointAnnotation {
+
+    let distance: Measurement<UnitLength>
+    var glyphText: String { DistanceUtils.string(for: distance) }
+
+    init(_ distance: Measurement<UnitLength>, coordinate: CLLocationCoordinate2D) {
+        self.distance = distance
+        super.init()
+        self.coordinate = coordinate
+    }
+}
+
 struct RideMapView: UIViewRepresentable {
 
     typealias UIViewType = MKMapView
@@ -35,16 +47,16 @@ struct RideMapView: UIViewRepresentable {
                 MKPolyline(coordinates: viewModel.coordinates, count: viewModel.coordinates.count)
             )
 
-            let annotations = viewModel.locations.distanceLocations().map(makeAnnotation)
+            let annotations = viewModel.locations
+                .distanceLocations()
+                .map(makeAnnotation)
+
             uiView.addAnnotations(annotations)
         }
     }
 
     func makeAnnotation(_ pair: LocationWithDistance) -> MKAnnotation {
-        MKPointAnnotation().apply {
-            $0.coordinate = pair.location.coordinate
-            $0.title = "\(pair.distance)"
-        }
+        DistanceAnnotation(pair.distance, coordinate: pair.location.coordinate)
     }
 
     class Coordinator: NSObject, MKMapViewDelegate {
@@ -57,6 +69,17 @@ struct RideMapView: UIViewRepresentable {
                 return renderer
             } else {
                 return MKOverlayRenderer()
+            }
+        }
+
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            guard let annotation = annotation as? DistanceAnnotation else {
+                return nil
+            }
+
+            return MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: nil).apply {
+                $0.markerTintColor = .systemGreen
+                $0.glyphText = annotation.glyphText
             }
         }
     }

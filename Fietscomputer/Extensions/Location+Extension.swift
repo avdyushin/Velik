@@ -18,7 +18,7 @@ extension Double {
     }
 }
 
-typealias LocationWithDistance = (location: CLLocation, distance: CLLocationDistance)
+typealias LocationWithDistance = (location: CLLocation, distance: Measurement<UnitLength>)
 
 extension Collection where Element == CLLocation, Index == Int {
 
@@ -109,31 +109,25 @@ extension Collection where Element == CLLocation, Index == Int {
     }
 
     func distanceLocations() -> [LocationWithDistance] {
-        let total = accumulateDistance().max() ?? 0
-        let step: Double
-        if total / 1000 > 1 {
-            step = 1000
-        } else if total / 100 > 1 {
-            step = 100
-        } else {
-            step = 0
-        }
-        if step > 0 {
-            return distanceLocations(step: step)
-        } else {
+        guard let total = accumulateDistance().max() else {
             return []
         }
+
+        let step = DistanceUtils.step(for: total)
+        return distanceLocations(step: step)
     }
 
-    func distanceLocations(step: CLLocationDistance) -> [LocationWithDistance] {
-        precondition(step > 0)
+    func distanceLocations(step: Measurement<UnitLength>) -> [LocationWithDistance] {
+        precondition(step.value > 0)
 
         var result = [LocationWithDistance]()
-        var total: CLLocationDistance = 0
+        var total = Measurement<UnitLength>(value: 0, unit: step.unit)
+        let stepValue = step.value
         accumulateDistance().enumerated().forEach { index, distance in
             let location = self[index]
-            if Int(distance / step) > Int(total) {
-                total += 1
+            let meters = Measurement<UnitLength>(value: distance, unit: .meters)
+            if Int(meters.converted(to: step.unit).value / stepValue) > Int(total.value) {
+                total.value += stepValue
                 result.append((location, total))
             }
         }
