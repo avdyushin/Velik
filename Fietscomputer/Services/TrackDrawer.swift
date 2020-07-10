@@ -29,6 +29,7 @@ struct TrackDrawer: LocationDrawable {
     }
 
     let style: Style
+    let pathDrawer = GradientPathDrawer()
 
     func draw(context: CGContext, size: CGSize, locations: [CLLocation], snapshot: MKMapSnapshotter.Snapshot) {
         context.draw { context in
@@ -40,25 +41,7 @@ struct TrackDrawer: LocationDrawable {
             let points = locations.map { snapshot.point(for: $0.coordinate) }
             let path = CGMutablePath()
             path.addLines(between: points)
-
-            // Path stroke with gradient
-            context.draw { context in
-                context.addPath(path)
-                context.replacePathWithStrokedPath()
-                context.clip()
-
-                let colours = [style.startColor.cgColor, style.stopColor.cgColor] as CFArray
-                let colorSpace = CGColorSpaceCreateDeviceRGB()
-                var gradient = CGGradient(colorsSpace: colorSpace, colors: colours, locations: nil)
-
-                context.drawLinearGradient(
-                    gradient!,
-                    start: CGPoint(x: 0, y: 0),
-                    end: CGPoint(x: snapshot.image.size.width, y: snapshot.image.size.height),
-                    options: []
-                )
-                gradient = nil
-            }
+            pathDrawer.draw(context: context, size: size, path: path, colors: [style.startColor, style.stopColor])
         }
     }
 }

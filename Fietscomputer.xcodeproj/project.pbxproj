@@ -88,6 +88,8 @@
 		4B88C9BC245C691300BD5DD3 /* GaugeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */; };
 		4B8C93F524B78B4500785B9D /* RideMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C93F424B78B4500785B9D /* RideMapViewModel.swift */; };
 		4B8C93F724B78BE400785B9D /* RideMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C93F624B78BE400785B9D /* RideMapView.swift */; };
+		4B8C93FA24B848D300785B9D /* GradientPathDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C93F924B848D300785B9D /* GradientPathDrawer.swift */; };
+		4B8C93FC24B84C3F00785B9D /* GradientPolylineRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C93FB24B84C3F00785B9D /* GradientPolylineRenderer.swift */; };
 		4BA041202462F6AD002E4D81 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
 		4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */; };
 		4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B102472F6AB0002D88A /* Formatters.swift */; };
@@ -238,6 +240,8 @@
 		4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeViewModel.swift; sourceTree = "<group>"; };
 		4B8C93F424B78B4500785B9D /* RideMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMapViewModel.swift; sourceTree = "<group>"; };
 		4B8C93F624B78BE400785B9D /* RideMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMapView.swift; sourceTree = "<group>"; };
+		4B8C93F924B848D300785B9D /* GradientPathDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPathDrawer.swift; sourceTree = "<group>"; };
+		4B8C93FB24B84C3F00785B9D /* GradientPolylineRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPolylineRenderer.swift; sourceTree = "<group>"; };
 		4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonStyle.swift; sourceTree = "<group>"; };
 		4BA41B102472F6AB0002D88A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		4BA41B122472F6C50002D88A /* SpeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedViewModel.swift; sourceTree = "<group>"; };
@@ -467,6 +471,7 @@
 		4B58B62F246089BE00B62914 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4B8C93F824B848C200785B9D /* Drawers */,
 				4B5C0D7324A67BC500DBCB90 /* XML */,
 				4B5C0D7424A67C0500DBCB90 /* Map */,
 				4B58B630246089CB00B62914 /* AES.swift */,
@@ -622,6 +627,15 @@
 				4B10F1A0249A85870050EEF4 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4B8C93F824B848C200785B9D /* Drawers */ = {
+			isa = PBXGroup;
+			children = (
+				4B8C93F924B848D300785B9D /* GradientPathDrawer.swift */,
+				4B8C93FB24B84C3F00785B9D /* GradientPolylineRenderer.swift */,
+			);
+			name = Drawers;
 			sourceTree = "<group>";
 		};
 		4BA41B0D2472F6710002D88A /* Styles */ = {
@@ -940,6 +954,7 @@
 				4B32582B249250EA0046BD6F /* MenuButtonStyle.swift in Sources */,
 				4B208D9724A36A89009E5F6C /* CodingUserInfoKey+Extensions.swift in Sources */,
 				4BAB77E4245B300200F011A0 /* Permissions.swift in Sources */,
+				4B8C93FA24B848D300785B9D /* GradientPathDrawer.swift in Sources */,
 				4BBB4B95246D617700CA710F /* ScaledFont.swift in Sources */,
 				4B208D8B24A2695C009E5F6C /* Applicable.swift in Sources */,
 				4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */,
@@ -960,6 +975,7 @@
 				4B5C0D7924A7AABF00DBCB90 /* LineChartView.swift in Sources */,
 				4BF6F6B424AE53330004219B /* XMLNode.swift in Sources */,
 				4BAB77C4245B2FE000F011A0 /* Fietscomputer.xcdatamodeld in Sources */,
+				4B8C93FC24B84C3F00785B9D /* GradientPolylineRenderer.swift in Sources */,
 				4B58B61C245C9FBA00B62914 /* LocationPermissions.swift in Sources */,
 				4B58B63A24608EE400B62914 /* HeartRateService.swift in Sources */,
 				4B10F1C0249D0F090050EEF4 /* AsyncMapImage.swift in Sources */,
