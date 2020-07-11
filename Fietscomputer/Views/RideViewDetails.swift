@@ -42,7 +42,8 @@ struct RideViewDetails: View {
                     Text(Strings.elevation).padding()
                     if viewModel.isChartVisible(.elevation) {
                         LineChartView(values: viewModel.elevations,
-                                      xLabels: viewModel.distanceMarks,
+                                      xValues: viewModel.xValues,
+                                      xLabels: viewModel.distanceMarkers,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width) // Fix animation inside ScrollView
@@ -56,7 +57,8 @@ struct RideViewDetails: View {
                     Text(Strings.speed).padding()
                     if viewModel.isChartVisible(.speed) {
                         LineChartView(values: viewModel.speed,
-                                      xLabels: viewModel.distanceMarks,
+                                      xValues: viewModel.xValues,
+                                      xLabels: viewModel.distanceMarkers,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width, height: 180)

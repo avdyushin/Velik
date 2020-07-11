@@ -14,15 +14,17 @@ struct GridShape: Shape {
     let position: Edge.Set
 
     private let axis: Axis
+    private let xValues: [Double]
 
-    init(values: [Double], size: CGSize, position: Edge.Set) {
+    init(yValues: [Double], xValues: [Double], size: CGSize, position: Edge.Set) {
+        self.xValues = xValues
         self.size = size
         self.position = position
         self.axis = Axis(
             minX: 0,
-            maxX: CGFloat(max(1, values.count)),
-            minY: CGFloat(values.min() ?? .zero),
-            maxY: CGFloat(values.max() ?? .zero)
+            maxX: CGFloat(max(1, xValues.max() ?? .zero)),
+            minY: CGFloat(yValues.min() ?? .zero),
+            maxY: CGFloat(yValues.max() ?? .zero)
         )
     }
 
@@ -61,11 +63,12 @@ struct GridShape: Shape {
     }
 
     private func xAxis(path: inout Path, in rect: CGRect) {
-        let width = rect.width - size.width
-        for offset in stride(from: size.width, to: width, by: width / 7) {
-            let point = CGPoint(x: offset, y: rect.maxY - size.height / 2)
-            path.move(to: point)
-            path.addLine(to: point.applying(.init(translationX: 0, y: -size.height / 2)))
-        }
+        xValues
+            .map { convert(point: CGPoint(x: $0, y: 0), in: rect) }
+            .forEach {
+                let point = CGPoint(x: $0.x, y: rect.maxY - size.height / 2)
+                path.move(to: point)
+                path.addLine(to: point.applying(.init(translationX: 0, y: -size.height / 2)))
+            }
     }
 }

@@ -27,10 +27,17 @@ class RideDetailsViewModel: RideViewModel {
 
     override var mapSize: CGSize { CGSize(width: 240*3, height: 160*3) }
 
-    var distanceMarks: [CLLocationDistance] {
-        let step = DistanceUtils.step(for: distanceValue, maxCount: 5)
-        return [.zero] + locations.distanceLocations(step: step).map { $0.distance.value }
-    }
+    lazy var xValues: [Double] = {
+        DistanceUtils
+            .distanceMarkers(for: distanceValue, maxCount: 10)
+            .map { $0.converted(to: .meters).value }
+    }()
+
+    lazy var distanceMarkers: [CLLocationDistance] = {
+        DistanceUtils
+            .distanceMarkers(for: distanceValue, maxCount: 5)
+            .map { $0.value }
+    }()
 
     let chartFillStyle = LinearGradient(
         gradient: Gradient(colors: [

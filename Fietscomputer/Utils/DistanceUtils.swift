@@ -11,6 +11,21 @@ import CoreLocation
 
 enum DistanceUtils {
 
+    static func distanceMarkers(for distance: CLLocationDistance, maxCount: Int) -> [Measurement<UnitLength>] {
+        let step = DistanceUtils.step(for: distance, maxCount: maxCount - 1 /* exclude zero */)
+        let total = Measurement<UnitLength>(value: distance, unit: .meters).converted(to: step.unit)
+        var values = Array(stride(from: 0, to: total.value, by: step.value))
+        guard let last = values.last else {
+            return []
+        }
+        if total.value != last {
+            values += [total.value]
+        }
+        return values.map {
+            Measurement<UnitLength>(value: $0, unit: step.unit)
+        }
+    }
+
     static func step(for distance: CLLocationDistance, maxCount: Int? = nil) -> Measurement<UnitLength> {
         let meters = Measurement<UnitLength>(value: distance, unit: .meters)
         var step: Measurement<UnitLength>

@@ -12,6 +12,7 @@ import CoreLocation
 struct LineChartView<S: ShapeStyle>: View {
 
     let values: [Double]
+    let xValues: [Double]
     let xLabels: [Double]
     let fillStyle: S
 
@@ -25,32 +26,33 @@ struct LineChartView<S: ShapeStyle>: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .top, spacing: 0) {
-                VStack(alignment: .trailing) {
-                    ForEach(0..<yLabels.count, id: \.self) { index in
-                        Group {
-                            HStack {
-                                Text("xx")
-                                    .foregroundColor(Color(UIColor.tertiaryLabel))
-                                    .font(.caption)
-                                Rectangle()
-                                    .frame(width: self.gridSize.width / 2, height: 1, alignment: .leading)
-                                    .foregroundColor(Color(UIColor.quaternaryLabel))
-                            }
-                            if index != self.yLabels.count - 1 {
-                                Spacer()
-                            }
-                        }
-                    }
-                }//.padding([.leading], gridSize.height / 2)
-                    .frame(width: gridSize.width)
+//                VStack(alignment: .trailing) {
+//                    ForEach(0..<yLabels.count, id: \.self) { index in
+//                        Group {
+//                            HStack {
+//                                Text("xx")
+//                                    .foregroundColor(Color(UIColor.tertiaryLabel))
+//                                    .font(.caption)
+//                                Rectangle()
+//                                    .frame(width: self.gridSize.width / 2, height: 1, alignment: .leading)
+//                                    .foregroundColor(Color(UIColor.quaternaryLabel))
+//                            }
+//                            if index != self.yLabels.count - 1 {
+//                                Spacer()
+//                            }
+//                        }
+//                    }
+//                }//.padding([.leading], gridSize.height / 2)
+//                    .frame(width: gridSize.width)
                 ZStack {
                     MountainShape(values: values, scale: scale, isClosed: true)
                         .fill(fillStyle)
                         .onAppear { self.scale = MountainShape.AnimatableData(1.0, 1.0) }
-                    //    .padding(.bottom, gridSize.height)
-                    //    .padding(.leading, gridSize.width)
-                    //GridShape(values: values, size: gridSize, position: [.leading, .bottom])
-                    //    .stroke(Color.gray.opacity(0.3))
+                        .padding(.bottom, gridSize.height)
+                        .padding(.leading, gridSize.width)
+                    GridShape(yValues: values, xValues: xValues, size: gridSize, position: [.leading, .bottom])
+                        .stroke(Color.red, lineWidth: 3)
+                        //.stroke(Color.gray.opacity(0.3))
                 }
             }
             HStack(alignment: .top) {
@@ -71,7 +73,7 @@ struct LineChartView<S: ShapeStyle>: View {
                 }
             }
             .padding(.leading, gridSize.width)
-            .padding(.bottom, gridSize.height / 2)
+//            .padding(.bottom, gridSize.height / 2)
         }
     }
 }
