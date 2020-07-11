@@ -11,9 +11,9 @@ import CoreLocation
 
 enum DistanceUtils {
 
-    static func step(for distance: CLLocationDistance) -> Measurement<UnitLength> {
+    static func step(for distance: CLLocationDistance, maxCount: Int? = nil) -> Measurement<UnitLength> {
         let meters = Measurement<UnitLength>(value: distance, unit: .meters)
-        let step: Measurement<UnitLength>
+        var step: Measurement<UnitLength>
 
         if meters.value / 1_000 > 1 {
             step = Measurement(value: 1, unit: .kilometers)
@@ -22,6 +22,19 @@ enum DistanceUtils {
         } else {
             step = Measurement(value: 10, unit: .meters)
         }
+
+        if let maxCount = maxCount {
+            var stepsCount = Int(meters.value / step.converted(to: .meters).value)
+            var newStep = step
+            var multiply = 1.0
+            while stepsCount > maxCount {
+                newStep.value = (5 * step.value * multiply)
+                stepsCount = Int(meters.value / newStep.converted(to: .meters).value)
+                multiply += 1
+            }
+            return newStep
+        }
+
         return step
     }
 

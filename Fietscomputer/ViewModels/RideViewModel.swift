@@ -15,18 +15,19 @@ class RideViewModel {
 
     let ride: Ride
 
-    var uuid: UUID
-    var date: String
-    var title: String
+    let uuid: UUID
+    let date: String
+    let title: String
 
-    var distance: String
-    var duration: String
-    var avgSpeed: String
-    var maxSpeed: String
-    var elevationGain: String
-    var power: String
-    var energy: String
-    var weightLoss: String
+    let distance: String
+    let distanceValue: CLLocationDistance
+    let duration: String
+    let avgSpeed: String
+    let maxSpeed: String
+    let elevationGain: String
+    let power: String
+    let energy: String
+    let weightLoss: String
 
     lazy var locations: [CLLocation] = {
         self.ride.locations()
@@ -64,6 +65,7 @@ class RideViewModel {
         date = Self.date(ride.createdAt)
         title = ride.name ?? Strings.unnamed_ride
         let summary = ride.asRideSummary()
+        distanceValue = summary.distance
         distance = Self.distance(summary.distance)
         duration = Self.duration(summary.duration)
         avgSpeedValue = summary.avgSpeed

@@ -125,7 +125,7 @@ extension Collection where Element == CLLocation, Index == Int {
         accumulateDistance().enumerated().forEach { index, distance in
             let location = self[index]
             let meters = Measurement<UnitLength>(value: distance, unit: .meters)
-            if Int(meters.converted(to: step.unit).value / stepValue) > Int(total.value) {
+            if Int(meters.converted(to: step.unit).value / stepValue) > Int(total.value / stepValue) {
                 total.value += stepValue
                 result.append((location, total))
             }

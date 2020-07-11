@@ -18,16 +18,9 @@ struct LineChartView<S: ShapeStyle>: View {
     let yLabels = [0, 10, 30, 40, 50]
     let xLabelsCount: Int = 10
 
-    private var xThreshold: Int { max(1, xLabels.count / xLabelsCount) }
-    private var xLabelsVisible: [Double] {
-        xLabels.enumerated().compactMap {
-            $0.offset.isMultiple(of: xThreshold) ? $0.element : nil
-        }
-    }
-
     @State private var scale = MountainShape.AnimatableData(1.0, 0.0)
 
-    private let gridSize = CGSize(width: 48, height: 16)
+    private let gridSize = CGSize(width: 32, height: 16)
 
     var body: some View {
         VStack(spacing: 0) {
@@ -61,13 +54,13 @@ struct LineChartView<S: ShapeStyle>: View {
                 }
             }
             HStack(alignment: .top) {
-                ForEach(0..<xLabelsVisible.count, id: \.self) { index in
+                ForEach(0..<xLabels.count, id: \.self) { index in
                     Group {
                         VStack(spacing: 2) {
                             Rectangle()
                                 .frame(width: 1, height: self.gridSize.height / 2, alignment: .leading)
                                 .foregroundColor(Color(UIColor.quaternaryLabel))
-                            Text(DistanceUtils.string(for: self.xLabelsVisible[index]))
+                            Text(DistanceUtils.string(for: self.xLabels[index]))
                                 .foregroundColor(Color(UIColor.tertiaryLabel))
                                 .font(.caption)
                         }
@@ -76,7 +69,9 @@ struct LineChartView<S: ShapeStyle>: View {
                         }
                     }
                 }
-            }.padding(.leading, gridSize.width)
+            }
+            .padding(.leading, gridSize.width)
+            .padding(.bottom, gridSize.height / 2)
         }
     }
 }

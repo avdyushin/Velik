@@ -28,7 +28,8 @@ class RideDetailsViewModel: RideViewModel {
     override var mapSize: CGSize { CGSize(width: 240*3, height: 160*3) }
 
     var distanceMarks: [CLLocationDistance] {
-        [0] + locations.distanceLocations().map { $0.distance.value }
+        let step = DistanceUtils.step(for: distanceValue, maxCount: 5)
+        return [.zero] + locations.distanceLocations(step: step).map { $0.distance.value }
     }
 
     let chartFillStyle = LinearGradient(
