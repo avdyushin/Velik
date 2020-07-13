@@ -94,6 +94,7 @@
 		4BA0754824B8E57A00E42A26 /* DistanceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0754724B8E57A00E42A26 /* DistanceUtils.swift */; };
 		4BA0754A24BA28AF00E42A26 /* DistanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0754924BA28AF00E42A26 /* DistanceTests.swift */; };
 		4BA0754C24BC3D7200E42A26 /* GridShapeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0754B24BC3D7200E42A26 /* GridShapeViewModel.swift */; };
+		4BA0755224BCD09700E42A26 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0755124BCD09700E42A26 /* Logger.swift */; };
 		4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */; };
 		4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B102472F6AB0002D88A /* Formatters.swift */; };
 		4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B122472F6C50002D88A /* SpeedViewModel.swift */; };
@@ -248,6 +249,7 @@
 		4BA0754724B8E57A00E42A26 /* DistanceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceUtils.swift; sourceTree = "<group>"; };
 		4BA0754924BA28AF00E42A26 /* DistanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceTests.swift; sourceTree = "<group>"; };
 		4BA0754B24BC3D7200E42A26 /* GridShapeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridShapeViewModel.swift; sourceTree = "<group>"; };
+		4BA0755124BCD09700E42A26 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonStyle.swift; sourceTree = "<group>"; };
 		4BA41B102472F6AB0002D88A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		4BA41B122472F6C50002D88A /* SpeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedViewModel.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 				4BA41B102472F6AB0002D88A /* Formatters.swift */,
 				4BA41B1E2472F7F30002D88A /* Timer2.swift */,
 				4BA0754724B8E57A00E42A26 /* DistanceUtils.swift */,
+				4BA0755124BCD09700E42A26 /* Logger.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -971,6 +974,7 @@
 				4B1FF0BC249E95A500D7AFF1 /* RideFullSummaryView.swift in Sources */,
 				4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */,
 				4B4EC29E24A3DAF6007B507A /* GPXImporter.swift in Sources */,
+				4BA0755224BCD09700E42A26 /* Logger.swift in Sources */,
 				4B1CFB6F24B5A788004CFA02 /* MarkerDrawer.swift in Sources */,
 				4B1FF0BA249E923400D7AFF1 /* RideSummaryView.swift in Sources */,
 				4B10F1B2249BDE0D0050EEF4 /* RideViewDetails.swift in Sources */,

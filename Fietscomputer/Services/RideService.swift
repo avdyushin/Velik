@@ -35,11 +35,12 @@ class RideService: Service {
              avgSpeed: CLLocationSpeed, maxSpeed: CLLocationSpeed,
              elevationGain: CLLocationDistance) {
 
-            self.duration = duration
-            self.distance = distance
-            self.avgSpeed = avgSpeed
-            self.maxSpeed = maxSpeed
-            self.elevationGain = elevationGain
+            // Filer out negative values
+            self.duration = max(.zero, duration)
+            self.distance = max(.zero, distance)
+            self.avgSpeed = max(.zero, avgSpeed)
+            self.maxSpeed = max(.zero, maxSpeed)
+            self.elevationGain = max(.zero, elevationGain)
 
             // Calculations
             let configuration = Parameters(avgSpeed: Measurement(value: avgSpeed, unit: .metersPerSecond))
@@ -105,20 +106,9 @@ class RideService: Service {
         startDate = Date.timeIntervalSinceReferenceDate
         statePublisher.send(.running)
 
-        locationService.location.sink { location in
-            let prevAltitude = self.locations.last?.altitude ?? 0
-            self.elevationGain += max(0, prevAltitude - location.altitude)
-            self.locations.append(location)
-            if self.locations.count >= 2 {
-                let locationA = self.locations[self.locations.count - 2]
-                let locationB = self.locations[self.locations.count - 1]
-                var coordinates = [locationA, locationB].map { $0.coordinate }
-                self.trackPublisher.send(MKPolyline(coordinates: &coordinates, count: 2))
-                let delta = locationA.distance(from: locationB)
-                self.totalDistance += delta
-                self.distancePublisher.send(self.totalDistance)
-            }
-        }.store(in: &cancellable)
+        locationService.location
+            .sink { [weak self] location in self?.handle(location: location) }
+            .store(in: &cancellable)
 
         run()
     }
@@ -184,5 +174,25 @@ class RideService: Service {
             ),
             locations: locations
         )
+    }
+
+    private func handle(location: CLLocation) {
+        let previousAltitude = self.locations.last?.altitude ?? .zero
+        self.elevationGain += max(.zero, previousAltitude - location.altitude)
+
+        self.locations.append(location)
+
+        guard self.locations.count >= 2 else {
+            return
+        }
+
+        // Calculate Polyline
+        let locationA = self.locations[self.locations.count - 2]
+        let locationB = self.locations[self.locations.count - 1]
+        var coordinates = [locationA, locationB].map { $0.coordinate }
+        self.trackPublisher.send(MKPolyline(coordinates: &coordinates, count: 2))
+        let delta = locationA.distance(from: locationB)
+        self.totalDistance += delta
+        self.distancePublisher.send(self.totalDistance)
     }
 }

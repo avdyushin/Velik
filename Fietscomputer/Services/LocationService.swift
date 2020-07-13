@@ -63,13 +63,12 @@ class LocationService: NSObject, Service {
 extension LocationService: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let last = locations.last else {
-            return
-        }
-        speedPublisher.send(last.speed)
-        locations.forEach {
-            locationPublisher.send($0)
-        }
+        locations
+            .filter { $0.horizontalAccuracy >= 0 }
+            .forEach {
+                locationPublisher.send($0)
+                speedPublisher.send(max(0, $0.speed))
+            }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

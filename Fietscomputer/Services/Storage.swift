@@ -32,19 +32,20 @@ class StorageService: Service {
     func createNewRide(name: String, summary: RideService.Summary, locations: [CLLocation]) {
         storage.update { context in
             let ride = Ride.create(name: name, context: context)
+            // Summary
             ride.summary = RideSummary.create(context: context)
             ride.summary?.distance = summary.distance
             ride.summary?.duration = summary.duration
             ride.summary?.avgSpeed = summary.avgSpeed
             ride.summary?.maxSpeed = summary.maxSpeed
             ride.summary?.elevationGain = summary.elevationGain
+            // Track
             ride.track = Track.create(name: name, context: context)
-            locations.forEach {
-                ride.track?.addTrackPoint(with: $0, context: context)
-            }
-            if let region = locations.region() {
-                ride.track?.region = TrackRegion.create(region: region, context: context)
-            }
+            locations
+                .forEach { ride.track?.addTrackPoint(with: $0, context: context) }
+            locations
+                .region()
+                .map { ride.track?.region = TrackRegion.create(region: $0, context: context) }
         }
     }
 

@@ -15,7 +15,6 @@ class SpeedViewModel: GaugeViewModel {
 
         fontSize = 100
         locationService.speed
-            .map { $0 < 0 ? 0 : $0 } // filter out negative values
             .sink { value in // m/s
                 let formatted = RideViewModel.speed(value)
                 self.value = formatted.value

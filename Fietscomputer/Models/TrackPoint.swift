@@ -8,6 +8,8 @@
 
 import CoreData
 import class CoreLocation.CLLocation
+import struct CoreLocation.CLLocationSpeed
+import struct CoreLocation.CLLocationDistance
 
 @objc(TrackPoint)
 public final class TrackPoint: NSManagedObject {
@@ -39,7 +41,7 @@ extension TrackPoint {
             $0.elevation = location.altitude
             $0.latitude = location.coordinate.latitude
             $0.longitude = location.coordinate.longitude
-            $0.speed = location.speed
+            $0.speed = max(0, location.speed)
             $0.timestamp = location.timestamp
         }
     }
