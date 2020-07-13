@@ -27,12 +27,6 @@ class RideDetailsViewModel: RideViewModel {
 
     override var mapSize: CGSize { CGSize(width: 240*3, height: 160*3) }
 
-    lazy var xValues: [Double] = {
-        DistanceUtils
-            .distanceMarkers(for: distanceValue, maxCount: 10)
-            .map { $0.converted(to: .meters).value }
-    }()
-
     lazy var yValues: [Double] = {
         []
     }()

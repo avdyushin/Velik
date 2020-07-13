@@ -41,7 +41,7 @@ struct RideViewDetails: View {
                     // Elevation
                     Text(Strings.elevation).padding()
                     if viewModel.isChartVisible(.elevation) {
-                        LineChartView(xValues: viewModel.xValues,
+                        LineChartView(xValues: [0, viewModel.distanceValue],
                                       yValues: viewModel.elevations,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
@@ -55,7 +55,7 @@ struct RideViewDetails: View {
                     // Speed
                     Text(Strings.speed).padding()
                     if viewModel.isChartVisible(.speed) {
-                        LineChartView(xValues: viewModel.xValues,
+                        LineChartView(xValues: [0, viewModel.distanceValue],
                                       yValues: viewModel.speed,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
