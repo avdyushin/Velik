@@ -96,6 +96,7 @@
 		4BA0754C24BC3D7200E42A26 /* GridShapeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0754B24BC3D7200E42A26 /* GridShapeViewModel.swift */; };
 		4BA0755224BCD09700E42A26 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0755124BCD09700E42A26 /* Logger.swift */; };
 		4BA0755424BCD66400E42A26 /* AxisValuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0755324BCD66400E42A26 /* AxisValuesProvider.swift */; };
+		4BA0755724BCE09700E42A26 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0755624BCE09700E42A26 /* Filter.swift */; };
 		4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */; };
 		4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B102472F6AB0002D88A /* Formatters.swift */; };
 		4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B122472F6C50002D88A /* SpeedViewModel.swift */; };
@@ -252,6 +253,7 @@
 		4BA0754B24BC3D7200E42A26 /* GridShapeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridShapeViewModel.swift; sourceTree = "<group>"; };
 		4BA0755124BCD09700E42A26 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		4BA0755324BCD66400E42A26 /* AxisValuesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisValuesProvider.swift; sourceTree = "<group>"; };
+		4BA0755624BCE09700E42A26 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonStyle.swift; sourceTree = "<group>"; };
 		4BA41B102472F6AB0002D88A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		4BA41B122472F6C50002D88A /* SpeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedViewModel.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 		4B58B62F246089BE00B62914 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4BA0755524BCE08A00E42A26 /* Filters */,
 				4B8C93F824B848C200785B9D /* Drawers */,
 				4B5C0D7324A67BC500DBCB90 /* XML */,
 				4B5C0D7424A67C0500DBCB90 /* Map */,
@@ -650,6 +653,14 @@
 				4B8C93FB24B84C3F00785B9D /* GradientPolylineRenderer.swift */,
 			);
 			name = Drawers;
+			sourceTree = "<group>";
+		};
+		4BA0755524BCE08A00E42A26 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				4BA0755624BCE09700E42A26 /* Filter.swift */,
+			);
+			name = Filters;
 			sourceTree = "<group>";
 		};
 		4BA41B0D2472F6710002D88A /* Styles */ = {
@@ -951,6 +962,7 @@
 				4BA41B48247ED7DD0002D88A /* GaugesView.swift in Sources */,
 				4BF6F6BE24AFADB40004219B /* ShareSheet.swift in Sources */,
 				4B10F1AA249B98B40050EEF4 /* Ride.swift in Sources */,
+				4BA0755724BCE09700E42A26 /* Filter.swift in Sources */,
 				4BA0755424BCD66400E42A26 /* AxisValuesProvider.swift in Sources */,
 				4B208D8D24A273BF009E5F6C /* CGContext+Extensions.swift in Sources */,
 				4BF6F6AE24AE46E80004219B /* GPXTrack.swift in Sources */,

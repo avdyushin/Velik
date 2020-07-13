@@ -18,8 +18,12 @@ struct MountainShape: Shape {
 
     var animatableData: AnimatableData = .zero
 
-    init(values: [Double], scale: AnimatableData, isClosed closed: Bool = false) {
-        self.values = values
+    init(values: [Double], scale: AnimatableData, filter: Filter? = nil, isClosed closed: Bool = false) {
+        if let filter = filter {
+            self.values = values.map { filter.update($0) }
+        } else {
+            self.values = values
+        }
         self.isClosedPath = closed
         self.animatableData = scale
         self.axis = Axis(

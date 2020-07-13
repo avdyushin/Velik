@@ -15,6 +15,7 @@ struct LineChartView<FillStyle: ShapeStyle>: View {
     let yValues: [Double]
     let fillStyle: FillStyle
     let viewModel: GridShapeViewModel
+    let filter: Filter
 
     init(xValues: [Double], yValues: [Double], fillStyle: FillStyle) {
         self.xValues = xValues
@@ -26,6 +27,7 @@ struct LineChartView<FillStyle: ShapeStyle>: View {
             gridSize: CGSize(width: 32, height: 16),
             position: [.leading, .bottom]
         )
+        self.filter = LowPassFilter(initialValue: yValues.first, factor: 0.2)
     }
 
     @State private var scale = MountainShape.AnimatableData(1.0, 0.0)
@@ -34,7 +36,7 @@ struct LineChartView<FillStyle: ShapeStyle>: View {
         GeometryReader { geometry in
             VStack(alignment: .leading) {
                 ZStack {
-                    MountainShape(values: self.yValues, scale: self.scale, isClosed: true)
+                    MountainShape(values: self.yValues, scale: self.scale, filter: self.filter, isClosed: true)
                         .fill(self.fillStyle)
                         .onAppear { self.scale = MountainShape.AnimatableData(1.0, 1.0) }
                         .padding(.bottom, self.viewModel.gridSize.height)
