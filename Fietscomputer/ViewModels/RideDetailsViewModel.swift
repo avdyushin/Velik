@@ -33,6 +33,10 @@ class RideDetailsViewModel: RideViewModel {
             .map { $0.converted(to: .meters).value }
     }()
 
+    lazy var yValues: [Double] = {
+        []
+    }()
+
     lazy var distanceMarkers: [CLLocationDistance] = {
         DistanceUtils
             .distanceMarkers(for: distanceValue, maxCount: 5)

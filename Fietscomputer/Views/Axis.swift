@@ -6,9 +6,9 @@
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
+import struct CoreGraphics.CGRect
 import struct CoreGraphics.CGFloat
 import struct CoreGraphics.CGPoint
-import struct CoreGraphics.CGRect
 
 struct Axis {
 

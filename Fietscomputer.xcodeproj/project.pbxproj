@@ -93,6 +93,7 @@
 		4BA041202462F6AD002E4D81 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B58B630246089CB00B62914 /* AES.swift */; };
 		4BA0754824B8E57A00E42A26 /* DistanceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0754724B8E57A00E42A26 /* DistanceUtils.swift */; };
 		4BA0754A24BA28AF00E42A26 /* DistanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0754924BA28AF00E42A26 /* DistanceTests.swift */; };
+		4BA0754C24BC3D7200E42A26 /* GridShapeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0754B24BC3D7200E42A26 /* GridShapeViewModel.swift */; };
 		4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */; };
 		4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B102472F6AB0002D88A /* Formatters.swift */; };
 		4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B122472F6C50002D88A /* SpeedViewModel.swift */; };
@@ -246,6 +247,7 @@
 		4B8C93FB24B84C3F00785B9D /* GradientPolylineRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPolylineRenderer.swift; sourceTree = "<group>"; };
 		4BA0754724B8E57A00E42A26 /* DistanceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceUtils.swift; sourceTree = "<group>"; };
 		4BA0754924BA28AF00E42A26 /* DistanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceTests.swift; sourceTree = "<group>"; };
+		4BA0754B24BC3D7200E42A26 /* GridShapeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridShapeViewModel.swift; sourceTree = "<group>"; };
 		4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonStyle.swift; sourceTree = "<group>"; };
 		4BA41B102472F6AB0002D88A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		4BA41B122472F6C50002D88A /* SpeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedViewModel.swift; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 				4B10F1B7249C98A30050EEF4 /* RideViewModel.swift */,
 				4B10F1C5249D2CD90050EEF4 /* RideDetailsViewModel.swift */,
 				4B8C93F424B78B4500785B9D /* RideMapViewModel.swift */,
+				4BA0754B24BC3D7200E42A26 /* GridShapeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -953,6 +956,7 @@
 				4BF6689A24A3935B001AA07E /* NanoXML.swift in Sources */,
 				4B4F6DA324AB174B001E68CA /* Axis.swift in Sources */,
 				4BA41B4D2481A32C0002D88A /* GoButtonViewModel.swift in Sources */,
+				4BA0754C24BC3D7200E42A26 /* GridShapeViewModel.swift in Sources */,
 				4B4F6D9F24AA3664001E68CA /* MountainShape.swift in Sources */,
 				4BF17BAB24ACD8F100D0345E /* GPXExporter.swift in Sources */,
 				4B10F1C2249D23A50050EEF4 /* MKMapSnapshotterSubscription.swift in Sources */,

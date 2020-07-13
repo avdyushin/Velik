@@ -41,12 +41,11 @@ struct RideViewDetails: View {
                     // Elevation
                     Text(Strings.elevation).padding()
                     if viewModel.isChartVisible(.elevation) {
-                        LineChartView(values: viewModel.elevations,
-                                      xValues: viewModel.xValues,
-                                      xLabels: viewModel.distanceMarkers,
+                        LineChartView(xValues: viewModel.xValues,
+                                      yValues: viewModel.elevations,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
-                            .frame(width: geometry.size.width) // Fix animation inside ScrollView
+                            .frame(width: geometry.size.width) // This fixes animation inside ScrollView
                             .frame(height: 180)
                     } else { self.noDataText }
 
@@ -56,9 +55,8 @@ struct RideViewDetails: View {
                     // Speed
                     Text(Strings.speed).padding()
                     if viewModel.isChartVisible(.speed) {
-                        LineChartView(values: viewModel.speed,
-                                      xValues: viewModel.xValues,
-                                      xLabels: viewModel.distanceMarkers,
+                        LineChartView(xValues: viewModel.xValues,
+                                      yValues: viewModel.speed,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width, height: 180)
