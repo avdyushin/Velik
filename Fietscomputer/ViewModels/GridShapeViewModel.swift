@@ -36,36 +36,43 @@ class GridShapeViewModel {
         )
     }
 
-    func xValues(in rect: CGRect) -> [PointValue] {
+    func xValues(in size: CGSize) -> [PointValue] {
         xValues
             .dropLast()
-            .map { PointValue(value: $0, point: convert(point: CGPoint(x: $0, y: 0), in: rect)) }
-            .map { PointValue(value: $0.value, point: CGPoint(x: $0.point.x, y: rect.maxY - gridSize.height / 2)) }
+            .map { PointValue(value: $0, point: convert(point: CGPoint(x: $0, y: 0), in: size)) }
+            .map { PointValue(value: $0.value, point: CGPoint(x: $0.point.x, y: size.height - gridSize.height / 2)) }
     }
 
-    func yValues(in rect: CGRect) -> [PointValue] {
+    func yValues(in size: CGSize) -> [PointValue] {
         yValues
-            .map { PointValue(value: $0, point: convert(point: CGPoint(x: 0, y: $0), in: rect)) }
+            .map { PointValue(value: $0, point: convert(point: CGPoint(x: 0, y: $0), in: size)) }
             .map { PointValue(value: $0.value, point: CGPoint(x: gridSize.width / 2, y: $0.point.y)) }
     }
 
     func maxX(in size: CGSize) -> CGFloat {
+        let xScale = axis.scale(in: chartSize(in: size)).x
         let trailing = xValues.dropLast().last ?? .zero
-        let scale = (size.width - gridSize.width) / max(1, axis.maxX)
-        return CGFloat(trailing) * scale
+        return CGFloat(trailing) * xScale
     }
 
-    private func chartRect(in rect: CGRect) -> CGRect {
-        CGRect(
-            x: rect.origin.x,
-            y: rect.origin.y,
-            width: rect.size.width - gridSize.width,
-            height: rect.size.height - gridSize.height
+    func stepX(in size: CGSize) -> CGFloat {
+        guard xValues.count > 1 else {
+            return 0
+        }
+        let xScale = axis.scale(in: chartSize(in: size)).x
+        let step = xValues[1] - xValues[0]
+        return CGFloat(step) * xScale
+    }
+
+    private func chartSize(in size: CGSize) -> CGSize {
+        CGSize(
+            width: size.width - gridSize.width,
+            height: size.height - gridSize.height
         )
     }
 
-    private func convert(point: CGPoint, in rect: CGRect) -> CGPoint {
-        axis.convert(point: point, in: chartRect(in: rect))
+    private func convert(point: CGPoint, in size: CGSize) -> CGPoint {
+        axis.convert(point: point, in: chartSize(in: size))
             .applying(.init(translationX: gridSize.width, y: 0))
     }
 }

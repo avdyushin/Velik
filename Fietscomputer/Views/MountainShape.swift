@@ -43,7 +43,7 @@ struct MountainShape: Shape {
     private func points(in rect: CGRect) -> [CGPoint] {
         let values = axis.convert(
             values: self.values,
-            in: rect,
+            in: rect.size,
             scale: CGPoint(x: animatableData.first, y: animatableData.second)
         )
         if isClosedPath {

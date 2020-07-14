@@ -42,22 +42,8 @@ struct LineChartView<FillStyle: ShapeStyle>: View {
                         .padding(.bottom, self.viewModel.gridSize.height)
                         .padding(.leading, self.viewModel.gridSize.width)
                     GridShape(viewModel: self.viewModel)
-                        .stroke(Color.red, lineWidth: 3)
-                        //.stroke(Color.gray.opacity(0.3))
+                        .stroke(Color.gray.opacity(0.3))
                 }
-                HStack {
-                    ForEach(0..<self.viewModel.xValues.count - 1, id: \.self) { index in
-                        Group {
-                            Text("\(DistanceUtils.string(for: self.viewModel.xValues[index]))")
-                            if index != self.viewModel.xValues.count - 2 {
-                                Spacer()
-                            }
-                        }
-                    }
-                }
-                .frame(width: self.viewModel.maxX(in: geometry.size))
-                .background(Color.yellow)
-                .padding(.leading, self.viewModel.gridSize.width)
             }
         }
     }

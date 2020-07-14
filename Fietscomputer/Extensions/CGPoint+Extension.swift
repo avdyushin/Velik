@@ -12,6 +12,12 @@ import struct CoreGraphics.CGSize
 
 extension CGRect {
     func scaled(by scale: CGPoint) -> CGRect {
-        CGRect(origin: origin, size: CGSize(width: size.width * scale.x, height: size.height * scale.y))
+        CGRect(origin: origin, size: size.scaled(by: scale))
+    }
+}
+
+extension CGSize {
+    func scaled(by scale: CGPoint) -> CGSize {
+        CGSize(width: width * scale.x, height: height * scale.y)
     }
 }

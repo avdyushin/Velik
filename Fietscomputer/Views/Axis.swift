@@ -7,6 +7,7 @@
 //
 
 import struct CoreGraphics.CGRect
+import struct CoreGraphics.CGSize
 import struct CoreGraphics.CGFloat
 import struct CoreGraphics.CGPoint
 
@@ -17,22 +18,22 @@ struct Axis {
     let minY: CGFloat
     let maxY: CGFloat
 
-    private func scale(in rect: CGRect) -> CGPoint {
+    func scale(in size: CGSize) -> CGPoint {
         CGPoint(
-            x: rect.size.width / max(1, maxX),
-            y: rect.size.height / max(1, maxY - minY)
+            x: size.width / max(1, maxX),
+            y: size.height / max(1, maxY - minY)
         )
     }
 
-    func convert(point: CGPoint, in rect: CGRect, scale: CGPoint = CGPoint(x: 1, y: 1)) -> CGPoint {
-        let scale = self.scale(in: rect.scaled(by: scale))
+    func convert(point: CGPoint, in size: CGSize, scale: CGPoint = CGPoint(x: 1, y: 1)) -> CGPoint {
+        let scale = self.scale(in: size.scaled(by: scale))
         return CGPoint(
             x: point.x * scale.x,
-            y: rect.maxY - (point.y - minY) * scale.y
+            y: size.height - (point.y - minY) * scale.y
         )
     }
 
-    func convert(values: [Double], in rect: CGRect, scale: CGPoint = CGPoint(x: 1, y: 1)) -> [CGPoint] {
-        values.enumeratedCGPoints().map { convert(point: $0, in: rect, scale: scale) }
+    func convert(values: [Double], in size: CGSize, scale: CGPoint = CGPoint(x: 1, y: 1)) -> [CGPoint] {
+        values.enumeratedCGPoints().map { convert(point: $0, in: size, scale: scale) }
     }
 }

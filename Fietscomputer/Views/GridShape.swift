@@ -24,7 +24,7 @@ struct GridShape: Shape {
     }
 
     private func yAxis(path: inout Path, in rect: CGRect) {
-        viewModel.yValues(in: rect)
+        viewModel.yValues(in: rect.size)
             .map { $0.point }
             .forEach { point in
                 path.move(to: point)
@@ -33,7 +33,7 @@ struct GridShape: Shape {
     }
 
     private func xAxis(path: inout Path, in rect: CGRect) {
-        viewModel.xValues(in: rect)
+        viewModel.xValues(in: rect.size)
             .map { $0.point }
             .forEach { point in
                 path.move(to: point)
