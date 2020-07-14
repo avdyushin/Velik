@@ -35,32 +35,35 @@ struct GaugesView: View {
             PageView.Page {
                 AnyView(
                     ZStack {
-                        Rectangle().fill().foregroundColor(Color(UIColor.systemBackground))
-                        VStack(spacing: 16) {
-                            GaugeView(viewModel: viewModel.durationViewModel)
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                            GaugeView(viewModel: viewModel.distanceViewModel)
-                                .frame(minWidth: 0, maxWidth: .infinity)
+                        VStack {
+                            SpeedView(viewModel: viewModel.avgSpeedViewModel)
+                                .frame(minHeight: 0, maxHeight: .infinity)
+                            HStack {
+                                GaugeView(viewModel: viewModel.durationViewModel)
+                                    .frame(minWidth: 0, maxWidth: .infinity)
+                                GaugeView(viewModel: viewModel.distanceViewModel)
+                                    .frame(minWidth: 0, maxWidth: .infinity)
+                            }.padding(EdgeInsets(top: 0, leading: 0, bottom: 18, trailing: 0))
                         }
-                    }
+                    }.background(Color(UIColor.systemBackground))
                 )
             }
-            PageView.Page {
-                AnyView(
-                    ZStack {
-                        Rectangle().fill().foregroundColor(Color(UIColor.systemBackground))
-                        Text("Not implemented")
-                    }
-                )
-            }
-            PageView.Page {
-                AnyView(
-                    ZStack {
-                        Rectangle().fill().foregroundColor(Color(UIColor.systemBackground))
-                        Text("Not implemented")
-                    }
-                )
-            }
+//            PageView.Page {
+//                AnyView(
+//                    ZStack {
+//                        Rectangle().fill().foregroundColor(Color(UIColor.systemBackground))
+//                        Text("Not implemented")
+//                    }
+//                )
+//            }
+//            PageView.Page {
+//                AnyView(
+//                    ZStack {
+//                        Rectangle().fill().foregroundColor(Color(UIColor.systemBackground))
+//                        Text("Not implemented")
+//                    }
+//                )
+//            }
         }
     }
 }

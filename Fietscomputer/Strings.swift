@@ -11,6 +11,7 @@ enum Strings {
     @Localizable static var duration = "duration"
     @Localizable static var distance = "distance"
     @Localizable static var avg_speed = "avg_speed"
+    @Localizable static var current_speed = "current_speed"
     @Localizable static var max_speed = "max_speed"
     @Localizable static var elevation_gain = "elevation_gain"
     @Localizable static var elevation = "elevation"

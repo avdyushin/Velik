@@ -72,6 +72,9 @@ class RideService: Service {
     private let distancePublisher = CurrentValueSubject<CLLocationDistance, Never>(0)
     private(set) var distance: AnyPublisher<CLLocationDistance, Never>
 
+    private let avgSpeedPublisher = CurrentValueSubject<CLLocationSpeed, Never>(0)
+    private(set) var avgSpeed: AnyPublisher<CLLocationSpeed, Never>
+
     private var startDate: TimeInterval = 0
     private var pausedDate: TimeInterval = 0
     private var stopDate: TimeInterval = 0
@@ -91,6 +94,7 @@ class RideService: Service {
         self.state = statePublisher.eraseToAnyPublisher()
         self.track = trackPublisher.eraseToAnyPublisher()
         self.distance = distancePublisher.eraseToAnyPublisher()
+        self.avgSpeed = avgSpeedPublisher.eraseToAnyPublisher()
         reset()
     }
 
@@ -194,5 +198,8 @@ class RideService: Service {
         let delta = locationA.distance(from: locationB)
         self.totalDistance += delta
         self.distancePublisher.send(self.totalDistance)
+
+        let avgSpeed = self.totalDistance / self.duration
+        self.avgSpeedPublisher.send(avgSpeed)
     }
 }

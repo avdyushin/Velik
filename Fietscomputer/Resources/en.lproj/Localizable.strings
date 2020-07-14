@@ -9,6 +9,7 @@
 "duration" = "Duration";
 "distance" = "Distance";
 "avg_speed" = "Avg. Speed";
+"current_speed" = "Current Speed";
 "max_speed" = "Max Speed";
 "elevation_gain" = "Elevation Gain";
 "elevation" = "Elevation";

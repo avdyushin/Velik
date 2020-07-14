@@ -11,23 +11,33 @@ import Combine
 
 struct SpeedView: View {
 
-    @ObservedObject var viewModel: SpeedViewModel
+    @ObservedObject var viewModel: GaugeViewModel
 
-    init(viewModel: SpeedViewModel) {
+    init(viewModel: GaugeViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        ZStack(alignment: .topTrailing) {
+        ZStack(alignment: .top) {
             GaugeView(viewModel: viewModel)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             HStack {
-                Text(viewModel.units)
-                    .foregroundColor(.secondary)
-                    .font(.caption).bold()
-                    .padding(4)
-                    .cornerRadius(8)
-            }.fixedSize()
+                if !viewModel.title.isEmpty {
+                    Text(viewModel.title)
+                        .foregroundColor(.secondary)
+                        .font(.caption).bold()
+                        .padding(4)
+                        .cornerRadius(8)
+                }
+                Spacer()
+                if !viewModel.units.isEmpty {
+                    Text(viewModel.units)
+                        .foregroundColor(.secondary)
+                        .font(.caption).bold()
+                        .padding(4)
+                        .cornerRadius(8)
+                }
+            }
         }
         .padding(18)
     }

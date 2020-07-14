@@ -13,6 +13,7 @@ class ContentViewModel: ViewModel, ObservableObject {
 
     @ObservedObject var mapViewModel: MapViewModel
     @ObservedObject var speedViewModel: SpeedViewModel
+    @ObservedObject var avgSpeedViewModel: AvgSpeedViewModel
     @ObservedObject var durationViewModel: DurationViewModel
     @ObservedObject var distanceViewModel: DistanceViewModel
     @ObservedObject var goButtonViewModel: GoButtonViewModel
@@ -20,16 +21,18 @@ class ContentViewModel: ViewModel, ObservableObject {
     @ObservedObject var notificationViewModel: NotificationViewModel
     @ObservedObject var sliderViewModel: SliderControlViewModel
 
-    let numberOfPages = 4
+    let numberOfPages = 2
 
     init(mapViewModel: MapViewModel,
          speedViewModel: SpeedViewModel,
+         avgSpeedViewModel: AvgSpeedViewModel,
          durationViewModel: DurationViewModel,
          distanceViewModel: DistanceViewModel,
          notificationViewModel: NotificationViewModel,
          sliderViewModel: SliderControlViewModel) {
         self.mapViewModel = mapViewModel
         self.speedViewModel = speedViewModel
+        self.avgSpeedViewModel = avgSpeedViewModel
         self.durationViewModel = durationViewModel
         self.distanceViewModel = distanceViewModel
         self.goButtonViewModel = GoButtonViewModel()

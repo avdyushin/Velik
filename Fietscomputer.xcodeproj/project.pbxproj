@@ -97,6 +97,7 @@
 		4BA0755224BCD09700E42A26 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0755124BCD09700E42A26 /* Logger.swift */; };
 		4BA0755424BCD66400E42A26 /* AxisValuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0755324BCD66400E42A26 /* AxisValuesProvider.swift */; };
 		4BA0755724BCE09700E42A26 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0755624BCE09700E42A26 /* Filter.swift */; };
+		4BA0756124BE3A2B00E42A26 /* AvgSpeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA0756024BE3A2B00E42A26 /* AvgSpeedViewModel.swift */; };
 		4BA41B0F2472F6890002D88A /* ActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */; };
 		4BA41B112472F6AB0002D88A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B102472F6AB0002D88A /* Formatters.swift */; };
 		4BA41B132472F6C50002D88A /* SpeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA41B122472F6C50002D88A /* SpeedViewModel.swift */; };
@@ -254,6 +255,7 @@
 		4BA0755124BCD09700E42A26 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		4BA0755324BCD66400E42A26 /* AxisValuesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AxisValuesProvider.swift; sourceTree = "<group>"; };
 		4BA0755624BCE09700E42A26 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		4BA0756024BE3A2B00E42A26 /* AvgSpeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgSpeedViewModel.swift; sourceTree = "<group>"; };
 		4BA41B0E2472F6890002D88A /* ActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonStyle.swift; sourceTree = "<group>"; };
 		4BA41B102472F6AB0002D88A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		4BA41B122472F6C50002D88A /* SpeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedViewModel.swift; sourceTree = "<group>"; };
@@ -596,6 +598,7 @@
 				4B88C9B7245C64C800BD5DD3 /* DistanceViewModel.swift */,
 				4B88C9BB245C691300BD5DD3 /* GaugeViewModel.swift */,
 				4BA41B122472F6C50002D88A /* SpeedViewModel.swift */,
+				4BA0756024BE3A2B00E42A26 /* AvgSpeedViewModel.swift */,
 				4BA41B142472F6ED0002D88A /* MapViewModel.swift */,
 				4BA41B1A2472F7550002D88A /* ContentViewModel.swift */,
 				4BA41B4C2481A32C0002D88A /* GoButtonViewModel.swift */,
@@ -988,6 +991,7 @@
 				4B208D8B24A2695C009E5F6C /* Applicable.swift in Sources */,
 				4B834E39248C0B2900A0272E /* CornerRadiusStyle.swift in Sources */,
 				4B1FF0BC249E95A500D7AFF1 /* RideFullSummaryView.swift in Sources */,
+				4BA0756124BE3A2B00E42A26 /* AvgSpeedViewModel.swift in Sources */,
 				4B58B61A245C9FA700B62914 /* BluetoothScanner.swift in Sources */,
 				4B4EC29E24A3DAF6007B507A /* GPXImporter.swift in Sources */,
 				4BA0755224BCD09700E42A26 /* Logger.swift in Sources */,

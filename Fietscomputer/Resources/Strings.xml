@@ -28,6 +28,9 @@
     <string id="avg_speed">
         <en>Avg. Speed</en>
     </string>
+    <string id="current_speed">
+        <en>Current Speed</en>
+    </string>
     <string id="max_speed">
         <en>Max Speed</en>
     </string>

@@ -37,6 +37,7 @@ class RootPresenter<C: RootCoordinator>: Presenter<C>, RootPresenting {
         self.viewModel = ContentViewModel(
             mapViewModel: MapViewModel(),
             speedViewModel: SpeedViewModel(),
+            avgSpeedViewModel: AvgSpeedViewModel(),
             durationViewModel: DurationViewModel(),
             distanceViewModel: DistanceViewModel(),
             notificationViewModel: NotificationViewModel(),
