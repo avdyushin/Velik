@@ -33,7 +33,7 @@ struct LineChartView<FillStyle: ShapeStyle>: View {
     @State private var scale = MountainShape.AnimatableData(1.0, 0.0)
 
     var body: some View {
-        GeometryReader { geometry in
+        GeometryReader { _ in
             VStack(alignment: .leading) {
                 ZStack {
                     MountainShape(values: self.yValues, scale: self.scale, filter: self.filter, isClosed: true)

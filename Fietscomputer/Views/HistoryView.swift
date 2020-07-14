@@ -15,17 +15,18 @@ struct HistoryView: View {
 
     var body: some View {
         NavigationView {
-            List(rides) { ride in
-                NavigationLink(
-                    destination:
-                    RideViewDetails(viewModel: RideDetailsViewModel(ride: ride))
-                        .navigationBarTitle(Text(Strings.summary), displayMode: .inline)
-                ) {
-                    RideCellView(viewModel: RideViewModel(ride: ride))
-                        .padding([.bottom], 6)
+            VStack(spacing: 0) {
+                List(rides) { ride in
+                    NavigationLink(
+                        destination:
+                        RideViewDetails(viewModel: RideDetailsViewModel(ride: ride))
+                            .navigationBarTitle(Text(Strings.summary), displayMode: .inline)
+                    ) {
+                        RideCellView(viewModel: RideViewModel(ride: ride))
+                            .padding([.bottom], 6)
+                    }
                 }
-            }.listStyle(GroupedListStyle())
-            .navigationBarTitle(Strings.rides)
+            }.navigationBarTitle(Text(Strings.rides), displayMode: .inline)
         }
     }
 }

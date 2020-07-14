@@ -29,9 +29,12 @@ class StorageService: Service {
 
     func stop() { }
 
-    func createNewRide(name: String, summary: RideService.Summary, locations: [CLLocation]) {
+    func createNewRide(name: String, summary: RideService.Summary, locations: [CLLocation], createdAt: Date? = nil) {
         storage.update { context in
             let ride = Ride.create(name: name, context: context)
+            if let createdAt = createdAt {
+                ride.createdAt = createdAt
+            }
             // Summary
             ride.summary = RideSummary.create(context: context)
             ride.summary?.distance = summary.distance

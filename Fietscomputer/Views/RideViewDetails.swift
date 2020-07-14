@@ -39,28 +39,28 @@ struct RideViewDetails: View {
                             .frame(width: geometry.size.width, height: geometry.size.width/1.5)
                     }.buttonStyle(PlainButtonStyle())
                     // Elevation
-                    Text(Strings.elevation).padding()
                     if viewModel.isChartVisible(.elevation) {
+                        Text(Strings.elevation).padding()
                         LineChartView(xValues: [0, viewModel.distanceValue],
                                       yValues: viewModel.elevations,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width) // This fixes animation inside ScrollView
                             .frame(height: 180)
-                    } else { self.noDataText }
+                    } // else { self.noDataText }
 
                     // Summary
                     RideFullSummaryView(viewModel: viewModel)
 
                     // Speed
-                    Text(Strings.speed).padding()
                     if viewModel.isChartVisible(.speed) {
+                        Text(Strings.speed).padding()
                         LineChartView(xValues: [0, viewModel.distanceValue],
                                       yValues: viewModel.speed,
                                       fillStyle: viewModel.chartFillStyle)
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width, height: 180)
-                    } else { self.noDataText }
+                    } // else { self.noDataText }
                 }
             }
         }.actionSheet(isPresented: $confirmDelete) {

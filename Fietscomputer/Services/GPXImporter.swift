@@ -77,7 +77,8 @@ class GPXImporter: DataImporter {
                 maxSpeed: maxSpeed,
                 elevationGain: elevationGain
             ),
-            locations: gpx.locations
+            locations: gpx.locations,
+            createdAt: gpx.timestamp
         )
     }
 }
