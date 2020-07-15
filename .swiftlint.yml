@@ -3,7 +3,7 @@ disabled_rules:
     - force_try
     - multiple_closures_with_trailing_closure
 excluded:
-    - Fietscomputer/Strings.swift
+    - Velik/Strings.swift
 opt_in_rules:
     - let_var_whitespace
     - vertical_whitespace_closing_braces
