@@ -75,7 +75,7 @@ class RideViewModel {
         maxSpeed = maxSpeedPair.value + " " + maxSpeedPair.units
         elevationGainValue = summary.elevationGain
         elevationGain = Self.elevation(summary.elevationGain)
-        let powerPair = Self.power(power: summary.avgSpeed)
+        let powerPair = Self.power(power: summary.avgPower)
         power = powerPair.value + " " + powerPair.units
         let energyPair = Self.energy(power: summary.avgPower, duration: summary.duration)
         energy = energyPair.value + " " + energyPair.units

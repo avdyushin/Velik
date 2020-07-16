@@ -11,12 +11,15 @@ import Foundation
 class GPXUtils {
 
     enum GPXFiles: String {
-        case waypoints = "WayPoints"
-        case withoutTime = "NoTime"
-        case segment = "TrackSegment"
+        case waypoints = "Track_WayPoints"
+        case withoutTime = "Track_Route"
+        case segment = "Track_Strava"
+        case short = "Track_210620"
+        case long = "Track_150720"
+        case longS = "Track_150720_S"
     }
 
-    static func readFile(file: GPXFiles) -> String {
+    static func read(file: GPXFiles) -> String {
         try! String(contentsOf:
             Bundle(for: Self.self)
                 .url(forResource: file.rawValue, withExtension: "gpx")!

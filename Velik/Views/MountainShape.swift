@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct MountainShape: Shape {
+struct MountainShape<Filter: InputProcessor>: Shape where Filter.Input == Double, Filter.Output == Double {
 
     typealias AnimatableData = AnimatablePair<CGFloat, CGFloat>
 
@@ -20,7 +20,7 @@ struct MountainShape: Shape {
 
     init(values: [Double], scale: AnimatableData, filter: Filter? = nil, isClosed closed: Bool = false) {
         if let filter = filter {
-            self.values = values.map { filter.update($0) }
+            self.values = values.map { filter.process(input: $0) }
         } else {
             self.values = values
         }

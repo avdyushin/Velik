@@ -65,6 +65,7 @@ class RideService: Service {
     private var totalDistance: CLLocationDistance = 0
     private var duration: TimeInterval = 0
     private var elevationGain: CLLocationDistance = 0
+    private var elevationGainProcessor: ElevationGainProcessor?
 
     private let trackPublisher = PassthroughSubject<MKPolyline, Never>()
     private(set) var track: AnyPublisher<MKPolyline, Never>
@@ -181,8 +182,14 @@ class RideService: Service {
     }
 
     private func handle(location: CLLocation) {
-        let previousAltitude = self.locations.last?.altitude ?? .zero
-        self.elevationGain += max(.zero, previousAltitude - location.altitude)
+
+        if elevationGainProcessor == nil {
+            if let altitude = locations.last?.altitude {
+                elevationGainProcessor = ElevationGainProcessor(initialAltitude: altitude)
+            }
+        } else {
+            self.elevationGain = elevationGainProcessor!.process(input: location.altitude)
+        }
 
         self.locations.append(location)
 

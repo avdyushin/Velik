@@ -61,11 +61,11 @@ class GPXImporter: DataImporter {
         let avgSpeed = gpx.locations.average(by: \.speed)
         let maxSpeed = gpx.locations.max(by: \.speed)?.speed ?? .zero
 
-        current = gpx.locations.first!
+        let elevationGainProcessor = ElevationGainProcessor(initialAltitude: gpx.locations.first!.altitude)
         var elevationGain: CLLocationDistance = 0.0
+
         gpx.locations.dropFirst().forEach {
-            elevationGain += max(0, current.altitude - $0.altitude)
-            current = $0
+            elevationGain = elevationGainProcessor.process(input: $0.altitude)
         }
 
         storage.createNewRide(

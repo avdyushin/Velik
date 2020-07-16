@@ -65,7 +65,7 @@ extension XMLNode {
     func asString(header: String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>") -> String {
         var result = header + "\n"
         self.traverse(from: self, start: { node in
-            result += "<\(node.name)\(node.attributesAsString())>"
+            result += "<\(node.name)\(node.attributesAsString())>\n"
             result += node.value ?? ""
         }, end: { node in
             result += "</\(node.name)>\n"

@@ -34,7 +34,7 @@ class TrackPointTests: XCTestCase {
     }
 
     func createXML(file: GPXUtils.GPXFiles) {
-        parser = NanoXML(xmlString: GPXUtils.readFile(file: file))
+        parser = NanoXML(xmlString: GPXUtils.read(file: file))
     }
 
     func testDecodeNameWaypoint() throws {
@@ -116,7 +116,7 @@ class TrackPointTests: XCTestCase {
 
     func testDecodeExportedTrack() throws {
         let bundle = Bundle(for: type(of: self))
-        let url = bundle.url(forResource: "Exported", withExtension: "gpx")!
+        let url = bundle.url(forResource: "Track_Velik", withExtension: "gpx")!
         let track: GPXTrack = try XMLDecoder.decode(try String(contentsOf: url))
         let waypoint = track.points.first!
         XCTAssertEqual(51.943208, waypoint.latitude, accuracy: 1e-4)
@@ -129,7 +129,7 @@ class TrackPointTests: XCTestCase {
 
     func testGPXImporter() throws {
         let bundle = Bundle(for: type(of: self))
-        let url = bundle.url(forResource: "Afternoon_Ride", withExtension: "gpx")!
+        let url = bundle.url(forResource: "Track_Strava", withExtension: "gpx")!
         let gpxImporter = GPXImporter()
 
         let expectation = self.expectation(description: "Imported")

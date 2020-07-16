@@ -8,13 +8,7 @@
 
 import Foundation
 
-protocol Filter {
-    var value: Double { get set }
-
-    func update(_ value: Double) -> Double
-}
-
-class LowPassFilter: Filter {
+class LowPassFilter: InputProcessor {
 
     var value: Double = 0
     let factor: Double
@@ -24,8 +18,8 @@ class LowPassFilter: Filter {
         self.factor = factor
     }
 
-    func update(_ newValue: Double) -> Double {
-        value = factor * newValue + value * (1.0 - factor)
+    func process(input: Double) -> Double {
+        value = factor * input + value * (1.0 - factor)
         return value
     }
 }

@@ -43,7 +43,8 @@ struct RideViewDetails: View {
                         Text(Strings.elevation).padding()
                         LineChartView(xValues: [0, viewModel.distanceValue],
                                       yValues: viewModel.elevations,
-                                      fillStyle: viewModel.chartFillStyle)
+                                      fillStyle: viewModel.chartFillStyle,
+                                      filter: LowPassFilter(initialValue: viewModel.elevations.first, factor: 0.2))
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width) // This fixes animation inside ScrollView
                             .frame(height: 180)
@@ -57,7 +58,8 @@ struct RideViewDetails: View {
                         Text(Strings.speed).padding()
                         LineChartView(xValues: [0, viewModel.distanceValue],
                                       yValues: viewModel.speed,
-                                      fillStyle: viewModel.chartFillStyle)
+                                      fillStyle: viewModel.chartFillStyle,
+                                      filter: LowPassFilter(initialValue: viewModel.speed.first, factor: 0.2))
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width, height: 180)
                     } // else { self.noDataText }
