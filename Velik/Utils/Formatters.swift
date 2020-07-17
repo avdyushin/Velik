@@ -58,6 +58,12 @@ struct Formatters {
         return formatter
     }()
 
+    static var fileDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd_HHmmss"
+        return formatter
+    }()
+
     static func formatted<U: Unit>(from measurement: Measurement<U>) -> ValueUnitPair {
         let value = Formatters.speedValue.string(from: NSNumber(value: measurement.value))
         let zero = Formatters.speedValue.string(from: NSNumber(value: Double.zero))!

@@ -97,6 +97,15 @@ class RideService: Service {
         self.distance = distancePublisher.eraseToAnyPublisher()
         self.avgSpeed = avgSpeedPublisher.eraseToAnyPublisher()
         reset()
+        self.state
+            .sink { state in
+                switch state {
+                case .running:
+                    UIApplication.shared.isIdleTimerDisabled = true
+                case .idle, .paused, .stopped:
+                    UIApplication.shared.isIdleTimerDisabled = false
+                }
+            }.store(in: &cancellable)
     }
 
     func reset() {
@@ -111,6 +120,7 @@ class RideService: Service {
         startDate = Date.timeIntervalSinceReferenceDate
         statePublisher.send(.running)
 
+        locationService.start()
         locationService.location
             .sink { [weak self] location in self?.handle(location: location) }
             .store(in: &cancellable)
@@ -124,18 +134,21 @@ class RideService: Service {
     }
 
     func pause(automatic: Bool = false) {
+        locationService.stop()
         pausedDate = Date.timeIntervalSinceReferenceDate
         timerCancellable?.cancel()
         statePublisher.send(.paused(automatic))
     }
 
     func resume() {
+        locationService.start()
         startDate += (Date.timeIntervalSinceReferenceDate - pausedDate)
         statePublisher.send(.running)
         run()
     }
 
     func stop() {
+        locationService.stop()
         stopDate = Date.timeIntervalSinceReferenceDate
         statePublisher.send(.stopped)
         timerCancellable?.cancel()

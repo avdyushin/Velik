@@ -12,7 +12,7 @@ import CoreLocation
 
 class LocationService: NSObject, Service {
 
-    let shouldAutostart = true
+    let shouldAutostart = false
 
     enum State {
         case idle
@@ -46,6 +46,9 @@ class LocationService: NSObject, Service {
     }
 
     func start() {
+        guard statePublisher.value != .monitoring else {
+            return
+        }
         manager.startMonitoringSignificantLocationChanges()
         manager.startUpdatingLocation()
         manager.startUpdatingHeading()
@@ -53,6 +56,9 @@ class LocationService: NSObject, Service {
     }
 
     func stop() {
+        guard statePublisher.value != .idle else {
+            return
+        }
         statePublisher.send(.idle)
         manager.stopMonitoringSignificantLocationChanges()
         manager.stopUpdatingLocation()
