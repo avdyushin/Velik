@@ -23,9 +23,22 @@ class DistanceAnnotation: MKPointAnnotation {
 
 struct RideMapView: UIViewRepresentable {
 
+    struct Style {
+        let startColor: UIColor
+        let stopColor: UIColor
+        let lineWidth: CGFloat
+
+        static let blue = Style(
+            startColor: .flatEmeraldColor,
+            stopColor: .flatMidnightBlueColor,
+            lineWidth: 4
+        )
+    }
+
     typealias UIViewType = MKMapView
 
     let viewModel: RideDetailsViewModel
+    let style = Style.blue
 
     func makeUIView(context: Context) -> MKMapView {
         let view = MKMapView()
@@ -36,7 +49,7 @@ struct RideMapView: UIViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(style: style)
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
@@ -60,12 +73,19 @@ struct RideMapView: UIViewRepresentable {
     }
 
     class Coordinator: NSObject, MKMapViewDelegate {
+
+        let style: Style
+
+        init(style: Style) {
+            self.style = style
+        }
+
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if overlay is MKPolyline {
                 let renderer = GradientPolylineRenderer(overlay: overlay)
-                renderer.colors = [.fdBaraRed, .fdHollyhock]
+                renderer.colors = [style.startColor, style.stopColor]
                 renderer.strokeColor = .systemGreen
-                renderer.lineWidth = 8
+                renderer.lineWidth = style.lineWidth
                 return renderer
             } else {
                 return MKOverlayRenderer()
