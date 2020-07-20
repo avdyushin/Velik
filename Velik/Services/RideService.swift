@@ -186,9 +186,11 @@ class RideService: Service {
         location = locationService.location
             .sink { [weak self] location in self?.handle(location: location) }
     }
+
     private func storeRide() {
+        let date = Date()
         storageService.createNewRide(
-            name: "Ride",
+            name: generateRideName(date: date),
             summary: Summary(
                 duration: duration,
                 distance: totalDistance,
@@ -196,8 +198,14 @@ class RideService: Service {
                 maxSpeed: locations.max(by: \.speed)?.speed ?? .zero,
                 elevationGain: elevationGain
             ),
-            locations: locations
+            locations: locations,
+            createdAt: date
         )
+    }
+
+    private func generateRideName(date: Date) -> String {
+        let weekDay = Formatters.rideTitleDateFormatter.string(from: date)
+        return "\(weekDay) Ride"
     }
 
     private func handle(location: CLLocation) {

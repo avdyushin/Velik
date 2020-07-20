@@ -16,14 +16,27 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                List(rides) { ride in
-                    NavigationLink(
-                        destination:
-                        RideViewDetails(viewModel: RideDetailsViewModel(ride: ride))
-                            .navigationBarTitle(Text(Strings.summary), displayMode: .inline)
-                    ) {
-                        RideCellView(viewModel: RideViewModel(ride: ride))
-                            .padding([.bottom], 6)
+                if rides.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text("No rides found")
+                            .font(.headline)
+                            .foregroundColor(Color(UIColor.secondaryLabel))
+                        Text("Start a new journey")
+                            .font(.caption)
+                            .foregroundColor(Color(UIColor.tertiaryLabel))
+                        Spacer()
+                    }
+                } else {
+                    List(rides) { ride in
+                        NavigationLink(
+                            destination:
+                            RideViewDetails(viewModel: RideDetailsViewModel(ride: ride))
+                                .navigationBarTitle(Text(Strings.summary), displayMode: .inline)
+                        ) {
+                            RideCellView(viewModel: RideViewModel(ride: ride))
+                                .padding([.bottom], 6)
+                        }
                     }
                 }
             }.navigationBarTitle(Text(Strings.rides), displayMode: .inline)

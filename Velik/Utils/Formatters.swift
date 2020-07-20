@@ -64,6 +64,12 @@ struct Formatters {
         return formatter
     }()
 
+    static var rideTitleDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter
+    }()
+
     static func formatted<U: Unit>(from measurement: Measurement<U>) -> ValueUnitPair {
         let value = Formatters.speedValue.string(from: NSNumber(value: measurement.value))
         let zero = Formatters.speedValue.string(from: NSNumber(value: Double.zero))!
