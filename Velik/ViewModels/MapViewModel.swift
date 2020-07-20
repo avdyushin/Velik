@@ -11,10 +11,17 @@ import SwiftUI
 
 class MapViewModel: ViewModel, ObservableObject {
 
+    struct Style {
+        let strokeColor = UIColor.systemGreen
+        let lineWidth: CGFloat = 10
+    }
+
     @Published var polyline = MKPolyline()
-    @Published var isLocationStarted = false
+    @Published var isLocationReady = false
     @Published var rideState = RideService.State.idle
     @Published var isTracking = false
+
+    let style = Style()
 
     override init() {
         super.init()
@@ -22,12 +29,12 @@ class MapViewModel: ViewModel, ObservableObject {
         locationService.state
             .map {
                 switch $0 {
-                case .idle: return false
-                case .monitoring: return true
+                case .ready: return true
+                default: return false
                 }
             }
             .print("location started here")
-            .assign(to: \.isLocationStarted, on: self)
+            .assign(to: \.isLocationReady, on: self)
             .store(in: &cancellable)
 
         rideService.state

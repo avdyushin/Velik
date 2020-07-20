@@ -32,31 +32,39 @@ struct TrackerMapView: UIViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(style: viewModel.style)
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
-        if viewModel.isTracking == false && viewModel.isLocationStarted {
+        if viewModel.isTracking == false && viewModel.isLocationReady {
             viewModel.isTracking = true
             view.userTrackingMode = .followWithHeading
         }
         switch viewModel.rideState {
         case .running, .paused:
             view.addOverlay(viewModel.polyline)
+        case .stopped:
+            view.removeOverlays(view.overlays)
         default:
             ()
         }
     }
 
     class Coordinator: NSObject, MKMapViewDelegate {
+
+        let style: MapViewModel.Style
+
+        init(style: MapViewModel.Style) {
+            self.style = style
+        }
+
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-            if overlay is MKPolyline {
-                let renderer = MKPolylineRenderer(overlay: overlay)
-                renderer.strokeColor = .systemGreen
-                renderer.lineWidth = 10
-                return renderer
-            } else {
+            guard overlay is MKPolyline else {
                 return MKOverlayRenderer()
+            }
+            return MKPolylineRenderer(overlay: overlay).apply {
+                $0.strokeColor = style.strokeColor
+                $0.lineWidth = style.lineWidth
             }
         }
     }

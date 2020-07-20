@@ -16,6 +16,7 @@ class LocationService: NSObject, Service {
 
     enum State {
         case idle
+        case ready
         case monitoring
     }
 
@@ -45,6 +46,13 @@ class LocationService: NSObject, Service {
         manager.pausesLocationUpdatesAutomatically = true
     }
 
+    func ready() {
+        guard statePublisher.value != .ready else {
+            return
+        }
+        statePublisher.send(.ready)
+    }
+
     func start() {
         guard statePublisher.value != .monitoring else {
             return
@@ -56,10 +64,10 @@ class LocationService: NSObject, Service {
     }
 
     func stop() {
-        guard statePublisher.value != .idle else {
+        guard statePublisher.value == .monitoring else {
             return
         }
-        statePublisher.send(.idle)
+        statePublisher.send(.ready)
         manager.stopMonitoringSignificantLocationChanges()
         manager.stopUpdatingLocation()
         manager.stopUpdatingHeading()

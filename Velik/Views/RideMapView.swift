@@ -81,14 +81,13 @@ struct RideMapView: UIViewRepresentable {
         }
 
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-            if overlay is MKPolyline {
-                let renderer = GradientPolylineRenderer(overlay: overlay)
-                renderer.colors = [style.startColor, style.stopColor]
-                renderer.strokeColor = .systemGreen
-                renderer.lineWidth = style.lineWidth
-                return renderer
-            } else {
+            guard overlay is MKPolyline else {
                 return MKOverlayRenderer()
+            }
+            return GradientPolylineRenderer(overlay: overlay).apply {
+                $0.colors = [style.startColor, style.stopColor]
+                $0.strokeColor = .systemGreen
+                $0.lineWidth = style.lineWidth
             }
         }
 

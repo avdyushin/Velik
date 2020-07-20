@@ -89,6 +89,7 @@ class RideService: Service {
     private(set) var state: AnyPublisher<State, Never>
 
     private var cancellable = Set<AnyCancellable>()
+    private var location: AnyCancellable?
 
     init() {
         self.elapsed = elapsedTimePublisher.eraseToAnyPublisher()
@@ -120,11 +121,7 @@ class RideService: Service {
         startDate = Date.timeIntervalSinceReferenceDate
         statePublisher.send(.running)
 
-        locationService.start()
-        locationService.location
-            .sink { [weak self] location in self?.handle(location: location) }
-            .store(in: &cancellable)
-
+        locationStart()
         run()
     }
 
@@ -141,9 +138,10 @@ class RideService: Service {
     }
 
     func resume() {
-        locationService.start()
         startDate += (Date.timeIntervalSinceReferenceDate - pausedDate)
         statePublisher.send(.running)
+
+        locationStart()
         run()
     }
 
@@ -154,6 +152,8 @@ class RideService: Service {
         timerCancellable?.cancel()
         elapsedTimePublisher.send(0)
         distancePublisher.send(0)
+        elevationGainProcessor = nil
+        locations.removeAll()
         storeRide()
     }
 
@@ -180,6 +180,12 @@ class RideService: Service {
         }
     }
 
+    private func locationStart() {
+        location?.cancel()
+        locationService.start()
+        location = locationService.location
+            .sink { [weak self] location in self?.handle(location: location) }
+    }
     private func storeRide() {
         storageService.createNewRide(
             name: "Ride",

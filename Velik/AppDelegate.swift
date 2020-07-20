@@ -49,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     .compactMap { $0 as? Service }
                     .filter { $0.shouldAutostart }
                     .forEach { $0.start() }
+                let location: LocationService? = dependencies.locationService
+                location?.ready()
             case .restricted:
                 debugPrint("Restricted, rerequest?")
             case .denied:
