@@ -10,7 +10,7 @@ import UIKit
 import Combine
 import CoreLocation
 
-protocol Permissions {
+protocol Permissions: Service {
     associatedtype Status
 
     var status: AnyPublisher<Status, Never> { get }

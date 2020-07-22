@@ -15,7 +15,7 @@ struct GaugeView<ViewModel: GaugeViewModel>: View {
 
     var body: some View {
         Text(viewModel.value)
-            .minimumScaleFactor(0.4)
+            .minimumScaleFactor(0.2)
             .scaledFont(name: viewModel.fontName, size: CGFloat(viewModel.fontSize))
     }
 }

@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var cancellable = Set<AnyCancellable>()
 
     let dependencies = Dependencies {
+        Dependency { LocationPermissions() }
         Dependency { StorageService() }
         Dependency { LocationService() }
         Dependency { RideService() }
@@ -27,39 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        let permissions = LocationPermissions()
-        permissions.status.flatMap { status -> AnyPublisher<LocationPermissions.Status, Never> in
-            switch status {
-            case .notDetermined, .restricted:
-                debugPrint("will request")
-                return permissions.request().replaceError(with: .denied).eraseToAnyPublisher()
-            default:
-                debugPrint("no need to request")
-                return Just(status).eraseToAnyPublisher()
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .removeDuplicates()
-        .sink { [dependencies] status in
-            debugPrint("has status", status.rawValue)
-            switch status {
-            case .authorizedAlways, .authorizedWhenInUse:
-                dependencies
-                    .compactMap { $0 as? Service }
-                    .filter { $0.shouldAutostart }
-                    .forEach { $0.start() }
-                let location: LocationService? = dependencies.locationService
-                location?.ready()
-            case .restricted:
-                debugPrint("Restricted, rerequest?")
-            case .denied:
-                debugPrint("Denied, show banner")
-            default:
-                debugPrint("Can't start location service")
-            }
-        }
-        .store(in: &cancellable)
         return true
     }
 

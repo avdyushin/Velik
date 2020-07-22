@@ -9,17 +9,25 @@
 import UIKit
 import MapKit
 import SwiftUI
+import Injected
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     private var coordinator: AppCoordinator!
+    var dependencies: Dependencies? {
+        (UIApplication.shared.delegate as? AppDelegate)?.dependencies
+    }
 
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
 
-        (UIApplication.shared.delegate as? AppDelegate)?.dependencies.build()
+        dependencies?.build()
+        dependencies?
+            .compactMap { $0 as? Service }
+            .filter { $0.shouldAutostart }
+            .forEach { $0.start() }
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

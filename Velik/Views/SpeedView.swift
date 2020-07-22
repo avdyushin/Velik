@@ -18,9 +18,7 @@ struct SpeedView: View {
     }
 
     var body: some View {
-        ZStack(alignment: .top) {
-            GaugeView(viewModel: viewModel)
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        VStack(alignment: .center) {
             HStack {
                 if !viewModel.title.isEmpty {
                     Text(viewModel.title)
@@ -38,7 +36,9 @@ struct SpeedView: View {
                         .cornerRadius(8)
                 }
             }
+            GaugeView(viewModel: viewModel)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
-        .padding(18)
+        .padding(8)
     }
 }

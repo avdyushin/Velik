@@ -13,7 +13,7 @@ class AvgSpeedViewModel: GaugeViewModel {
     override init() {
         super.init()
 
-        fontSize = 100
+        fontSize = 160
         title = Strings.avg_speed.uppercased()
         rideService.avgSpeed
             .sink { value in // m/s
