@@ -12,6 +12,7 @@ struct HistoryView: View {
 
     @ObservedObject var viewModel: HistoryViewModel
     @FetchRequest(sortDescriptors: Ride.sortDescriptors) var rides: FetchedResults<Ride>
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         NavigationView {
@@ -39,7 +40,13 @@ struct HistoryView: View {
                         }
                     }
                 }
-            }.navigationBarTitle(Text(Strings.rides), displayMode: .inline)
+            }
+            .navigationBarTitle(Text(Strings.rides), displayMode: .inline)
+            .navigationBarItems(trailing:
+                Button(action: { self.presentationMode.wrappedValue.dismiss() }) {
+                    Text(Strings.close)
+                }
+            )
         }
     }
 }

@@ -82,4 +82,7 @@
     <string id="map">
         <en>Map</en>
     </string>
+    <string id="close">
+        <en>Close</en>
+    </string>
 </strings>
