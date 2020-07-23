@@ -9,24 +9,24 @@
 import SwiftUI
 import CoreLocation
 
-struct LineChartView<FillStyle: ShapeStyle, Filter: InputProcessor>: View
+struct LineChartView<FillStyle: ShapeStyle, Filter: InputProcessor, UnitType: Unit>: View
 where Filter.Input == Double, Filter.Output == Double {
 
     let xValues: [Double]
     let yValues: [Double]
     let fillStyle: FillStyle
-    let viewModel: GridShapeViewModel
+    let viewModel: GridShapeViewModel<UnitType>
     let filter: Filter
 
-    init(xValues: [Double], yValues: [Double], fillStyle: FillStyle, filter: Filter) {
+    init(xValues: [Double], yValues: [Double], fillStyle: FillStyle, filter: Filter, unit: UnitType) {
         self.xValues = xValues
         self.yValues = yValues
         self.fillStyle = fillStyle
         self.filter = filter
         self.viewModel = GridShapeViewModel(
             x: XAxisDistance(distance: xValues.max() ?? .zero, maxCount: 10),
-            y: YAxisValues(min: yValues.min() ?? .zero, max: yValues.max() ?? .zero, maxCount: 5),
-            gridSize: CGSize(width: 32, height: 16),
+            y: YAxisValues(min: yValues.min() ?? .zero, max: yValues.max() ?? .zero, maxCount: 5, unit: unit),
+            gridSize: CGSize(width: 48, height: 18),
             position: [.leading, .bottom]
         )
     }
@@ -34,7 +34,7 @@ where Filter.Input == Double, Filter.Output == Double {
     @State private var scale = MountainShape<Filter>.AnimatableData(1.0, 0.0)
 
     var body: some View {
-        GeometryReader { _ in
+        GeometryReader { geometry in
             VStack(alignment: .leading) {
                 ZStack {
                     MountainShape(values: self.yValues, scale: self.scale, filter: self.filter, isClosed: true)
@@ -42,8 +42,10 @@ where Filter.Input == Double, Filter.Output == Double {
                         .onAppear { self.scale = MountainShape<Filter>.AnimatableData(1.0, 1.0) }
                         .padding(.bottom, self.viewModel.gridSize.height)
                         .padding(.leading, self.viewModel.gridSize.width)
-                    GridShape(viewModel: self.viewModel)
-                        .stroke(Color.gray.opacity(0.3))
+                    Image(uiImage: self.viewModel.xAxisImage(in: geometry.size)!)
+                        .foregroundColor(.secondary)
+                    Image(uiImage: self.viewModel.yAxisImage(in: geometry.size)!)
+                        .foregroundColor(.secondary)
                 }
             }
         }

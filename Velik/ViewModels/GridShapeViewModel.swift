@@ -6,9 +6,10 @@
 //  Copyright © 2020 Grigory Avdyushin. All rights reserved.
 //
 
+import UIKit
 import SwiftUI
 
-class GridShapeViewModel {
+class GridShapeViewModel<UnitType: Unit> {
 
     struct PointValue {
         let value: Double
@@ -20,11 +21,16 @@ class GridShapeViewModel {
     let yValues: [Double]
     let xValues: [Double]
 
+    let xMarkers: [Measurement<UnitLength>]
+    let yMarkers: [Measurement<UnitType>]
+
     private let axis: Axis
 
-    init(x: AxisValuesProvider, y: AxisValuesProvider, gridSize: CGSize, position: Edge.Set) {
+    init(x: XAxisDistance, y: YAxisValues<UnitType>, gridSize: CGSize, position: Edge.Set) {
         self.xValues = x.values
+        self.xMarkers = x.markers
         self.yValues = y.values
+        self.yMarkers = y.markers
         self.gridSize = gridSize
         self.position = position
 
@@ -40,13 +46,15 @@ class GridShapeViewModel {
         xValues
             .dropLast()
             .map { PointValue(value: $0, point: convert(point: CGPoint(x: $0, y: 0), in: size)) }
-            .map { PointValue(value: $0.value, point: CGPoint(x: $0.point.x, y: size.height - gridSize.height / 2)) }
+            .map {
+                PointValue(value: $0.value, point: CGPoint(x: $0.point.x, y: size.height - 2 * gridSize.height / 3))
+            }
     }
 
     func yValues(in size: CGSize) -> [PointValue] {
         yValues
             .map { PointValue(value: $0, point: convert(point: CGPoint(x: 0, y: $0), in: size)) }
-            .map { PointValue(value: $0.value, point: CGPoint(x: gridSize.width / 2, y: $0.point.y)) }
+            .map { PointValue(value: $0.value, point: CGPoint(x: 2 * gridSize.width / 3, y: $0.point.y)) }
     }
 
     func maxX(in size: CGSize) -> CGFloat {
@@ -62,6 +70,70 @@ class GridShapeViewModel {
         let xScale = axis.scale(in: chartSize(in: size)).x
         let step = xValues[1] - xValues[0]
         return CGFloat(step) * xScale
+    }
+
+    // Move to renderer
+
+    typealias Index = Int
+    typealias DrawBlock = (CGMutablePath, CGPoint, Index) -> Void
+
+    func axisImage(values: [PointValue], in size: CGSize, draw: DrawBlock) -> UIImage? {
+        defer {
+             UIGraphicsEndImageContext()
+         }
+
+        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return UIGraphicsGetImageFromCurrentImageContext()
+        }
+
+        context.draw { context in
+
+            context.setLineWidth(1)
+            context.setLineCap(.square)
+            context.setStrokeColor(UIColor.black.cgColor)
+
+            values
+                .enumerated()
+                .forEach { index, pair in
+                    let point = pair.point
+                    let path = CGMutablePath()
+                    draw(path, point, index)
+                    context.addPath(path)
+                }
+            context.strokePath()
+        }
+
+        return UIGraphicsGetImageFromCurrentImageContext()?
+            .withRenderingMode(.alwaysTemplate)
+    }
+
+    func yAxisImage(in size: CGSize) -> UIImage? {
+        axisImage(values: yValues(in: size), in: size) { path, point, index in
+            let value = yMarkers[index]
+            let string = NSAttributedString(string: Formatters.basicMeasurement.string(from: value), attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.black
+            ])
+            path.move(to: point)
+            path.addLine(to: point.applying(.init(translationX: gridSize.width / 3, y: 0)))
+            let offsetX = string.size().width
+            let offsetY = string.size().height / 2
+            string.draw(at: CGPoint(x: point.x - offsetX, y: point.y - offsetY))
+        }
+    }
+
+    func xAxisImage(in size: CGSize) -> UIImage? {
+        axisImage(values: xValues(in: size), in: size) { path, point, index in
+            let value = DistanceUtils.string(for: xMarkers[index])
+            let string = NSAttributedString(string: value, attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.black
+            ])
+            path.move(to: point)
+            path.addLine(to: point.applying(.init(translationX: 0, y: -gridSize.height / 2)))
+            let offsetX = string.size().width / 2
+            string.draw(at: CGPoint(x: point.x - offsetX, y: point.y))
+        }
     }
 
     private func chartSize(in size: CGSize) -> CGSize {

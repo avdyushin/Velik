@@ -21,6 +21,15 @@ struct Formatters {
         return formatter
     }()
 
+    static var basicMeasurement: MeasurementFormatter = {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .short
+        formatter.unitOptions = .naturalScale
+        formatter.numberFormatter.maximumFractionDigits = 1
+        formatter.numberFormatter.minimumFractionDigits = 1
+        return formatter
+    }()
+
     static var speedValue: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
