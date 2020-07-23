@@ -24,13 +24,16 @@ extension AnyTransition {
 struct ContentView<Presenter: RootPresenting>: View {
 
     @ObservedObject var presenter: Presenter
+    @Environment(\.managedObjectContext) var viewContext
+
     @State private var isHistoryPresented = false
     @State private var isImportPresented = false
     @State private var isExportPresented = false
-    @Environment(\.managedObjectContext) var viewContext
+    @State private var isPermissionPresented = false
+    @State private var importTitle = ""
 
-    @State private var importTitle: String = ""
     @Injected private var gpxImport: GPXImporter
+    @Injected private var locationPermissions: LocationPermissions
 
     var splitView: some View {
         GeometryReader { geometry in
@@ -109,8 +112,33 @@ struct ContentView<Presenter: RootPresenting>: View {
         }
     }
 
+    var notificationView: some View {
+        GeometryReader { geometry in
+            Group {
+                Button(action: {
+                    UIApplication.shared.open(
+                        URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil
+                    )
+                }) {
+                    VStack {
+                        Text("Enable Location")
+                            .font(.headline)
+                            .foregroundColor(Color(UIColor.secondaryLabel))
+                        Text("App needs access to your location in order to show speed and track rides")
+                            .font(.caption)
+                            .foregroundColor(Color(UIColor.tertiaryLabel))
+                    }
+                }
+            }
+            .frame(width: geometry.size.width - 68*2, height: 70)
+            .background(Color(UIColor.systemBackground))
+            .transition(.slide)
+            .offset(x: 68, y: 16)
+        }
+    }
+
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
+        ZStack(alignment: .topLeading) {
             ZStack(alignment: .topLeading) {
                 self.splitView
                 self.menuButton
@@ -121,6 +149,10 @@ struct ContentView<Presenter: RootPresenting>: View {
                 self.importView
                     .transition(.slideInOut)
             }
+            if self.isPermissionPresented {
+                self.notificationView
+                    .transition(.slideInOut)
+            }
         }
         .sheet(isPresented: $isHistoryPresented) {
             HistoryView(viewModel: HistoryViewModel())
@@ -129,6 +161,13 @@ struct ContentView<Presenter: RootPresenting>: View {
         .onReceive(gpxImport.availableGPX) { gpx in
             self.importTitle = gpx.name ?? "Unnamed"
             withAnimation { self.isImportPresented = true }
+        }.onReceive(locationPermissions.status) { status in
+            switch status {
+            case .denied, .restricted:
+                withAnimation { self.isPermissionPresented = true }
+            default:
+                withAnimation { self.isPermissionPresented = false }
+            }
         }
         .edgesIgnoringSafeArea([.horizontal, .bottom])
     }

@@ -39,8 +39,10 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<false/>
+    <!--
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Heart Rate Display</string>
+    -->
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Tracking &amp; Speed</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
