@@ -121,12 +121,12 @@ struct ContentView<Presenter: RootPresenting>: View {
                     )
                 }) {
                     VStack {
-                        Text("Enable Location")
+                        Text(Strings.enable_location_title)
                             .font(.headline)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
-                        Text("App needs access to your location in order to show speed and track rides")
+                            .foregroundColor(Color(UIColor.label))
+                        Text(Strings.enable_location_details)
                             .font(.caption)
-                            .foregroundColor(Color(UIColor.tertiaryLabel))
+                            .foregroundColor(Color(UIColor.secondaryLabel))
                     }
                 }
             }
@@ -159,7 +159,7 @@ struct ContentView<Presenter: RootPresenting>: View {
                 .environment(\.managedObjectContext, self.viewContext)
         }
         .onReceive(gpxImport.availableGPX) { gpx in
-            self.importTitle = gpx.name ?? "Unnamed"
+            self.importTitle = gpx.name ?? Strings.unnamed_ride
             withAnimation { self.isImportPresented = true }
         }.onReceive(locationPermissions.status) { status in
             switch status {

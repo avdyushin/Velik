@@ -85,4 +85,10 @@
     <string id="close">
         <en>Close</en>
     </string>
+    <string id="enable_location_title">
+        <en>Enable Location</en>
+    </string>
+    <string id="enable_location_details">
+        <en>App needs access to your location in order to show speed and track rides</en>
+    </string>
 </strings>

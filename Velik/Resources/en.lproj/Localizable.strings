@@ -28,4 +28,6 @@
 "summary" = "Summary";
 "map" = "Map";
 "close" = "Close";
+"enable_location_title" = "Enable Location";
+"enable_location_details" = "App needs access to your location in order to show speed and track rides";
 

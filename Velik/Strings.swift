@@ -30,5 +30,7 @@ enum Strings {
     @Localizable static var summary = "summary"
     @Localizable static var map = "map"
     @Localizable static var close = "close"
+    @Localizable static var enable_location_title = "enable_location_title"
+    @Localizable static var enable_location_details = "enable_location_details"
 }
 
