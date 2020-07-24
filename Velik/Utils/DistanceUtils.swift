@@ -30,7 +30,7 @@ enum DistanceUtils {
         let meters = Measurement<UnitLength>(value: distance, unit: .meters)
         var step: Measurement<UnitLength>
 
-        if meters.value / Settings.shared.oneK > 1 {
+        if meters.value / Settings.shared.distanceStepInMeters > 1 {
             step = Measurement(value: 1, unit: Settings.shared.distanceUnit)
         } else if meters.value / 100 > 1 {
             step = Measurement(value: 100, unit: Settings.shared.smallDistanceUnit)

@@ -28,8 +28,8 @@ struct Settings {
         .meters
     }
 
-    var oneK: Double {
-        let oneK = Measurement(value: 1_000, unit: UnitLength.meters)
-        return oneK.converted(to: distanceUnit).value
+    var distanceStepInMeters: Double {
+        let one = Measurement(value: 1, unit: distanceUnit)
+        return one.converted(to: .meters).value
     }
 }
