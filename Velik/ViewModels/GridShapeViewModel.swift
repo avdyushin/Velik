@@ -9,41 +9,36 @@
 import UIKit
 import SwiftUI
 
-class GridShapeViewModel<UnitType: Unit> {
+class GridShapeViewModel<X: AxisValuesProvider, Y: AxisValuesProvider> {
 
     struct PointValue {
         let value: Double
         let point: CGPoint
     }
 
+    let xAxis: X
+    let yAxis: Y
     let gridSize: CGSize
     let position: Edge.Set
-    let yValues: [Double]
-    let xValues: [Double]
-
-    let xMarkers: [Measurement<UnitLength>]
-    let yMarkers: [Measurement<UnitType>]
 
     private let axis: Axis
 
-    init(x: XAxisDistance, y: YAxisValues<UnitType>, gridSize: CGSize, position: Edge.Set) {
-        self.xValues = x.values
-        self.xMarkers = x.markers
-        self.yValues = y.values
-        self.yMarkers = y.markers
+    init(x: X, y: Y, gridSize: CGSize, position: Edge.Set) {
+        self.xAxis = x
+        self.yAxis = y
         self.gridSize = gridSize
         self.position = position
 
         self.axis = Axis(
             minX: 0,
-            maxX: CGFloat(max(1, xValues.max() ?? .zero)),
-            minY: CGFloat(yValues.min() ?? .zero),
-            maxY: CGFloat(yValues.max() ?? .zero)
+            maxX: CGFloat(max(1, x.values.max() ?? .zero)),
+            minY: CGFloat(y.values.min() ?? .zero),
+            maxY: CGFloat(y.values.max() ?? .zero)
         )
     }
 
     func xValues(in size: CGSize) -> [PointValue] {
-        xValues
+        xAxis.values
             .dropLast()
             .map { PointValue(value: $0, point: convert(point: CGPoint(x: $0, y: 0), in: size)) }
             .map {
@@ -52,28 +47,21 @@ class GridShapeViewModel<UnitType: Unit> {
     }
 
     func yValues(in size: CGSize) -> [PointValue] {
-        yValues
+        yAxis.values
             .map { PointValue(value: $0, point: convert(point: CGPoint(x: 0, y: $0), in: size)) }
-            .map { PointValue(value: $0.value, point: CGPoint(x: 2 * gridSize.width / 3, y: $0.point.y)) }
-    }
-
-    func maxX(in size: CGSize) -> CGFloat {
-        let xScale = axis.scale(in: chartSize(in: size)).x
-        let trailing = xValues.dropLast().last ?? .zero
-        return CGFloat(trailing) * xScale
+            .map { PointValue(value: $0.value, point: CGPoint(x: 0.9 * gridSize.width, y: $0.point.y)) }
     }
 
     func stepX(in size: CGSize) -> CGFloat {
-        guard xValues.count > 1 else {
+        guard xAxis.values.count > 1 else {
             return 0
         }
         let xScale = axis.scale(in: chartSize(in: size)).x
-        let step = xValues[1] - xValues[0]
+        let step = xAxis.values[1] - xAxis.values[0]
         return CGFloat(step) * xScale
     }
 
-    // Move to renderer
-
+    // TODO: Move to renderer
     typealias Index = Int
     typealias DrawBlock = (CGMutablePath, CGPoint, Index) -> Void
 
@@ -111,13 +99,15 @@ class GridShapeViewModel<UnitType: Unit> {
 
     func yAxisImage(in size: CGSize) -> UIImage? {
         axisImage(values: yValues(in: size), in: size) { path, point, index in
-            let value = yMarkers[index]
-            let string = NSAttributedString(string: Formatters.basicMeasurement.string(from: value), attributes: [
+            // Skip max value to display
+            guard index != yAxis.values.count - 1 else { return }
+            let value =  yAxis.format(at: index)
+            let string = NSAttributedString(string: value, attributes: [
                 NSAttributedString.Key.foregroundColor: UIColor.black
             ])
             path.move(to: point)
-            path.addLine(to: point.applying(.init(translationX: gridSize.width / 3, y: 0)))
-            let offsetX = string.size().width
+            path.addLine(to: point.applying(.init(translationX: 0.1 * gridSize.width, y: 0)))
+            let offsetX = string.size().width + 4
             let offsetY = string.size().height / 2
             string.draw(at: CGPoint(x: point.x - offsetX, y: point.y - offsetY))
         }
@@ -125,7 +115,7 @@ class GridShapeViewModel<UnitType: Unit> {
 
     func xAxisImage(in size: CGSize) -> UIImage? {
         axisImage(values: xValues(in: size), in: size) { path, point, index in
-            let value = DistanceUtils.string(for: xMarkers[index])
+            let value = xAxis.format(at: index)
             let string = NSAttributedString(string: value, attributes: [
                 NSAttributedString.Key.foregroundColor: UIColor.black
             ])

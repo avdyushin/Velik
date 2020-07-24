@@ -15,7 +15,7 @@ where Filter.Input == Double, Filter.Output == Double {
     let xValues: [Double]
     let yValues: [Double]
     let fillStyle: FillStyle
-    let viewModel: GridShapeViewModel<UnitType>
+    let viewModel: GridShapeViewModel<XAxisDistance, YAxisValues<UnitType>>
     let filter: Filter
 
     init(xValues: [Double], yValues: [Double], fillStyle: FillStyle, filter: Filter, unit: UnitType) {
@@ -26,7 +26,7 @@ where Filter.Input == Double, Filter.Output == Double {
         self.viewModel = GridShapeViewModel(
             x: XAxisDistance(distance: xValues.max() ?? .zero, maxCount: 10),
             y: YAxisValues(min: yValues.min() ?? .zero, max: yValues.max() ?? .zero, maxCount: 5, unit: unit),
-            gridSize: CGSize(width: 48, height: 18),
+            gridSize: CGSize(width: 64, height: 18), // TODO: Dynamic grid size
             position: [.leading, .bottom]
         )
     }

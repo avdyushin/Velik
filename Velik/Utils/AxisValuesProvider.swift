@@ -13,6 +13,8 @@ protocol AxisValuesProvider {
 
     var values: [Double] { get }
     var markers: [Measurement<UnitType>] { get }
+
+    func format(at index: Int) -> String
 }
 
 struct XAxisDistance: AxisValuesProvider {
@@ -25,6 +27,10 @@ struct XAxisDistance: AxisValuesProvider {
 
         markers = DistanceUtils.distanceMarkers(for: distance, maxCount: maxCount)
         values = markers.map { $0.converted(to: .meters).value }
+    }
+
+    func format(at index: Int) -> String {
+        DistanceUtils.string(for: markers[index])
     }
 }
 
@@ -39,5 +45,9 @@ struct YAxisValues<UnitType: Unit>: AxisValuesProvider {
         let step = (max - min) / Double(maxCount)
         values = Array(stride(from: min, to: max, by: step)) + [max]
         markers = values.map { Measurement(value: $0, unit: unit) }
+    }
+
+    func format(at index: Int) -> String {
+        Formatters.basicMeasurement.string(from: NSNumber(value: markers[index].value)) ?? ""
     }
 }
