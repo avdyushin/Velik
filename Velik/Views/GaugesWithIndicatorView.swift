@@ -25,11 +25,6 @@ struct GaugesWithIndicatorView: View {
                             .modifier(PageIndicatorModifier(index: index, currentIndex: self.$pageIndex))
                     }
                 }.frame(minWidth: 0, maxWidth: .infinity)
-//                Button(action: { debugPrint("Settings") }) {
-//                    Image(systemName: "gear")
-//                        .resizable()
-//                        .frame(width: 24, height: 24)
-//                }.padding(4)
             }.padding(.bottom, 12)
         }
     }

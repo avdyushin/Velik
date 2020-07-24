@@ -15,6 +15,7 @@ class DurationViewModel: GaugeViewModel {
         super.init()
 
         rideService.elapsed
+            .removeDuplicates()
             .map { RideViewModel.duration($0) }
             .assign(to: \.value, on: self)
             .store(in: &cancellable)

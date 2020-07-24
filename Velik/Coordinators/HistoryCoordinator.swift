@@ -17,8 +17,7 @@ class HistoryCoordinator: Coordinator, ViewRunner {
     }
 
     func start() -> some View {
-        debugPrint("\(self) started")
-        return NavigationLink(destination: EmptyView(), isActive: isPresented) {
+        NavigationLink(destination: EmptyView(), isActive: isPresented) {
             EmptyView()
         }
     }

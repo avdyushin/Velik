@@ -17,13 +17,11 @@ class SpeedViewModel: GaugeViewModel {
 
         fontSize = 160
         title = Strings.current_speed.uppercased()
-        let last = locationService.speed.debounce(for: .seconds(10), scheduler: RunLoop.main)
-        locationService.speed
-            .merge(with: last)
-            .subscribe(on: RunLoop.main)
+
+        locationService.speed.map { _ in .zero }.debounce(for: .seconds(10), scheduler: RunLoop.main)
+            .merge(with: locationService.speed)
             .removeDuplicates()
             .sink { value in // m/s
-                debugPrint("received", value)
                 let formatted = RideViewModel.speed(value, unit: Settings.shared.speedUnit)
                 self.value = formatted.value
                 self.units = formatted.units.uppercased()

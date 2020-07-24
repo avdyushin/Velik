@@ -48,6 +48,7 @@
 		4B208DA024A37EAF009E5F6C /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208D9F24A37EAF009E5F6C /* PersistentContainer.swift */; };
 		4B208DA224A38CFA009E5F6C /* NSPersistentContainer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208DA124A38CFA009E5F6C /* NSPersistentContainer+Extensions.swift */; };
 		4B2B2BD024CB544400026D76 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B2BCF24CB544400026D76 /* Settings.swift */; };
+		4B2B2BD124CB68CA00026D76 /* Collections+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF0B1249E2AA500D7AFF1 /* Collections+Extension.swift */; };
 		4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31822461D9AA00726271 /* AppDelegate.swift */; };
 		4B2B31852461D9AA00726271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31842461D9AA00726271 /* ContentView.swift */; };
 		4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31862461D9AB00726271 /* Assets.xcassets */; };
@@ -976,6 +977,7 @@
 				4B2B31952461D9E700726271 /* Data+Extension.swift in Sources */,
 				4B2B31972461F98300726271 /* HeartRateService.swift in Sources */,
 				4BA041202462F6AD002E4D81 /* AES.swift in Sources */,
+				4B2B2BD124CB68CA00026D76 /* Collections+Extension.swift in Sources */,
 				4B2B31852461D9AA00726271 /* ContentView.swift in Sources */,
 				4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */,
 			);

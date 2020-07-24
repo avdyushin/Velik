@@ -16,6 +16,7 @@ class AvgSpeedViewModel: GaugeViewModel {
         fontSize = 160
         title = Strings.avg_speed.uppercased()
         rideService.avgSpeed
+            .removeDuplicates()
             .sink { value in // m/s
                 let formatted = RideViewModel.speed(value, unit: Settings.shared.speedUnit)
                 self.value = formatted.value

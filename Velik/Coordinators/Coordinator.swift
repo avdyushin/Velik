@@ -22,11 +22,9 @@ class Coordinator {
 
     deinit {
         stop()
-        debugPrint("\(self) released")
     }
 
     func stop() {
-        debugPrint("\(self) stopped")
         parent?.onChildFinished(self)
         childCoordinators.forEach { $0.stop() }
     }
@@ -65,8 +63,7 @@ class AppCoordinator: Coordinator, ViewRunner {
 
     @discardableResult
     func start() -> some View {
-        debugPrint("\(self) started")
-        return route(to: RootCoordinator(window: window))
+        route(to: RootCoordinator(window: window))
     }
 
     func open(URLContexts: Set<UIOpenURLContext>) {

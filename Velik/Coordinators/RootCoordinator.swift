@@ -22,8 +22,6 @@ class RootCoordinator: Coordinator, ViewRunner {
     }
 
     func start() -> some View {
-        debugPrint("\(self) started")
-
         let contentView = RootViewFactory.make(with: self)
             .environment(\.mkMapView, sharedMapView)
             .environment(\.managedObjectContext, storage.storage.mainContext)
