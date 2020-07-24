@@ -153,8 +153,8 @@ class RideService: Service {
         elapsedTimePublisher.send(0)
         distancePublisher.send(0)
         elevationGainProcessor = nil
-        locations.removeAll()
         storeRide()
+        locations.removeAll()
     }
 
     func toggle() {
