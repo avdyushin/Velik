@@ -24,7 +24,7 @@ class SpeedViewModel: GaugeViewModel {
             .removeDuplicates()
             .sink { value in // m/s
                 debugPrint("received", value)
-                let formatted = RideViewModel.speed(value)
+                let formatted = RideViewModel.speed(value, unit: Settings.shared.speedUnit)
                 self.value = formatted.value
                 self.units = formatted.units.uppercased()
             }

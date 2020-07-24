@@ -47,6 +47,7 @@
 		4B208D9D24A37A75009E5F6C /* TrackPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208D9C24A37A75009E5F6C /* TrackPointTests.swift */; };
 		4B208DA024A37EAF009E5F6C /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208D9F24A37EAF009E5F6C /* PersistentContainer.swift */; };
 		4B208DA224A38CFA009E5F6C /* NSPersistentContainer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B208DA124A38CFA009E5F6C /* NSPersistentContainer+Extensions.swift */; };
+		4B2B2BD024CB544400026D76 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B2BCF24CB544400026D76 /* Settings.swift */; };
 		4B2B31832461D9AA00726271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31822461D9AA00726271 /* AppDelegate.swift */; };
 		4B2B31852461D9AA00726271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B31842461D9AA00726271 /* ContentView.swift */; };
 		4B2B31872461D9AB00726271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B31862461D9AB00726271 /* Assets.xcassets */; };
@@ -212,6 +213,7 @@
 		4B208D9C24A37A75009E5F6C /* TrackPointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackPointTests.swift; sourceTree = "<group>"; };
 		4B208D9F24A37EAF009E5F6C /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		4B208DA124A38CFA009E5F6C /* NSPersistentContainer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+Extensions.swift"; sourceTree = "<group>"; };
+		4B2B2BCF24CB544400026D76 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		4B2B31802461D9AA00726271 /* DebugBluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugBluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2B31822461D9AA00726271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2B31842461D9AA00726271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 				4BAB77E3245B300200F011A0 /* Permissions.swift */,
 				4B88C9B1245C29CB00BD5DD3 /* RideService.swift */,
 				4B8C0E0B24C0CD5800257071 /* InputProcessor.swift */,
+				4B2B2BCF24CB544400026D76 /* Settings.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 				4B10F1AA249B98B40050EEF4 /* Ride.swift in Sources */,
 				4BA0755724BCE09700E42A26 /* Filter.swift in Sources */,
 				4BA0755424BCD66400E42A26 /* AxisValuesProvider.swift in Sources */,
+				4B2B2BD024CB544400026D76 /* Settings.swift in Sources */,
 				4B208D8D24A273BF009E5F6C /* CGContext+Extensions.swift in Sources */,
 				4BF6F6AE24AE46E80004219B /* GPXTrack.swift in Sources */,
 				4B10F1B4249C944C0050EEF4 /* RideSummary.swift in Sources */,

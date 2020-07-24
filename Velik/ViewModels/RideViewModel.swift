@@ -66,12 +66,12 @@ class RideViewModel {
         title = ride.name ?? Strings.unnamed_ride
         let summary = ride.asRideSummary()
         distanceValue = summary.distance
-        distance = Self.distance(summary.distance)
+        distance = Self.distance(summary.distance, unit: Settings.shared.distanceUnit)
         duration = Self.duration(summary.duration)
         avgSpeedValue = summary.avgSpeed
-        let avgSpeedPair = Self.speed(summary.avgSpeed)
+        let avgSpeedPair = Self.speed(summary.avgSpeed, unit: Settings.shared.speedUnit)
         avgSpeed = avgSpeedPair.value + " " + avgSpeedPair.units
-        let maxSpeedPair = Self.speed(summary.maxSpeed)
+        let maxSpeedPair = Self.speed(summary.maxSpeed, unit: Settings.shared.speedUnit)
         maxSpeed = maxSpeedPair.value + " " + maxSpeedPair.units
         elevationGainValue = summary.elevationGain
         elevationGain = Self.elevation(summary.elevationGain)
@@ -105,19 +105,20 @@ class RideViewModel {
         Formatters.distanceFormatter.string(from: Measurement(value: value ?? 0, unit: UnitLength.meters))
     }
 
-    static func distance(_ value: Double?) -> String {
-        let kilometers = Measurement(value: value ?? 0, unit: UnitLength.meters).converted(to: .kilometers)
-        return Formatters.distanceFormatter.string(from: kilometers)
+    static func distance(_ value: Double?, unit: UnitLength) -> String {
+        let meters = Measurement(value: value ?? 0, unit: UnitLength.meters)
+        let converted = meters.converted(to: unit)
+        return Formatters.distanceFormatter.string(from: converted)
     }
 
     static func duration(_ value: Double?) -> String {
         Formatters.elapsedFormatter.string(from: value ?? 0)!
     }
 
-    static func speed(_ value: Double?) -> ValueUnitPair {
+    static func speed(_ value: Double?, unit: UnitSpeed) -> ValueUnitPair {
         let mps = Measurement(value: value ?? 0, unit: UnitSpeed.metersPerSecond)
-        let kph = mps.converted(to: UnitSpeed.kilometersPerHour)
-        return Formatters.formatted(from: kph)
+        let converted = mps.converted(to: unit)
+        return Formatters.formatted(from: converted)
     }
 
     static func power(power: Double) -> ValueUnitPair {

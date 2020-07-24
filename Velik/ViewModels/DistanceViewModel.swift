@@ -15,7 +15,7 @@ class DistanceViewModel: GaugeViewModel {
         super.init()
 
         rideService.distance
-            .map { RideViewModel.distance($0) }
+            .map { RideViewModel.distance($0, unit: Settings.shared.distanceUnit) }
             .assign(to: \.value, on: self)
             .store(in: &cancellable)
     }
