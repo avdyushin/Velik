@@ -34,20 +34,23 @@ struct XAxisDistance: AxisValuesProvider {
     }
 }
 
-struct YAxisValues<UnitType: Unit>: AxisValuesProvider {
+struct YAxisValues<UnitType: Dimension>: AxisValuesProvider {
 
     let values: [Double]
     var markers: [Measurement<UnitType>]
+    private let outUnit: UnitType
 
-    init(min: Double, max: Double, maxCount: Int, unit: UnitType) {
+    init(min: Double, max: Double, maxCount: Int, unit: UnitType, outUnit: UnitType) {
         precondition(maxCount > 0)
 
         let step = (max - min) / Double(maxCount)
         values = Array(stride(from: min, to: max, by: step)) + [max]
         markers = values.map { Measurement(value: $0, unit: unit) }
+        self.outUnit = outUnit
     }
 
     func format(at index: Int) -> String {
-        Formatters.basicMeasurement.string(from: NSNumber(value: markers[index].value)) ?? ""
+        let converted = markers[index].converted(to: outUnit)
+        return Formatters.basicMeasurement.string(from: NSNumber(value: converted.value)) ?? ""
     }
 }

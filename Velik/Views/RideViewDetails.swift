@@ -45,7 +45,8 @@ struct RideViewDetails: View {
                                       yValues: viewModel.elevations,
                                       fillStyle: viewModel.chartFillStyle,
                                       filter: LowPassFilter(initialValue: viewModel.elevations.first, factor: 0.2),
-                                      unit: UnitLength.meters)
+                                      unit: UnitLength.meters,
+                                      outUnit: UnitLength.meters)
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width) // This fixes animation inside ScrollView
                             .frame(height: 180)
@@ -61,11 +62,12 @@ struct RideViewDetails: View {
                                       yValues: viewModel.speed,
                                       fillStyle: viewModel.chartFillStyle,
                                       filter: LowPassFilter(initialValue: viewModel.speed.first, factor: 0.2),
-                                      unit: UnitSpeed.metersPerSecond)
+                                      unit: UnitSpeed.metersPerSecond,
+                                      outUnit: Settings.shared.speedUnit)
                             .animation(.easeInOut(duration: 2/3))
                             .frame(width: geometry.size.width, height: 180)
                     } // else { self.noDataText }
-                }.padding()
+                }.padding(.bottom)
             }
         }.actionSheet(isPresented: $confirmDelete) {
             ActionSheet(

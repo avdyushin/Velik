@@ -57,7 +57,7 @@ struct ContentView<Presenter: RootPresenting>: View {
                         .padding([.bottom], 8)
                         Rectangle()
                             .frame(height: geometry.safeAreaInsets.bottom)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color(UIColor.systemBackground))
                     }
                     .background(Color(UIColor.systemBackground))
             })

@@ -21,7 +21,7 @@ struct Settings {
     }
 
     var smallDistanceUnit: UnitLength {
-        Locale.current.usesMetricSystem ? .meters : .feet
+        Locale.current.usesMetricSystem ? .meters : .miles
     }
 
     var elevationUnit: UnitLength {

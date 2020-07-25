@@ -21,7 +21,7 @@ struct GaugesWithIndicatorView: View {
                 HStack(spacing: 12) {
                     ForEach(0..<viewModel.numberOfPages) { index in
                         PageIndicatorView(index: index) { self.pageIndex = index }
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(UIColor.label))
                             .modifier(PageIndicatorModifier(index: index, currentIndex: self.$pageIndex))
                     }
                 }.frame(minWidth: 0, maxWidth: .infinity)

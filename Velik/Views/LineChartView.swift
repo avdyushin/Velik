@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreLocation
 
-struct LineChartView<FillStyle: ShapeStyle, Filter: InputProcessor, UnitType: Unit>: View
+struct LineChartView<FillStyle: ShapeStyle, Filter: InputProcessor, UnitType: Dimension>: View
 where Filter.Input == Double, Filter.Output == Double {
 
     let xValues: [Double]
@@ -18,14 +18,25 @@ where Filter.Input == Double, Filter.Output == Double {
     let viewModel: GridShapeViewModel<XAxisDistance, YAxisValues<UnitType>>
     let filter: Filter
 
-    init(xValues: [Double], yValues: [Double], fillStyle: FillStyle, filter: Filter, unit: UnitType) {
+    init(xValues: [Double],
+         yValues: [Double],
+         fillStyle: FillStyle,
+         filter: Filter,
+         unit: UnitType,
+         outUnit: UnitType) {
         self.xValues = xValues
         self.yValues = yValues
         self.fillStyle = fillStyle
         self.filter = filter
         self.viewModel = GridShapeViewModel(
             x: XAxisDistance(distance: xValues.max() ?? .zero, maxCount: 10),
-            y: YAxisValues(min: yValues.min() ?? .zero, max: yValues.max() ?? .zero, maxCount: 5, unit: unit),
+            y: YAxisValues(
+                min: yValues.min() ?? .zero,
+                max: yValues.max() ?? .zero,
+                maxCount: 5,
+                unit: unit,
+                outUnit: outUnit
+            ),
             gridSize: CGSize(width: 64, height: 18), // TODO: Dynamic grid size
             position: [.leading, .bottom]
         )

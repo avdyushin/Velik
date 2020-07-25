@@ -507,7 +507,6 @@
 				4BA41B1E2472F7F30002D88A /* Timer2.swift */,
 				4BA0754724B8E57A00E42A26 /* DistanceUtils.swift */,
 				4BA0755124BCD09700E42A26 /* Logger.swift */,
-				4BA0755324BCD66400E42A26 /* AxisValuesProvider.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -569,6 +568,7 @@
 				4B4F6DA224AB174B001E68CA /* Axis.swift */,
 				4B4F6D9E24AA3664001E68CA /* MountainShape.swift */,
 				4B5C0D7824A7AABF00DBCB90 /* LineChartView.swift */,
+				4BA0755324BCD66400E42A26 /* AxisValuesProvider.swift */,
 			);
 			name = Chart;
 			sourceTree = "<group>";
