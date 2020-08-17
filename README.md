@@ -1,4 +1,4 @@
-#Velik
+# Velik.app
 ## Ride tracking iOS app
 
 Build in SwiftUI using Combine and CoreData
