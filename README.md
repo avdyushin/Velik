@@ -1,6 +1,8 @@
 # Velik.app
 ## Ride tracking iOS app
 
+<img src="velik.png" width="256" />
+
 Build in SwiftUI using Combine and CoreData
 
 ### Features
@@ -12,6 +14,10 @@ Build in SwiftUI using Combine and CoreData
 - Imports GPX files into rides with summary
 - Exports rides as GPX
 - Light/Dark mode
+
+### Screenshots
+
+<img src="velik_dark.png" width="720" />
 
 ### Limitations
 
