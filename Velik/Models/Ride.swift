@@ -9,7 +9,7 @@
 import CoreData
 import CoreLocation
 
-extension Ride: Identifiable {
+extension Ride {
 
     public override func awakeFromInsert() {
         super.awakeFromInsert()

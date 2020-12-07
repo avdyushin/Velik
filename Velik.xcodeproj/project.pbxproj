@@ -844,7 +844,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Grigory Avdyushin";
 				TargetAttributes = {
 					4B2B317F2461D9AA00726271 = {
@@ -945,7 +945,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $SRCROOT/$TARGETNAME/Resources/Localizable\n./make.sh $SCRIPT_INPUT_FILE_0 .. $SCRIPT_OUTPUT_FILE_0\n";
+			shellScript = "cd \"$SRCROOT/$TARGETNAME/Resources/Localizable\"\n./make.sh \"$SCRIPT_INPUT_FILE_0\" .. \"$SCRIPT_OUTPUT_FILE_0\"\n";
 		};
 		4BA41B4B247FC2F10002D88A /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1236,6 +1236,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1298,6 +1299,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension RideSummary: Identifiable {
+extension RideSummary {
 
     public override func awakeFromInsert() {
         super.awakeFromInsert()
