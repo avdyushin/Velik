@@ -10,18 +10,22 @@ import Combine
 import Foundation
 import CoreBluetooth
 
+protocol Attribute {
+    var uuid: CBUUID { get }
+}
+
 class BluetoothScanner: NSObject, Service {
 
     typealias RSSIData = NSNumber
     typealias Payload = (advertisementData: AdvertisementData, RSSI: RSSIData)
     typealias AdvertisementData = [String: Any]
 
-    class Characteristics: CBAttribute {
+    class Characteristics: Attribute {
         let peripheral: Peripheral
         let service: CBService
         let characteristic: CBCharacteristic
 
-        override var uuid: CBUUID { characteristic.uuid }
+        var uuid: CBUUID { characteristic.uuid }
 
         init(peripheral: Peripheral, service: CBService, characteristic: CBCharacteristic) {
             self.peripheral = peripheral
@@ -40,11 +44,11 @@ class BluetoothScanner: NSObject, Service {
         }
     }
 
-    class Service: CBAttribute {
+    class Service: Attribute {
         let peripheral: Peripheral
         let service: CBService
 
-        override var uuid: CBUUID { service.uuid }
+        var uuid: CBUUID { service.uuid }
 
         init(peripheral: Peripheral, service: CBService) {
             self.peripheral = peripheral

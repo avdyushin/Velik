@@ -26,9 +26,7 @@ class RootCoordinator: Coordinator, ViewRunner {
             .environment(\.mkMapView, sharedMapView)
             .environment(\.managedObjectContext, storage.storage.mainContext)
 
-        window?.rootViewController = UIHostingController(rootView:
-            contentView //NavigationView { contentView }
-        )
+        window?.rootViewController = UIHostingController(rootView: contentView)
         window?.makeKeyAndVisible()
         return EmptyView()
     }

@@ -40,15 +40,12 @@ class HeartRateService: Service {
             .discovered
             .filter { $0.peripheral.name?.hasPrefix("MI") == true }
             .print()
-            //.first { $0.peripheral.identifier == UUID(uuidString: "12199EBB-F68D-4B30-90D8-AC3374BA150D")! }
             .flatMap { $0.connect() }
             .retry(3)
             .flatMap { $0.discoverServices() }
             .retry(3)
-            //.filter { $0.uuid == CBUUID(string: "FEE1") }
             .flatMap { $0.discoverCharacteristics() }
             .retry(3)
-            //            .filter { $0.uuid == CBUUID(string: "00000009-0000-3512-2118-0009AF100700") }
             .sink(receiveCompletion: { _ in },
                   receiveValue: { [authCh, heartRateCh] in
                     switch $0.uuid {
