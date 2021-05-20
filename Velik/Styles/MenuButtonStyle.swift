@@ -23,6 +23,5 @@ struct MenuButtonStyle: ButtonStyle {
             configuration.label
                 .foregroundColor(configuration.isPressed ? backgroundColor : tintColor)
         }
-        //.opacity(configuration.isPressed ? 0.7 : 1.0)
     }
 }

@@ -17,7 +17,7 @@ struct NotificationView<Presenting: View, Content: View>: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                self.presenting()//.blur(radius: self.isShowing ? 1 : 0)
+                self.presenting()
                 Group {
                     self.content()
                 }
@@ -25,7 +25,6 @@ struct NotificationView<Presenting: View, Content: View>: View {
                 .padding()
                 .background(Color(UIColor.systemBackground))
                 .transition(.slide)
-                //.border(Color.orange, width: 3)
                 .overlay(
                     Rectangle()
                         .fill()
@@ -47,13 +46,3 @@ extension View {
         NotificationView(isShowing: isShowing, presenting: { self }, content: content)
     }
 }
-
-//struct NotificationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NotificationView(
-//            isShowing: true,
-//            presenting: { EmptyView() },
-//            content: { Text("Ride have been stopped") }
-//        )
-//    }
-//}

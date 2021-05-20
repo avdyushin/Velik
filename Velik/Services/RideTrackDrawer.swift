@@ -17,7 +17,7 @@ struct RideTrackDrawer: MapSnapshotProcessor {
     private var drawables = [LocationDrawable]()
     private let locations: () -> [CLLocation]
 
-    @_functionBuilder public struct DrawableBuilder {
+    @resultBuilder public struct DrawableBuilder {
         public static func buildBlock(_ drawable: LocationDrawable) -> LocationDrawable { drawable }
         public static func buildBlock(_ drawables: LocationDrawable...) -> [LocationDrawable] { drawables }
     }

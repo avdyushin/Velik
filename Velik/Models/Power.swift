@@ -44,7 +44,7 @@ struct Parameters {
 
 struct Power {
 
-    //swiftlint:disable identifier_name
+    // swiftlint:disable identifier_name
     static func power(parameters: Parameters) -> Measurement<UnitPower> {
 
         // Input
@@ -79,5 +79,5 @@ struct Power {
 
         return Measurement(value: power, unit: .watts)
     }
-    //swiftlint:enable identifier_name
+    // swiftlint:enable identifier_name
 }
