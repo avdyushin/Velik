@@ -1,7 +1,7 @@
 # Velik.app
 ## Ride tracking iOS app
 
-<img src="velik.png" width="256" />
+<img src="docs/assets/velik.png" width="256" />
 
 Build in SwiftUI using Combine and CoreData
 
@@ -17,7 +17,7 @@ Build in SwiftUI using Combine and CoreData
 
 ### Screenshots
 
-<img src="velik_dark.png" width="720" />
+<img src="docs/assets/velik_dark.png" width="720" />
 
 ### Limitations
 

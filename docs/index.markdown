@@ -3,7 +3,6 @@ layout: default
 title: Velik.app
 ---
 
-# Velik.app
 ## Ride tracking app for iOS
 
 ### Features
@@ -15,3 +14,5 @@ title: Velik.app
 - Imports GPX files into rides with summary
 - Exports rides as GPX
 - Light/Dark mode
+
+<img src="assets/velik_dark.png" width="720" />
