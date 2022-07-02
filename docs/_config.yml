@@ -28,7 +28,7 @@ url: "https://blog.grigory.nl" # the base hostname & protocol for your site, e.g
 github_username:  avdyushin
 
 # Build settings
-theme: Minimal
+theme: jekyll-theme-minimal
 #plugins:
 #  - jekyll-feed
 
