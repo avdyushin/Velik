@@ -1,8 +1,17 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
-layout: home
+layout: default
+title: Velik.app
 ---
 
-Velik app
+# Velik.app
+## Ride tracking app for iOS
+
+### Features
+
+- Track current location and draw path on the map
+- Show current/average speed, distance and duration of the ride
+- Adjustable size on the map and gauges view
+- Calculates estimated average power effort and weight loss
+- Imports GPX files into rides with summary
+- Exports rides as GPX
+- Light/Dark mode
