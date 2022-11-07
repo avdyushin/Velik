@@ -25,7 +25,7 @@ struct CoreDataRideRepository: RideRepository {
             context.perform {
                 do {
                     let rides = try context.fetch(Ride.fetchRequest())
-                    promise(.success(rides as! [Ride]))
+                    promise(.success(rides))
                 } catch {
                     promise(.failure(error))
                 }
